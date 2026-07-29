@@ -9,19 +9,21 @@ interface NavigationItem {
   path: string;
 }
 
-interface SidebarSettingsItemsProps {
+interface Props {
   pathname: string;
   isDropdownOpen: boolean;
-  setIsDropdownOpen: (isOpen: boolean) => void;
-  setIsModalOpen: (isOpen: boolean) => void;
+  setIsDropdownOpen: React.Dispatch<
+    React.SetStateAction<boolean>
+  >;
+  openSignOutModal: () => void;
 }
 
 export default function SidebarSettingsItems({
   pathname,
   isDropdownOpen,
   setIsDropdownOpen,
-  setIsModalOpen,
-}: SidebarSettingsItemsProps) {
+  openSignOutModal,
+}: Props) {
   return (
     <div className="mt-auto flex flex-col gap-3 px-3 pb-4 border-t pt-7 border-border-light">
       {settingsItemsData.map((item: NavigationItem, index: number) => {
@@ -64,7 +66,7 @@ export default function SidebarSettingsItems({
             className="w-full flex items-center gap-3 cursor-pointer px-3 py-2.5 rounded-lg hover:bg-[#FFDFDF] text-text-primary transition-colors"
             onClick={() => {
               setIsDropdownOpen(false);
-              setIsModalOpen(true);
+              openSignOutModal();
             }}
           >
             <FiLogOut className="text-[1.1rem]" />

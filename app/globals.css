@@ -235,6 +235,12 @@ body {
   .user-sidebar{
     @apply bg-brand-primary text-text-inverse p-2.5 rounded-xl flex items-center justify-center min-w-[2.5rem] h-[2.5rem];
   }
+  .signout-btn{
+    @apply flex-1 cursor-pointer rounded-xl bg-accent-danger py-3 text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-accent-danger-light;
+  }
+  .signout-btn-cancel{
+    @apply flex-1 cursor-pointer rounded-xl border border-gray-200 bg-white py-3 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50;
+  }
 
   .btn-primary-icon {
     @apply text-[0.9rem];

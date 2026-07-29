@@ -1,25 +1,39 @@
 "use client";
 
+import {
+  forwardRef,
+  useImperativeHandle,
+  useState,
+} from "react";
 import { FiAlertCircle, FiX } from "react-icons/fi";
 
-interface DeleteRoleModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  // onConfirm: () => void;
+export interface DeleteRoleModalRef {
+  open: () => void;
+  close: () => void;
 }
 
-export default function DeleteRoleModal({
-  isOpen,
-  onClose,
-  // onConfirm,
-}: DeleteRoleModalProps) {
+interface DeleteRoleModalProps {
+  onConfirm?: () => void;
+}
+
+const DeleteRoleModal = forwardRef<
+  DeleteRoleModalRef,
+  DeleteRoleModalProps
+>(({ onConfirm }, ref) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  useImperativeHandle(ref, () => ({
+    open: () => setIsOpen(true),
+    close: () => setIsOpen(false),
+  }));
+
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[2px] p-4">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[2px] p-4">
       <div className="relative w-full max-w-[624px] rounded-[1.25rem] bg-white p-8 shadow-2xl font-sans">
         <button
-          onClick={onClose}
+              onClick={() => setIsOpen(false)}
           className="absolute right-5 top-5 text-gray-500 hover:text-gray-800 transition-colors duration-200 cursor-pointer"
         >
           <FiX className="h-5 w-5" />
@@ -52,14 +66,14 @@ export default function DeleteRoleModal({
 
         <div className="mt-8 flex gap-4">
           <button
-            onClick={onClose}
+            onClick={() => setIsOpen(false)}
             className="flex-1 rounded-md border border-gray-200 bg-white py-2 text-[1rem] font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
           >
             Cancel
           </button>
           <button
             // onClick={onConfirm}
-            className="flex-1 rounded-md bg-bg-delete py-2 text-[1rem] !font-normal text-white hover:bg-bg-delete-hover transition-colors duration-200 cursor-pointer"
+            className="signout-btn"
           >
             Delete Role
           </button>
@@ -67,4 +81,8 @@ export default function DeleteRoleModal({
       </div>
     </div>
   );
-}
+});
+
+DeleteRoleModal.displayName = "DeleteRoleModal";
+
+export default DeleteRoleModal;

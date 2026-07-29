@@ -1,18 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "next/navigation";
 import { FiEdit, FiTrash2 } from "react-icons/fi";
-import DeleteRoleModal from "@/components/modal/DeleteRoleModal";
+import DeleteRoleModal, {
+  DeleteRoleModalRef,
+} from "@/components/modal/DeleteRoleModal";
 
 interface Props {
   id: string;
 }
 
+
 export default function RoleTableActions({ id }: Props) {
   const router = useRouter();
 
-  const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
+  const deleteModalRef = useRef<DeleteRoleModalRef>(null);
 
   return (
     <>
@@ -25,23 +28,21 @@ export default function RoleTableActions({ id }: Props) {
         </button>
 
         <button
-          onClick={() => setIsDeleteModalOpen(true)}
+          onClick={() => deleteModalRef.current?.open()}
           className="text-accent-danger transition hover:text-red-700"
         >
           <FiTrash2 />
         </button>
       </div>
 
-      {isDeleteModalOpen && (
+ 
         <DeleteRoleModal
-          isOpen={isDeleteModalOpen}
-          onClose={() => setIsDeleteModalOpen(false)}
-        //   onConfirm={() => {
-        //     console.log("delete", id);
-        //     setIsDeleteModalOpen(false);
-        //   }}
-        />
-      )}
+        ref={deleteModalRef}
+        onConfirm={() => {
+          console.log("Delete:", id);
+        }}
+      />
+ 
     </>
   );
 }

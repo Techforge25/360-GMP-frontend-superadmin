@@ -2,28 +2,37 @@
 
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
-import SignOutModal from "../../modal/SignOutModal";
+import { useRef, useState } from "react";
+
 import SidebarMenuItems from "./sidebarMenuItems";
 import SidebarSettingsItems from "./sidebarSettingsItems";
 
+import SignOutModal, {
+  SignOutModalRef,
+} from "@/components/modal/SignOutModal";
+
 export default function SideNavbar() {
   const pathname = usePathname();
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const [isDropdownOpen, setIsDropdownOpen] =
+    useState(false);
+
+  const signOutModalRef =
+    useRef<SignOutModalRef>(null);
 
   const handleSignOutConfirm = () => {
     console.log("User successfully signed out!");
-    setIsModalOpen(false);
+    signOutModalRef.current?.close();
   };
 
   return (
-    <div className="h-screen transition-all duration-300 flex flex-col border-r select-none font-secondary bg-surface text-text-primary border-border-light">
-      <div className="flex items-center justify-between px-4 py-0 border-b min-h-[5rem] border-border-light">
+    <div className="h-screen flex flex-col border-r bg-surface border-border-light">
+
+      <div className="flex items-center px-4 min-h-[5rem] border-b border-border-light">
         <div className="relative w-45 h-17">
           <Image
             src="/images/Logo.svg"
-            alt="3SIXTY Logo"
+            alt="Logo"
             fill
             className="object-contain"
           />
@@ -36,16 +45,16 @@ export default function SideNavbar() {
         pathname={pathname}
         isDropdownOpen={isDropdownOpen}
         setIsDropdownOpen={setIsDropdownOpen}
-        setIsModalOpen={setIsModalOpen}
+        openSignOutModal={() =>
+          signOutModalRef.current?.open()
+        }
       />
 
-      {isModalOpen && (
-        <SignOutModal
-          isOpen={isModalOpen}
-          onClose={() => setIsModalOpen(false)}
-          onConfirm={handleSignOutConfirm}
-        />
-      )}
+      <SignOutModal
+        ref={signOutModalRef}
+        onConfirm={handleSignOutConfirm}
+      />
+
     </div>
   );
 }
