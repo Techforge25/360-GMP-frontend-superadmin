@@ -2,8 +2,14 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
+
 import FormInput from "@/components/common/FormInput";
 import FormPasswordInput from "@/components/common/FormPasswordInput";
+
+interface LoginFormValues {
+  username: string;
+  password: string;
+}
 
 export default function LoginForm() {
   const router = useRouter();
@@ -12,7 +18,7 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({
+  } = useForm<LoginFormValues>({
     defaultValues: {
       username: "",
       password: "",
@@ -24,11 +30,11 @@ export default function LoginForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-5 sm:space-y-6">
       <FormInput
-        label="Email Address"
+        label="Username"
         name="username"
-        placeholder="Jane.Doe@360gmp.Com"
+        placeholder="John Doe"
         register={register}
         error={errors.username}
       />
@@ -40,13 +46,9 @@ export default function LoginForm() {
         error={errors.password}
       />
 
-      {errors.password && (
-        <p className="text-red-500 text-xs mt-1">{errors.password.message}</p>
-      )}
-
       <button
         type="submit"
-        className="w-full py-3.5 rounded-xl shadow-lg text-sm font-bold text-white bg-brand-primary hover:bg-brand-primary-medium transition-all cursor-pointer"
+        className="btn-primary w-full"
       >
         Sign In
       </button>

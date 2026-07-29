@@ -23,9 +23,9 @@ export const sidebarMenuItems: NavigationItem[] = [
     path: "/dashboard",
   },
   {
-    name: "User Management",
+    name: "Account Management",
     icon: <FiUsers />,
-    path: "/dashboard/users",
+    path: "/account-management",
   },
   {
     name: "Subscription & Access",
