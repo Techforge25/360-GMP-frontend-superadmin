@@ -1,7 +1,6 @@
 import Header from "@/components/layouts/Header/Header";
 import SideNavbar from "@/components/layouts/Sidenavbar/SideNavbar";
 
-
 export default function SuperAdminLayout({
   children,
 }: {

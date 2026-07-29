@@ -223,6 +223,15 @@ body {
   .btn-primary {
     @apply inline-flex items-baseline justify-center gap-2 self-start rounded-md bg-brand-primary px-6 py-2.5 text-[1rem] font-normal text-text-inverse shadow-sm  transition-opacity duration-200 hover:opacity-95 sm:self-auto;
   }
+  .form-input{
+    @apply w-full rounded-xl text-black border border-[#E2E8F0] bg-white px-4 py-3 text-sm focus:border-[#1E1B4B] focus:outline-none focus:ring-2 focus:ring-[#1E1B4B]/10 disabled:bg-gray-100 disabled:cursor-not-allowed;
+  }
+  .form-password{
+    @apply w-full rounded-xl text-black border border-[#E2E8F0] bg-white px-4 py-3 pr-12 text-sm tracking-widest placeholder:text-black focus:border-[#1E1B4B] focus:outline-none focus:ring-2 focus:ring-[#1E1B4B]/10 disabled:cursor-not-allowed disabled:bg-gray-100;
+  }
+  .roles-status{
+    @apply inline-block rounded-md bg-brand-btn-pills-background px-3 py-1 text-xs font-medium text-brand-btn-pills;
+  }
 
   .btn-primary-icon {
     @apply text-[0.9rem];

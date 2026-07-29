@@ -4,6 +4,7 @@ export interface TabItem {
   id: string;
   label: string;
   icon?: ReactNode;
+  active?: boolean;
 }
 
 export interface TableRowData {
@@ -26,4 +27,11 @@ export interface PermissionModule {
   id: string;
   name: string;
   checked: boolean;
+}
+
+export interface FormValues {
+  username: string;
+  email: string;
+  password: string;
+  allowedModules: string[];
 }

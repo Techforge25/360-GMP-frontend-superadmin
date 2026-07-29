@@ -35,7 +35,7 @@ export default function FormInput<T extends FieldValues>({
         placeholder={placeholder}
         disabled={disabled}
         {...register(name)}
-        className="w-full rounded-xl text-black border border-[#E2E8F0] bg-white px-4 py-3 text-sm focus:border-[#1E1B4B] focus:outline-none focus:ring-2 focus:ring-[#1E1B4B]/10 disabled:bg-gray-100 disabled:cursor-not-allowed"
+        className="form-input"
       />
 
       {error && <p className="text-xs text-red-500">{error.message}</p>}

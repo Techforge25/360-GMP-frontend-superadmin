@@ -4,21 +4,13 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState, JSX } from "react";
 import {
-  FiGrid,
-  FiUsers,
-  FiAward,
-  FiFileText,
-  FiDollarSign,
-  FiActivity,
-  FiBriefcase,
-  FiSettings,
-  FiMenu,
   FiChevronRight,
   FiUser,
   FiX,
   FiLogOut,
 } from "react-icons/fi";
 import SignOutModal from "../../modal/SignOutModal";
+import { sidebarMenuItems, sidebarSettingsItems } from "@/constants/sidebar/sidebar";
 
 interface NavigationItem {
   name: string;
@@ -37,39 +29,7 @@ export default function SideNavbar() {
     console.log("User successfully signed out!");
     setIsModalOpen(false);
   };
-  const menuItems: NavigationItem[] = [
-    { name: "Dashboard", icon: <FiGrid />, path: "/dashboard" },
-    { name: "User Management", icon: <FiUsers />, path: "/dashboard/users" },
-    {
-      name: "Subscription & Access",
-      icon: <FiAward />,
-      path: "/dashboard/subscriptions",
-    },
-    {
-      name: "Marketplace & Order Logs",
-      icon: <FiFileText />,
-      path: "/dashboard/orders",
-    },
-    {
-      name: "Financial Hub",
-      icon: <FiDollarSign />,
-      path: "/dashboard/finance",
-    },
-    {
-      name: "Communities & Networking",
-      icon: <FiActivity />,
-      path: "/dashboard/communities",
-    },
-    {
-      name: "Recruitment (Job Board)",
-      icon: <FiBriefcase />,
-      path: "/dashboard/jobs",
-    },
-  ];
-
-  const menuSettings: NavigationItem[] = [
-    { name: "Settings", icon: <FiSettings />, path: "/settings" },
-  ];
+ 
 
   return (
     <div
@@ -88,16 +48,11 @@ export default function SideNavbar() {
           </div>
         )}
 
-        <button
-          onClick={() => setOpen(!open)}
-          className="p-1 rounded-md hover:bg-surface-muted ml-1 transition-colors duration-200"
-        >
-          <FiMenu className="text-text-secondary text-xl" />
-        </button>
+     
       </div>
 
       <div className="flex-1 mt-3 flex flex-col gap-1 px-3 overflow-y-auto custom-scrollbar">
-        {menuItems.map((item: NavigationItem, index: number) => {
+        {sidebarMenuItems.map((item: NavigationItem, index: number) => {
           const isSelected = pathname === item.path;
 
           return (
@@ -119,7 +74,7 @@ export default function SideNavbar() {
       </div>
 
       <div className="mt-auto flex flex-col gap-3 px-3 pb-4 border-t pt-7 border-border-light">
-        {menuSettings.map((item: NavigationItem, index: number) => {
+        {sidebarSettingsItems.map((item: NavigationItem, index: number) => {
           const isSelected = pathname === item.path;
 
           return (

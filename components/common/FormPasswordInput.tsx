@@ -40,7 +40,7 @@ export default function FormPasswordInput<T extends FieldValues>({
           placeholder={placeholder}
           disabled={disabled}
           {...register(name)}
-          className="w-full rounded-xl text-black border border-[#E2E8F0] bg-white px-4 py-3 pr-12 text-sm tracking-widest placeholder:text-black focus:border-[#1E1B4B] focus:outline-none focus:ring-2 focus:ring-[#1E1B4B]/10 disabled:cursor-not-allowed disabled:bg-gray-100"
+          className="form-password"
         />
 
         <button
