@@ -1,6 +1,6 @@
 "use client";
 
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/navigation";
 
@@ -10,6 +10,7 @@ import { initialModules } from "@/constants/roles/permissions";
 import { FormValues } from "@/types";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import BackButton from "@/components/common/BackButton";
+import BackButtonMain from "@/components/common/BackButtonMain";
 
 export default function CreateRoleForm() {
   const router = useRouter();
@@ -35,14 +36,7 @@ export default function CreateRoleForm() {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div>
-        <button
-          type="button"
-          onClick={() => router.back()}
-          className="mb-4 inline-flex items-center gap-2 text-sm text-black"
-        >
-          <FiArrowLeft className="h-4 w-4" />
-          Back
-        </button>
+        <BackButtonMain text="Back" />
 
         <h1 className="text-[1.375rem] font-semibold text-brand-primary">
           Create New Role

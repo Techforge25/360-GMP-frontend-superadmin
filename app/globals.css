@@ -232,6 +232,9 @@ body {
   .roles-status{
     @apply inline-block rounded-md bg-brand-btn-pills-background px-3 py-1 text-xs font-medium text-brand-btn-pills;
   }
+  .user-sidebar{
+    @apply bg-brand-primary text-text-inverse p-2.5 rounded-xl flex items-center justify-center min-w-[2.5rem] h-[2.5rem];
+  }
 
   .btn-primary-icon {
     @apply text-[0.9rem];
