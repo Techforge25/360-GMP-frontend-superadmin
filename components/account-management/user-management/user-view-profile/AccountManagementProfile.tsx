@@ -1,4 +1,5 @@
 import React from "react";
+import { FiMail } from "react-icons/fi";
 
 export default function ProfileCard() {
   return (
@@ -19,20 +20,7 @@ export default function ProfileCard() {
           <div className="flex items-center gap-[0.5rem] text-[0.875rem] text-gray-500">
             <span>alexamorgan@gmail.com</span>
 
-            <svg
-              className="w-[1.125rem] h-[1.125rem] text-gray-500"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1.5}
-                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-              />
-            </svg>
+          <FiMail className="w-[1.125rem] h-[1.125rem] text-gray-500" />
           </div>
         </div>
       </div>

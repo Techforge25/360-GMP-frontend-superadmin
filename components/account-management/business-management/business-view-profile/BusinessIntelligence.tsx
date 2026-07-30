@@ -2,10 +2,12 @@
 import React, { useRef } from "react";
 import { MdOutlineAccountTree } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
-import KycVerificationModal, { KycVerificationModalRef } from "../../KycVerificationModal";
+import KycVerificationModal, {
+  KycVerificationModalRef,
+} from "../../KycVerificationModal";
 
 export default function BusinessIntelligence() {
-    const kycModalRef = useRef<KycVerificationModalRef>(null);
+  const kycModalRef = useRef<KycVerificationModalRef>(null);
 
   const handleOpenKycModal = () => {
     kycModalRef.current?.open();
@@ -94,13 +96,13 @@ export default function BusinessIntelligence() {
                     CFO
                   </td>
                   <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
-                   <button
-                        onClick={handleOpenKycModal}
-                        className="p-[0.25rem] hover:bg-gray-200 rounded-[0.375rem] transition-colors cursor-pointer"
-                        title="View KYC Verification"
-                      >
-                        <AiOutlineEye className="w-[1.25rem] h-[1.25rem] text-[#64748b]" />
-                      </button>
+                    <button
+                      onClick={handleOpenKycModal}
+                      className="p-[0.25rem] hover:bg-gray-200 rounded-[0.375rem] transition-colors cursor-pointer"
+                      title="View KYC Verification"
+                    >
+                      <AiOutlineEye className="w-[1.25rem] h-[1.25rem] text-[#64748b]" />
+                    </button>
                   </td>
                 </tr>
                 <tr>

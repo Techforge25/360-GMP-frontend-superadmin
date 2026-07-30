@@ -67,6 +67,12 @@ export interface FileItem {
   fileUrl: string;
 }
 
+export interface AmlFileItem {
+  title: string;
+  filename: string;
+  fileUrl: string;
+}
+
 export type TypeLoginForm = {
   username: string;
   password: string;

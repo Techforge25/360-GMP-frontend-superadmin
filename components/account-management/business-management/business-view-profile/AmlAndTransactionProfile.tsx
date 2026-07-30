@@ -3,21 +3,11 @@
 import React from "react";
 import { RiShieldCheckLine } from "react-icons/ri";
 import { AiOutlineEye } from "react-icons/ai";
-
-interface FileItem {
-  title: string;
-  filename: string;
-  fileUrl: string;
-}
+import { AmlFileItem } from "@/types";
+import { evidenceFile } from "@/constants/acount-management/documents";
 
 export default function AmlAndTransactionProfile() {
-  const evidenceFile: FileItem = {
-    title: "Evidence Of Funds",
-    filename: "Certificate Of Incorporation",
-    fileUrl: "#",
-  };
-
-  const handleViewFile = (file: FileItem) => {
+  const handleViewFile = (file: AmlFileItem) => {
     alert(`Viewing: ${file.filename}`);
   };
 

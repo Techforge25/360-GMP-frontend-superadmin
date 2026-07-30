@@ -3,7 +3,9 @@
 import React, { useRef } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiCheck } from "react-icons/fi";
-import RejectBusinessModal, { RejectBusinessModalRef } from "./RejectBusinessModalRef";
+import RejectBusinessModal, {
+  RejectBusinessModalRef,
+} from "./RejectBusinessModalRef";
 
 interface ActionButtonsProps {
   onApprove?: () => void;

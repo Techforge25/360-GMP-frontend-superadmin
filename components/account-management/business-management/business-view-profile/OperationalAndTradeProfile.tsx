@@ -39,7 +39,6 @@ export default function OperationalAndTradeProfile() {
           </div>
         </div>
 
-
         <div className="flex flex-col gap-[0.5rem]">
           <span className="text-[0.875rem] font-semibold text-[#64748b]">
             Region Of Operations

@@ -3,7 +3,7 @@
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiCheck } from "react-icons/fi";
-import { RxCross2 } from "react-icons/rx";
+import { MdErrorOutline } from "react-icons/md";
 import { IoChevronDownOutline } from "react-icons/io5";
 
 export interface RejectBusinessModalRef {
@@ -46,8 +46,8 @@ const RejectBusinessModal = forwardRef<
       <div className="relative w-full max-w-[42rem] bg-white rounded-[1rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col">
         <div className="flex items-center justify-between px-[1.75rem] py-[1.25rem] border-b border-gray-100">
           <div className="flex items-center gap-[0.75rem]">
-            <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#FF383C] rounded-full text-white">
-              <RxCross2  className="w-[1.25rem] h-[1.25rem]" />
+            <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#ffebee] rounded-full text-[#ff3b30]">
+              <MdErrorOutline className="w-[1.25rem] h-[1.25rem]" />
             </div>
             <h2 className="text-[1.125rem] font-bold text-gray-900">
               Reject Business Profile

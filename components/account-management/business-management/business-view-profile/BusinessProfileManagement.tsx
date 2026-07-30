@@ -1,14 +1,10 @@
 import Image from "next/image";
-import { 
+import {
   HiOutlineOfficeBuilding,
   HiOutlineBriefcase,
   HiOutlineUsers,
 } from "react-icons/hi";
-import { 
-  FiCalendar,
-  FiMapPin,
-  FiAward
-} from "react-icons/fi";
+import { FiCalendar, FiMapPin, FiAward } from "react-icons/fi";
 
 export default function CompanyProfile() {
   return (
@@ -16,7 +12,12 @@ export default function CompanyProfile() {
       <div className="flex flex-col md:flex-row md:items-start justify-between p-[1.25rem] bg-[#DCDCDC33] rounded-[0.5rem] border border-gray-100 mb-[1.5rem]">
         <div className="flex items-start gap-[1.25rem]">
           <div className="flex-shrink-0 flex items-center justify-center w-[4rem] h-[4rem] bg-white border border-gray-200 rounded-[0.5rem] shadow-sm">
-        <Image src="/images/image 55.png" alt="Company Logo" width={64} height={64} />
+            <Image
+              src="/images/image 55.png"
+              alt="Company Logo"
+              width={64}
+              height={64}
+            />
           </div>
 
           <div className="flex flex-col gap-[0.5rem]">
@@ -26,7 +27,7 @@ export default function CompanyProfile() {
 
             <div className="flex flex-wrap items-center gap-[0.75rem] text-[0.875rem] text-gray-500">
               <div className="flex items-center gap-[0.375rem]">
-               <HiOutlineOfficeBuilding className="w-[1.125rem] h-[1.125rem] text-gray-500" />
+                <HiOutlineOfficeBuilding className="w-[1.125rem] h-[1.125rem] text-gray-500" />
                 <span>Manufacturing</span>
               </div>
               <span className="text-gray-400 text-[0.8rem]">●</span>
@@ -44,7 +45,7 @@ export default function CompanyProfile() {
               <span className="text-gray-400 text-[0.8rem]">●</span>
 
               <div className="flex items-center gap-[0.375rem]">
-               <FiCalendar className="w-[1.125rem] h-[1.125rem] text-gray-500" />
+                <FiCalendar className="w-[1.125rem] h-[1.125rem] text-gray-500" />
                 <span>6/15/2026</span>
               </div>
               <span className="text-gray-400 text-[0.8rem]">●</span>
@@ -60,7 +61,7 @@ export default function CompanyProfile() {
         <div className="mt-[1rem] md:mt-0 flex-shrink-0">
           <div className="flex items-center gap-[0.375rem] px-[1.3rem] py-[0.25rem] bg-white border border-purple-300 rounded-full text-[#8A38F5]">
             <span className="text-[0.8125rem] font-medium">Enterprise</span>
-           <FiAward className="w-[0.875rem] h-[0.875rem]" />
+            <FiAward className="w-[0.875rem] h-[0.875rem]" />
           </div>
         </div>
       </div>

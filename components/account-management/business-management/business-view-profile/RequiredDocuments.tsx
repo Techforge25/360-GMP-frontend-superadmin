@@ -1,45 +1,14 @@
 "use client";
 
-import React from "react";
+import { FileItem } from "@/types";
 import { AiOutlineEye } from "react-icons/ai";
 import { MdOutlineAccountTree } from "react-icons/md";
-
-interface FileItem {
-  title: string;
-  filename: string;
-  subtext: string;
-  fileUrl: string;
-}
+import {
+  requiredDocuments,
+  regulatedDocument,
+} from "@/constants/acount-management/documents";
 
 export default function RequiredDocuments() {
-  const documents: FileItem[] = [
-    {
-      title: "Certificate Of Incorporation",
-      filename: "Certificate Of Incorporation",
-      subtext: "Certificate.PDF1",
-      fileUrl: "#",
-    },
-    {
-      title: "Tax Registration Certificate",
-      filename: "Certificate Of Incorporation",
-      subtext: "Certificate.PDF2",
-      fileUrl: "#",
-    },
-    {
-      title: "Shareholder Register",
-      filename: "Certificate Of Incorporation",
-      subtext: "Certificate.PDF3",
-      fileUrl: "#",
-    },
-  ];
-
-  const regulatedDocument: FileItem = {
-    title: "Operating License / Sector Permit",
-    filename: "Certificate Of Incorporation",
-    subtext: "Certificate.PDF2",
-    fileUrl: "#",
-  };
-
   const handleViewFile = (file: FileItem) => {
     alert(`Viewing: ${file.filename} (${file.subtext})`);
   };
@@ -54,9 +23,8 @@ export default function RequiredDocuments() {
       </div>
 
       <div className="p-[1.5rem] flex flex-col gap-[2rem]">
-        {/* Top 3 Documents Grid */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-x-[1.5rem] gap-y-[1.5rem]">
-          {documents.map((doc, idx) => (
+          {requiredDocuments.map((doc, idx) => (
             <div key={idx} className="flex flex-col gap-[0.75rem]">
               <span className="text-[0.875rem] font-semibold text-[#475569]">
                 {doc.title}
@@ -89,7 +57,6 @@ export default function RequiredDocuments() {
           ))}
         </div>
 
-        {/* Regulated Industry Requirements Section */}
         <div className="flex flex-col gap-[1rem] pt-[0.5rem] border-t border-gray-100">
           <span className="text-[0.875rem] font-semibold text-[#475569]">
             Regulated Industry Requirements
