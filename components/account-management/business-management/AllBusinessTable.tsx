@@ -1,6 +1,6 @@
 import React from "react";
-import SearchFilterBar from "../common/SearchFilterBar";
-import AccountPagination from "@/constants/acount-management/AccountPagination";
+import SearchFilterBar from "../../common/SearchFilterBar";
+import AccountPagination from "@/components/common/AccountPagination";
 import AccountManagementBusinessTable from "./AccountManagementBusinessTable";
 
 export default function AllBusinessTable() {

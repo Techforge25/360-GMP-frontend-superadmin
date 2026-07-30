@@ -1,5 +1,5 @@
 import React from 'react'
-import BackButtonMain from '../common/BackButtonMain'
+import BackButtonMain from '../../../common/BackButtonMain'
 import ProfileCard from './AccountManagementProfile'
 import ExperienceEntry from './ExperienceEntry'
 import Education from './Education'

@@ -60,9 +60,14 @@ export interface ExperienceEntry {
   achievements: string[];
 }
 
-interface FileItem {
+export interface FileItem {
   title: string;
   filename: string;
   subtext: string;
   fileUrl: string;
+}
+
+export type TypeLoginForm = {
+  username: string;
+  password: string;
 }

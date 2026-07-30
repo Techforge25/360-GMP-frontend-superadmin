@@ -1,4 +1,4 @@
-import AccountManagementBusiness from '@/components/account-management/AccountManagementBusiness'
+import AccountManagementBusiness from '@/components/account-management/business-management/business-view-profile/AccountManagementBusiness'
 
 export default function page() {
   return (

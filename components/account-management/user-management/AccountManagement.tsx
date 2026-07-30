@@ -3,10 +3,9 @@
 import { useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { accountManagementTabs } from "@/constants/acount-management/AccountManagementtabs";
-import Tabs from "../common/Tabs";
-import SearchFilterBar from "../common/SearchFilterBar";
+import Tabs from "../../common/Tabs";
 import AllUserTable from "./AllUserTable";
-import AllBusinessTable from "./AllBusinessTable";
+import AllBusinessTable from "../business-management/AllBusinessTable";
 
 export default function AccountManagement() {
   const router = useRouter();

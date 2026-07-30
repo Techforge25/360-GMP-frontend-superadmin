@@ -1,8 +1,7 @@
 import React from "react";
-import SearchFilterBar from "../common/SearchFilterBar";
+import SearchFilterBar from "../../common/SearchFilterBar";
 import AccountManagementTable from "./AccountManagementTable";
-import Pagination from "../common/Pagination";
-import AccountPagination from "@/constants/acount-management/AccountPagination";
+import AccountPagination from "@/components/common/AccountPagination";
 
 export default function AllUserTable() {
     

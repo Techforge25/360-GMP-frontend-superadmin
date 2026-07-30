@@ -1,7 +1,7 @@
 import React from "react";
 import OverviewCards from "@/components/common/OverviewCards";
 import { dashboardCards } from "@/constants/acount-management/AccountManagement";
-import AccountManagement from "@/components/account-management/AccountManagement";
+import AccountManagement from "@/components/account-management/user-management/AccountManagement";
 
 export default function Dashboard() {
   return (

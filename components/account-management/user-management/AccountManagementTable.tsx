@@ -1,13 +1,12 @@
 import DataTable, { Column } from "@/components/common/DataTable";
-import { AccountBusinessTableRowData } from "@/types";
+import { AccountTableRowData } from "@/types";
 
 import AccountManagementTableActions from "./AccountManagementTableActions";
+import { accountTableData } from "@/constants/acount-management/AccountManagementTable";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import Image from "next/image";
-import { accountManagementBusinessTable } from "@/constants/acount-management/AccountManagementBusinessTable";
-
- const accountManagement = "accountManagementBusinessTable";
-const columns: Column<AccountBusinessTableRowData>[] = [
+ const accountManagement = "accountManagementUsersTable";
+const columns: Column<AccountTableRowData>[] = [
   {
     key: "name",
     header: "User Name",
@@ -32,11 +31,6 @@ const columns: Column<AccountBusinessTableRowData>[] = [
     header: "Join Date",
     render: (row) => <span className="text-[1rem] text-[#545961]">{row.createdAt}</span>,
   },
-   {
-    key: "status",
-    header: "Status",
-    render: (row) => <StatusBadge status={row.status} />,
-  },
   {
     key: "action",
     header: "Action",
@@ -45,12 +39,12 @@ const columns: Column<AccountBusinessTableRowData>[] = [
   },
 ];
 
-export default function AccountManagementBusinessTable() {
+export default function AccountManagementTable() {
   return (
     <div className="pt-8">
       <DataTable
         columns={columns}
-        data={accountManagementBusinessTable}
+        data={accountTableData}
         rowKey={(row) => row.id}
       />
     </div>

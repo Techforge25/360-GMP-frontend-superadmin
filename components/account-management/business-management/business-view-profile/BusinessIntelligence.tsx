@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { MdOutlineAccountTree } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
-import KycVerificationModal, { KycVerificationModalRef } from "./KycVerificationModal";
+import KycVerificationModal, { KycVerificationModalRef } from "../../KycVerificationModal";
 
 export default function BusinessIntelligence() {
     const kycModalRef = useRef<KycVerificationModalRef>(null);

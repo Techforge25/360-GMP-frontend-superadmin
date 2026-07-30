@@ -14,11 +14,9 @@ export default function AccountManagementTableActions({ id, accountManagement }:
   console.log("accountManagement:", accountManagement);
   console.log("id:", id);
 
-  if (accountManagement) {
-    console.log("Going Business");
+  if (accountManagement === "accountManagementBusinessTable") {
     router.push(`/account-management/view-account-information-business/${id}`);
   } else {
-    console.log("Going User");
     router.push(`/account-management/view-account-information-user/${id}`);
   }
 };

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useRef, useState } from "react";
 
 import SidebarMenuItems from "./sidebarMenuItems";
@@ -10,9 +10,23 @@ import SidebarSettingsItems from "./sidebarSettingsItems";
 import SignOutModal, {
   SignOutModalRef,
 } from "@/components/modal/SignOutModal";
+import { logout } from "@/services/auth";
+import { useMutation } from "@tanstack/react-query";
 
 export default function SideNavbar() {
   const pathname = usePathname();
+  const router = useRouter()
+
+  const logoutMutation = useMutation({
+    mutationFn: logout,
+    onSuccess: () => {
+      signOutModalRef.current?.close();
+      router.push("/");
+    },
+    onError: (error: any) => {
+      console.error(error);
+    },
+  });
 
   const [isDropdownOpen, setIsDropdownOpen] =
     useState(false);
@@ -21,8 +35,7 @@ export default function SideNavbar() {
     useRef<SignOutModalRef>(null);
 
   const handleSignOutConfirm = () => {
-    console.log("User successfully signed out!");
-    signOutModalRef.current?.close();
+    logoutMutation.mutate();
   };
 
   return (
