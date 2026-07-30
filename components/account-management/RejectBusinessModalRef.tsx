@@ -45,7 +45,7 @@ const RejectBusinessModal = forwardRef<
 
         <div className="flex items-center justify-between px-[1.75rem] py-[1.25rem] border-b border-gray-100">
           <div className="flex items-center gap-[0.75rem]">
-            <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#ffebee] rounded-full text-[#ff3b30]">
+            <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#ffebee] rounded-full text-reject">
               <MdErrorOutline className="w-[1.25rem] h-[1.25rem]" />
             </div>
 
@@ -65,15 +65,15 @@ const RejectBusinessModal = forwardRef<
 
         <div className="p-[1.75rem] flex flex-col gap-[1.5rem]">
 
-          <p className="text-[0.875rem] text-[#64748b] leading-[1.375rem]">
+          <p className="text-[0.875rem] text-kyc-text-heading leading-[1.375rem]">
             Please select a reason for rejecting this profile. This information
             will be shared with business to help them resolve the issue.
           </p>
 
 
           <div className="flex flex-col gap-[0.5rem]">
-            <label className="text-[0.875rem] font-semibold text-[#1e293b]">
-              Reason For Rejection <span className="text-[#ff3b30]">*</span>
+            <label className="text-[0.875rem] font-semibold text-kyc-text-subheading">
+              Reason For Rejection <span className="text-reject">*</span>
             </label>
 
             <div className="relative">
@@ -111,7 +111,7 @@ const RejectBusinessModal = forwardRef<
 
 
           <div className="flex flex-col gap-[0.5rem]">
-            <label className="text-[0.875rem] font-semibold text-[#1e293b]">
+            <label className="text-[0.875rem] font-semibold text-kyc-text-subheading">
               Additional Notes{" "}
               <span className="text-gray-400 font-normal">(Optional)</span>
             </label>
@@ -139,7 +139,7 @@ const RejectBusinessModal = forwardRef<
 
           <button
             onClick={handleConfirm}
-            className="flex items-center justify-center gap-[0.5rem] px-[1.75rem] py-[0.625rem] bg-[#ff3b30] hover:bg-[#e0342b] text-white font-semibold text-[0.9375rem] rounded-[0.5rem] cursor-pointer"
+            className="flex items-center justify-center gap-[0.5rem] px-[1.75rem] py-[0.625rem] bg-reject hover:bg-[#e0342b] text-white font-semibold text-[0.9375rem] rounded-[0.5rem] cursor-pointer"
           >
             <span>Confirm Rejection</span>
             <FiCheck className="w-[1.125rem] h-[1.125rem]" />

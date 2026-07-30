@@ -58,7 +58,7 @@ const KycVerificationModal = forwardRef<
         {/* Header */}
         <div className="flex items-center justify-between px-[1.75rem] py-[1.25rem] border-b border-gray-100">
           <div className="flex items-center gap-[0.75rem]">
-            <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#8A38F599] rounded-[0.5rem] text-white">
+            <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-kyc-bg-icon rounded-[0.5rem] text-white">
               <MdOutlineAccountTree className="w-[1.25rem] h-[1.25rem]" />
             </div>
             <h2 className="text-[1.125rem] font-bold text-gray-900">
@@ -78,28 +78,28 @@ const KycVerificationModal = forwardRef<
         <div className="p-[1.75rem] overflow-y-auto flex flex-col gap-[1.5rem]">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-y-[1.25rem] gap-x-[2.5rem]">
             <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#64748b]">
+              <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
                 Date Of Birth
               </span>
-              <span className="text-[0.9375rem] font-medium text-[#1e293b]">
+              <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
                 26-07-1998
               </span>
             </div>
 
             <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#64748b]">
+              <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
                 Nationality
               </span>
-              <span className="text-[0.9375rem] font-medium text-[#1e293b]">
+              <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
                 United States
               </span>
             </div>
 
             <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#64748b]">
+              <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
                 Residential Address
               </span>
-              <span className="text-[0.9375rem] font-medium text-[#1e293b] leading-[1.375rem]">
+              <span className="text-[0.9375rem] font-medium text-kyc-text-subheading leading-[1.375rem]">
                 1270 North Ave, Apt 3B
                 <br />
                 New Rochelle, NY 10804
@@ -107,39 +107,39 @@ const KycVerificationModal = forwardRef<
             </div>
 
             <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#64748b]">
+              <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
                 Government Id Type
               </span>
-              <span className="text-[0.9375rem] font-medium text-[#1e293b]">
+              <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
                 National Id
               </span>
             </div>
 
             <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#64748b]">
+              <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
                 Phone Number
               </span>
-              <span className="text-[0.9375rem] font-medium text-[#1e293b]">
+              <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
                 +1 3052074593
               </span>
             </div>
 
             <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#64748b]">
+              <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
                 ID Number
               </span>
-              <span className="text-[0.9375rem] font-medium text-[#1e293b]">
+              <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
                 National Id
               </span>
             </div>
           </div>
 
           <div className="flex flex-col gap-[0.5rem] mt-[0.5rem]">
-            <span className="text-[0.875rem] font-semibold text-[#64748b]">
+            <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
               Region Of Operations
             </span>
             <div>
-              <span className="inline-block px-[1.25rem] py-[0.375rem] bg-[#2c0a59] text-white text-[0.8125rem] font-semibold rounded-[1.25rem]">
+              <span className="inline-block px-[1.25rem] py-[0.375rem] bg-brand-primary text-white text-[0.8125rem] font-semibold rounded-[1.25rem]">
                 North America
               </span>
             </div>
@@ -148,20 +148,20 @@ const KycVerificationModal = forwardRef<
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[1rem] mt-[0.5rem]">
             {files.map((file, idx) => (
               <div key={idx} className="flex flex-col gap-[0.5rem]">
-                <span className="text-[0.875rem] font-semibold text-[#404e61]">
+                <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
                   {file.title}
                 </span>
 
                 <div className="flex items-center justify-between p-[0.875rem] border border-gray-200 rounded-[0.5rem] bg-[#fcfcfd] hover:border-gray-300 transition-all">
                   <div className="flex items-center gap-[0.75rem]">
-                    <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#ffebee] text-[#d32f2f] rounded-[0.375rem]">
+                    <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-kyc-bg text-kyc-text rounded-[0.375rem]">
                       <span className="text-[0.75rem] font-bold">PDF</span>
                     </div>
                     <div className="flex flex-col">
-                      <span className="text-[0.875rem] font-semibold text-[#1e293b]">
+                      <span className="text-[0.875rem] font-semibold text-kyc-text-subheading">
                         {file.filename}
                       </span>
-                      <span className="text-[0.75rem] text-[#64748b]">
+                      <span className="text-[0.75rem] text-kyc-text-heading">
                         Certificate.PDF2
                       </span>
                     </div>
@@ -169,7 +169,7 @@ const KycVerificationModal = forwardRef<
 
                   <button
                     onClick={() => handleViewFile(file)}
-                    className="p-[0.5rem] text-gray-500 hover:text-[#2c0a59] transition-colors"
+                    className="p-[0.5rem] text-gray-500 cursor-pointer hover:text-kyc-text-hover transition-colors"
                     title="View file"
                   >
                     <IoEyeOutline className="w-[1.25rem] h-[1.25rem]" />

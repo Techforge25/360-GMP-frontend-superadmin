@@ -35,7 +35,7 @@ export default function PrimaryButton({
     <button
       type={type}
       onClick={handleClick}
-      className={`btn-primary ${className}`}
+      className={`btn-primary cursor-pointer ${className}`}
     >
       {icon && <span className="btn-primary-icon">{icon}</span>}
 

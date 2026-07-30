@@ -94,6 +94,10 @@
   --spacing-100: 25rem;
 
 
+   --color-border: #f0f0f5;
+  
+
+
 
 
 
@@ -208,6 +212,24 @@
   /* ===== Sizes ===== */
   --height-input: 2.75rem;
   --spacing-100: 25rem;
+
+
+  --color-border: #f0f0f5;
+    --color-background: #fafafc;
+    --color-date-time: #545961;
+    --color-reject: #ff3b30;
+    --color-reject-hover: #e0342b;
+    --color-approved: #008000;
+    --color-approved-hover: #007000;
+    --color-kyc-text-heading: #64748b;
+    --color-kyc-text-subheading: #1e293b;
+    --color-kyc-text-heading: #64748b;
+    --color-kyc-bg: #ffebee;
+    --color-kyc-text: #d32f2f;
+    --color-kyc-text-hover: #2c0a59;
+    --color-kyc-bg-icon: #2c0a59;
+
+
 
 
 

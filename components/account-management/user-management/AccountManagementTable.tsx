@@ -14,7 +14,7 @@ const columns: Column<AccountTableRowData>[] = [
       <div className="flex items-center space-x-3">
         <Image src={row.img} alt={row.name} width={40} height={40} className="w-10 h-10 rounded-full" />
       <div className="flex flex-col">
-        <span className="text-[1rem] font-medium text-[#556179]">{row.name}</span>
+        <span className="text-[1rem] font-medium text-date-time">{row.name}</span>
         <span className="mt-0.5 text-sm text-text-hint">{row.email}</span>
       </div>
       </div>
@@ -29,7 +29,7 @@ const columns: Column<AccountTableRowData>[] = [
   {
     key: "createdAt",
     header: "Join Date",
-    render: (row) => <span className="text-[1rem] text-[#545961]">{row.createdAt}</span>,
+    render: (row) => <span className="text-[1rem] text-date-time">{row.createdAt}</span>,
   },
   {
     key: "action",

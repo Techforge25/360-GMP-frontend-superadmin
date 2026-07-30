@@ -28,7 +28,7 @@ export default function BackButton({
     <button
       type="button"
       onClick={handleClick}
-      className={`rounded-xl border border-[#E2E8F0] bg-white px-5 py-2.5 text-[1rem] font-medium text-black cursor-pointer ${className}`}
+      className={`rounded-xl border  border-[#E2E8F0] bg-white px-5 py-2.5 text-[1rem] font-medium text-black cursor-pointer ${className}`}
     >
       {text}
     </button>
