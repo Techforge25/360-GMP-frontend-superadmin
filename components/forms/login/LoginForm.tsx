@@ -2,31 +2,52 @@
 
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
-
 import FormInput from "@/components/common/FormInput";
 import FormPasswordInput from "@/components/common/FormPasswordInput";
-
-interface LoginFormValues {
-  username: string;
-  password: string;
-}
+import { checkStatus, login } from "@/services/auth";
+import { useMutation } from "@tanstack/react-query";
+import { TypeLoginForm } from "@/types";
+import { useEffect } from "react";
 
 export default function LoginForm() {
   const router = useRouter();
-
   const {
     register,
     handleSubmit,
-    formState: { errors },
-  } = useForm<LoginFormValues>({
+    watch,
+  } = useForm<TypeLoginForm>({
     defaultValues: {
       username: "",
       password: "",
     },
   });
 
-  const onSubmit = () => {
-    router.push("/dashboard");
+  useEffect(() => {
+    const checkAuthStatus = async () => {
+      const res = await checkStatus()
+      if (res?.data?.isLoggedIn) {
+        console.log('authenticated')
+        router.replace('/dashboard')
+      } else {
+        console.log('unauthenticated')
+        router.replace('/')
+      }
+    }
+    checkAuthStatus()
+  }, [])
+
+  const mutation = useMutation({
+    mutationFn: login,
+    onSuccess: () => {
+      router.push('/dashboard')
+    },
+  })
+
+  const onSubmit = (data: TypeLoginForm) => {
+    mutation.mutate({
+      username: data?.username,
+      password: data?.password
+    })
   };
 
   return (
@@ -36,21 +57,20 @@ export default function LoginForm() {
         name="username"
         placeholder="John Doe"
         register={register}
-        error={errors.username}
       />
 
       <FormPasswordInput
         label="Password"
         name="password"
         register={register}
-        error={errors.password}
       />
 
       <button
         type="submit"
-        className="btn-primary w-full"
+        disabled={!watch('username') || !watch('password') || mutation.isPending}
+        className="btn-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
       >
-        Sign In
+        {mutation.isPending ? 'Signing In...' : 'Sign In'}
       </button>
     </form>
   );

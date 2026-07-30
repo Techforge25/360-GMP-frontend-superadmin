@@ -35,3 +35,8 @@ export interface FormValues {
   password: string;
   allowedModules: string[];
 }
+
+export type TypeLoginForm = {
+  username: string;
+  password: string;
+}
