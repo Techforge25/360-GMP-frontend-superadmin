@@ -6,6 +6,7 @@ export interface OverviewCardItem {
   value: string;
   subtitle: string;
   subtitletwo: string;
+  showDot?: boolean;
   icon: React.ReactNode;
   iconBg: string;
   iconColor: string;
@@ -61,7 +62,9 @@ export default function OverviewCards({
                   {card.value}
                 </p>
                 <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#8994a5]" />
+                  {card.showDot && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#8994a5]" />
+                  )}
 
                   <p className="text-sm font-medium text-[#8994a5]">
                     {card.subtitle}

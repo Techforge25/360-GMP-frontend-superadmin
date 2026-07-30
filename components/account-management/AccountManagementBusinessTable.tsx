@@ -1,0 +1,58 @@
+import DataTable, { Column } from "@/components/common/DataTable";
+import { AccountBusinessTableRowData } from "@/types";
+
+import AccountManagementTableActions from "./AccountManagementTableActions";
+import StatusBadge from "@/constants/acount-management/StatusBadge";
+import Image from "next/image";
+import { accountManagementBusinessTable } from "@/constants/acount-management/AccountManagementBusinessTable";
+
+ const accountManagement = "accountManagementBusinessTable";
+const columns: Column<AccountBusinessTableRowData>[] = [
+  {
+    key: "name",
+    header: "User Name",
+    render: (row) => (
+      <div className="flex items-center space-x-3">
+        <Image src={row.img} alt={row.name} width={40} height={40} className="w-10 h-10 rounded-full" />
+      <div className="flex flex-col">
+        <span className="text-[1rem] font-medium text-[#556179]">{row.name}</span>
+        <span className="mt-0.5 text-sm text-text-hint">{row.email}</span>
+      </div>
+      </div>
+    ),
+  },
+
+  {
+    key: "subscriptionType",
+    header: "Subscription Type",
+    render: (row) => <StatusBadge status={row.subscriptionType} />,
+  },
+  {
+    key: "createdAt",
+    header: "Join Date",
+    render: (row) => <span className="text-[1rem] text-[#545961]">{row.createdAt}</span>,
+  },
+   {
+    key: "status",
+    header: "Status",
+    render: (row) => <StatusBadge status={row.status} />,
+  },
+  {
+    key: "action",
+    header: "Action",
+    align: "center",
+    render: (row) => <AccountManagementTableActions id={row.id} accountManagement={accountManagement} />,
+  },
+];
+
+export default function AccountManagementBusinessTable() {
+  return (
+    <div className="pt-8">
+      <DataTable
+        columns={columns}
+        data={accountManagementBusinessTable}
+        rowKey={(row) => row.id}
+      />
+    </div>
+  );
+}

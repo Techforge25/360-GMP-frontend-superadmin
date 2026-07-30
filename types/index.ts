@@ -11,10 +11,26 @@ export interface TableRowData {
   id: string;
   name: string;
   email: string;
-  moduleAccess: string;
-  status: boolean;
+  moduleAccess: boolean;
+}
+export interface AccountTableRowData {
+  id: string;
+  name: string;
+  email: string;
+  subscriptionType: string;
+  img: string;
+  createdAt: string;
 }
 
+export interface AccountBusinessTableRowData {
+  id: string;
+  name: string;
+  email: string;
+  subscriptionType: string;
+  status: string;
+  img: string;
+  createdAt: string;
+}
 export interface RoleMember {
   id: string;
   name: string;
@@ -34,4 +50,19 @@ export interface FormValues {
   email: string;
   password: string;
   allowedModules: string[];
+}
+
+export interface ExperienceEntry {
+  title: string;
+  company: string;
+  dateRange: string;
+  duration: string;
+  achievements: string[];
+}
+
+interface FileItem {
+  title: string;
+  filename: string;
+  subtext: string;
+  fileUrl: string;
 }

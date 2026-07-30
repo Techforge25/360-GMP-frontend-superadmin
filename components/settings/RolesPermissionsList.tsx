@@ -1,8 +1,8 @@
 import { IoPersonAddOutline } from "react-icons/io5";
-import Tabs from "../common/Tabs";
 import RoleAccessTable from "./RoleAccessTable";
 import { roleTabs } from "@/constants/roles/tabs";
 import PrimaryButton from "../common/PrimaryButton";
+import Tabs from "../common/Tabs";
 
 export default function RolesPermissionsList() {
   return (

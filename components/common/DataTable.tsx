@@ -22,7 +22,7 @@ export default function DataTable<T>({
     <div className="w-full overflow-x-auto rounded-xl border border-border-light bg-surface shadow-sm font-secondary">
       <table className="w-full border-collapse text-sm">
         <thead>
-          <tr className="border-b border-border-light bg-surface-muted font-secondary text-[1rem] font-medium uppercase tracking-wide text-black">
+          <tr className="border-b border-border-light bg-surface-muted font-secondary text-[1rem] font-medium  tracking-wide text-black">
             {columns.map((column) => (
               <th
                 key={String(column.key)}

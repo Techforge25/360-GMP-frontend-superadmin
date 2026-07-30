@@ -5,6 +5,8 @@
 :root {
   --background: #f2f2f2;
   --foreground: #ffffff;
+    --font-sans: var(--font-inter);
+  --font-open: var(--font-open-sans);
   /* ===== Brand ===== */
   --color-brand-primary: #240457;
   --color-brand-primary-light: #9747ff;
@@ -216,38 +218,84 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), sans-serif;
 }
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-baseline justify-center gap-2 self-start rounded-md bg-brand-primary px-6 py-2.5 text-[1rem] font-normal text-text-inverse shadow-sm  transition-opacity duration-200 hover:opacity-95 sm:self-auto;
+    @apply inline-flex items-baseline justify-center gap-2 self-start rounded-md bg-brand-primary px-6 py-2.5 text-[1rem] font-normal text-text-inverse shadow-sm transition-opacity duration-200 hover:opacity-95 sm:self-auto;
   }
-  .form-input { 
-    @apply w-full rounded-xl text-black border border-[#E2E8F0] bg-white px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm focus:border-[#1E1B4B] focus:outline-none focus:ring-2 focus:ring-[#1E1B4B]/10 disabled:bg-gray-100 disabled:cursor-not-allowed; 
+
+  .form-input {
+    @apply w-full rounded-xl text-black border border-[#E2E8F0] bg-white px-3 py-2.5 sm:px-4 sm:py-3 text-xs sm:text-sm focus:border-[#1E1B4B] focus:outline-none focus:ring-2 focus:ring-[#1E1B4B]/10 disabled:bg-gray-100 disabled:cursor-not-allowed;
   }
-  .form-password { 
+
+  .form-password {
     @apply w-full rounded-xl text-black border border-[#E2E8F0] bg-white px-3 py-2.5 pr-10 sm:px-4 sm:py-3 sm:pr-12 text-xs sm:text-sm tracking-widest placeholder:text-black focus:border-[#1E1B4B] focus:outline-none focus:ring-2 focus:ring-[#1E1B4B]/10 disabled:cursor-not-allowed disabled:bg-gray-100;
-   }
-  .roles-status{
+  }
+
+  .roles-status {
     @apply inline-block rounded-md bg-brand-btn-pills-background px-3 py-1 text-xs font-medium text-brand-btn-pills;
   }
-  .user-sidebar{
+
+  .user-sidebar {
     @apply bg-brand-primary text-text-inverse p-2.5 rounded-xl flex items-center justify-center min-w-[2.5rem] h-[2.5rem];
   }
-  .signout-btn{
+
+  .signout-btn {
     @apply flex-1 cursor-pointer rounded-xl bg-accent-danger py-3 text-sm font-medium text-white shadow-sm transition-colors duration-200 hover:bg-accent-danger-light;
   }
-  .signout-btn-cancel{
+
+  .signout-btn-cancel {
     @apply flex-1 cursor-pointer rounded-xl border border-gray-200 bg-white py-3 text-sm font-medium text-gray-700 transition-colors duration-200 hover:bg-gray-50;
   }
 
   .btn-primary-icon {
     @apply text-[0.9rem];
   }
+
+  .search-filter {
+    @apply h-[2.75rem] w-full rounded-[0.5rem] border border-[#D7DFEC] bg-white pl-[3rem] pr-[1rem] text-[0.875rem] text-black outline-none placeholder:text-[#718096] focus:border-[#1E1B4B];
+  }
+
+  .search-dropdown {
+    @apply h-[2rem] w-[10.625rem] cursor-pointer rounded-[0.5rem] border border-[#D7DFEC] bg-white px-[1rem] text-[0.875rem] font-medium text-[#111827] outline-none;
+  }
+
+  .search-dropdown option {
+    @apply px-4 py-3 border-b border-[#D7DFEC];
+  }
+
+  .pagination-container {
+    @apply flex items-center gap-2;
+  }
+
+  .pagination-page {
+    @apply h-10 min-w-10 rounded-md border border-[#E2E8F0] flex items-center justify-center text-sm font-medium text-[#111827];
+  }
+
+  .pagination-active {
+    @apply bg-[#F8F5FF] border-[#32105F] text-[#32105F];
+  }
+
+  .pagination-previous {
+    @apply h-10 px-5 rounded-md bg-[#E5E7EB] flex items-center text-sm font-medium text-[#A0AEC0];
+  }
+
+  .pagination-next {
+    @apply h-10 px-5 rounded-md bg-[#32105F] flex items-center text-sm font-medium text-white;
+  }
+
+  .pagination-break {
+    @apply h-10 min-w-10 rounded-md border border-[#E2E8F0] flex items-center justify-center;
+  }
+
+  .pagination-disabled {
+    @apply opacity-50 pointer-events-none;
+  }
 }
 
-.custom-bg{
+.custom-bg {
   background-image: url('/assets/background.png');
   background-size: cover;
   background-position: center;
