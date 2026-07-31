@@ -1,5 +1,6 @@
 "use client";
 
+import { ParamValue } from "next/dist/server/request/params";
 import {
   FieldError,
   FieldValues,
@@ -15,6 +16,8 @@ interface FormInputProps<T extends FieldValues> {
   placeholder?: string;
   type?: React.HTMLInputTypeAttribute;
   disabled?: boolean;
+  isRequired?: boolean;
+  adminId?: ParamValue;
 }
 
 export default function FormInput<T extends FieldValues>({
@@ -25,18 +28,29 @@ export default function FormInput<T extends FieldValues>({
   placeholder,
   type = "text",
   disabled = false,
+  adminId
 }: FormInputProps<T>) {
   return (
     <div className="space-y-2">
       <label className="text-[14px] font-semibold text-black">{label}</label>
+      {name === 'email' && adminId ? (
+        <input
+          type={type}
+          placeholder={placeholder}
+          disabled={true}
+          {...register(name)}
+          className="form-input"
+        />
+      ) : (
+        <input
+          type={type}
+          placeholder={placeholder}
+          disabled={disabled}
+          {...register(name)}
+          className="form-input"
+        />
+      )}
 
-      <input
-        type={type}
-        placeholder={placeholder}
-        disabled={disabled}
-        {...register(name)}
-        className="form-input"
-      />
 
       {error && <p className="text-xs text-red-500">{error.message}</p>}
     </div>

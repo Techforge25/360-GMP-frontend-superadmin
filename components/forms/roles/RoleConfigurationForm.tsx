@@ -1,12 +1,15 @@
+'use client'
 import FormInput from "@/components/common/FormInput";
 import FormPasswordInput from "@/components/common/FormPasswordInput";
+import { ParamValue } from "next/dist/server/request/params";
 
 interface Props {
   register: any;
   errors: any;
+  adminId: ParamValue
 }
 
-export default function RoleConfigurationForm({ register, errors }: Props) {
+export default function RoleConfigurationForm({ register, errors, adminId }: Props) {
   return (
     <div className="space-y-6 rounded-2xl border border-[#E2E8F0] bg-white p-6 shadow-sm">
       <h2 className="text-[1.375rem] font-medium text-black">
@@ -20,6 +23,7 @@ export default function RoleConfigurationForm({ register, errors }: Props) {
           placeholder="e.g zaid@123"
           register={register}
           error={errors.username}
+          isRequired={true}
         />
 
         <FormInput
@@ -28,6 +32,8 @@ export default function RoleConfigurationForm({ register, errors }: Props) {
           placeholder="example@gmail.com"
           register={register}
           error={errors.email}
+          isRequired={true}
+          adminId={adminId}
         />
 
         <FormPasswordInput
@@ -35,6 +41,7 @@ export default function RoleConfigurationForm({ register, errors }: Props) {
           name="password"
           register={register}
           error={errors.password}
+          isRequired={true}
         />
       </div>
     </div>

@@ -4,7 +4,7 @@ import { roleTabs } from "@/constants/roles/tabs";
 import PrimaryButton from "../common/PrimaryButton";
 import Tabs from "../common/Tabs";
 
-export default function RolesPermissionsList() {
+export default async function RolesPermissionsList() {
   return (
     <main className="min-h-screen bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6">
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
@@ -23,7 +23,7 @@ export default function RolesPermissionsList() {
           icon={<IoPersonAddOutline />}
           route="/settings/invite-admin"
         />
-       
+
       </div>
 
       <div className="mt-2">

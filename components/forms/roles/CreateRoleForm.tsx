@@ -1,26 +1,38 @@
 "use client";
-
 import { useForm } from "react-hook-form";
-import { FiArrowLeft } from "react-icons/fi";
 import { useRouter } from "next/navigation";
-
 import RoleConfigurationForm from "./RoleConfigurationForm";
 import PermissionMatrix from "./PermissionMatrix";
 import { initialModules } from "@/constants/roles/permissions";
-import { FormValues } from "@/types";
+import { FormValues, TypeUpdateAdmin } from "@/types";
 import PrimaryButton from "@/components/common/PrimaryButton";
 import BackButton from "@/components/common/BackButton";
 import BackButtonMain from "@/components/common/BackButtonMain";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { createAdmin, getSingleAdminDetails, updateAdminDetails } from "@/services/settings";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { createAdminSchema, updateAdminSchema } from "@/validations/settingsValidations";
+import { keys } from "@/keys";
+import { ParamValue } from "next/dist/server/request/params";
+import { useEffect } from "react";
 
-export default function CreateRoleForm() {
-  const router = useRouter();
+type Props = {
+  adminId: ParamValue
+}
 
+export default function CreateRoleForm({ adminId }: Props) {
+  const queryClient = useQueryClient()
+  const router = useRouter()
+  const checkValidationRequest = adminId ? updateAdminSchema : createAdminSchema
   const {
     register,
     control,
     handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>({
+    reset,
+    formState: { errors, isValid },
+  } = useForm<FormValues | TypeUpdateAdmin>({
+    resolver: yupResolver(checkValidationRequest),
+    mode: "onChange",
     defaultValues: {
       username: "",
       email: "",
@@ -29,8 +41,65 @@ export default function CreateRoleForm() {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log("Form submitted with data:", data);
+  const { data } = useQuery({
+    queryKey: [keys.adminDetails, adminId],
+    queryFn: () => getSingleAdminDetails(adminId),
+    enabled: !!adminId
+  });
+
+  useEffect(() => {
+    if (!data?.data) return;
+
+    reset({
+      username: data?.data?.username ?? "",
+      email: data?.data?.email ?? "",
+      password: "",
+      allowedModules: data?.data?.allowedModules ?? [],
+    });
+  }, [data, reset]);
+
+  const mutation = useMutation({
+    mutationFn: createAdmin,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [keys.adminList] })
+      router.push('/settings')
+    },
+  })
+
+  const updateMutation = useMutation({
+    mutationFn: ({
+      adminId,
+      username,
+      allowedModules,
+    }: { adminId: ParamValue } & TypeUpdateAdmin) =>
+      updateAdminDetails(adminId, {
+        username,
+        allowedModules,
+      }),
+
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [keys.adminList] });
+      router.push("/settings");
+    },
+  });
+
+  const onSubmit = (data: FormValues | TypeUpdateAdmin) => {
+    if (adminId) {
+      updateMutation.mutate({
+        adminId,
+        username: data.username,
+        allowedModules: data.allowedModules,
+      });
+    } else {
+      const createData = data as FormValues;
+      mutation.mutate({
+        username: createData.username,
+        email: createData.email,
+        password: createData.password,
+        allowedModules: createData.allowedModules,
+      });
+    }
+
   };
 
   return (
@@ -48,17 +117,15 @@ export default function CreateRoleForm() {
         </p>
       </div>
 
-      <RoleConfigurationForm register={register} errors={errors} />
-
+      <RoleConfigurationForm register={register} errors={errors} adminId={adminId} />
       <PermissionMatrix control={control} modules={initialModules} />
-
       <div className="flex items-center gap-3 pt-2">
         <BackButton text="Cancel" />
-
         <PrimaryButton
           type="submit"
-          text="Send Invitation"
+          text={mutation.isPending ? "Sending Invitation..." : "Send Invitation"}
           route="/settings/invite-admin"
+          disabledKey={!isValid}
         />
       </div>
     </form>

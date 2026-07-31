@@ -38,7 +38,10 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
           }
 
           const getRefreshToken = async () => {
-               await refreshToken();
+               const res = await refreshToken();
+               if (res?.statusCode === 400) {
+                    router.replace('/')
+               }
           }
 
           getRefreshToken()

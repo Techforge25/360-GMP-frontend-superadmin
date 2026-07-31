@@ -1,10 +1,12 @@
 "use client";
 
+import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import {
   FieldError,
   FieldValues,
   Path,
+  useForm,
   UseFormRegister,
 } from "react-hook-form";
 import { FiEye, FiEyeOff } from "react-icons/fi";
@@ -16,6 +18,7 @@ interface FormPasswordInputProps<T extends FieldValues> {
   error?: FieldError;
   placeholder?: string;
   disabled?: boolean;
+  isRequired?: boolean;
 }
 
 export default function FormPasswordInput<T extends FieldValues>({
@@ -27,6 +30,7 @@ export default function FormPasswordInput<T extends FieldValues>({
   disabled = false,
 }: FormPasswordInputProps<T>) {
   const [showPassword, setShowPassword] = useState(false);
+ 
 
   return (
     <div className="space-y-2">

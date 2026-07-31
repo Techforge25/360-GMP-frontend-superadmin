@@ -8,20 +8,11 @@ export interface TabItem {
 }
 
 export interface TableRowData {
-  id: string;
+  _id: string;
   name: string;
   email: string;
-  moduleAccess: boolean;
-}
-export interface AccountTableRowData {
-  _id: string;
-  fullName: string;
-  email: string;
-  logo: string;
-  createdAt: string;
-  subscription: {
-    subscriptionType: string;
-  };
+  allowedModules: string[];
+  status: boolean;
 }
 
 export interface FreeTrialTableRowData {
@@ -128,7 +119,17 @@ export type TypeLoginForm = {
   password: string;
 }
 
-export interface OrderModalRef {
+export type TypeCreateAdmin = {
+  username: string;
+  email: string;
+  password: string;
+  allowedModules: string[]
+}
+
+export interface EditPasswordRef {
   open: () => void;
   close: () => void;
 }
+
+export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
+export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

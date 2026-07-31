@@ -47,14 +47,6 @@ api.interceptors.response.use(
                typeof window !== "undefined" &&
                window.location.pathname === "/";
 
-          console.log({
-               status,
-               retry: originalRequest._retry,
-               isRefreshRequest,
-               isHomePage,
-               url: originalRequest.url,
-          }, 'imps keys in refresh token');
-
           if (
                status === 401 &&
                !originalRequest._retry &&
