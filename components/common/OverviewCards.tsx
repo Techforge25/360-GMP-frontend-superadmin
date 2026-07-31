@@ -6,6 +6,7 @@ export interface OverviewCardItem {
   value: string;
   subtitle: string;
   subtitletwo: string;
+  showDot?: boolean;
   icon: React.ReactNode;
   iconBg: string;
   iconColor: string;
@@ -16,6 +17,7 @@ interface Props {
   description: string;
   cards: OverviewCardItem[];
   dropdown?: ReactNode;
+  className?: string;
 }
 
 export default function OverviewCards({
@@ -23,6 +25,7 @@ export default function OverviewCards({
   description,
   cards,
   dropdown,
+  className,
 }: Props) {
   return (
     <div className="bg-[#fafafc] font-sans">
@@ -40,7 +43,7 @@ export default function OverviewCards({
           {dropdown && <div>{dropdown}</div>}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+        <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 ${className}`}>
           {cards.map((card) => (
             <div
               key={card.id}
@@ -61,7 +64,9 @@ export default function OverviewCards({
                   {card.value}
                 </p>
                 <div className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-[#8994a5]" />
+                  {card.showDot && (
+                    <span className="h-1.5 w-1.5 rounded-full bg-[#8994a5]" />
+                  )}
 
                   <p className="text-sm font-medium text-[#8994a5]">
                     {card.subtitle}

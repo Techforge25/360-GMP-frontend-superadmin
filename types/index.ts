@@ -15,6 +15,63 @@ export interface TableRowData {
   status: boolean;
 }
 
+export interface FreeTrialTableRowData {
+  _id: string;
+  userProfile: {
+    fullName: string;
+    email: string;
+    logo: string;
+  };
+  daysRemaining: number;
+  status: string;
+}
+
+export interface PaidMemberTableRowData {
+  _id: string;
+  fullName: string;
+  logo: string;
+  companyName: string;
+  subscriptionTier: string;
+  joinDate: string;
+  status: string;
+}
+
+export interface MarketPlaceOrderLogsTableRowData {
+  _id: string;
+  totalAmount: number;
+  createdAt: string;
+  orderStatus: string;
+  buyerInfo: {
+    fullName: string;
+    email: string;
+    logo: string;
+  };
+  sellerInfo: {
+    companyName: string;
+    logo: string;
+    email: string;
+  };
+}
+
+export interface SubscriptionTransactionTableRowData {
+  _id: string;
+  date: string;
+  payment_method: string;
+  amount: number;
+  status: string;
+}
+
+export interface AccountBusinessTableRowData {
+  _id: string;
+  companyName: string;
+  email: string;
+  logo: string;
+  createdAt: string;
+  subscription: {
+    subscriptionType: string;
+  };
+  status: string;
+}
 export interface RoleMember {
   id: string;
   name: string;
@@ -34,6 +91,27 @@ export interface FormValues {
   email: string;
   password: string;
   allowedModules: string[];
+}
+
+export interface ExperienceEntry {
+  title: string;
+  company: string;
+  dateRange: string;
+  duration: string;
+  achievements: string[];
+}
+
+export interface FileItem {
+  title: string;
+  filename: string;
+  subtext: string;
+  fileUrl: string;
+}
+
+export interface AmlFileItem {
+  title: string;
+  filename: string;
+  fileUrl: string;
 }
 
 export type TypeLoginForm = {

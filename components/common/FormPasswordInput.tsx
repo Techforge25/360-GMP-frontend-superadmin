@@ -34,9 +34,7 @@ export default function FormPasswordInput<T extends FieldValues>({
 
   return (
     <div className="space-y-2">
-      <label className="text-[14px] font-semibold text-black">
-        {label}
-      </label>
+      <label className="text-[14px] font-semibold text-black">{label}</label>
 
       <div className="relative">
         <input
@@ -44,7 +42,7 @@ export default function FormPasswordInput<T extends FieldValues>({
           placeholder={placeholder}
           disabled={disabled}
           {...register(name)}
-          className="form-password"
+          className="form-password placeholder:text-gray-300"
         />
 
         <button
@@ -56,9 +54,7 @@ export default function FormPasswordInput<T extends FieldValues>({
         </button>
       </div>
 
-      {error && (
-        <p className="text-xs text-red-500">{error.message}</p>
-      )}
+      {error && <p className="text-xs text-red-500">{error.message}</p>}
     </div>
   );
 }
