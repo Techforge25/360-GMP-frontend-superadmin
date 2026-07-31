@@ -23,22 +23,33 @@ export default function SidebarSettingsItems({
       {settingsItemsData.map((item: NavigationItem, index: number) => {
         const isSelected = pathname === item.path;
 
+        const className = `flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 font-medium ${
+          isSelected
+            ? "bg-brand-setting-ligh text-text-primary"
+            : "bg-surface text-text-primary hover:bg-brand-setting-ligh"
+        }`;
+
+        if (item.name === "Sign Out") {
+          return (
+            <button
+              key={index}
+              type="button"
+              onClick={openSignOutModal}
+              className={`${className} w-full text-left`}
+            >
+              <span className="text-[1rem]">{item.icon}</span>
+              <span className="text-[1rem]">{item.name}</span>
+            </button>
+          );
+        }
+
         return (
-          <Link
-            key={index}
-            href={item.path}
-            className={`flex items-center gap-3 px-3 py-3 rounded-lg transition-all duration-200 font-medium ${
-              isSelected
-                ? "bg-brand-setting-ligh text-text-primary"
-                : "bg-surface text-text-primary hover:bg-brand-setting-ligh"
-            }`}
-          >
+          <Link key={index} href={item.path} className={className}>
             <span className="text-[1rem]">{item.icon}</span>
             <span className="text-[1rem]">{item.name}</span>
           </Link>
         );
       })}
-
     </div>
   );
 }

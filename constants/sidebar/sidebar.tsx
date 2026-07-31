@@ -8,6 +8,7 @@ import {
   FiActivity,
   FiBriefcase,
   FiSettings,
+  FiLogOut,
 } from "react-icons/fi";
 
 export interface NavigationItem {
@@ -59,5 +60,10 @@ export const sidebarSettingsItems: NavigationItem[] = [
     name: "Settings",
     icon: <FiSettings />,
     path: "/settings",
+  },
+  {
+    name: "Sign Out",
+    icon: <FiLogOut />,
+    path: "",
   },
 ];

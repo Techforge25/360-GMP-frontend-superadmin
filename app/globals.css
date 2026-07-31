@@ -92,15 +92,6 @@
   /* ===== Sizes ===== */
   --height-input: 2.75rem;
   --spacing-100: 25rem;
-
-
-  --color-border: #f0f0f5;
-
-
-
-
-
-
 }
 
 @theme {
@@ -243,7 +234,7 @@
   --color-bg-green-light: #D8F2DD;
   --color-border-btn-green: #0B8806;  
   --color-bg-time-brand: #2D1B69;  
-
+  --color-purple-dark-light: #6D28D9;
 
 
 
