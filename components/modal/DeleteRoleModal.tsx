@@ -1,5 +1,8 @@
 "use client";
-
+import { keys } from "@/keys";
+import { deleteAdmin } from "@/services/settings";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { ParamValue } from "next/dist/server/request/params";
 import {
   forwardRef,
   useImperativeHandle,
@@ -12,28 +15,44 @@ export interface DeleteRoleModalRef {
   close: () => void;
 }
 
-interface DeleteRoleModalProps {
-  onConfirm?: () => void;
+interface TypeAdminId {
+  adminId: ParamValue;
 }
 
 const DeleteRoleModal = forwardRef<
   DeleteRoleModalRef,
-  DeleteRoleModalProps
->(({ onConfirm }, ref) => {
+  TypeAdminId
+>(({ adminId }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
+  const queryClient = useQueryClient()
 
   useImperativeHandle(ref, () => ({
     open: () => setIsOpen(true),
     close: () => setIsOpen(false),
   }));
 
+  const mutation = useMutation({
+    mutationFn: deleteAdmin,
+    onSuccess: () => {
+      setIsOpen(false)
+      queryClient.invalidateQueries({ queryKey: [keys.adminList] });
+    },
+    onError: (error: any) => {
+      console.error(error);
+    },
+  });
+
+  const adminDeleteConfirmation = () => {
+    mutation.mutate(adminId)
+  }
+
   if (!isOpen) return null;
 
   return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[2px] p-4">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[2px] p-4">
       <div className="relative w-full max-w-[624px] rounded-[1.25rem] bg-white p-8 shadow-2xl font-sans">
         <button
-              onClick={() => setIsOpen(false)}
+          onClick={() => setIsOpen(false)}
           className="absolute right-5 top-5 text-gray-500 hover:text-gray-800 transition-colors duration-200 cursor-pointer"
         >
           <FiX className="h-5 w-5" />
@@ -72,10 +91,11 @@ const DeleteRoleModal = forwardRef<
             Cancel
           </button>
           <button
-            // onClick={onConfirm}
+            onClick={() => adminDeleteConfirmation()}
             className="signout-btn"
+            disabled={mutation.isPending}
           >
-            Delete Role
+            {mutation.isPending ? 'Deleting...' : 'Delete Role'}
           </button>
         </div>
       </div>

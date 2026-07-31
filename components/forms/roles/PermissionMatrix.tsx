@@ -1,12 +1,12 @@
 "use client";
 
 import { Controller, Control } from "react-hook-form";
-import { FormValues, PermissionModule } from "@/types";
+import { FormValues, PermissionModule, TypeUpdateAdmin } from "@/types";
 
 
 interface Props {
   modules: PermissionModule[];
-  control: Control<FormValues>;
+  control: Control<FormValues> | any;
 }
 
 export default function PermissionMatrix({ modules, control }: Props) {
@@ -27,37 +27,43 @@ export default function PermissionMatrix({ modules, control }: Props) {
       <Controller
         name="allowedModules"
         control={control}
-        render={({ field }) => (
-          <div className="divide-y divide-[#E2E8F0]">
-            {modules.map((mod) => {
-              const checked = field.value.includes(mod.name);
+        render={({ field }) => {
+          const selectedModules = field.value ?? [];
 
-              return (
-                <div
-                  key={mod.id}
-                  className="flex items-center justify-between bg-white px-6 py-4 transition hover:bg-[#F8FAFC]"
-                >
-                  <span className="text-[1rem] font-medium text-text-dark">
-                    {mod.name}
-                  </span>
+          return (
+            <div className="divide-y divide-[#E2E8F0]">
+              {modules.map((mod) => {
+                const checked = selectedModules.includes(mod.name);
 
-                  <input
-                    type="checkbox"
-                    checked={checked}
-                    onChange={() => {
-                      const updatedModules = checked
-                        ? field.value.filter((item) => item !== mod.name)
-                        : [...field.value, mod.name];
+                return (
+                  <div
+                    key={mod.id}
+                    className="flex items-center justify-between bg-white px-6 py-4 transition hover:bg-[#F8FAFC]"
+                  >
+                    <span className="text-[1rem] font-medium text-text-dark">
+                      {mod.name}
+                    </span>
 
-                      field.onChange(updatedModules);
-                    }}
-                    className="h-5 w-5 accent-[#0066FF]"
-                  />
-                </div>
-              );
-            })}
-          </div>
-        )}
+                    <input
+                      type="checkbox"
+                      checked={checked}
+                      onChange={() => {
+                        field.onChange(
+                          checked
+                            ? selectedModules.filter(
+                              (item) => item !== mod.name
+                            )
+                            : [...selectedModules, mod.name]
+                        );
+                      }}
+                      className="h-5 w-5 accent-[#0066FF]"
+                    />
+                  </div>
+                );
+              })}
+            </div>
+          );
+        }}
       />
     </div>
   );

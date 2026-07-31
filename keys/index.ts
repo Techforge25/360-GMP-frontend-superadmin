@@ -1,3 +1,5 @@
 export const keys = {
-     status: 'status'
+     status: 'status',
+     adminList: 'adminList',
+     adminDetails: 'adminDetails'
 }

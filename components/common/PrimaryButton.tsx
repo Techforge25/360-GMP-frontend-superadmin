@@ -10,6 +10,7 @@ interface PrimaryButtonProps {
   onClick?: () => void;
   type?: "button" | "submit";
   className?: string;
+  disabledKey?: boolean;
 }
 
 export default function PrimaryButton({
@@ -19,6 +20,7 @@ export default function PrimaryButton({
   onClick,
   type = "button",
   className = "",
+  disabledKey
 }: PrimaryButtonProps) {
   const router = useRouter();
 
@@ -35,6 +37,7 @@ export default function PrimaryButton({
     <button
       type={type}
       onClick={handleClick}
+      disabled={disabledKey}
       className={`btn-primary ${className}`}
     >
       {icon && <span className="btn-primary-icon">{icon}</span>}
