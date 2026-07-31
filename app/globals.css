@@ -5,7 +5,7 @@
 :root {
   --background: #f2f2f2;
   --foreground: #ffffff;
-    --font-sans: var(--font-inter);
+  --font-sans: var(--font-inter);
   --font-open: var(--font-open-sans);
   /* ===== Brand ===== */
   --color-brand-primary: #240457;
@@ -94,8 +94,8 @@
   --spacing-100: 25rem;
 
 
-   --color-border: #f0f0f5;
-  
+  --color-border: #f0f0f5;
+
 
 
 
@@ -215,19 +215,34 @@
 
 
   --color-border: #f0f0f5;
-    --color-background: #fafafc;
-    --color-date-time: #545961;
-    --color-reject: #ff3b30;
-    --color-reject-hover: #e0342b;
-    --color-approved: #008000;
-    --color-approved-hover: #007000;
-    --color-kyc-text-heading: #64748b;
-    --color-kyc-text-subheading: #1e293b;
-    --color-kyc-text-heading: #64748b;
-    --color-kyc-bg: #ffebee;
-    --color-kyc-text: #d32f2f;
-    --color-kyc-text-hover: #2c0a59;
-    --color-kyc-bg-icon: #2c0a59;
+  --color-background: #fafafc;
+  --color-date-time: #545961;
+  --color-reject: #ff3b30;
+  --color-reject-hover: #e0342b;
+  --color-approved: #008000;
+  --color-approved-hover: #007000;
+  --color-kyc-text-heading: #64748b;
+  --color-kyc-text-subheading: #1e293b;
+  --color-kyc-text-heading: #64748b;
+  --color-kyc-bg: #ffebee;
+  --color-kyc-text: #d32f2f;
+  --color-kyc-text-hover: #2c0a59;
+  --color-kyc-bg-icon: #2c0a59;
+  --color-kyc-bg-border-gray: #fcfcfd;
+  --color-text-purple: #7c3aed;
+  --color-text-light-grayed: #475569;
+  --color-text-light-white: #f1f5f9;
+  --color-text-dark-green: #16a34a;
+  --color-bg-btn-light: #f5effa;
+  --color-text-plan: #2563eb;
+  --color-text-primary-hover: #1d053b;
+  --color-bg-white-light: #B4B4B433;
+  --color-bg-experience-light: #F5F1FF;
+  --color-text-work-dark: #202124;
+  --color-text-dark-purple: #5A38A8;
+  --color-bg-green-light: #D8F2DD;
+  --color-border-btn-green: #0B8806;  
+  --color-bg-time-brand: #2D1B69;  
 
 
 
@@ -321,4 +336,17 @@ body {
   background-image: url('/assets/background.png');
   background-size: cover;
   background-position: center;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #d1d5db;
+  border-radius: 10px;
 }

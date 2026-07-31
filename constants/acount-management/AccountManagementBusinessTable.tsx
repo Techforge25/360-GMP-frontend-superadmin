@@ -2,21 +2,26 @@ import { AccountBusinessTableRowData } from "@/types";
 
 export const accountManagementBusinessTable: AccountBusinessTableRowData[] = [
   {
-    id: "1",
-    name: "Muhammad Umair",
+    _id: "1",
+    companyName: "Muhammad Umair",
     email: "umairstack.dev@gmail.com",
-    subscriptionType: "Trial",
-    status: "Pending", 
-    img: "/images/image 95.png",
-    createdAt: "2023-01-01",
+    logo: "/images/image 95.png",
+    createdAt: "2023-01-01T00:00:00.000Z",
+    subscription: {
+      subscriptionType: "Trial",
+    },
+    
+    status: "active",
   },
   {
-    id: "2",
-    name: "Ali Khan",
+    _id: "2",
+    companyName: "Ali Khan",
     email: "ali@gmail.com",
-    subscriptionType: "Silver",
-    status: "Approved",
-    img: "/images/image 95.png",
-    createdAt: "2023-01-01",
+    logo: "/images/image 95.png",
+    createdAt: "2023-01-01T00:00:00.000Z",
+    subscription: {
+      subscriptionType: "Silver",
+    },
+      status: "pending",
   },
 ];

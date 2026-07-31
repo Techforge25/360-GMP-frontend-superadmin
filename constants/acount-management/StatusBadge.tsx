@@ -9,14 +9,19 @@ export default function StatusBadge({ status }: StatusBadgeProps) {
     Gold: "bg-[#FFF9E6] text-[#D9A300]",
     Enterprise: "bg-[#F5EEFF] text-[#9D4EDD]",
     Consumer: "bg-[#EFF5FF] text-[#2A75D3]",
-    Pending: "bg-[#FFF5EC] text-[#FF8D28]",
-    Approved: "bg-[#E6F6E9] text-[#0B8806]",
-    Rejected: "bg-[#FFDFDF] text-[#FF383C]",
+    pending: "bg-[#FFF5EC] text-[#FF8D28]",
+    approved: "bg-[#E6F6E9] text-[#0B8806]",
+    rejected: "bg-[#FFDFDF] text-[#FF383C]",
+    active: "bg-[#E6F6E9] text-[#0B8806]",
+    expired: "bg-[#FFDFDF] text-[#FF383C]",
+    "Past Due": "bg-[#FFDFDF] text-[#FF383C]",
+    failed: "bg-[#FFDFDF] text-[#FF383C]",
+    paid: "bg-[#E6F6E9] text-[#0B8806]",
   };
 
   return (
     <span
-      className={`inline-flex rounded-full px-5 py-1 text-sm font-medium ${
+      className={`inline-flex rounded-full px-5 py-1 text-sm font-medium capitalize   ${
         statusStyles[status] || "bg-gray-100 text-gray-600"
       }`}
     >

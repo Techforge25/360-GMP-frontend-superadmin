@@ -28,29 +28,29 @@ export const sidebarMenuItems: NavigationItem[] = [
     path: "/account-management",
   },
   {
-    name: "Subscription & Access",
+    name: "Subscription & Access",  
     icon: <FiAward />,
-    path: "/dashboard/subscriptions",
+    path: "/subscription",
   },
   {
     name: "Marketplace & Order Logs",
     icon: <FiFileText />,
-    path: "/dashboard/orders",
+    path: "/marketplace",
   },
   {
     name: "Financial Hub",
     icon: <FiDollarSign />,
-    path: "/dashboard/finance",
+    path: "/finance",
   },
   {
     name: "Communities & Networking",
     icon: <FiActivity />,
-    path: "/dashboard/communities",
+    path: "/communities",
   },
   {
     name: "Recruitment (Job Board)",
     icon: <FiBriefcase />,
-    path: "/dashboard/jobs",
+    path: "/jobs",
   },
 ];
 

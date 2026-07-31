@@ -18,11 +18,12 @@ export default function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-2 whitespace-nowrap border-b-2 pb-3 pt-1 text-[1rem] font-medium transition-all duration-200 cursor-pointer
+      className={`relative flex items-center gap-2 whitespace-nowrap pb-3 pt-1 text-[1rem] font-medium transition-colors duration-300 cursor-pointer
+        after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full after:origin-left after:transition-transform after:duration-300
         ${
           isActive
-            ? "border-brand-primary text-brand-primary"
-            : "border-transparent text-text-dark hover:text-text-primary"
+            ? "text-brand-primary after:bg-brand-primary after:scale-x-100"
+            : "text-text-dark hover:text-brand-primary after:bg-brand-primary after:scale-x-0 hover:after:scale-x-100"
         }
       `}
     >

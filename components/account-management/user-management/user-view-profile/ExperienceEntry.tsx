@@ -5,14 +5,14 @@ function ExperienceEntry() {
   return (
     <section className="w-full rounded-xl border border-gray-200 bg-white mt-5">
       <div className="flex items-center gap-3 px-5 py-4 border-b border-gray-200">
-        <div className="flex h-7 w-7 items-center justify-center rounded-md border border-[#E6DFFF] bg-[#F5F1FF]">
+        <div className="flex h-7 w-7 items-center justify-center rounded-md border border-bg-experience-light bg-bg-experience-light">
           <div className="relative flex h-4 w-4 items-center justify-center rounded  ">
-            <MdWork className="h-7 w-7 text-[#240457] " />
+            <MdWork className="h-7 w-7 text-brand-primary " />
             <div className="relative z-10 h-1.5 w-1.5 rounded-full bg-white" />
           </div>
         </div>
 
-        <h2 className="text-[18px] font-semibold text-[#202124]">
+        <h2 className="text-[18px] font-semibold text-text-work-dark">
           Work Experience
         </h2>
       </div>
@@ -28,13 +28,13 @@ function ExperienceEntry() {
             }`}
           >
             <div>
-              <h3 className="text-[18px] font-semibold leading-6 text-[#202124]">
+              <h3 className="text-[18px] font-semibold leading-6 text-text-work-dark">
                 {entry.title}
               </h3>
 
-              <p className="mt-1 text-[15px] text-[#6B7280]">{entry.company}</p>
+              <p className="mt-1 text-[15px] text-brand-rating-text-border">{entry.company}</p>
 
-              <p className="mt-2 text-[15px] font-medium text-[#5A38A8]">
+              <p className="mt-2 text-[15px] font-medium text-text-dark-purple">
                 {entry.dateRange}
                 <span className=" font-normal"> ({entry.duration})</span>
               </p>

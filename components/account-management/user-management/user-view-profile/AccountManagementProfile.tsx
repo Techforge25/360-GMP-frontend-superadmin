@@ -4,7 +4,7 @@ import { FiMail } from "react-icons/fi";
 export default function ProfileCard() {
   return (
     <div className="p-[1.5rem] border border-gray-200 rounded-[0.5rem] bg-white font-sans">
-      <div className="flex items-center gap-[1rem] p-[1rem] bg-[#f8f9fa] rounded-[0.5rem] border border-gray-100">
+      <div className="flex items-center gap-[1rem] p-[1rem] bg-bg-white-light rounded-[0.5rem] border border-gray-100">
         <div className="relative w-[3.5rem] h-[3.5rem] rounded-[0.5rem] overflow-hidden border border-gray-200 bg-white">
           <img
             src="https://i.pravatar.cc/150?img=11" 

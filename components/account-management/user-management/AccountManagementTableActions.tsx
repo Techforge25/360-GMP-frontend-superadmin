@@ -1,4 +1,5 @@
 "use client";
+import PreviewButton from "@/components/common/PreviewButton";
 import { useRouter } from "next/navigation";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
 
@@ -24,12 +25,7 @@ export default function AccountManagementTableActions({ id, accountManagement }:
   return (
     <>
       <div className="flex items-center justify-center gap-4">
-        <button
-          onClick={handleViewAccount}
-          className="flex items-center gap-2 rounded-lg border border-[#0B8806] bg-[#E6F6E9] px-5 py-1.5 text-[#0B8806] transition-colors hover:bg-[#D8F2DD]"
-        >
-          Preview <IoShieldCheckmarkOutline className="w-5 h-5" />
-        </button>
+        <PreviewButton  onClick={handleViewAccount}/>
       </div>
 
     </>

@@ -15,8 +15,9 @@ interface SidebarMenuItemsProps {
 export default function SidebarMenuItems({ pathname }: SidebarMenuItemsProps) {
   return (
     <div className="flex-1 mt-3 flex flex-col gap-1 px-3 overflow-y-auto custom-scrollbar">
-      {menuItemsData.map((item: NavigationItem, index: number) => {
-        const isSelected = pathname === item.path;
+      {menuItemsData.map((item, index) => {
+        const isSelected =
+          pathname === item.path || pathname.startsWith(`${item.path}/`);
 
         return (
           <Link

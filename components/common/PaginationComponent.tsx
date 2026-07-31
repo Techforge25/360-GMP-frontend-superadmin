@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Pagination from "@/components/common/Pagination";
 
-export default function AccountPagination() {
+export default function PaginationComponent() {
   const [page, setPage] = useState(1);
 
   return (

@@ -6,7 +6,7 @@ import { FiSearch, FiChevronDown, FiChevronUp } from "react-icons/fi";
 
 interface FilterOption {
   key: string;
-  label: string;
+  label?: string;
   options: string[];
   defaultValue?: string;
 }
@@ -36,7 +36,7 @@ export default function SearchFilterBar({
       filters.map((filter) => [
         filter.key,
         filter.defaultValue || filter.options[0] || "",
-      ])
+      ]),
     ),
   };
 
@@ -55,67 +55,74 @@ export default function SearchFilterBar({
   }, [searchValue, debounceTime, onSearch]);
 
   return (
-    <div className="flex w-full items-center justify-between gap-4">
-      {/* Search */}
-      <div className="relative w-full max-w-[24.25rem]">
+    <div className="flex w-full flex-wrap items-center justify-between gap-4">
+      <div className="relative w-full md:w-[320px] lg:w-[400px]">
         <FiSearch className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#768299]" />
 
         <input
           {...register("search")}
           placeholder={placeholder}
-          className="search-filter"
+          className="search-filter w-full"
         />
       </div>
 
-      {/* Filters */}
-      <div className="flex items-center gap-3">
+
+      <div className="flex flex-wrap items-center gap-4">
         {filters.map((filter) => (
           <Controller
             key={filter.key}
             name={filter.key}
             control={control}
             render={({ field }) => (
-              <div className="relative w-[10.625rem]">
-                <button
-                  type="button"
-                  onClick={() =>
-                    setOpenDropdown((prev) =>
-                      prev === filter.key ? null : filter.key
-                    )
-                  }
-                  className="flex h-[2.75rem] w-full items-center justify-between rounded-lg border border-[#D7DFEC] bg-white px-4 text-sm font-medium text-[#111827]"
-                >
-                  <span>{field.value}</span>
-
-                  {openDropdown === filter.key ? (
-                    <FiChevronUp />
-                  ) : (
-                    <FiChevronDown />
-                  )}
-                </button>
-
-                {openDropdown === filter.key && (
-                  <div className="absolute top-[3rem] z-50 w-full overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-lg">
-                    {filter.options.map((item) => (
-                      <button
-                        key={item}
-                        type="button"
-                        onClick={() => {
-                          field.onChange(item);
-                          onFilterChange?.(filter.key, item);
-                          setOpenDropdown(null);
-                        }}
-                        className={`flex w-full items-center border-b border-[#E2E8F0] px-4 py-3 text-left text-sm last:border-none hover:bg-[#F8F5FF] ${
-                          field.value === item
-                            ? "bg-[#F8F5FF] text-[#35126F]"
-                            : "bg-white text-[#111827]"
-                        }`}
-                      >
-                        {item}
-                      </button>
-                    ))}
-                  </div>
+              <div className="flex items-center gap-3">
+                {filter.label && (
+                  <label className="whitespace-nowrap text-sm font-medium text-[#475569]">
+                    {filter.label}
+                  </label>
                 )}
+
+                <div className="relative min-w-[140px]">
+                  <button
+                    type="button"
+                    onClick={() =>
+                      setOpenDropdown((prev) =>
+                        prev === filter.key ? null : filter.key,
+                      )
+                    }
+                    className="flex h-[2.75rem] w-full items-center justify-between rounded-lg border border-[#D7DFEC] bg-white px-4 text-sm font-medium text-[#111827]"
+                  >
+                    <span className="truncate">{field.value}</span>
+
+                    {openDropdown === filter.key ? (
+                      <FiChevronUp className="shrink-0 ml-2" />
+                    ) : (
+                      <FiChevronDown className="shrink-0 ml-2" />
+                    )}
+                  </button>
+
+                  {openDropdown === filter.key && (
+                    <div className="absolute top-[3rem] z-50 w-full overflow-hidden rounded-lg border border-[#E2E8F0] bg-white shadow-lg">
+                      {filter.options.map((item) => (
+                        <button
+                          key={item}
+                          type="button"
+                          onClick={() => {
+                            field.onChange(item);
+                            onFilterChange?.(filter.key, item);
+                            setOpenDropdown(null);
+                          }}
+                          className={`flex w-full items-center border-b border-[#E2E8F0] px-4 py-3 text-left text-sm last:border-none hover:bg-[#F8F5FF] ${
+                            field.value === item
+                              ? "bg-[#F8F5FF] text-[#35126F]"
+                              : "bg-white text-[#111827]"
+                          }`}
+                        >
+                          {item}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             )}
           />

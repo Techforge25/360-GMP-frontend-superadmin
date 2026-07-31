@@ -5,43 +5,72 @@ import AccountManagementTableActions from "../user-management/AccountManagementT
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import Image from "next/image";
 import { accountManagementBusinessTable } from "@/constants/acount-management/AccountManagementBusinessTable";
+import { formatDate } from "@/helpers";
 
- const accountManagement = "accountManagementBusinessTable";
+const accountManagement = "accountManagementBusinessTable";
+
 const columns: Column<AccountBusinessTableRowData>[] = [
   {
-    key: "name",
-    header: "User Name",
+    key: "companyName",
+    header: "Company Name",
     render: (row) => (
       <div className="flex items-center space-x-3">
-        <Image src={row.img} alt={row.name} width={40} height={40} className="w-10 h-10 rounded-full" />
-      <div className="flex flex-col">
-        <span className="text-[1rem] font-medium text-[#556179]">{row.name}</span>
-        <span className="mt-0.5 text-sm text-text-hint">{row.email}</span>
-      </div>
+        <Image
+          src={row.logo || "/images/image 95.png"}
+          alt={row.companyName}
+          width={40}
+          height={40}
+          className="h-10 w-10 rounded-full"
+        />
+
+        <div className="flex flex-col">
+          <span className="text-[1rem] font-medium text-text-secondary">
+            {row.companyName}
+          </span>
+          <span className="mt-0.5 text-sm text-text-hint">
+            {row.email}
+          </span>
+        </div>
       </div>
     ),
   },
 
   {
-    key: "subscriptionType",
+    key: "subscription",
     header: "Subscription Type",
-    render: (row) => <StatusBadge status={row.subscriptionType} />,
+    render: (row) => (
+      <StatusBadge status={row.subscription?.subscriptionType ?? "-"} />
+    ),
+  },
+
+  {
+    key: "status",
+    header: "Status",
+    render: (row) => (
+      <StatusBadge status={row?.status ?? "-"} />
+    ),
   },
   {
     key: "createdAt",
     header: "Join Date",
-    render: (row) => <span className="text-[1rem] text-[#545961]">{row.createdAt}</span>,
+    render: (row) => (
+      <span className="text-[1rem] text-date-time">
+        {formatDate(row.createdAt)}
+      </span>
+    ),
   },
-   {
-    key: "status",
-    header: "Status",
-    render: (row) => <StatusBadge status={row.status} />,
-  },
+
+
   {
     key: "action",
     header: "Action",
     align: "center",
-    render: (row) => <AccountManagementTableActions id={row.id} accountManagement={accountManagement} />,
+    render: (row) => (
+      <AccountManagementTableActions
+        id={row._id}
+        accountManagement={accountManagement}
+      />
+    ),
   },
 ];
 
@@ -51,7 +80,7 @@ export default function AccountManagementBusinessTable() {
       <DataTable
         columns={columns}
         data={accountManagementBusinessTable}
-        rowKey={(row) => row.id}
+        rowKey={(row) => row._id}
       />
     </div>
   );

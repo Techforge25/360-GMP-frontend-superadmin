@@ -1,7 +1,7 @@
 import React from "react";
 import SearchFilterBar from "../../common/SearchFilterBar";
-import AccountPagination from "@/components/common/AccountPagination";
 import AccountManagementBusinessTable from "./AccountManagementBusinessTable";
+import PaginationComponent from "@/components/common/PaginationComponent";
 
 export default function AllBusinessTable() {
     
@@ -11,9 +11,9 @@ export default function AllBusinessTable() {
         placeholder="Search Business..."
         filters={[
           {
-            key: "subscriptionType",
+            key: "type",
             label: "Subscription Type",
-            options: ["All", "Silver", "Gold", "Enterprise"],
+            options: ["All", "Silver", "Bronze", "Gold", "Premium"],
             defaultValue: "All"
           },
            {
@@ -31,7 +31,7 @@ export default function AllBusinessTable() {
         }}
       />
       <AccountManagementBusinessTable/>
-       <AccountPagination/>
+       <PaginationComponent/>
 
     </div>
   );

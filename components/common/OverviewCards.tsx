@@ -17,6 +17,7 @@ interface Props {
   description: string;
   cards: OverviewCardItem[];
   dropdown?: ReactNode;
+  className?: string;
 }
 
 export default function OverviewCards({
@@ -24,6 +25,7 @@ export default function OverviewCards({
   description,
   cards,
   dropdown,
+  className,
 }: Props) {
   return (
     <div className="bg-[#fafafc] font-sans">
@@ -41,7 +43,7 @@ export default function OverviewCards({
           {dropdown && <div>{dropdown}</div>}
         </div>
 
-        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2">
+        <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 ${className}`}>
           {cards.map((card) => (
             <div
               key={card.id}

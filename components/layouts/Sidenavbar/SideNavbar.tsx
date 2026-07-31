@@ -28,8 +28,7 @@ export default function SideNavbar() {
     },
   });
 
-  const [isDropdownOpen, setIsDropdownOpen] =
-    useState(false);
+
 
   const signOutModalRef =
     useRef<SignOutModalRef>(null);
@@ -56,8 +55,6 @@ export default function SideNavbar() {
 
       <SidebarSettingsItems
         pathname={pathname}
-        isDropdownOpen={isDropdownOpen}
-        setIsDropdownOpen={setIsDropdownOpen}
         openSignOutModal={() =>
           signOutModalRef.current?.open()
         }

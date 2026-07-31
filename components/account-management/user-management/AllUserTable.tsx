@@ -1,7 +1,7 @@
 import React from "react";
 import SearchFilterBar from "../../common/SearchFilterBar";
 import AccountManagementTable from "./AccountManagementTable";
-import AccountPagination from "@/components/common/AccountPagination";
+import PaginationComponent from "@/components/common/PaginationComponent";
 
 export default function AllUserTable() {
     
@@ -11,10 +11,9 @@ export default function AllUserTable() {
         placeholder="Search Users..."
         filters={[
           {
-            key: "subscriptionType",
-            label: "Subscription Type",
-            options: ["Free Trial", "Consumer", "Silver", "Gold", "Enterprise"],
-            defaultValue: "All"
+            key: "type",
+            options: ["Sneak Peek Free - 14 Days", "Consumer / Individual", "Silver", "Bronze", "Gold", "Premium"],
+            defaultValue: "Sneak Peek Free - 14 Days"
           }
         ]}
         onSearch={(value) => {
@@ -25,7 +24,7 @@ export default function AllUserTable() {
         }}
       />
       <AccountManagementTable/>
-       <AccountPagination/>
+       <PaginationComponent/>
 
     </div>
   );
