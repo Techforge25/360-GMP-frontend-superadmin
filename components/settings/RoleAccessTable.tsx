@@ -1,10 +1,8 @@
 "use client";
 import DataTable, { Column } from "@/components/common/DataTable";
-import { TableRowData } from "@/types";
+import { TableRowData, TypeCreateAdmin } from "@/types";
 import RoleTableActions from "./RoleTableActions";
-import { useQuery } from "@tanstack/react-query";
-import { getCreatedAdmins } from "@/services/settings";
-import { keys } from "@/keys";
+
 
 const columns: Column<TableRowData>[] = [
   {
@@ -48,14 +46,13 @@ const columns: Column<TableRowData>[] = [
   },
 ];
 
-export default function RoleAccessTable() {
-  const { data, isFetching } = useQuery({
-    queryKey: [keys.adminList],
-    queryFn: getCreatedAdmins,
-  });
+interface Props {
+  adminData: TypeCreateAdmin;
+  isFetching: boolean;
+}
 
-  const adminData = data?.data?.docs;
 
+export default function RoleAccessTable({ adminData, isFetching }: Props) {
   return (
     <DataTable
       columns={columns}

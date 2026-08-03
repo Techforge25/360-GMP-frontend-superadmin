@@ -148,6 +148,16 @@ export interface ProductAuditTableRowData {
     logo: string;
   };
 }
+export interface AccountTableRowData {
+  _id: string;
+  fullName: string;
+  email: string;
+  logo: string;
+  createdAt: string;
+  subscription: {
+    subscriptionType: string;
+  };
+}
 
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

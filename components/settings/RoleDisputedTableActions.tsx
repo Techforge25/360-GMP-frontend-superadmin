@@ -1,24 +1,39 @@
 "use client";
-import { useRef } from "react";
-import { useRouter } from "next/navigation";
-import { FiEdit, FiEye, FiTrash2 } from "react-icons/fi";
-import DeleteRoleModal, {
-  DeleteRoleModalRef,
-} from "@/components/modal/DeleteRoleModal";
-import { EditPasswordRef } from "@/types";
-import EditPasswordModal from "../modal/EditPasswordModal";
 import { FaClockRotateLeft } from "react-icons/fa6";
 import PrimaryButton from "../common/PrimaryButton";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { keys } from "@/keys";
+import { restoreAdmin } from "@/services/settings";
 
 interface Props {
   id: string;
 }
 
 export default function RoleDisputedTableActions({ id }: Props) {
+  const queryClient = useQueryClient();
+  const mutation = useMutation({
+    mutationFn: restoreAdmin,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [keys.adminList] })
+    },
+  })
+
+  const handleRestoreAdmin = () => {
+    mutation.mutate(id);
+  }
+
   return (
     <>
       <div className="flex items-center justify-center gap-4">
-        <PrimaryButton icon={<FaClockRotateLeft />} text="Restored Admin" />
+        <button
+          type='button'
+          onClick={() => handleRestoreAdmin()}
+          disabled={mutation.isPending}
+          className={'btn-primary disabled:opacity-50 disabled:cursor-not-allowed'}
+        >
+          <span className="btn-primary-icon"><FaClockRotateLeft /></span>
+          <span>Restore Admin</span>
+        </button>
       </div>
     </>
   );

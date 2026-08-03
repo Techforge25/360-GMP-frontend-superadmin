@@ -36,13 +36,16 @@ export default function RoleConfigurationForm({ register, errors, adminId }: Pro
           adminId={adminId}
         />
 
-        <FormPasswordInput
-          label="Password"
-          name="password"
-          register={register}
-          error={errors.password}
-          isRequired={true}
-        />
+        {!adminId && (
+          <FormPasswordInput
+            label="Password"
+            name="password"
+            register={register}
+            error={errors.password}
+            isRequired={true}
+          />
+        )}
+
       </div>
     </div>
   );
