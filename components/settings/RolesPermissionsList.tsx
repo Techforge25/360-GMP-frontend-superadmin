@@ -11,6 +11,7 @@ import { useTransition } from "react";
 import { keys } from "@/keys";
 import { getCreatedAdmins } from "@/services/settings";
 import { useQuery } from "@tanstack/react-query";
+import PaginationComponent from "../common/PaginationComponent";
 
 export default function RolesPermissionsList() {
   const router = useRouter();
@@ -70,9 +71,19 @@ export default function RolesPermissionsList() {
           ${isPending ? "opacity-50" : "opacity-100"}
         `}
       >
-        {currentTab === "role-control" && <RoleAccessTable adminData={adminData} isFetching={isFetching} />}
+        {currentTab === "role-control" && (
+          <>
+            <RoleAccessTable adminData={adminData} isFetching={isFetching} />
+            <PaginationComponent />
+          </>
+        )}
 
-        {currentTab === "deleted-admins" && <RoleDisputedTable adminData={adminData} isFetching={isFetching} />}
+        {currentTab === "deleted-admins" && (
+          <>
+            <RoleDisputedTable adminData={adminData} isFetching={isFetching} />
+            <PaginationComponent />
+          </>
+        )}
       </div>
     </main>
   );
