@@ -70,9 +70,7 @@ const DeleteRoleModal = forwardRef<
               Are You Sure You Want To Delete <br /> The Role
             </h2>
             <p className="mt-3 text-[0.9rem] font-normal   leading-relaxed text-text-setting-light">
-              This Action Is Permanent And Cannot Be Undone. The Assigned
-              Administrator Will Lose Their Permissions Immediately, And This
-              Role Configuration Will Be Removed From The System.
+              This admin will temporarily be removed from the system and will not have access to any of the modules or features. You can restore this admin at any time from the deleted admin's tab.
             </p>
           </div>
         </div>
