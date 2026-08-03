@@ -33,8 +33,8 @@ export default function FormPasswordInput<T extends FieldValues>({
  
 
   return (
-    <div className="space-y-2">
-      <label className="text-[14px] font-semibold text-black">{label}</label>
+    <div className="space-y-2 text-left">
+      <label className="text-[14px] font-semibold text-black text-left w-full pb-2">{label}</label>
 
       <div className="relative">
         <input

@@ -10,24 +10,20 @@ import EditPasswordModal from "../modal/EditPasswordModal";
 
 interface Props {
   id: string;
+  name: string;
 }
 
 
-export default function RoleTableActions({ id }: Props) {
+export default function RoleTableActions({ id, name }: Props) {
   const router = useRouter();
-
+  console.log("RoleTableActions Props:", { id, name });
   const deleteModalRef = useRef<DeleteRoleModalRef>(null);
   const editPasswordModalRef = useRef<EditPasswordRef>(null);
 
   return (
     <>
       <div className="flex items-center justify-center gap-4">
-        <button
-          onClick={() => editPasswordModalRef.current?.open()}
-          className="text-text-secondary transition-colors hover:text-text-primary"
-        >
-          <FiEye />
-        </button>
+       
         <button
           onClick={() => router.push(`/settings/view-admin/${id}`)}
           className="text-text-secondary transition-colors hover:text-text-primary"
@@ -41,8 +37,14 @@ export default function RoleTableActions({ id }: Props) {
         >
           <FiTrash2 />
         </button>
+         <button
+          onClick={() => editPasswordModalRef.current?.open()}
+          className="text-brand-primary underline transition-colors cursor-pointer hover:text-text-primary"
+        >
+         Change Password
+        </button>
       </div>
-      <EditPasswordModal ref={editPasswordModalRef} adminId={id} />
+      <EditPasswordModal ref={editPasswordModalRef} adminId={id} adminName={name} />
       <DeleteRoleModal
         ref={deleteModalRef}
         adminId={id}

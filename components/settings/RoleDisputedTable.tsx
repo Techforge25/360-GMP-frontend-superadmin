@@ -1,10 +1,10 @@
 "use client";
 import DataTable, { Column } from "@/components/common/DataTable";
 import { TableRowData } from "@/types";
-import RoleTableActions from "./RoleTableActions";
 import { useQuery } from "@tanstack/react-query";
 import { getCreatedAdmins } from "@/services/settings";
 import { keys } from "@/keys";
+import RoleDisputedTableActions from "./RoleDisputedTableActions";
 
 const columns: Column<TableRowData>[] = [
   {
@@ -43,12 +43,12 @@ const columns: Column<TableRowData>[] = [
     align: "center",
     render: (row) => {
       console.log("Action Column:", row);
-      return <RoleTableActions id={row?._id} name={row?.name} />;
+      return <RoleDisputedTableActions id={row?._id} />;
     },
   },
 ];
 
-export default function RoleAccessTable() {
+export default function RoleDisputedTable() {
   const { data, isFetching } = useQuery({
     queryKey: [keys.adminList],
     queryFn: getCreatedAdmins,

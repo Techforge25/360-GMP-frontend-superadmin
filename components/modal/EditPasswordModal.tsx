@@ -1,112 +1,122 @@
 "use client";
 import { keys } from "@/keys";
-import { deleteAdmin, updateAdminDetails, updatePassword } from "@/services/settings";
+import {
+  deleteAdmin,
+  updateAdminDetails,
+  updatePassword,
+} from "@/services/settings";
 import { EditPasswordRef, TypeUpdateAdminPassword } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ParamValue } from "next/dist/server/request/params";
-import {
-     forwardRef,
-     useImperativeHandle,
-     useState,
-} from "react";
-import { FiAlertCircle, FiX } from "react-icons/fi";
-import FormInput from "../common/FormInput";
+import { forwardRef, useImperativeHandle, useState } from "react";
+import { FiX } from "react-icons/fi";
+
 import FormPasswordInput from "../common/FormPasswordInput";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { updatePasswordSchema } from "@/validations/settingsValidations";
+import PrimaryButton from "../common/PrimaryButton";
 
 interface TypeAdminId {
-     adminId: ParamValue;
+  adminId: ParamValue;
+  adminName: string;
 }
 
-const EditPasswordModal = forwardRef<
-     EditPasswordRef,
-     TypeAdminId
->(({ adminId }, ref) => {
-     const [isOpen, setIsOpen] = useState(false);
-     const queryClient = useQueryClient()
+const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
+  ({ adminId, adminName }, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const queryClient = useQueryClient();
 
-     const {
-          register,
-          handleSubmit,
-          formState: { errors, isValid },
-     } = useForm<TypeUpdateAdminPassword>({
-          resolver: yupResolver(updatePasswordSchema),
-          mode: "onChange",
-          defaultValues: {
-               password: "",
-          },
-     });
+    const {
+      register,
+      handleSubmit,
+      formState: { errors, isValid },
+    } = useForm<TypeUpdateAdminPassword>({
+      resolver: yupResolver(updatePasswordSchema),
+      mode: "onChange",
+      defaultValues: {
+        password: "",
+      },
+    });
 
-     useImperativeHandle(ref, () => ({
-          open: () => setIsOpen(true),
-          close: () => setIsOpen(false),
-     }));
+    useImperativeHandle(ref, () => ({
+      open: () => setIsOpen(true),
+      close: () => setIsOpen(false),
+    }));
 
-     const mutation = useMutation({
-          mutationFn: ({
-               adminId,
-               password,
-          }: { adminId: ParamValue } & TypeUpdateAdminPassword) =>
-               updatePassword(adminId, { password }),
+    const mutation = useMutation({
+      mutationFn: ({
+        adminId,
+        password,
+      }: { adminId: ParamValue } & TypeUpdateAdminPassword) =>
+        updatePassword(adminId, { password }),
 
-          onSuccess: () => {
-               setIsOpen(false);
-               queryClient.invalidateQueries({
-                    queryKey: [keys.adminList],
-               });
-          },
-     });
+      onSuccess: () => {
+        setIsOpen(false);
+        queryClient.invalidateQueries({
+          queryKey: [keys.adminList],
+        });
+      },
+    });
 
-     const onSubmit = async (data: TypeUpdateAdminPassword) => {
-          mutation.mutate({
-               adminId,
-               password: data?.password
-          })
-     }
+    const onSubmit = async (data: TypeUpdateAdminPassword) => {
+      mutation.mutate({
+        adminId,
+        password: data?.password,
+      });
+    };
 
-     if (!isOpen) return null;
+    if (!isOpen) return null;
 
-     return (
-          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[2px] p-4">
-               <div className="relative w-full max-w-[624px] rounded-[1.25rem] bg-white p-8 shadow-2xl font-sans">
-                    <button
-                         onClick={() => setIsOpen(false)}
-                         className="absolute right-5 top-5 text-gray-500 hover:text-gray-800 transition-colors duration-200 cursor-pointer"
-                    >
-                         <FiX className="h-5 w-5" />
-                    </button>
-
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                         <FormPasswordInput
-                              label="Password"
-                              name="password"
-                              register={register}
-                              error={errors?.password}
-                         />
-                         <div className="mt-8 flex gap-4">
-                              <button
-                                   onClick={() => setIsOpen(false)}
-                                   className="flex-1 rounded-md border border-gray-200 bg-white py-2 text-[1rem] font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
-                              >
-                                   Cancel
-                              </button>
-                              <button
-                                   type="submit"
-                                   className="confirm-btn"
-                                   disabled={mutation.isPending || !isValid}
-                              >
-                                   {mutation.isPending ? 'Updating...' : 'Update Password'}
-                              </button>
-                         </div>
-                    </form>
-
-
-               </div>
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/40 backdrop-blur-sm p-4">
+        <div className="relative w-full max-w-[600px] rounded-2xl bg-white p-8 shadow-2xl font-sans">
+          <div className="flex justify-between items-start mb-6">
+            <div>
+              <h2 className="text-xl text-left font-semibold text-gray-900 mb-1">
+                Update Password
+              </h2>
+              <p className="text-sm text-left text-gray-600 max-w-[80%]">
+                Create a new password to enhance your account security and
+                protect your personal information.
+              </p>
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="text-gray-500 hover:text-gray-800 transition-colors duration-200 cursor-pointer mt-1"
+            >
+              <FiX className="h-5 w-5" />
+            </button>
           </div>
-     );
-});
+
+          <div className="h-px bg-gray-100 mb-6"></div>
+
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
+            <div className="rounded-lg border border-gray-200 p-4 bg-white text-left">
+              <h3 className="font-medium text-gray-900">{adminName}</h3>
+              <p className="text-sm text-slate-500">alexmorgan@gmail.com</p>
+            </div>
+
+            <div className="rounded-lg border border-gray-200 p-4 bg-white">
+          
+              <FormPasswordInput
+                label="Password"
+                name="password"
+                register={register}
+                error={errors?.password}
+              />
+            </div>
+
+            <div className="pt-4">
+                <PrimaryButton className="w-full"  type="submit"  text= {mutation.isPending ? "Updating..." : "Update Password"} />
+           
+            </div>
+          </form>
+        </div>
+      </div>
+    );
+  },
+);
 
 EditPasswordModal.displayName = "EditPasswordModal";
 
