@@ -36,6 +36,11 @@ export interface PaidMemberTableRowData {
   status: string;
 }
 
+export interface OrderModalRef {
+  open: () => void;
+  close: () => void;
+}
+
 export interface MarketPlaceOrderLogsTableRowData {
   _id: string;
   totalAmount: number;

@@ -15,12 +15,14 @@ export default function PaginationComponent({ handlePageChange, totalPages, tota
   return (
     <Pagination
       currentPage={page}
-      totalItems={totalItems}
-      itemsPerPage={totalItemsPerPage}
-      totalPages={totalPages}
+      totalItems={totalItems && totalItems}
+      itemsPerPage={totalItemsPerPage && totalItemsPerPage}
+      totalPages={totalPages && totalPages}
       onPageChange={(page) => {
         setPage(page);
-        handlePageChange(page);
+        if (handlePageChange) {
+          handlePageChange(page);
+        }
       }}
     />
   );

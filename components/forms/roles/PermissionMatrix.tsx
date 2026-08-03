@@ -51,7 +51,7 @@ export default function PermissionMatrix({ modules, control }: Props) {
                         field.onChange(
                           checked
                             ? selectedModules.filter(
-                              (item) => item !== mod.name
+                              (item: string) => item !== mod.name
                             )
                             : [...selectedModules, mod.name]
                         );

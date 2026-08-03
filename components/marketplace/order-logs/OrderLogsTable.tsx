@@ -7,7 +7,7 @@ export default function OrderLogsTable() {
   return (
     <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
       <MarketplaceOrderLogsTable />
-      <PaginationComponent />
+      {/* <PaginationComponent /> */}
     </div>
   );
 }
