@@ -98,7 +98,7 @@ const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
             </div>
 
             <div className="rounded-lg border border-gray-200 p-4 bg-white">
-          
+
               <FormPasswordInput
                 label="Password"
                 name="password"
@@ -108,8 +108,7 @@ const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
             </div>
 
             <div className="pt-4">
-                <PrimaryButton className="w-full"  type="submit"  text= {mutation.isPending ? "Updating..." : "Update Password"} />
-           
+              <PrimaryButton className="w-full" type="submit" text={mutation.isPending ? "Updating..." : "Update Password"} disabledKey={mutation.isPending || !isValid} />
             </div>
           </form>
         </div>

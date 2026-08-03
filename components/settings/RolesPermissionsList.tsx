@@ -7,7 +7,7 @@ import { roleTabs } from "@/constants/roles/tabs";
 import PrimaryButton from "../common/PrimaryButton";
 import Tabs from "../common/Tabs";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useTransition } from "react";
+import { useState, useTransition } from "react";
 import { keys } from "@/keys";
 import { getCreatedAdmins } from "@/services/settings";
 import { useQuery } from "@tanstack/react-query";
@@ -17,15 +17,20 @@ export default function RolesPermissionsList() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
+  const [page, setPage] = useState(1);
 
   const currentTab = searchParams.get("tab") || roleTabs[0]?.id;
 
   const { data, isFetching } = useQuery({
-    queryKey: [keys.adminList, currentTab],
-    queryFn: () => getCreatedAdmins(currentTab),
+    queryKey: [keys.adminList, currentTab, page],
+    queryFn: () => getCreatedAdmins(currentTab, page),
   });
 
   const adminData = data?.data?.docs;
+
+  const handlePageChange = (page: number) => {
+    setPage(page);
+  };
 
   const handleTabChange = (tabId: string) => {
     startTransition(() => {
@@ -34,6 +39,10 @@ export default function RolesPermissionsList() {
       });
     });
   };
+
+  console.log(data?.data, 'data docsss')
+
+  console.log(data?.data?.docs?.totalPages, data?.data?.docs?.totalItemsPerPage, data?.data?.docs?.totalItems, 'total iteeemsssss')
 
   return (
     <main className="min-h-screen bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6">
@@ -74,14 +83,18 @@ export default function RolesPermissionsList() {
         {currentTab === "role-control" && (
           <>
             <RoleAccessTable adminData={adminData} isFetching={isFetching} />
-            <PaginationComponent />
+            {data?.data?.totalPages > 1 && (
+              <PaginationComponent handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+            )}
           </>
         )}
 
         {currentTab === "deleted-admins" && (
           <>
             <RoleDisputedTable adminData={adminData} isFetching={isFetching} />
-            <PaginationComponent />
+            {data?.data?.totalPages > 1 && (
+              <PaginationComponent handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+            )}
           </>
         )}
       </div>

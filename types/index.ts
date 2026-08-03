@@ -142,5 +142,10 @@ export interface AccountTableRowData {
   };
 }
 
+export type TypeDropdownOption = {
+  value: string;
+  label: string;
+};
+
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

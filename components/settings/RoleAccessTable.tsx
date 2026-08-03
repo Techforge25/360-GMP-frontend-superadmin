@@ -1,6 +1,6 @@
 "use client";
 import DataTable, { Column } from "@/components/common/DataTable";
-import { TableRowData, TypeCreateAdmin } from "@/types";
+import { TableRowData } from "@/types";
 import RoleTableActions from "./RoleTableActions";
 
 
@@ -47,7 +47,7 @@ const columns: Column<TableRowData>[] = [
 ];
 
 interface Props {
-  adminData: TypeCreateAdmin;
+  adminData: TableRowData[];
   isFetching: boolean;
 }
 
