@@ -1,5 +1,7 @@
+import ProductPage from "@/components/marketplace/product-audit-queue/ProductInformation/ProductInformation";
+
 export default function page() {
      return (
-          <h1>View Product Information</h1>
+          <ProductPage/>
      )
 }

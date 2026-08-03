@@ -43,7 +43,7 @@ const subscriptionManagement = "SubscriptionManagementUsersTable";
     const current = row?.daysRemaining;
     const percentage = Math.min((current / total) * 100, 100);
     const isNearStart = current >= 12;
-    const barColor = isNearStart ? "bg-[#ff3b30]" : "bg-[#2563eb]";
+    const barColor = isNearStart ? "bg-reject" : "bg-text-plan";
 
     return (
       <div className="flex items-center gap-[0.875rem]">

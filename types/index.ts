@@ -131,5 +131,23 @@ export interface EditPasswordRef {
   close: () => void;
 }
 
+export interface OrderModalRef {
+  open: () => void;
+  close: () => void;
+}
+
+
+export interface ProductAuditTableRowData {
+  _id: string;
+  title: string;
+  category: string;
+  createdAt: string;
+  sellerInfo: {
+    ownerName: string;
+    companyName: string;
+    logo: string;
+  };
+}
+
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;
