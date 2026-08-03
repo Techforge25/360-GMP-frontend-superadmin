@@ -1,4 +1,3 @@
-import React from "react";
 import SearchFilterBar from "@/components/common/SearchFilterBar";
 import PaginationComponent from "@/components/common/PaginationComponent";
 import SubscriptionPaidMemberTable from "./SubscriptionPaidMemberTable";

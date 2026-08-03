@@ -29,7 +29,6 @@ export default function PermissionMatrix({ modules, control }: Props) {
         control={control}
         render={({ field }) => {
           const selectedModules = field.value ?? [];
-
           return (
             <div className="divide-y divide-[#E2E8F0]">
               {modules.map((mod) => {
