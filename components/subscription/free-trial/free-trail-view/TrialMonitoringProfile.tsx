@@ -37,7 +37,7 @@ export default function TrialMonitoringProfile() {
 
           <button
             onClick={() => alert("Contacting Alex Morgan...")}
-            className="flex items-center gap-[0.5rem] px-[1.25rem] py-[0.625rem] bg-[#2c0a59] hover:bg-[#1d053b] text-white font-medium text-[0.875rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm"
+            className="flex items-center gap-[0.5rem] px-[1.25rem] py-[0.625rem] bg-kyc-text-hover hover:bg-text-primary-hover text-white font-medium text-[0.875rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm"
           >
             <span>Contact</span>
             <HiOutlineMail className="w-[1rem] h-[1rem]" />
