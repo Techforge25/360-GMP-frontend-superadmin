@@ -20,7 +20,7 @@ export default function PrimaryButton({
   onClick,
   type = "button",
   className = "",
-  disabledKey
+  disabledKey,
 }: PrimaryButtonProps) {
   const router = useRouter();
 

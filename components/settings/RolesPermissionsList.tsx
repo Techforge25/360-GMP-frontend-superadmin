@@ -8,6 +8,9 @@ import PrimaryButton from "../common/PrimaryButton";
 import Tabs from "../common/Tabs";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTransition } from "react";
+import { keys } from "@/keys";
+import { getCreatedAdmins } from "@/services/settings";
+import { useQuery } from "@tanstack/react-query";
 
 export default function RolesPermissionsList() {
   const router = useRouter();
@@ -15,6 +18,13 @@ export default function RolesPermissionsList() {
   const [isPending, startTransition] = useTransition();
 
   const currentTab = searchParams.get("tab") || roleTabs[0]?.id;
+
+  const { data, isFetching } = useQuery({
+    queryKey: [keys.adminList, currentTab],
+    queryFn: () => getCreatedAdmins(currentTab),
+  });
+
+  const adminData = data?.data?.docs;
 
   const handleTabChange = (tabId: string) => {
     startTransition(() => {
@@ -60,9 +70,9 @@ export default function RolesPermissionsList() {
           ${isPending ? "opacity-50" : "opacity-100"}
         `}
       >
-        {currentTab === "role-control" && <RoleAccessTable />}
+        {currentTab === "role-control" && <RoleAccessTable adminData={adminData} isFetching={isFetching} />}
 
-        {currentTab === "deleted-admins" && <RoleDisputedTable />}
+        {currentTab === "deleted-admins" && <RoleDisputedTable adminData={adminData} isFetching={isFetching} />}
       </div>
     </main>
   );

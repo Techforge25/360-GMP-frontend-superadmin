@@ -16,9 +16,9 @@ export const createAdmin = async (payload: TypeCreateAdmin) => {
      }
 };
 
-export const getCreatedAdmins = async () => {
+export const getCreatedAdmins = async (tab: string) => {
      try {
-          const { data } = await api.get("/adminManagement");
+          const { data } = await api.get(`/adminManagement?status=${tab === 'role-control' ? 'active' : 'inactive'}`);
           console.log("getCreatedAdmins called");
           return data;
      } catch (error: any) {
@@ -74,6 +74,17 @@ export const updatePassword = async (
 export const deleteAdmin = async (adminId: ParamValue) => {
      try {
           const { data } = await api.delete(`/adminManagement/${adminId}`);
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+export const restoreAdmin = async (adminId: ParamValue) => {
+     try {
+          const { data } = await api.patch(`/adminManagement/${adminId}/restore`);
           return data;
      } catch (error: any) {
           toast.error(error?.message)

@@ -23,25 +23,25 @@ export default function RoleTableActions({ id, name }: Props) {
   return (
     <>
       <div className="flex items-center justify-center gap-4">
-       
+
         <button
           onClick={() => router.push(`/settings/view-admin/${id}`)}
-          className="text-text-secondary transition-colors hover:text-text-primary"
+          className="text-text-secondary transition-colors hover:text-text-primary cursor-pointer"
         >
           <FiEdit />
         </button>
 
         <button
           onClick={() => deleteModalRef.current?.open()}
-          className="text-accent-danger transition hover:text-red-700"
+          className="text-accent-danger transition hover:text-red-700 cursor-pointer"
         >
           <FiTrash2 />
         </button>
-         <button
+        <button
           onClick={() => editPasswordModalRef.current?.open()}
           className="text-brand-primary underline transition-colors cursor-pointer hover:text-text-primary"
         >
-         Change Password
+          Change Password
         </button>
       </div>
       <EditPasswordModal ref={editPasswordModalRef} adminId={id} adminName={name} />

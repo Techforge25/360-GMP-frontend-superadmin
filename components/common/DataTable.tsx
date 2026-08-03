@@ -10,10 +10,10 @@ export interface Column<T> {
 }
 
 interface DataTableProps<T> {
-  columns: Column<T>[];
-  data: T[];
-  rowKey: (row: T) => string;
-  isLoading: boolean;
+  columns?: Column<T>[];
+  data?: T[];
+  rowKey?: (row: T) => string;
+  isLoading?: boolean;
 }
 
 export default function DataTable<T>({
@@ -43,15 +43,15 @@ export default function DataTable<T>({
           </tr>
         </thead>
         {isLoading ? (
-          <TableShimmer columns={columns.length} rows={6} />
+          <TableShimmer columns={columns?.length} rows={6} />
         ) : (
           <tbody className="divide-y divide-border-light text-text-primary">
             {data?.map((row) => (
               <tr
-                key={rowKey(row)}
+                key={rowKey?.(row)}
                 className="bg-white transition-colors hover:bg-surface-muted/30"
               >
-                {columns.map((column) => (
+                {columns?.map((column) => (
                   <td
                     key={String(column.key)}
                     className={`px-6 py-4 ${column.align === "center"
@@ -70,7 +70,6 @@ export default function DataTable<T>({
             ))}
           </tbody>
         )}
-
       </table>
     </div>
   );
