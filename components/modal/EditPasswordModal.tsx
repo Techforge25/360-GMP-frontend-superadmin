@@ -20,10 +20,11 @@ import PrimaryButton from "../common/PrimaryButton";
 interface TypeAdminId {
   adminId: ParamValue;
   adminEmail: string;
+  adminUserName: string;
 }
 
 const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
-  ({ adminId, adminEmail }, ref) => {
+  ({ adminId, adminEmail, adminUserName }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const queryClient = useQueryClient();
 
@@ -69,33 +70,36 @@ const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
     if (!isOpen) return null;
 
     return (
-      <div className="fixed inset-0 z-50 flex  items-center justify-center bg-gray-900/40 backdrop-blur-sm p-4">
-        <div className=" rounded-2xl bg-white p-8 shadow-2xl font-sans">
-          <div className="flex justify-between items-start mb-6">
-            <div>
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/40 backdrop-blur-sm p-4 overflow-y-auto">
+        <div className="relative w-full max-w-[500px] rounded-2xl bg-white p-6 sm:p-8 shadow-2xl font-sans box-border">
+          <div className="flex justify-between items-start mb-6 gap-4">
+            <div className="overflow-hidden">
               <h2 className="text-[1.375rem] text-left font-semibold text-gray-900 mb-1">
-                Update Password
+                Change Password
               </h2>
+              <div className="w-full">
+                <p className="text-sm text-left text-gray-600 break-words whitespace-normal leading-relaxed">
+                  Assign a new password on behalf of this admin to secure their
+                  account access.
+                </p>
+              </div>
             </div>
             <button
               onClick={() => setIsOpen(false)}
-              className="text-gray-500 hover:text-gray-800 transition-colors duration-200 cursor-pointer mt-1"
+              className="text-gray-500 hover:text-gray-800 transition-colors duration-200 cursor-pointer mt-1 shrink-0"
             >
               <FiX className="h-5 w-5" />
             </button>
-          </div>
-          <div className="w-full mb-4">
-            <p className="text-sm text-left text-gray-600 break-words">
-              Create a new password for this administrator. They will need to
-              use the new password when signing in.
-            </p>
           </div>
 
           <div className="h-px bg-gray-100 mb-6"></div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-            <div className="rounded-lg border border-gray-200 p-4 bg-white text-left">
-              <p className="text-[1rem] text-slate-500 truncate">
+            <div className="rounded-lg border border-gray-200 p-4 bg-white text-left overflow-hidden">
+              <p className="text-[1rem] text-text-light font-medium capitalize break-words">
+                {adminUserName}
+              </p>
+              <p className="text-[1rem] text-slate-500 font-normal break-all">
                 {adminEmail}
               </p>
             </div>

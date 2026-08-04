@@ -250,5 +250,11 @@ export type TypeSubscriptionStats = {
   trialConversionPercentage: number;
 }
 
+export interface RestoreAdminModalRef {
+  open: () => void;
+  close: () => void;
+}
+
+
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

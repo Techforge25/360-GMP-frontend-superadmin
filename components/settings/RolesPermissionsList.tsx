@@ -32,6 +32,8 @@ export default function RolesPermissionsList() {
   };
 
   const handleTabChange = (tabId: string) => {
+    setPage(1);
+
     startTransition(() => {
       router.replace(`?tab=${tabId}`, {
         scroll: false,

@@ -9,17 +9,29 @@ import PaginationComponent from "@/components/common/PaginationComponent";
 
 type Props = {
   dateRange: string;
-}
+};
 
 export default function PaidMemberTable({ dateRange }: Props) {
   const [page, setPage] = useState(1);
-  const [validityChange, setValidityChange] = useState('all')
+  const [validityChange, setValidityChange] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
   const { isPending, data } = useQuery({
-    queryKey: [keys.subscriptionList, dateRange, page, validityChange, debouncedSearch],
-    queryFn: () => getSubscriptionUsersPaid(dateRange, page, validityChange, debouncedSearch),
+    queryKey: [
+      keys.subscriptionList,
+      dateRange,
+      page,
+      validityChange,
+      debouncedSearch,
+    ],
+    queryFn: () =>
+      getSubscriptionUsersPaid(
+        dateRange,
+        page,
+        validityChange,
+        debouncedSearch,
+      ),
   });
 
   const handlePageChange = (page: number) => {
@@ -27,9 +39,15 @@ export default function PaidMemberTable({ dateRange }: Props) {
   };
 
   const handleFilterStatusChange = (value: string) => {
-    setValidityChange(value === 'Active Trial' ? 'active' : value === 'Expired' ? 'expired' : 'all');
+    setValidityChange(
+      value === "Active Trial"
+        ? "active"
+        : value === "Expired"
+          ? "expired"
+          : "all",
+    );
     setPage(1);
-  }
+  };
 
   const paidUsersData = data?.data?.docs;
   return (
@@ -40,24 +58,13 @@ export default function PaidMemberTable({ dateRange }: Props) {
           {
             key: "sortBy",
             label: "Sort By",
-            options: [
-              "All Tiers",
-              "Silver",
-              "Consumer",
-              "Gold",
-              "Enterprise",
-            ],
+            options: ["All Tiers", "Silver", "Consumer", "Gold", "Enterprise"],
             defaultValue: "All",
           },
           {
             key: "status",
             label: "Status",
-            options: [
-              "All Status",
-              "Active",
-              "In Active",
-              "Past Due",
-            ],
+            options: ["All Status", "Active", "In Active", "Past Due"],
             defaultValue: "All Status",
           },
         ]}
@@ -67,8 +74,17 @@ export default function PaidMemberTable({ dateRange }: Props) {
         }}
         onFilterChange={(key, value) => handleFilterStatusChange(value)}
       />
-      <SubscriptionPaidMemberTable isPending={isPending} paidUsersData={paidUsersData} />
-      <PaginationComponent handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+      <SubscriptionPaidMemberTable
+        isPending={isPending}
+        paidUsersData={paidUsersData}
+      />
+      <PaginationComponent
+        currentPage={page}
+        handlePageChange={handlePageChange}
+        totalPages={data?.data?.totalPages || 1}
+        totalItems={data?.data?.totalDocs || 0}
+        totalItemsPerPage={data?.data?.limit || 10}
+      />
     </div>
   );
 }

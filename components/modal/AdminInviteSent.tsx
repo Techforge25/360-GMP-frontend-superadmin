@@ -35,14 +35,6 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-[1rem] font-['Inter',sans-serif]">
         <div className="relative w-full max-w-[32rem] rounded-[1.25rem] bg-white p-[1.75rem] shadow-2xl transition-all">
-          <button
-            onClick={() => setIsOpen(false)}
-            type="button"
-            className="absolute right-[1.25rem] top-[1.25rem] text-gray-800 hover:text-gray-900 transition-colors focus:outline-none"
-          >
-            <IoClose className="h-[1.25rem] w-[1.25rem]" />
-          </button>
-
           <div className="flex flex-col items-center text-center">
             <div className="mb-[1.25rem] flex h-[3.5rem] w-[3.5rem] items-center justify-center rounded-full bg-[#EAE0FB]">
               <div className="flex h-[2.5rem] w-[2.5rem] items-center justify-center rounded-full bg-[#B066FE] text-white shadow-sm">
@@ -59,7 +51,7 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
               <span className="text-[#3B82F6] font-normal">
                 {defaultValues?.email}
               </span>{" "}
-              With Instructions To Set Up Their Account As A Financial Auditor.
+              With Instructions To Set Up Their Account As A Admin.
             </p>
 
             <div className="mt-[1.5rem] w-full rounded-[0.875rem] bg-[#F8F9FA] p-[1.25rem] text-left border border-gray-100">
@@ -70,7 +62,7 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
               <div className="mt-[1rem] grid grid-cols-2 gap-y-[1.125rem] gap-x-[1rem]">
                 <div>
                   <p className="text-[0.875rem] font-normal text-gray-500">
-                    Full Name
+                    User Name
                   </p>
                   <p className="mt-[0.25rem] text-[1rem] font-semibold text-gray-900">
                     {defaultValues?.username}

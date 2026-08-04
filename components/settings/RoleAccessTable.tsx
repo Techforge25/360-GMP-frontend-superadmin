@@ -6,7 +6,7 @@ import RoleTableActions from "./RoleTableActions";
 const columns: Column<TableRowData>[] = [
   {
     key: "name",
-    header: "Role Name",
+    header: "Admin Name",
     render: (row) => {
       return (
         <div className="flex flex-col">
@@ -40,7 +40,7 @@ const columns: Column<TableRowData>[] = [
     align: "center",
     render: (row) => {
       console.log("Action Column:", row);
-      return <RoleTableActions id={row?._id} email={row?.email} />;
+      return <RoleTableActions id={row?._id} email={row?.email} userName={row?.username} />;
     },
   },
 ];

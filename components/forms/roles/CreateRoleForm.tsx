@@ -132,12 +132,11 @@ export default function CreateRoleForm({ adminId }: Props) {
           <BackButtonMain text="Back" />
 
           <h1 className="text-[1.375rem] font-semibold text-brand-primary">
-            Create New Role
+           {adminId ? "Update Role & Permissions" : "Create New Role"}
           </h1>
 
           <p className="mt-1 text-sm text-brand-rating-text-border">
-            Define specialized permissions for team members to manage mobility
-            workflows.
+            {adminId ? "Modify the role details and permissions assigned to this role." :"Define specialized permissions for team members to manage mobility workflows."} 
           </p>
         </div>
 
