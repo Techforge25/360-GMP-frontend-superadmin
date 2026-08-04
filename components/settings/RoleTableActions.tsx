@@ -39,7 +39,7 @@ export default function RoleTableActions({ id, name }: Props) {
         </button>
         <button
           onClick={() => editPasswordModalRef.current?.open()}
-          className="text-brand-primary underline transition-colors cursor-pointer hover:text-text-primary"
+          className="text-brand-primary underline whitespace-nowrap transition-colors cursor-pointer hover:text-text-primary"
         >
           Change Password
         </button>
