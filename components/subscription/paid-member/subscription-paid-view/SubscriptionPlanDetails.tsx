@@ -1,11 +1,16 @@
 "use client";
-
 import { includedItems } from "@/constants/subscription/includedItems";
-import React from "react";
+import moment from "moment";
 import { FiCheck } from "react-icons/fi";
-import { HiCheckBadge } from "react-icons/hi2";
 
-export default function SubscriptionPlanDetails() {
+interface Props {
+  startDate: string;
+  endDate: string;
+  planName: string;
+  planPrice: number;
+}
+
+export default function SubscriptionPlanDetails({ startDate, endDate, planName, planPrice }: Props) {
   return (
     <div className="mt-7 border border-gray-200 rounded-[0.5rem] bg-white font-sans overflow-hidden shadow-sm">
       <div className="px-[1.5rem] py-[1.25rem] border-b border-gray-200 bg-white">
@@ -15,7 +20,7 @@ export default function SubscriptionPlanDetails() {
       </div>
 
       <div className="p-[1.5rem] flex flex-col gap-[1.5rem]">
- 
+
 
         <div className="border border-gray-200 rounded-[0.5rem] bg-kyc-bg-border-gray p-[1.5rem] flex flex-col gap-[1.25rem]">
           <div className="flex flex-col gap-[0.25rem]">
@@ -31,14 +36,14 @@ export default function SubscriptionPlanDetails() {
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-[0.25rem]">
                 <span className="text-[1rem] font-semibold text-kyc-text-subheading">
-                  Enterprise Tier (Monthly)
+                  {planName} Tier ( Monthly )
                 </span>
                 <span className="text-[1rem] text-kyc-text-heading">
-                  Oct 12,2025-Nov 12,2025
+                  {moment(startDate).format("MMM DD, YYYY")} - {moment(endDate).format("MMM DD, YYYY")}
                 </span>
               </div>
               <span className="text-[1.125rem] font-semibold text-kyc-text-subheading">
-                $199.00
+                ${planPrice?.toFixed(2)}
               </span>
             </div>
 
@@ -50,7 +55,7 @@ export default function SubscriptionPlanDetails() {
             </div>
           </div>
           <div className="flex flex-col gap-[1rem] pt-[0.5rem]">
-      
+
             <div className="flex flex-col gap-[0.75rem] pt-[0.5rem]">
               <span className="text-[1rem] font-semibold text-kyc-text-heading">
                 Included In Premium

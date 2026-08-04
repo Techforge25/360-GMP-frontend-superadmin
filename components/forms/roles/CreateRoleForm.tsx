@@ -50,13 +50,15 @@ export default function CreateRoleForm({ adminId }: Props) {
 
   useEffect(() => {
     if (!data?.data) return;
+    if (adminId) {
+      reset({
+        username: data?.data?.username ?? "",
+        email: data?.data?.email ?? "",
+        password: "",
+        allowedModules: data?.data?.allowedModules ?? [],
+      });
+    }
 
-    reset({
-      username: data?.data?.username ?? "",
-      email: data?.data?.email ?? "",
-      password: "",
-      allowedModules: data?.data?.allowedModules ?? [],
-    });
   }, [data, reset]);
 
   const mutation = useMutation({

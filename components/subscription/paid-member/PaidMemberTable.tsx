@@ -14,12 +14,13 @@ type Props = {
 export default function PaidMemberTable({ dateRange }: Props) {
   const [page, setPage] = useState(1);
   const [validityChange, setValidityChange] = useState('all')
+  const [tierType, setTierType] = useState('all');
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
   const { isPending, data } = useQuery({
-    queryKey: [keys.subscriptionList, dateRange, page, validityChange, debouncedSearch],
-    queryFn: () => getSubscriptionUsersPaid(dateRange, page, validityChange, debouncedSearch),
+    queryKey: [keys.subscriptionList, dateRange, page, validityChange, debouncedSearch, tierType],
+    queryFn: () => getSubscriptionUsersPaid(dateRange, page, validityChange, debouncedSearch, tierType),
   });
 
   const handlePageChange = (page: number) => {
@@ -27,7 +28,11 @@ export default function PaidMemberTable({ dateRange }: Props) {
   };
 
   const handleFilterStatusChange = (value: string) => {
-    setValidityChange(value === 'Active Trial' ? 'active' : value === 'Expired' ? 'expired' : 'all');
+    if (value === 'Consumer / Individual' || value === 'Silver' || value === 'Gold' || value === 'Enterprise') {
+      setTierType(value);
+    } else {
+      setValidityChange(value === 'Active' ? 'active' : value === 'In Active' ? 'expired' : 'all');
+    }
     setPage(1);
   }
 
@@ -42,8 +47,8 @@ export default function PaidMemberTable({ dateRange }: Props) {
             label: "Sort By",
             options: [
               "All Tiers",
+              "Consumer / Individual",
               "Silver",
-              "Consumer",
               "Gold",
               "Enterprise",
             ],
@@ -56,7 +61,6 @@ export default function PaidMemberTable({ dateRange }: Props) {
               "All Status",
               "Active",
               "In Active",
-              "Past Due",
             ],
             defaultValue: "All Status",
           },

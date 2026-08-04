@@ -18,7 +18,7 @@ const columns: Column<PaidMemberTableRowData>[] = [
     header: "User Name",
     render: (row) => (
       <div className="flex items-center space-x-3">
-        <Image src={row?.logo} alt={row?.fullName} width={40} height={40} className="w-10 h-10 rounded-full" />
+        <Image src={row?.logo ? row.logo : '/images/user-icon.webp'} alt={row?.fullName} width={40} height={40} className="w-10 h-10 rounded-full" />
         <div className="flex flex-col">
           <span className="text-[1rem] font-medium text-text-secondary">{row?.fullName}</span>
           <span className="mt-0.5 text-sm text-text-hint">{row?.companyName}</span>
@@ -57,8 +57,9 @@ export default function SubscriptionPaidMemberTable({ isPending, paidUsersData }
     <div className="pt-8">
       <DataTable
         columns={columns}
-        data={SubsriptionPaidTable}
+        data={paidUsersData}
         rowKey={(row) => row?._id}
+        isLoading={isPending}
       />
     </div>
   );
