@@ -5,6 +5,8 @@ import { useRouter, useSearchParams } from "next/navigation";
 import Tabs from "../common/Tabs";
 import OrderLogsTable from "./order-logs/OrderLogsTable";
 import { MarketPlacetabs } from "@/constants/marketplace/MarketPlacetabs";
+import ProductAuditTable from "./product-audit-queue/ProductAuditTable";
+import ProductApprovedTable from "./product-approve-reject/ProductApprovedTable";
 
 export default function MarketPlace() {
   const router = useRouter();
@@ -36,14 +38,12 @@ export default function MarketPlace() {
 
         {currentTab === "product-audit-queue" && (
           <>
-          </>
-        )}
-         {currentTab === "disputed-orders" && (
-          <>
+          <ProductAuditTable/>
           </>
         )}
          {currentTab === "product-approve-reject" && (
           <>
+          <ProductApprovedTable/>
           </>
         )}
       </div>

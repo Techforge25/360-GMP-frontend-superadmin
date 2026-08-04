@@ -18,8 +18,10 @@ export default function Pagination({
   totalPages,
   onPageChange,
 }: PaginationProps) {
-  const startItem = totalItems === 0 ? 0 : (currentPage && currentPage - 1) * itemsPerPage + 1;
-  const endItem = Math.min((currentPage || 0) * itemsPerPage, totalItems);
+  const startItem =
+    totalItems === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
+
+  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
   return (
     <div className="flex items-center justify-between border-t border-[#E2E8F0] bg-white px-4 py-4">
@@ -32,7 +34,7 @@ export default function Pagination({
       </p>
 
       <ReactPaginate
-        forcePage={currentPage - 1}
+        forcePage={Math.max(currentPage - 1, 0)}
         pageCount={totalPages}
         onPageChange={(e) => onPageChange(e.selected + 1)}
         previousLabel={
@@ -48,13 +50,20 @@ export default function Pagination({
           </span>
         }
         breakLabel="..."
+        marginPagesDisplayed={1}
+        pageRangeDisplayed={3}
         containerClassName="pagination-container"
         pageClassName="pagination-page"
+        pageLinkClassName="pagination-page-link"
         activeClassName="pagination-active"
         previousClassName="pagination-previous"
+        previousLinkClassName="pagination-previous-link"
         nextClassName="pagination-next"
+        nextLinkClassName="pagination-next-link"
         breakClassName="pagination-break"
+        breakLinkClassName="pagination-break-link"
         disabledClassName="pagination-disabled"
+        renderOnZeroPageCount={null}
       />
     </div>
   );

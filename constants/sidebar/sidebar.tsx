@@ -1,7 +1,7 @@
 import { JSX } from "react";
+import { FaUsers } from "react-icons/fa6";
 import {
   FiGrid,
-  FiUsers,
   FiAward,
   FiFileText,
   FiDollarSign,
@@ -10,6 +10,7 @@ import {
   FiSettings,
   FiLogOut,
 } from "react-icons/fi";
+import { IoAlertCircleOutline } from "react-icons/io5";
 
 export interface NavigationItem {
   name: string;
@@ -25,7 +26,7 @@ export const sidebarMenuItems: NavigationItem[] = [
   },
   {
     name: "Account Management",
-    icon: <FiUsers />,
+    icon: <FaUsers  />,
     path: "/account-management",
   },
   {
@@ -52,6 +53,11 @@ export const sidebarMenuItems: NavigationItem[] = [
     name: "Recruitment (Job Board)",
     icon: <FiBriefcase />,
     path: "/jobs",
+  },
+   {
+    name: "Reports",
+    icon: <IoAlertCircleOutline />,
+    path: "/reports",
   },
 ];
 

@@ -13,11 +13,11 @@ export const MarketPlacetabs = [
     label: "Product Audit Queue",
     icon: <MdOutlineFactCheck />,
   },
-  {
-    id: "disputed-orders",
-    label: "Disputed Orders",
-    icon: <MdOutlineReportProblem />,
-  },
+  // {
+  //   id: "disputed-orders",
+  //   label: "Disputed Orders",
+  //   icon: <MdOutlineReportProblem />,
+  // },
   {
     id: "product-approve-reject",
     label: "Product Approve / Rejected",
