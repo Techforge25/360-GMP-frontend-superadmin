@@ -32,20 +32,20 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
           checkUserAuthentication();
      }, [router]);
 
-     useEffect(() => {
-          if (pathname === '/') {
-               return
-          }
+     // useEffect(() => {
+     //      if (pathname === '/') {
+     //           return
+     //      }
 
-          const getRefreshToken = async () => {
-               const res = await refreshToken();
-               if (res?.statusCode === 400) {
-                    router.replace('/')
-               }
-          }
+     //      const getRefreshToken = async () => {
+     //           const res = await refreshToken();
+     //           if (res?.statusCode === 400) {
+     //                router.replace('/')
+     //           }
+     //      }
 
-          getRefreshToken()
-     }, [])
+     //      getRefreshToken()
+     // }, [])
 
      const [queryClient] = useState(
           () =>

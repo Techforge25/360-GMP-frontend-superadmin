@@ -42,9 +42,10 @@ export default function CreateRoleForm({ adminId }: Props) {
   });
 
   const { data } = useQuery({
-    queryKey: [keys.adminDetails, adminId],
+    queryKey: [keys.adminDetails],
     queryFn: () => getSingleAdminDetails(adminId),
-    enabled: !!adminId
+    enabled: !!adminId,
+    staleTime: 0,
   });
 
   useEffect(() => {

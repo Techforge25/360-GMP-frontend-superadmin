@@ -10,7 +10,7 @@ const columns: Column<TableRowData>[] = [
     render: (row) => {
       return (
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium">{row?.name}</span>
+          <span className="text-[1rem] font-medium">{row?.username}</span>
 
           <span className="mt-0.5 text-sm text-gray-600">{row?.email}</span>
         </div>

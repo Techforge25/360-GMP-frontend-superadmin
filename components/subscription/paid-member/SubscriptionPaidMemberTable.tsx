@@ -1,24 +1,28 @@
 import DataTable, { Column } from "@/components/common/DataTable";
 import { PaidMemberTableRowData } from "@/types";
-
 import SubscriptionTableActions from "@/components/subscription/SubscriptionTableActions";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import Image from "next/image";
 import { SubsriptionPaidTable } from "@/constants/subscription/SubsriptionPaidTable";
 import { formatDate } from "@/helpers";
 
- const subscriptionManagement = "SubscriptionManagementPaidTable";
-  const columns: Column<PaidMemberTableRowData>[] = [
+type Props = {
+  isPending: boolean;
+  paidUsersData: PaidMemberTableRowData[];
+}
+
+const subscriptionManagement = "SubscriptionManagementPaidTable";
+const columns: Column<PaidMemberTableRowData>[] = [
   {
     key: "name",
     header: "User Name",
     render: (row) => (
       <div className="flex items-center space-x-3">
-        <Image src={row?.logo} alt={row?.fullName} width={40} height={40} className="w-10 h-10 rounded-full"  />
-      <div className="flex flex-col">
-        <span className="text-[1rem] font-medium text-text-secondary">{row?.fullName}</span>
-        <span className="mt-0.5 text-sm text-text-hint">{row?.companyName}</span>
-      </div>
+        <Image src={row?.logo} alt={row?.fullName} width={40} height={40} className="w-10 h-10 rounded-full" />
+        <div className="flex flex-col">
+          <span className="text-[1rem] font-medium text-text-secondary">{row?.fullName}</span>
+          <span className="mt-0.5 text-sm text-text-hint">{row?.companyName}</span>
+        </div>
       </div>
     ),
   },
@@ -33,7 +37,7 @@ import { formatDate } from "@/helpers";
     header: "Join Date",
     render: (row) => <span className="text-[1rem] text-date-time">{formatDate(row?.joinDate)}</span>,
   },
-   {
+  {
     key: "status",
     header: "Status",
     render: (row) => <StatusBadge status={row?.status} />,
@@ -47,7 +51,7 @@ import { formatDate } from "@/helpers";
 ];
 
 
-export default function SubscriptionPaidMemberTable() {
+export default function SubscriptionPaidMemberTable({ isPending, paidUsersData }: Props) {
 
   return (
     <div className="pt-8">

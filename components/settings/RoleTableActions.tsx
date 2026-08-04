@@ -10,13 +10,13 @@ import EditPasswordModal from "../modal/EditPasswordModal";
 
 interface Props {
   id: string;
-  name: string;
+  email: string;
 }
 
 
-export default function RoleTableActions({ id, name }: Props) {
+export default function RoleTableActions({ id, email }: Props) {
   const router = useRouter();
-  console.log("RoleTableActions Props:", { id, name });
+  console.log("RoleTableActions Props:", { id, email });
   const deleteModalRef = useRef<DeleteRoleModalRef>(null);
   const editPasswordModalRef = useRef<EditPasswordRef>(null);
 
@@ -44,7 +44,7 @@ export default function RoleTableActions({ id, name }: Props) {
           Change Password
         </button>
       </div>
-      <EditPasswordModal ref={editPasswordModalRef} adminId={id} adminName={name} />
+      <EditPasswordModal ref={editPasswordModalRef} adminId={id} adminEmail={email} />
       <DeleteRoleModal
         ref={deleteModalRef}
         adminId={id}

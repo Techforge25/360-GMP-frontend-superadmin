@@ -30,13 +30,12 @@ export default function DataTable<T>({
             {columns?.map((column) => (
               <th
                 key={String(column.key)}
-                className={`px-6 py-4 font-medium ${
-                  column.align === "center"
-                    ? "text-center"
-                    : column.align === "right"
-                      ? "text-right"
-                      : "text-left"
-                }`}
+                className={`px-6 py-4 font-medium ${column.align === "center"
+                  ? "text-center"
+                  : column.align === "right"
+                    ? "text-right"
+                    : "text-left"
+                  }`}
               >
                 {column.header}
               </th>
@@ -47,8 +46,8 @@ export default function DataTable<T>({
           <TableShimmer columns={columns?.length} rows={6} />
         ) : (
           <tbody className="divide-y divide-border-light text-text-primary">
-            {data && data.length > 0 ? (
-              data.map((row) => (
+            {data && data?.length > 0 ? (
+              data?.map((row) => (
                 <tr
                   key={rowKey?.(row)}
                   className="bg-white transition-colors hover:bg-surface-muted/30"
@@ -56,13 +55,12 @@ export default function DataTable<T>({
                   {columns?.map((column) => (
                     <td
                       key={String(column.key)}
-                      className={`px-6 py-4 ${
-                        column.align === "center"
-                          ? "text-center"
-                          : column.align === "right"
-                            ? "text-right"
-                            : "text-left"
-                      }`}
+                      className={`px-6 py-4 ${column.align === "center"
+                        ? "text-center"
+                        : column.align === "right"
+                          ? "text-right"
+                          : "text-left"
+                        }`}
                     >
                       {column.render
                         ? column.render(row)
@@ -72,7 +70,7 @@ export default function DataTable<T>({
                 </tr>
               ))
             ) : (
-              <tr  className="bg-white transition-colors hover:bg-surface-muted/30">
+              <tr className="bg-white transition-colors hover:bg-surface-muted/30">
                 <td
                   colSpan={columns?.length || 1}
                   className="px-3 py-3 text-center text-base text-gray-500"

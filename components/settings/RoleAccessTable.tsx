@@ -3,7 +3,6 @@ import DataTable, { Column } from "@/components/common/DataTable";
 import { TableRowData } from "@/types";
 import RoleTableActions from "./RoleTableActions";
 
-
 const columns: Column<TableRowData>[] = [
   {
     key: "name",
@@ -11,7 +10,7 @@ const columns: Column<TableRowData>[] = [
     render: (row) => {
       return (
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium">{row?.name}</span>
+          <span className="text-[1rem] font-medium">{row?.username}</span>
 
           <span className="mt-0.5 text-sm text-gray-600">{row?.email}</span>
         </div>
@@ -41,7 +40,7 @@ const columns: Column<TableRowData>[] = [
     align: "center",
     render: (row) => {
       console.log("Action Column:", row);
-      return <RoleTableActions id={row?._id} name={row?.name} />;
+      return <RoleTableActions id={row?._id} email={row?.email} />;
     },
   },
 ];

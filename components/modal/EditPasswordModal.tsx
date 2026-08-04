@@ -19,11 +19,11 @@ import PrimaryButton from "../common/PrimaryButton";
 
 interface TypeAdminId {
   adminId: ParamValue;
-  adminName: string;
+  adminEmail: string;
 }
 
 const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
-  ({ adminId, adminName }, ref) => {
+  ({ adminId, adminEmail }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const queryClient = useQueryClient();
 
@@ -93,8 +93,7 @@ const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="rounded-lg border border-gray-200 p-4 bg-white text-left">
-              <h3 className="font-medium text-gray-900">{adminName}</h3>
-              <p className="text-sm text-slate-500">alexmorgan@gmail.com</p>
+              <p className="text-sm text-slate-500">{adminEmail}</p>
             </div>
 
             <div className="rounded-lg border border-gray-200 p-4 bg-white">

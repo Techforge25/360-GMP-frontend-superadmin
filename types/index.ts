@@ -9,7 +9,7 @@ export interface TabItem {
 
 export interface TableRowData {
   _id: string;
-  name: string;
+  username: string;
   email: string;
   allowedModules: string[];
   status: boolean;
@@ -151,6 +151,12 @@ export type TypeDropdownOption = {
   value: string;
   label: string;
 };
+
+export type TypeSubscriptionStats = {
+  totalPaidMembers: number;
+  totalTrialMembers: number;
+  trialConversionPercentage: number;
+}
 
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;
