@@ -1,6 +1,4 @@
 "use client";
-
-import { IoPersonAddOutline } from "react-icons/io5";
 import RoleAccessTable from "./RoleAccessTable";
 import RoleDisputedTable from "./RoleDisputedTable";
 import { roleTabs } from "@/constants/roles/tabs";
@@ -51,14 +49,14 @@ export default function RolesPermissionsList() {
   );
 
   return (
-    <main className="min-h-screen bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6">
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <h1 className="text-xl md:text-[1.375rem] font-semibold text-brand-primary tracking-wide">
+    <main className="min-h-screen min-w-0 bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6">
+      <div className="flex flex-col xl:flex-row items-left xl:items-center justify-between gap-4">
+        <div className="max-w-full sm:max-w-[90%] md:max-w-full">
+          <h1 className="text-lg sm:text-xl md:text-[1.375rem] font-semibold text-brand-primary tracking-wide leading-tight">
             Roles & Permissions Management
           </h1>
 
-          <p className="mt-1 text-[1rem] text-text-secondary">
+          <p className="mt-1 text-sm sm:text-base text-text-secondary leading-relaxed">
             Define administrative access levels and module permissions across
             the enterprise.
           </p>
@@ -72,6 +70,7 @@ export default function RolesPermissionsList() {
               alt="Invite Admin"
               width={15}
               height={15}
+              className="w-[12.83px] h-[9.33px]"
             />
           }
           route="/settings/invite-admin"
@@ -88,22 +87,25 @@ export default function RolesPermissionsList() {
 
       <div
         className={`
-          mt-6 min-h-[500px]
-          transition-opacity duration-200
-          ${isPending ? "opacity-50" : "opacity-100"}
-        `}
+    mt-6 min-h-[500px] min-w-0 w-full
+    transition-opacity duration-200
+    ${isPending ? "opacity-50" : "opacity-100"}
+  `}
       >
         {currentTab === "role-control" && (
           <>
-            <RoleAccessTable adminData={adminData} isFetching={isFetching} />
-            {data?.data?.totalPages > 1 && (
-              <PaginationComponent
-                handlePageChange={handlePageChange}
-                totalPages={data?.data?.totalPages}
-                totalItems={data?.data?.totalDocs}
-                totalItemsPerPage={data?.data?.totalItemsPerPage}
-              />
-            )}
+            <div className="w-full min-w-0 overflow-x-auto">
+              <RoleAccessTable adminData={adminData} isFetching={isFetching} />
+              {data?.data?.totalPages > 1 && (
+                <PaginationComponent
+                  currentPage={page}
+                  handlePageChange={handlePageChange}
+                  totalPages={data?.data?.totalPages || 1}
+                  totalItems={data?.data?.totalDocs || 0}
+                  totalItemsPerPage={data?.data?.limit || 10}
+                />
+              )}
+            </div>
           </>
         )}
 
@@ -112,10 +114,11 @@ export default function RolesPermissionsList() {
             <RoleDisputedTable adminData={adminData} isFetching={isFetching} />
             {data?.data?.totalPages > 1 && (
               <PaginationComponent
+                currentPage={page}
                 handlePageChange={handlePageChange}
-                totalPages={data?.data?.totalPages}
-                totalItems={data?.data?.totalDocs}
-                totalItemsPerPage={data?.data?.totalItemsPerPage}
+                totalPages={data?.data?.totalPages || 1}
+                totalItems={data?.data?.totalDocs || 0}
+                totalItemsPerPage={data?.data?.limit || 10}
               />
             )}
           </>

@@ -33,7 +33,7 @@ const SignOutModal = forwardRef<SignOutModalRef, SignOutModalProps>(
           </div>
 
           <h2 className="mb-3 text-lg font-bold text-gray-900">
-            Sign Out Account
+            Sign out of your Account?
           </h2>
 
           <p className="mb-6 px-2 text-sm leading-relaxed text-gray-500">

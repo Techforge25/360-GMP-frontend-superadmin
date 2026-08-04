@@ -1,24 +1,24 @@
-import React from "react";
 import { FaCrown } from "react-icons/fa6";
-import {  FiUsers } from "react-icons/fi";
+import { FiUsers } from "react-icons/fi";
 import { OverviewCardItem } from "@/components/common/OverviewCards";
 import { BsWallet } from "react-icons/bs";
+
 export const SubscriptionsCard: OverviewCardItem[] = [
   {
     id: 1,
     title: "Active Paid Members",
-    value: "3218",
+    value: 3218,
     subtitle: "",
     subtitletwo: "",
     showDot: false,
     iconBg: "bg-[#f5eeff]",
     iconColor: "text-[#9d4edd]",
-    icon: <FaCrown  size="1.375rem" />,
+    icon: <FaCrown size="1.375rem" />,
   },
   {
     id: 2,
     title: "Total Active Trials",
-    value: "124",
+    value: 124,
     subtitle: "",
     subtitletwo: "",
     showDot: false,
@@ -29,12 +29,12 @@ export const SubscriptionsCard: OverviewCardItem[] = [
   {
     id: 3,
     title: "Trial Conversion Rate",
-    value: "18.5%",
+    value: 18,
     subtitle: "",
     subtitletwo: "",
     showDot: false,
     iconBg: "bg-[#B4B4B433]",
     iconColor: "text-brand-primary",
-    icon: <BsWallet  size="1.375rem" />,
+    icon: <BsWallet size="1.375rem" />,
   },
 ];

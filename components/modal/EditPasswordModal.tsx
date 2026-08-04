@@ -19,11 +19,11 @@ import PrimaryButton from "../common/PrimaryButton";
 
 interface TypeAdminId {
   adminId: ParamValue;
-  adminName: string;
+  adminEmail: string;
 }
 
 const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
-  ({ adminId, adminName }, ref) => {
+  ({ adminId, adminEmail }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const queryClient = useQueryClient();
 
@@ -69,17 +69,13 @@ const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
     if (!isOpen) return null;
 
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gray-900/40 backdrop-blur-sm p-4">
-        <div className="relative w-full max-w-[600px] rounded-2xl bg-white p-8 shadow-2xl font-sans">
+      <div className="fixed inset-0 z-50 flex  items-center justify-center bg-gray-900/40 backdrop-blur-sm p-4">
+        <div className=" rounded-2xl bg-white p-8 shadow-2xl font-sans">
           <div className="flex justify-between items-start mb-6">
             <div>
-              <h2 className="text-xl text-left font-semibold text-gray-900 mb-1">
+              <h2 className="text-[1.375rem] text-left font-semibold text-gray-900 mb-1">
                 Update Password
               </h2>
-              <p className="text-sm text-left text-gray-600 max-w-[80%]">
-                Create a new password to enhance your account security and
-                protect your personal information.
-              </p>
             </div>
             <button
               onClick={() => setIsOpen(false)}
@@ -88,17 +84,23 @@ const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
               <FiX className="h-5 w-5" />
             </button>
           </div>
+          <div className="w-full mb-4">
+            <p className="text-sm text-left text-gray-600 break-words">
+              Create a new password for this administrator. They will need to
+              use the new password when signing in.
+            </p>
+          </div>
 
           <div className="h-px bg-gray-100 mb-6"></div>
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
             <div className="rounded-lg border border-gray-200 p-4 bg-white text-left">
-              <h3 className="font-medium text-gray-900">{adminName}</h3>
-              <p className="text-sm text-slate-500">alexmorgan@gmail.com</p>
+              <p className="text-[1rem] text-slate-500 truncate">
+                {adminEmail}
+              </p>
             </div>
 
             <div className="rounded-lg border border-gray-200 p-4 bg-white">
-
               <FormPasswordInput
                 label="Password"
                 name="password"
@@ -108,7 +110,12 @@ const EditPasswordModal = forwardRef<EditPasswordRef, TypeAdminId>(
             </div>
 
             <div className="pt-4">
-              <PrimaryButton className="w-full" type="submit" text={mutation.isPending ? "Updating..." : "Update Password"} disabledKey={mutation.isPending || !isValid} />
+              <PrimaryButton
+                className="w-full"
+                type="submit"
+                text={mutation.isPending ? "Updating..." : "Update Password"}
+                disabledKey={mutation.isPending || !isValid}
+              />
             </div>
           </form>
         </div>

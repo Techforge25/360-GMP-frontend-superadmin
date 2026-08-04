@@ -4,6 +4,7 @@ import PrimaryButton from "../common/PrimaryButton";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { restoreAdmin } from "@/services/settings";
+import { toast } from "react-toastify";
 
 interface Props {
   id: string;
@@ -15,6 +16,7 @@ export default function RoleDisputedTableActions({ id }: Props) {
     mutationFn: restoreAdmin,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.adminList] })
+      toast.success("Admin restored successfully");
     },
   })
 
@@ -29,7 +31,7 @@ export default function RoleDisputedTableActions({ id }: Props) {
           type='button'
           onClick={() => handleRestoreAdmin()}
           disabled={mutation.isPending}
-          className={'btn-primary disabled:opacity-50 disabled:cursor-not-allowed'}
+          className={'btn-primary disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap'}
         >
           <span className="btn-primary-icon"><FaClockRotateLeft /></span>
           <span>Restore Admin</span>

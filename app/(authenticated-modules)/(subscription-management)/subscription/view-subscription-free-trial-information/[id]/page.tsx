@@ -3,7 +3,7 @@ import TrialMonitoringProfile from "@/components/subscription/free-trial/free-tr
 export default function page() {
      return (
           <div className="p-4">
-          <TrialMonitoringProfile/>
+               <TrialMonitoringProfile />
           </div>
      )
 }

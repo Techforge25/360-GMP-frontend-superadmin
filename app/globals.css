@@ -250,7 +250,7 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply inline-flex items-baseline justify-center gap-2 self-start rounded-md bg-brand-primary px-6 py-2.5 text-[1rem] font-normal text-text-inverse shadow-sm transition-opacity duration-200 hover:opacity-95 sm:self-auto disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
+    @apply inline-flex items-center justify-center gap-2 self-start rounded-md bg-brand-primary px-4 py-2 text-[0.9rem] font-medium text-text-inverse shadow-sm transition-opacity duration-200 hover:opacity-95 xl:px-5 xl:py-2.5 lg:text-[1rem] sm:self-auto disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer;
   }
 
   .form-input {
@@ -379,6 +379,9 @@ body {
 
   .approved-btn {
     @apply flex items-center justify-center gap-[0.5rem] px-[2rem] py-[0.60rem] bg-approved hover:bg-approved-hover text-white font-semibold text-[0.9375rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm;
+  }
+  .invite-btn{
+    @apply mt-[1.25rem] flex w-full items-center justify-center gap-[0.375rem] rounded-[0.75rem] border border-gray-300 bg-white py-[0.75rem] text-[1rem] font-medium text-gray-800 transition-all hover:bg-gray-50 hover:border-gray-400 active:scale-[0.99] focus:outline-none cursor-pointer;
   }
 }
 

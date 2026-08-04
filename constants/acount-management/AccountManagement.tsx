@@ -7,7 +7,7 @@ export const dashboardCards: OverviewCardItem[] = [
   {
     id: 1,
     title: "Total Users",
-    value: "12,450",
+    value: 450,
     subtitle: "3,200 Users",
     subtitletwo: "8,500 Business",
     showDot: true,
@@ -18,7 +18,7 @@ export const dashboardCards: OverviewCardItem[] = [
   {
     id: 2,
     title: "Business Verification Queue",
-    value: "18",
+    value: 18,
     subtitle: "Pending Approval",
     subtitletwo: "",
     showDot: false,

@@ -9,6 +9,7 @@ import {
   useState,
 } from "react";
 import { FiAlertCircle, FiX } from "react-icons/fi";
+import { toast } from "react-toastify";
 
 export interface DeleteRoleModalRef {
   open: () => void;
@@ -36,6 +37,7 @@ const DeleteRoleModal = forwardRef<
     onSuccess: () => {
       setIsOpen(false)
       queryClient.invalidateQueries({ queryKey: [keys.adminList] });
+      toast.success("Admin deleted successfully");
     },
     onError: (error: any) => {
       console.error(error);
@@ -67,10 +69,10 @@ const DeleteRoleModal = forwardRef<
         <div className="mt-6 text-center px-2 flex items-center justify-center ">
           <div className="w-full sm:w-[80%]">
             <h2 className="text-[1.35rem] font-bold text-gray-900 leading-snug">
-              Are You Sure You Want To Delete <br /> The Role
+              Are You Sure You Want To Delete <br /> The Role ?
             </h2>
             <p className="mt-3 text-[0.9rem] font-normal   leading-relaxed text-text-setting-light">
-              This admin will temporarily be removed from the system and will not have access to any of the modules or features. You can restore this admin at any time from the deleted admin's tab.
+              This Admin will temporarily be removed from the system and will not have access to any of the modules or features. You can restore this admin at any time from the deleted admin's tab.
             </p>
           </div>
         </div>

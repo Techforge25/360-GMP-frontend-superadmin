@@ -8,10 +8,16 @@ export default function SuperAdminLayout({
 }) {
   return (
     <div className="flex h-screen overflow-hidden bg-surface">
-      <SideNavbar />
-      <div className="flex flex-col flex-1">
-        <Header />
-        <main className="flex-1 overflow-y-auto ">{children}</main>
+      <aside className="h-screen shrink-0">
+        <SideNavbar />
+      </aside>
+
+      <div className="flex flex-1 flex-col overflow-hidden">
+        <header className="shrink-0">
+          <Header />
+        </header>
+
+        <main className="flex-1 overflow-y-auto p-0">{children}</main>
       </div>
     </div>
   );
