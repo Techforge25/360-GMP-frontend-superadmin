@@ -29,7 +29,6 @@ export default function PrimaryButton({
       router.push(route);
       return;
     }
-
     onClick?.();
   };
 

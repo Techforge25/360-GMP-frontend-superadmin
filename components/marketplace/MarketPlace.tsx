@@ -8,7 +8,11 @@ import { MarketPlacetabs } from "@/constants/marketplace/MarketPlacetabs";
 import ProductAuditTable from "./product-audit-queue/ProductAuditTable";
 import ProductApprovedTable from "./product-approve-reject/ProductApprovedTable";
 
-export default function MarketPlace() {
+interface Props {
+  dateRange: string;
+}
+
+export default function MarketPlace({ dateRange }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -33,18 +37,13 @@ export default function MarketPlace() {
 
       <div className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}>
         {currentTab === "order-logs" && (
-          <OrderLogsTable />
+          <OrderLogsTable dateRange={dateRange} />
         )}
-
         {currentTab === "product-audit-queue" && (
-          <>
-            <ProductAuditTable />
-          </>
+          <ProductAuditTable />
         )}
         {currentTab === "product-approve-reject" && (
-          <>
-            <ProductApprovedTable />
-          </>
+          <ProductApprovedTable />
         )}
       </div>
     </>

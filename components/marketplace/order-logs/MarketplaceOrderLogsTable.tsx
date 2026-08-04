@@ -1,19 +1,16 @@
 "use client";
 import { useRef, useState } from "react";
 import DataTable, { Column } from "@/components/common/DataTable";
-import { MarketPlaceOrderLogsTableRowData, OrderModalRef } from "@/types";
+import { MarketPlaceOrderLogsTableRowData, OrderModalRef, TypeOrderLog } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
-import { MarketPlaceOrderLogsTable } from "@/constants/marketplace/MarketPlaceOrderLogsTable";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import { FaEye } from "react-icons/fa6";
 import OrderModal from "./OrderModal";
-import { useQuery } from "@tanstack/react-query";
-import { keys } from "@/keys";
-import { fetchOrderLogs } from "@/services/marketplace";
 
 interface Props {
-  dateRange: string;
+  orderLogs: TypeOrderLog[];
+  isPending: boolean;
 }
 
 const columns = (
@@ -113,23 +110,18 @@ const columns = (
     },
   ];
 
-export default function MarketplaceOrderLogsTable() {
+export default function MarketplaceOrderLogsTable({ isPending, orderLogs }: Props) {
   const modalRef = useRef<OrderModalRef>(null);
   const [page, setPage] = useState(1);
-
-  // const { data, isPending } = useQuery({
-  //   queryKey: [keys.orderLogs],
-  //   queryFn: () => fetchOrderLogs(page),
-  // });
-
 
   return (
     <>
       <div className="pt-4">
         <DataTable
           columns={columns(modalRef)}
-          data={MarketPlaceOrderLogsTable}
+          data={orderLogs}
           rowKey={(row) => row._id}
+          isLoading={isPending}
         />
       </div>
 

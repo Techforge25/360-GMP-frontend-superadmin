@@ -5,7 +5,6 @@ import { IoAlertCircleOutline } from "react-icons/io5";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
 export const MarketPlaceCard: OverviewCardItem[] = [
   {
-    id: 1,
     title: "Total Marketplace Sales",
     value: 1,
     subtitle: "",
@@ -16,7 +15,6 @@ export const MarketPlaceCard: OverviewCardItem[] = [
     icon: <FaDollarSign size="1.375rem" />,
   },
   {
-    id: 2,
     title: "Pending Audits",
     value: 14,
     subtitle: "Products waiting approval",
@@ -27,7 +25,6 @@ export const MarketPlaceCard: OverviewCardItem[] = [
     icon: <MdOutlinePendingActions size="1.375rem" />,
   },
   {
-    id: 3,
     title: "Total Disputed Orders",
     value: 45,
     subtitle: "",
@@ -38,7 +35,6 @@ export const MarketPlaceCard: OverviewCardItem[] = [
     icon: <IoAlertCircleOutline size="1.375rem" />,
   },
   {
-    id: 4,
     title: "Active Escrow",
     value: 45,
     subtitle: "Funds held securely",

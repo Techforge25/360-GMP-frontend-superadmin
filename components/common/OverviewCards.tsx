@@ -1,10 +1,11 @@
 import React, { ReactNode } from "react";
 import CardShimmer from "../skeleton/CardShimmer";
+import { TypeMarketplaceStats } from "@/types";
 
 export interface OverviewCardItem {
   id?: number | string;
   title: string;
-  value: number;
+  value: number | string;
   subtitle: string;
   subtitletwo: string;
   showDot?: boolean;
@@ -16,7 +17,7 @@ export interface OverviewCardItem {
 interface Props {
   heading: string;
   description: string;
-  cards: OverviewCardItem[];
+  cards: OverviewCardItem[] | TypeMarketplaceStats[];
   dropdown?: ReactNode;
   className?: string;
   isPending?: boolean;
@@ -52,7 +53,7 @@ export default function OverviewCards({
           ) : (
             <>
               {
-                cards.map((card, index) => (
+                cards?.map((card, index) => (
                   <div
                     key={index}
                     className="flex flex-col rounded-2xl border border-[#f0f0f5] bg-white p-4 shadow-sm"

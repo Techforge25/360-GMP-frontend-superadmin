@@ -1,3 +1,4 @@
+import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { ReactNode } from "react";
 
 export interface TabItem {
@@ -221,7 +222,7 @@ export interface MarketplaceReportTableRowData {
 export interface ReportModalRef {
   open: () => void;
   close: () => void;
-  
+
 }
 
 export interface ReportModalProps {
@@ -244,6 +245,42 @@ export type TypeSubscriptionStats = {
   totalPaidMembers: number;
   totalTrialMembers: number;
   trialConversionPercentage: number;
+}
+
+export type TypeMarketplaceStats = {
+  title: string,
+  value: number | string,
+  subtitle: string,
+  subtitletwo: string,
+  showDot: boolean,
+  iconBg: string,
+  iconColor: string,
+  icon: React.ReactNode,
+}
+
+export type TypeMarketplaceStat = {
+  totalSales: number;
+  totalPendingProducts: number;
+  totalFundsHeldInEscrow: number;
+  totalDisputedOrders: number;
+}
+
+export type TypeOrderLog = {
+  _id: string,
+  totalAmount: number,
+  createdAt: string,
+  orderStatus: string,
+  buyerInfo: {
+    fullName: string,
+    email: string,
+    logo: string
+  },
+  sellerInfo: {
+    companyName: string,
+    logo: string,
+    email: string
+  }
+  ,
 }
 
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;

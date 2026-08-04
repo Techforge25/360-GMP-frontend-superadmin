@@ -102,7 +102,7 @@ export default function CreateRoleForm({ adminId }: Props) {
         allowedModules: createData.allowedModules,
       });
     }
-
+    router.push('/settings/invite-admin')
   };
 
   return (
@@ -124,12 +124,13 @@ export default function CreateRoleForm({ adminId }: Props) {
       <PermissionMatrix control={control} modules={initialModules} />
       <div className="flex items-center gap-3 pt-2">
         <BackButton text="Cancel" />
-        <PrimaryButton
-          type="submit"
-          text={mutation.isPending ? "Sending Invitation..." : "Send Invitation"}
-          route="/settings/invite-admin"
-          disabledKey={!isValid}
-        />
+        <button
+          type={'submit'}
+          disabled={!isValid || mutation.isPending}
+          className={`btn-primary`}
+        >
+          <span>{mutation.isPending ? 'Sending Invitation...' : 'Send Invitation'}</span>
+        </button>
       </div>
     </form>
   );

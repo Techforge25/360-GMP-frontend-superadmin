@@ -7,5 +7,6 @@ export const keys = {
      subscriptionDetails: 'subscriptionDetails',
      subscriptionListPaid: 'subscriptionListPaid',
      subscriptionListPaidDetails: 'subscriptionListPaidDetails',
+     orderStats: 'orderStats',
      orderLogs: 'orderLogs',
 }

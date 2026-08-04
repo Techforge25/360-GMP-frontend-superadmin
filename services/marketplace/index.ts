@@ -2,6 +2,17 @@ import api from "@/lib/axios";
 import { ParamValue } from "next/dist/server/request/params";
 import { toast } from "react-toastify";
 
+export const fetchMarketplaceStats = async (dateRange: string) => {
+     try {
+          const { data } = await api.get(`/marketplace/stats?dateRange=${dateRange}`);
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
 export const fetchOrderLogs = async (dateRange: string, page: number) => {
      try {
           const { data } = await api.get(`/marketplace/orderLogs?dateRange=${dateRange}&page=${page}&limit=10`);
