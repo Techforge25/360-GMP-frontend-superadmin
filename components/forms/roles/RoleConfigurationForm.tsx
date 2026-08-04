@@ -6,7 +6,7 @@ import { ParamValue } from "next/dist/server/request/params";
 interface Props {
   register: any;
   errors: any;
-  adminId: ParamValue
+  adminId?: ParamValue
 }
 
 export default function RoleConfigurationForm({ register, errors, adminId }: Props) {

@@ -17,7 +17,7 @@ import { ParamValue } from "next/dist/server/request/params";
 import { useEffect } from "react";
 
 type Props = {
-  adminId: ParamValue
+  adminId?: ParamValue
 }
 
 export default function CreateRoleForm({ adminId }: Props) {

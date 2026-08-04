@@ -36,6 +36,11 @@ export interface PaidMemberTableRowData {
   status: string;
 }
 
+export interface OrderModalRef {
+  open: () => void;
+  close: () => void;
+}
+
 export interface MarketPlaceOrderLogsTableRowData {
   _id: string;
   totalAmount: number;
@@ -230,6 +235,10 @@ export interface ReportEvidenceItem {
 }
 
 
+export type TypeDropdownOption = {
+  value: string;
+  label: string;
+};
 
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

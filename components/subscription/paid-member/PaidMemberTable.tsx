@@ -1,4 +1,3 @@
-import React from "react";
 import SearchFilterBar from "@/components/common/SearchFilterBar";
 import PaginationComponent from "@/components/common/PaginationComponent";
 import SubscriptionPaidMemberTable from "./SubscriptionPaidMemberTable";
@@ -37,7 +36,7 @@ export default function PaidMemberTable() {
         onFilterChange={(key, value) => console.log(key, value)}
       />
       <SubscriptionPaidMemberTable />
-      <PaginationComponent />
+      {/* <PaginationComponent /> */}
     </div>
   );
 }

@@ -24,7 +24,7 @@ export default function FreeTrialTable() {
         onFilterChange={(key, value) => console.log(key, value)}
       />
       <SubscriptionFreeTrialTable />
-      <PaginationComponent />
+      {/* <PaginationComponent /> */}
     </div>
   );
 }

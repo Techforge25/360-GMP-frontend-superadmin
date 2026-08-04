@@ -29,7 +29,6 @@ export default function PermissionMatrix({ modules, control }: Props) {
         control={control}
         render={({ field }) => {
           const selectedModules = field.value ?? [];
-
           return (
             <div className="divide-y divide-[#E2E8F0]">
               {modules.map((mod) => {
@@ -51,7 +50,7 @@ export default function PermissionMatrix({ modules, control }: Props) {
                         field.onChange(
                           checked
                             ? selectedModules.filter(
-                              (item) => item !== mod.name
+                              (item: string) => item !== mod.name
                             )
                             : [...selectedModules, mod.name]
                         );

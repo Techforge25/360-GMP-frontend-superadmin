@@ -4,7 +4,7 @@ import AccountManagementBusinessTable from "./AccountManagementBusinessTable";
 import PaginationComponent from "@/components/common/PaginationComponent";
 
 export default function AllBusinessTable() {
-    
+
   return (
     <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
       <SearchFilterBar
@@ -16,7 +16,7 @@ export default function AllBusinessTable() {
             options: ["All", "Silver", "Bronze", "Gold", "Premium"],
             defaultValue: "All"
           },
-           {
+          {
             key: "status",
             label: "Status",
             options: ["All", "Pending", "Approved", "Rejected"],
@@ -30,8 +30,8 @@ export default function AllBusinessTable() {
           console.log("Business Filter:", { key, value });
         }}
       />
-      <AccountManagementBusinessTable/>
-       <PaginationComponent/>
+      <AccountManagementBusinessTable />
+      {/* <PaginationComponent/> */}
 
     </div>
   );

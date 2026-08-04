@@ -1,7 +1,6 @@
 "use client";
+import PreviewButton from "@/components/common/PreviewButton";
 import { useRouter } from "next/navigation";
-import { IoShieldCheckmarkOutline } from "react-icons/io5";
-import PreviewButton from "../common/PreviewButton";
 
 interface Props {
   id: string;

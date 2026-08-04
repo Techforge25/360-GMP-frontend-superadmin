@@ -16,9 +16,9 @@ export const createAdmin = async (payload: TypeCreateAdmin) => {
      }
 };
 
-export const getCreatedAdmins = async (tab: string) => {
+export const getCreatedAdmins = async (tab: string, page: number) => {
      try {
-          const { data } = await api.get(`/adminManagement?status=${tab === 'role-control' ? 'active' : 'inactive'}`);
+          const { data } = await api.get(`/adminManagement?status=${tab === 'role-control' ? 'active' : 'inactive'}&page=${page}&limit=10`);
           console.log("getCreatedAdmins called");
           return data;
      } catch (error: any) {

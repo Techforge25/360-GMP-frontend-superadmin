@@ -18,9 +18,8 @@ export default function Pagination({
   totalPages,
   onPageChange,
 }: PaginationProps) {
-  const startItem = totalItems === 0 ? 0 : (currentPage - 1) * itemsPerPage + 1;
-
-  const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+  const startItem = totalItems === 0 ? 0 : (currentPage && currentPage - 1) * itemsPerPage + 1;
+  const endItem = Math.min((currentPage || 0) * itemsPerPage, totalItems);
 
   return (
     <div className="flex items-center justify-between border-t border-[#E2E8F0] bg-white px-4 py-4">

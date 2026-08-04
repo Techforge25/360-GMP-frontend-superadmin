@@ -45,7 +45,7 @@ const columns: Column<TableRowData>[] = [
 ];
 
 interface Props {
-  adminData: TypeCreateAdmin;
+  adminData: TableRowData[];
   isFetching: boolean;
 }
 

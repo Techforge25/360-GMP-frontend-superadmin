@@ -24,7 +24,7 @@ export default function AllUserTable() {
         }}
       />
       <AccountManagementTable/>
-       <PaginationComponent/>
+       {/* <PaginationComponent/> */}
 
     </div>
   );
