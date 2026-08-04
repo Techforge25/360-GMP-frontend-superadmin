@@ -19,31 +19,31 @@ export default function MarketPlace() {
     startTransition(() => {
       router.push(`?tab=${tabId}`, { scroll: false });
     });
-  };        
+  };
 
   return (
     <>
       <div className="mt-2">
-        <Tabs 
-          tabs={MarketPlacetabs} 
-          activeTab={currentTab} 
-          onTabChange={handleTabChange} 
+        <Tabs
+          tabs={MarketPlacetabs}
+          activeTab={currentTab}
+          onTabChange={handleTabChange}
         />
       </div>
 
       <div className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}>
         {currentTab === "order-logs" && (
-       <OrderLogsTable/>
+          <OrderLogsTable />
         )}
 
         {currentTab === "product-audit-queue" && (
           <>
-          <ProductAuditTable/>
+            <ProductAuditTable />
           </>
         )}
-         {currentTab === "product-approve-reject" && (
+        {currentTab === "product-approve-reject" && (
           <>
-          <ProductApprovedTable/>
+            <ProductApprovedTable />
           </>
         )}
       </div>

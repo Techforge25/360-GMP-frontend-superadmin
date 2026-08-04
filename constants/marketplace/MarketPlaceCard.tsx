@@ -1,4 +1,3 @@
-import React from "react";
 import { FaDollarSign } from "react-icons/fa6";
 import { OverviewCardItem } from "@/components/common/OverviewCards";
 import { MdOutlinePendingActions } from "react-icons/md";
