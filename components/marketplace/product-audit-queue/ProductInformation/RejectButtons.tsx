@@ -3,14 +3,14 @@
 import React, { useRef } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiCheck } from "react-icons/fi";
-import RejectBusinessModal from "./RejectBusinessModalRef";
+import RejectProductModal from "./RejectProductModalRef";
 import { RejectProductModalRef } from "@/types";
 
 interface ActionButtonsProps {
   onApprove?: () => void;
 }
 
-export default function ActionButtons({ onApprove }: ActionButtonsProps) {
+export default function RejectButtons({ onApprove }: ActionButtonsProps) {
   const rejectModalRef = useRef<RejectProductModalRef>(null);
 
   const handleOpenRejectModal = () => {
@@ -27,18 +27,25 @@ export default function ActionButtons({ onApprove }: ActionButtonsProps) {
 
   return (
     <>
-      <div className="flex justify-end items-center gap-[1rem] font-sans">
-        <button onClick={handleOpenRejectModal} className="action-Reject">
+      <div className="flex justify-end items-center gap-[1rem] font-inter pt-5">
+        <button
+          onClick={handleOpenRejectModal}
+          className="action-Reject"
+        >
           <span>Reject</span>
           <IoCloseOutline className="w-[1.25rem] h-[1.25rem]" />
         </button>
 
-        <button onClick={handleApprove} className="approved-btn">
+        <button
+          onClick={handleApprove}
+          className="approved-btn"
+        >
           <span>Approve</span>
           <FiCheck className="w-[1.125rem] h-[1.125rem]" />
         </button>
       </div>
-      <RejectBusinessModal ref={rejectModalRef} />
+
+      <RejectProductModal ref={rejectModalRef} />
     </>
   );
 }

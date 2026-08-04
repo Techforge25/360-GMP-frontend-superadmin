@@ -6,6 +6,7 @@ import Tabs from "../common/Tabs";
 import OrderLogsTable from "./order-logs/OrderLogsTable";
 import { MarketPlacetabs } from "@/constants/marketplace/MarketPlacetabs";
 import ProductAuditTable from "./product-audit-queue/ProductAuditTable";
+import ProductApprovedTable from "./product-approve-reject/ProductApprovedTable";
 
 export default function MarketPlace() {
   const router = useRouter();
@@ -40,12 +41,9 @@ export default function MarketPlace() {
           <ProductAuditTable/>
           </>
         )}
-         {currentTab === "disputed-orders" && (
-          <>
-          </>
-        )}
          {currentTab === "product-approve-reject" && (
           <>
+          <ProductApprovedTable/>
           </>
         )}
       </div>

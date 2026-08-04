@@ -44,7 +44,7 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
           <div className="flex flex-col gap-6 sm:flex-row sm:gap-12">
             <div className="flex-1">
               <h3 className="mb-4 text-[1.25rem] font-medium uppercase text-gray-500">
-                BUYER (PROFILE)
+                Seller (PROFILE)
               </h3>
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100">

@@ -237,7 +237,7 @@
   --color-bg-time-brand: #2D1B69;  
   --color-purple-dark-light: #6D28D9;
 
-
+  --color-border-gray-dark: #E3E7EE;
 
 
 }
@@ -323,6 +323,22 @@ body {
 
   .pagination-disabled {
     @apply opacity-50 pointer-events-none;
+  }
+  .text-area{
+    @apply w-full p-[1rem] bg-white border border-gray-200 rounded-[0.5rem] text-[0.9375rem] text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-[#2c0a59] resize-none;
+  }
+  .reject-btn {
+    @apply px-[1.75rem] py-[0.625rem] bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-semibold text-[0.9375rem] rounded-[0.5rem] cursor-pointer;
+  }
+
+  .confirm-reject{
+    @apply flex items-center justify-center gap-[0.5rem] px-[1.75rem] py-[0.625rem] bg-reject hover:bg-[#e0342b] text-white font-light text-[1rem] rounded-[0.5rem] cursor-pointer;
+  }
+  .action-Reject{
+    @apply flex items-center justify-center gap-[0.5rem] px-[2rem] py-[0.60rem] bg-reject hover:bg-reject-hover text-white font-semibold text-[0.9375rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm;
+  }
+  .approved-btn{
+    @apply flex items-center justify-center gap-[0.5rem] px-[2rem] py-[0.60rem] bg-approved hover:bg-approved-hover text-white font-semibold text-[0.9375rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm;
   }
 }
 

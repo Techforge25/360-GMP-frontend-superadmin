@@ -1,18 +1,19 @@
 import DataTable, { Column } from "@/components/common/DataTable";
-import { ProductAuditTableRowData } from "@/types";
-import ProductAuditTableActions from "./ProductAuditTableActions";
+import { ProductApprovedTableRowData } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
-import { productAuditTableData } from "@/constants/marketplace/ProductAuditTable";
-const marketplace = "product-audit-queue";
-const columns: Column<ProductAuditTableRowData>[] = [
+import ProductAuditTableActions from "../product-audit-queue/ProductAuditTableActions";
+import { ProductApprovedTable } from "@/constants/marketplace/ProductApprovedTable";
+import StatusBadge from "@/constants/acount-management/StatusBadge";
+const marketplace = "product-approve-reject";
+const columns: Column<ProductApprovedTableRowData>[] = [
   {
     key: "createdAt",
     header: "Product",
     render: (row) => (
       <div className="flex flex-col">
         <span className="text-[1rem] font-medium text-text-light">
-         {row?.title}
+          {row?.title}
         </span>
         <span className="text-[1rem] text-date-time">
           {formatDate(row?.createdAt)}
@@ -54,26 +55,32 @@ const columns: Column<ProductAuditTableRowData>[] = [
       </div>
     ),
   },
-  
+
+  {
+    key: "status",
+    header: "Status",
+    render: (row) => (
+      <div>
+        <StatusBadge status={row.status} />
+      </div>
+    ),
+  },
   {
     key: "action",
     header: "Action",
     align: "center",
     render: (row) => (
-      <ProductAuditTableActions
-        id={row._id}
-        marketplace={marketplace}
-      />
+      <ProductAuditTableActions id={row._id} marketplace={marketplace} />
     ),
   },
 ];
 
-export default function MarketplaceProductAuditTable() {
+export default function MarketplaceProductApprovedTable() {
   return (
     <div className="pt-8">
       <DataTable
         columns={columns}
-        data={productAuditTableData}
+        data={ProductApprovedTable}
         rowKey={(row) => row._id}
       />
     </div>
