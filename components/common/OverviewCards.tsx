@@ -3,7 +3,7 @@ import React, { ReactNode } from "react";
 export interface OverviewCardItem {
   id: number | string;
   title: string;
-  value: string;
+  value: string | number;
   subtitle: string;
   subtitletwo: string;
   showDot?: boolean;

@@ -1,6 +1,6 @@
 import React from "react";
 
-import PaginationComponent from "@/components/common/PaginationComponent";
+// import PaginationComponent from "@/components/common/PaginationComponent";
 
 import ReportJobReportTable from "./ReportJobReportTable";
 import SearchFilterBar from "@/components/common/SearchFilterBar";
@@ -15,7 +15,7 @@ export default function JobReportTable() {
         }}
       />
       <ReportJobReportTable />
-      <PaginationComponent />
+      {/* <PaginationComponent /> */}
     </div>
   );
 }
