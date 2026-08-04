@@ -136,6 +136,38 @@ export interface EditPasswordRef {
   close: () => void;
 }
 
+export interface OrderModalRef {
+  open: () => void;
+  close: () => void;
+}
+
+
+export interface ProductAuditTableRowData {
+  _id: string;
+  title: string;
+  category: string;
+  createdAt: string;
+  sellerInfo: {
+    ownerName: string;
+    companyName: string;
+    logo: string;
+  };
+}
+
+
+export interface ProductApprovedTableRowData {
+  _id: string;
+  title: string;
+  category: string;
+  createdAt: string;
+  sellerInfo: {
+    ownerName: string;
+    companyName: string;
+    logo: string;
+  };
+  status: string;
+}
+
 export interface AccountTableRowData {
   _id: string;
   fullName: string;
@@ -146,6 +178,62 @@ export interface AccountTableRowData {
     subscriptionType: string;
   };
 }
+
+interface ProductSpecification {
+  label: string;
+  value: string;
+}
+
+interface Product {
+  specifications: ProductSpecification[];
+  productDetail: string;
+}
+
+export interface ProductSpecificationsProps {
+  product: Product;
+}
+
+export interface RejectProductModalRef {
+  open: () => void;
+  close: () => void;
+}
+
+
+export interface MarketplaceReportTableRowData {
+  _id: string;
+  reason: string;
+  createdAt: string;
+  reportedBy: {
+    fullName: string;
+    email: string;
+    logo: string;
+  };
+  reportedJob: {
+    jobTitle: string;
+    owner: {
+      companyName: string;
+      logo: string;
+      email: string;
+    };
+  };
+}
+
+export interface ReportModalRef {
+  open: () => void;
+  close: () => void;
+  
+}
+
+export interface ReportModalProps {
+  reportType: "job" | "business" | "product" | "community";
+}
+export interface ReportEvidenceItem {
+  id: number;
+  fileName: string;
+  fileType: string;
+  fileSize: string;
+}
+
 
 export type TypeDropdownOption = {
   value: string;

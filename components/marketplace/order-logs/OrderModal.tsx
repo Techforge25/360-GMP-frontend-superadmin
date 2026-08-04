@@ -6,6 +6,8 @@ import { FiDownload } from "react-icons/fi";
 import { LuClock3 } from "react-icons/lu";
 import { OrderModalRef } from "@/types";
 import Image from "next/image";
+import EscrowTimeline from "./EscrowTimeline";
+import { escrowTimeline } from "@/constants/marketplace/orderTimeline";
 
 const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
   const [open, setOpen] = useState(false);
@@ -23,7 +25,7 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
         <div className="relative border-b border-gray-100 p-6 sm:px-8">
           <button
             className="absolute right-6 top-6 text-gray-400 hover:text-gray-600"
-            onClick={() => setOpen(false) }
+            onClick={() => setOpen(false)}
           >
             <IoClose size={24} />
           </button>
@@ -42,7 +44,7 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
           <div className="flex flex-col gap-6 sm:flex-row sm:gap-12">
             <div className="flex-1">
               <h3 className="mb-4 text-[1.25rem] font-medium uppercase text-gray-500">
-                BUYER (PROFILE)
+                Seller (PROFILE)
               </h3>
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100">
@@ -54,7 +56,7 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
                     height={88}
                   />
                 </div>
-              
+
                 <div>
                   <h4 className="font-semibold text-gray-900">Alex Morgan</h4>
                   <p className="text-sm text-gray-500">Alexmorgan@Gmail.Com</p>
@@ -117,86 +119,7 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
             </div>
           </div>
 
-          <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
-            <div className="mb-6 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-bg-white-light text-bg-time-brand">
-                <LuClock3 size={20} />
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900">
-                Escrow Timeline
-              </h3>
-            </div>
-
-            <div className="border-t border-gray-100 pt-6">
-              <div className="relative flex gap-5 pb-8">
-                <div className="absolute left-[7px] top-3 h-full w-[2px] bg-gradient-to-b from-[#2D1B69] to-transparent"></div>
-                <div className="relative z-10 mt-1.5 h-4 w-4 rounded-full bg-[#2D1B69]"></div>
-                <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    OCT 26, 2025, <span className="mx-1 lowercase">•</span>{" "}
-                    10:30 AM
-                  </p>
-                  <h4 className="mt-1 text-lg font-semibold text-gray-900">
-                    Order Created
-                  </h4>
-                  <p className="mt-0.5 text-sm text-gray-500">
-                    Order Initialized By Buyer
-                  </p>
-                </div>
-              </div>
-
-              <div className="relative flex gap-5 pb-8">
-                <div className="absolute left-[7px] top-3 h-full w-[2px] bg-gradient-to-b from-[#2D1B69] to-transparent"></div>
-                <div className="relative z-10 mt-1.5 h-4 w-4 rounded-full bg-bg-time-brand"></div>
-                <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    OCT 27, 2025, <span className="mx-1 lowercase">•</span>{" "}
-                    10:30 AM
-                  </p>
-                  <h4 className="mt-1 text-lg font-semibold text-gray-900">
-                    Shipped
-                  </h4>
-                  <p className="mt-0.5 text-sm text-gray-500">
-                    Tracking #1234567899
-                  </p>
-                </div>
-              </div>
-
-              <div className="relative flex gap-5 pb-8">
-                <div className="absolute left-[7px] top-3 h-full w-[2px] bg-gradient-to-b from-gray-300 to-transparent"></div>
-                <div className="relative z-10 mt-1.5 h-4 w-4 rounded-full bg-[#2D1B69]"></div>
-                <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    OCT 29, 2025, <span className="mx-1 lowercase">•</span>{" "}
-                    06:15 AM
-                  </p>
-                  <h4 className="mt-1 text-lg font-semibold text-gray-900">
-                    Delivered
-                  </h4>
-                  <p className="mt-0.5 text-sm text-gray-500">
-                    Package Delivered Successfully.
-                  </p>
-                </div>
-              </div>
-
-              <div className="relative flex gap-5">
-                <div className="relative z-10 mt-1.5 h-4 w-4 rounded-full bg-gray-400"></div>
-                <div>
-                  <p className="text-xs font-medium text-gray-500 uppercase tracking-wider">
-                    NOV 10, 2025, <span className="mx-1 lowercase">•</span>{" "}
-                    12:15 AM
-                  </p>
-                  <h4 className="mt-1 text-lg font-semibold text-gray-900">
-                    Completed
-                  </h4>
-                  <p className="mt-0.5 text-sm text-gray-400">
-                    Fund release To Seller{" "}
-                    <span className="ml-1">Pending..</span>
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
+          <EscrowTimeline timeline={escrowTimeline} />
 
           <div className="space-y-3 pt-4">
             <div className="flex justify-between text-gray-600">
@@ -228,12 +151,13 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
             </div>
 
             <div className="flex justify-between text-sm">
-              <span className="text-blue-600 text-[1rem]">Escrow Released Date</span>
+              <span className="text-blue-600 text-[1rem]">
+                Escrow Released Date
+              </span>
               <span className="text-gray-500 uppercase">NOV 10, 2025,</span>
             </div>
           </div>
         </div>
-
       </div>
     </div>
   );

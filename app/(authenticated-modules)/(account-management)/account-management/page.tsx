@@ -3,7 +3,7 @@ import OverviewCards from "@/components/common/OverviewCards";
 import { dashboardCards } from "@/constants/acount-management/AccountManagement";
 import AccountManagement from "@/components/account-management/user-management/AccountManagement";
 
-export default function Dashboard() {
+export default function page() {
   return (
     <div className="min-h-screen bg-background p-6 md:p-4 font-sans">
       <OverviewCards

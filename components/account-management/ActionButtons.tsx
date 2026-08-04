@@ -3,16 +3,15 @@
 import React, { useRef } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiCheck } from "react-icons/fi";
-import RejectBusinessModal, {
-  RejectBusinessModalRef,
-} from "./RejectBusinessModalRef";
+import RejectBusinessModal from "./RejectBusinessModalRef";
+import { RejectProductModalRef } from "@/types";
 
 interface ActionButtonsProps {
   onApprove?: () => void;
 }
 
 export default function ActionButtons({ onApprove }: ActionButtonsProps) {
-  const rejectModalRef = useRef<RejectBusinessModalRef>(null);
+  const rejectModalRef = useRef<RejectProductModalRef>(null);
 
   const handleOpenRejectModal = () => {
     rejectModalRef.current?.open();
@@ -29,23 +28,16 @@ export default function ActionButtons({ onApprove }: ActionButtonsProps) {
   return (
     <>
       <div className="flex justify-end items-center gap-[1rem] font-sans">
-        <button
-          onClick={handleOpenRejectModal}
-          className="flex items-center justify-center gap-[0.5rem] px-[2rem] py-[0.60rem] bg-reject hover:bg-reject-hover text-white font-semibold text-[0.9375rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm"
-        >
+        <button onClick={handleOpenRejectModal} className="action-Reject">
           <span>Reject</span>
           <IoCloseOutline className="w-[1.25rem] h-[1.25rem]" />
         </button>
 
-        <button
-          onClick={handleApprove}
-          className="flex items-center justify-center gap-[0.5rem] px-[2rem] py-[0.60rem] bg-approved hover:bg-approved-hover text-white font-semibold text-[0.9375rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm"
-        >
+        <button onClick={handleApprove} className="approved-btn">
           <span>Approve</span>
           <FiCheck className="w-[1.125rem] h-[1.125rem]" />
         </button>
       </div>
-
       <RejectBusinessModal ref={rejectModalRef} />
     </>
   );

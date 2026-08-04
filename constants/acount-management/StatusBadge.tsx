@@ -17,6 +17,7 @@ export default function StatusBadge({ status }: StatusBadgeProps) {
     "Past Due": "bg-[#FFDFDF] text-[#FF383C]",
     failed: "bg-[#FFDFDF] text-[#FF383C]",
     paid: "bg-[#E6F6E9] text-[#0B8806]",
+    completed: "bg-[#E6F6E9] text-[#0B8806]",
   };
 
   return (

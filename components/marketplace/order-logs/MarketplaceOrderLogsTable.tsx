@@ -1,5 +1,4 @@
 "use client";
-
 import { useRef } from "react";
 import DataTable, { Column } from "@/components/common/DataTable";
 import { MarketPlaceOrderLogsTableRowData, OrderModalRef } from "@/types";
@@ -14,8 +13,22 @@ const columns = (
   modalRef: React.RefObject<OrderModalRef | null>,
 ): Column<MarketPlaceOrderLogsTableRowData>[] => [
   {
+    key: "createdAt",
+    header: "order ID & Date",
+    render: (row) => (
+      <div className="flex flex-col">
+        <span className="text-[1rem] font-medium text-text-light">
+          {`#${row?._id.slice(0, 8).toUpperCase()}`}
+        </span>
+        <span className="text-[1rem] text-date-time">
+          {formatDate(row?.createdAt)}
+        </span>
+      </div>
+    ),
+  },
+  {
     key: "buyer",
-    header: "Buyer",
+    header: "Buyer Info",
     render: (row) => (
       <div className="flex items-center space-x-3">
         <Image
@@ -40,7 +53,7 @@ const columns = (
   },
   {
     key: "seller",
-    header: "Seller",
+    header: "Seller Info",
     render: (row) => (
       <div className="flex items-center space-x-3">
         <Image
@@ -64,28 +77,20 @@ const columns = (
     ),
   },
   {
+    key: "orderStatus",
+    header: "Status",
+    render: (row) => <StatusBadge status={row?.orderStatus} />,
+  },
+  {
     key: "totalAmount",
-    header: "Total Amount",
+    header: "Amount",
     render: (row) => (
       <span className="text-[1rem] text-text-secondary">
         ${row?.totalAmount?.toFixed(2)}
       </span>
     ),
   },
-  {
-    key: "createdAt",
-    header: "Order Date",
-    render: (row) => (
-      <span className="text-[1rem] text-date-time">
-        {formatDate(row?.createdAt)}
-      </span>
-    ),
-  },
-  {
-    key: "orderStatus",
-    header: "Status",
-    render: (row) => <StatusBadge status={row?.orderStatus} />,
-  },
+
   {
     key: "action",
     header: "Action",
