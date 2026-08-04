@@ -12,7 +12,8 @@ import { keys } from "@/keys";
 import { getCreatedAdmins } from "@/services/settings";
 import { useQuery } from "@tanstack/react-query";
 import PaginationComponent from "../common/PaginationComponent";
-
+import InviteIcon from "@/assets/Icon.svg";
+import Image from "next/image";
 export default function RolesPermissionsList() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -40,9 +41,14 @@ export default function RolesPermissionsList() {
     });
   };
 
-  console.log(data?.data, 'data docsss')
+  console.log(data?.data, "data docsss");
 
-  console.log(data?.data?.docs?.totalPages, data?.data?.docs?.totalItemsPerPage, data?.data?.docs?.totalItems, 'total iteeemsssss')
+  console.log(
+    data?.data?.docs?.totalPages,
+    data?.data?.docs?.totalItemsPerPage,
+    data?.data?.docs?.totalItems,
+    "total iteeemsssss",
+  );
 
   return (
     <main className="min-h-screen bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6">
@@ -60,7 +66,14 @@ export default function RolesPermissionsList() {
 
         <PrimaryButton
           text="Invite Admin"
-          icon={<IoPersonAddOutline />}
+          icon={
+            <Image
+              src={InviteIcon}
+              alt="Invite Admin"
+              width={15}
+              height={15}
+            />
+          }
           route="/settings/invite-admin"
         />
       </div>
@@ -84,7 +97,12 @@ export default function RolesPermissionsList() {
           <>
             <RoleAccessTable adminData={adminData} isFetching={isFetching} />
             {data?.data?.totalPages > 1 && (
-              <PaginationComponent handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+              <PaginationComponent
+                handlePageChange={handlePageChange}
+                totalPages={data?.data?.totalPages}
+                totalItems={data?.data?.totalDocs}
+                totalItemsPerPage={data?.data?.totalItemsPerPage}
+              />
             )}
           </>
         )}
@@ -93,7 +111,12 @@ export default function RolesPermissionsList() {
           <>
             <RoleDisputedTable adminData={adminData} isFetching={isFetching} />
             {data?.data?.totalPages > 1 && (
-              <PaginationComponent handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+              <PaginationComponent
+                handlePageChange={handlePageChange}
+                totalPages={data?.data?.totalPages}
+                totalItems={data?.data?.totalDocs}
+                totalItemsPerPage={data?.data?.totalItemsPerPage}
+              />
             )}
           </>
         )}
