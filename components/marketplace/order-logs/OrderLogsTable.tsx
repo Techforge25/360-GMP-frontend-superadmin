@@ -14,7 +14,7 @@ export default function OrderLogsTable({ dateRange }: Props) {
   const { data, isPending } = useQuery({
     queryKey: [keys.orderLogs, dateRange, page],
     queryFn: () => fetchOrderLogs(dateRange, page),
-  }); 
+  });
 
   const orderLogs = data?.data?.docs
 
@@ -25,7 +25,7 @@ export default function OrderLogsTable({ dateRange }: Props) {
   return (
     <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
       <MarketplaceOrderLogsTable orderLogs={orderLogs} isPending={isPending} />
-      <PaginationComponent handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+      <PaginationComponent currentPage={page} handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
     </div>
   );
 }
