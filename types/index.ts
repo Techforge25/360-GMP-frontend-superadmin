@@ -1,4 +1,3 @@
-import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { ReactNode } from "react";
 
 export interface TabItem {
