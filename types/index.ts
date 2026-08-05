@@ -227,8 +227,14 @@ export interface ReportModalRef {
   close: () => void;
 }
 
+export type ReportType =
+  | "job"
+  | "business"
+  | "product"
+  | "community";
+
 export interface ReportModalProps {
-  reportType: "job" | "business" | "product" | "community";
+  reportType: ReportType;
 }
 export interface ReportEvidenceItem {
   id: number;

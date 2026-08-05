@@ -1,17 +1,13 @@
 "use client";
-import { useRef } from "react";
 import DataTable, { Column } from "@/components/common/DataTable";
-import {  MarketplaceReportTableRowData,  ReportModalRef } from "@/types";
+import {  MarketplaceReportTableRowData } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
-import { FaEye } from "react-icons/fa6";
 import { marketplaceReportTableData } from "@/constants/reports/reportTable";
-import ReportModal from "../ReportModal";
+import ReportActionButtons from "../ReportActionButtons";
 
-
-const columns = (
-  modalRef: React.RefObject<ReportModalRef | null>
-): Column<MarketplaceReportTableRowData>[] => [
+const reportType = "job";
+const columns : Column<MarketplaceReportTableRowData>[] = [
   {
     key: "reportedJob",
     header: "Job Title",
@@ -97,33 +93,27 @@ const columns = (
   },
 
   {
-    key: "action",
-    header: "Action",
-    align: "center",
-    render: () => (
-      <button
-        onClick={() => modalRef.current?.open()}
-        className="mx-auto flex h-9 w-9 cursor-pointer items-center justify-center rounded-full text-gray-600 transition hover:bg-gray-100"
-      >
-        <FaEye size={18} />
-      </button>
-    ),
-  },
+      key: "action",
+      header: "Action",
+      render: (row) => (
+        <>
+          <ReportActionButtons ReportId={row._id} reportType={reportType} />
+        </>
+      ),
+    },
 ];
 
 export default function ReportJobReportTable() {
-  const modalRef = useRef<ReportModalRef>(null);
   return (
     <>
       <div className="pt-4">
         <DataTable
-          columns={columns(modalRef)}
+          columns={columns}
           data={marketplaceReportTableData}
           rowKey={(row) => row._id}
         />
       </div>
 
-     <ReportModal ref={modalRef} reportType="job" />
     </>
   );
 }

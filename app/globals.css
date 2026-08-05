@@ -334,13 +334,13 @@ body {
     @apply flex h-full w-full items-center justify-center gap-2 cursor-pointer;
   }
 
-    .pagination-break {
-      @apply h-10 min-w-10 rounded-md border border-[#E2E8F0] flex items-center justify-center text-[#64748B] text-sm font-medium cursor-pointer;
-    }
-  
-    .pagination-break a {
-      @apply flex h-full w-full items-center justify-center text-[#64748B] no-underline cursor-pointer;
-    }
+  .pagination-break {
+    @apply h-10 min-w-10 rounded-md border border-[#E2E8F0] flex items-center justify-center text-[#64748B] text-sm font-medium cursor-pointer;
+  }
+
+  .pagination-break a {
+    @apply flex h-full w-full items-center justify-center text-[#64748B] no-underline cursor-pointer;
+  }
 
   /* Disabled Previous/Next */
   .pagination-disabled {
@@ -380,6 +380,7 @@ body {
   .approved-btn {
     @apply flex items-center justify-center gap-[0.5rem] px-[2rem] py-[0.60rem] bg-approved hover:bg-approved-hover text-white font-semibold text-[0.9375rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm;
   }
+
   .invite-btn {
     @apply mt-[1.25rem] flex w-full items-center justify-center gap-[0.375rem] rounded-[0.75rem] border border-gray-300 bg-white py-[0.75rem] text-[1rem] font-medium text-gray-800 transition-all hover:bg-gray-50 hover:border-gray-400 active:scale-[0.99] focus:outline-none cursor-pointer;
   }
