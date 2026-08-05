@@ -1,16 +1,29 @@
 "use client";
 
-import React, { forwardRef, useImperativeHandle, useState } from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { IoClose } from "react-icons/io5";
-import { FiDownload } from "react-icons/fi";
-import { LuClock3 } from "react-icons/lu";
-import { OrderModalRef } from "@/types";
+import { OrderModalRef, TypeOrderItems } from "@/types";
 import Image from "next/image";
 import EscrowTimeline from "./EscrowTimeline";
 import { escrowTimeline } from "@/constants/marketplace/orderTimeline";
+import { useQuery } from "@tanstack/react-query";
+import { keys } from "@/keys";
+import { fetchOrderLogsDetails } from "@/services/marketplace";
+import moment from "moment";
 
-const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
+interface Props {
+  orderId: string;
+  openModal: boolean;
+}
+
+const OrderModal = forwardRef<OrderModalRef, Props>(({ orderId }, ref) => {
   const [open, setOpen] = useState(false);
+
+  const { data, isPending } = useQuery({
+    queryKey: [keys.orderLogDetails, orderId],
+    queryFn: () => fetchOrderLogsDetails(orderId),
+    enabled: open && !!orderId,
+  });
 
   useImperativeHandle(ref, () => ({
     open: () => setOpen(true),
@@ -19,21 +32,25 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
 
   if (!open) return null;
 
+  const orderData = data?.data
+
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 sm:p-6">
       <div className="flex w-full max-w-3xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl max-h-[90vh]">
         <div className="relative border-b border-gray-100 p-6 sm:px-8">
           <button
             className="absolute right-6 top-6 text-gray-400 hover:text-gray-600"
-            onClick={() => setOpen(false)}
+            onClick={() => {
+              setOpen(false)
+            }}
           >
             <IoClose size={24} />
           </button>
           <h2 className="text-2xl font-medium text-gray-900">
-            Order Details #ORD-1234
+            Order Details #ORD-{orderData?._id?.slice(-5).toUpperCase()}
           </h2>
           <p className="mt-1 text-sm text-gray-500">
-            Placed on <span className="text-gray-600">Oct 26, 2025</span>
+            Placed on <span className="text-gray-600">{moment(orderData?.createdAt).format('DD MM YYYY')}</span>
           </p>
           <div className="mt-3 inline-flex items-center rounded-full border border-blue-300 bg-blue-50 px-4 py-1 text-sm font-medium text-blue-600">
             In Escrow
@@ -49,7 +66,7 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100">
                   <Image
-                    src="https://res.cloudinary.com/dh5msgx99/image/upload/v1784007258/user/profile/xnp5nspch1oorgtqwblr.jpg"
+                    src={orderData?.seller?.logo}
                     alt="Global Manufacturing.Co"
                     className="h-full w-full rounded-full object-cover"
                     width={88}
@@ -58,8 +75,8 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
                 </div>
 
                 <div>
-                  <h4 className="font-semibold text-gray-900">Alex Morgan</h4>
-                  <p className="text-sm text-gray-500">Alexmorgan@Gmail.Com</p>
+                  <h4 className="font-semibold text-gray-900">{orderData?.seller?.companyName}</h4>
+                  <p className="text-sm text-gray-500">{orderData?.seller?.email}</p>
                 </div>
               </div>
             </div>
@@ -73,7 +90,7 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
               <div className="flex items-center gap-4">
                 <div className="flex h-14 w-14 items-center justify-center rounded-full bg-gray-100">
                   <Image
-                    src="https://res.cloudinary.com/dh5msgx99/image/upload/v1784276293/logo/jwoy5zvag5bafk7a1e3k.png"
+                    src={orderData?.buyer?.logo}
                     alt="Global Manufacturing.Co"
                     className="h-full w-full rounded-full object-cover"
                     width={88}
@@ -82,10 +99,10 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
                 </div>
                 <div>
                   <h4 className="font-semibold text-gray-900">
-                    Global Manufacturing.Co
+                    {orderData?.buyer?.fullName}
                   </h4>
                   <p className="text-sm text-gray-500">
-                    Globalmanufactuting@Gmail.Com
+                    {orderData?.buyer?.email}
                   </p>
                 </div>
               </div>
@@ -96,27 +113,32 @@ const OrderModal = forwardRef<OrderModalRef>((_, ref) => {
             <h3 className="mb-4 text-lg font-semibold text-gray-900">
               Order Items
             </h3>
-            <div className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm flex items-center justify-between">
-              <div className="flex items-center gap-4">
-                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-100 overflow-hidden">
-                  <img
-                    src="https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&q=80&w=100&h=100"
-                    alt="Earbuds"
-                    className="object-cover h-full w-full"
-                  />
+            {orderData?.orderItems?.map((order: TypeOrderItems, index: number) => {
+              return (
+                <div key={index} className="rounded-xl border border-gray-100 bg-white p-4 shadow-sm flex items-center justify-between">
+                  <div className="flex items-center gap-4">
+                    <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-gray-100 overflow-hidden">
+                      <img
+                        src={order?.image}
+                        alt="Earbuds"
+                        className="object-cover h-full w-full"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-900">
+                        {order?.title}
+                      </h4>
+                      <p className="text-sm text-gray-500 mt-1">
+                        Quantity: 100 <span className="mx-1">•</span> Unit Price:
+                        ${order?.pricePerUnit?.toFixed(2)}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="text-lg font-semibold text-gray-900">$1,256</div>
                 </div>
-                <div>
-                  <h4 className="font-semibold text-gray-900">
-                    ANC Pro Wireless Earbuds
-                  </h4>
-                  <p className="text-sm text-gray-500 mt-1">
-                    Quantity: 100 <span className="mx-1">•</span> Unit Price:
-                    $99.00
-                  </p>
-                </div>
-              </div>
-              <div className="text-lg font-semibold text-gray-900">$1,256</div>
-            </div>
+              )
+            })}
+
           </div>
 
           <EscrowTimeline timeline={escrowTimeline} />

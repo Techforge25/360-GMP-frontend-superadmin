@@ -283,5 +283,11 @@ export type TypeOrderLog = {
   ,
 }
 
+export type TypeOrderItems = {
+  image: string;
+  pricePerUnit: number;
+  title: string;
+}
+
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

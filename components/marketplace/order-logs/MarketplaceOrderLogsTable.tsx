@@ -1,16 +1,13 @@
 "use client";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import DataTable, { Column } from "@/components/common/DataTable";
 import {
   MarketPlaceOrderLogsTableRowData,
-  OrderModalRef,
   TypeOrderLog,
 } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
-import { FaEye } from "react-icons/fa6";
-import OrderModal from "./OrderModal";
 import OrderLogActionButtons from "./OrderLogActionButtons";
 
 interface Props {
@@ -100,7 +97,7 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
   {
     key: "action",
     header: "Action",
-    align: "center",
+    // align: "center",
     render: (row) => (
       <>
         <OrderLogActionButtons OrderId={row?._id} />
