@@ -15,7 +15,7 @@ interface Props {
 }
 
 
-export default function RoleTableActions({ id, email , userName }: Props) {
+export default function RoleTableActions({ id, email , userName  }: Props) {
   const router = useRouter();
   const deleteModalRef = useRef<DeleteRoleModalRef>(null);
   const editPasswordModalRef = useRef<EditPasswordRef>(null);
@@ -48,6 +48,7 @@ export default function RoleTableActions({ id, email , userName }: Props) {
       <DeleteRoleModal
         ref={deleteModalRef}
         adminId={id}
+
       />
 
     </>

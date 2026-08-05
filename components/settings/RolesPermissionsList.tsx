@@ -5,10 +5,10 @@ import { roleTabs } from "@/constants/roles/tabs";
 import PrimaryButton from "../common/PrimaryButton";
 import Tabs from "../common/Tabs";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { keys } from "@/keys";
 import { getCreatedAdmins } from "@/services/settings";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import PaginationComponent from "../common/PaginationComponent";
 import InviteIcon from "@/assets/Icon.svg";
 import Image from "next/image";
@@ -17,13 +17,22 @@ export default function RolesPermissionsList() {
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
   const [page, setPage] = useState(1);
-
   const currentTab = searchParams.get("tab") || roleTabs[0]?.id;
 
   const { data, isFetching } = useQuery({
     queryKey: [keys.adminList, currentTab, page],
     queryFn: () => getCreatedAdmins(currentTab, page),
   });
+
+  useEffect(() => {
+    if (!data?.data) return;
+
+    const totalPages = Math.ceil(data.data.totalDocs / data.data.limit);
+
+    if (page > totalPages) {
+      setPage(totalPages || 1);
+    }
+  }, [data, page]);
 
   const adminData = data?.data?.docs;
 
