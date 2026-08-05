@@ -16,8 +16,8 @@ export default function ProductAuditTable({ dateRange }: Props) {
   const [page, setPage] = useState(1)
 
   const { data, isPending } = useQuery({
-    queryKey: [keys.orderProductAuditQueue, dateRange],
-    queryFn: () => productAudits(dateRange),
+    queryKey: [keys.orderProductAuditQueue, dateRange, page],
+    queryFn: () => productAudits(dateRange, page),
   });
 
   const productData = data?.data?.docs

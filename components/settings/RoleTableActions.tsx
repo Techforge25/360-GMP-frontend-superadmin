@@ -48,7 +48,6 @@ export default function RoleTableActions({ id, email, userName }: Props) {
       <DeleteRoleModal
         ref={deleteModalRef}
         adminId={id}
-
       />
 
     </>

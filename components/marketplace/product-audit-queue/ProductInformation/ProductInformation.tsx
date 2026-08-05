@@ -1,5 +1,4 @@
 'use client'
-import { product } from "@/constants/marketplace/product";
 import ProductImageGallery from "./ProductImageGallery";
 import ProductInfo from "./ProductInfo";
 import ProductSpecifications from "./ProductSpecifications";
@@ -10,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { productDetails } from "@/services/marketplace";
 import ProductDetailShimmer from "@/components/skeleton/ProductShimmer";
+import { product } from "@/constants/marketplace/product";
 
 export default function ProductDetail({
   productId,
@@ -40,10 +40,10 @@ export default function ProductDetail({
 
           <ProductSpecifications category={productDetail?.category} detail={productDetail?.detail} shippingCompany='MAERSK' shippingCost={0} estimatedDeliveryDays={productDetail?.estimatedDeliveryDays} minOrderQty={productDetail?.minOrderQty} />
           {productDetail?.status !== 'pending' && (
-            <ProductApprovedBy />
+            <ProductApprovedBy status={productDetail?.status} approval={data?.data?.approval} rejection={data?.data?.rejection} />
           )}
           {productDetail?.status === 'pending' && (
-            <RejectButtons />
+            <RejectButtons id={data?.data?._id} />
           )}
         </>
       )}

@@ -202,6 +202,28 @@ export interface ProductSpecificationsProps {
   detail: string;
 }
 
+export type TypeNotes = {
+  note: string;
+}
+
+export type ProductRejectionPayload = {
+  productId: string;
+  note: string;
+};
+
+export type TypeProductApproveReject = {
+  _id: string,
+  title: string,
+  category: string,
+  status: string,
+  createdAt: string,
+  seller: {
+    ownerName: string,
+    companyName: string,
+    logo: string
+  }
+}
+
 export interface RejectProductModalRef {
   open: () => void;
   close: () => void;

@@ -43,7 +43,7 @@ export default function MarketPlace({ dateRange }: Props) {
           <ProductAuditTable dateRange={dateRange} />
         )}
         {currentTab === "product-approve-reject" && (
-          <ProductApprovedTable />
+          <ProductApprovedTable dateRange={dateRange} />
         )}
       </div>
     </>
