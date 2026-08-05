@@ -12,8 +12,8 @@ export default function AllUserTable() {
         filters={[
           {
             key: "type",
-            options: ["Sneak Peek Free - 14 Days", "Consumer / Individual", "Silver", "Bronze", "Gold", "Premium"],
-            defaultValue: "Sneak Peek Free - 14 Days"
+            options: ["All","Sneak Peek Free - 14 Days", "Consumer / Individual", "Silver", "Bronze", "Gold", "Premium"],
+            defaultValue: "All"
           }
         ]}
         onSearch={(value) => {
