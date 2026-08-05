@@ -5,17 +5,31 @@ import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 
 interface PaginationProps {
   currentPage: number;
+  totalItems: number;
+  itemsPerPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
 }
 
 export default function Pagination({
   currentPage,
+  totalItems,
+  itemsPerPage,
   totalPages,
   onPageChange,
 }: PaginationProps) {
+  
+
   return (
     <div className="flex items-center justify-end border-t border-[#E2E8F0] bg-white px-4 py-4">
+      {/* <p className="text-sm font-medium text-[#4A5568]">
+        Showing{" "}
+        <span className="text-[#111827]">
+          {startItem}-{endItem}
+        </span>{" "}
+        Of <span className="text-[#111827]">{totalItems}</span>
+      </p> */}
+
       <ReactPaginate
         forcePage={Math.max(currentPage - 1, 0)}
         pageCount={totalPages}

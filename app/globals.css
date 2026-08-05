@@ -334,13 +334,13 @@ body {
     @apply flex h-full w-full items-center justify-center gap-2 cursor-pointer;
   }
 
-    .pagination-break {
-      @apply h-10 min-w-10 rounded-md border border-[#E2E8F0] flex items-center justify-center text-[#64748B] text-sm font-medium cursor-pointer;
-    }
-  
-    .pagination-break a {
-      @apply flex h-full w-full items-center justify-center text-[#64748B] no-underline cursor-pointer;
-    }
+  .pagination-break {
+    @apply h-10 min-w-10 rounded-md border border-[#E2E8F0] flex items-center justify-center text-[#64748B] text-sm font-medium cursor-pointer;
+  }
+
+  .pagination-break a {
+    @apply flex h-full w-full items-center justify-center text-[#64748B] no-underline cursor-pointer;
+  }
 
   /* Disabled Previous/Next */
   .pagination-disabled {
