@@ -54,7 +54,7 @@ export default function FormPasswordInput<T extends FieldValues>({
         </button>
       </div>
 
-      {error && <p className="text-xs text-red-500">{error.message}</p>}
+      {error && <p className="text-xs  mt-3  font-normal leading-relaxed text-red-500 break-words whitespace-normal">{error.message}</p>}
     </div>
   );
 }
