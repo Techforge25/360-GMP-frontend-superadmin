@@ -126,7 +126,6 @@ export default function CreateRoleForm({ adminId }: Props) {
         allowedModules: createData.allowedModules,
       });
     }
-    router.push('/settings/invite-admin')
   };
 
   return (

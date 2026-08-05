@@ -112,8 +112,6 @@ export default function RolesPermissionsList() {
                   currentPage={page}
                   handlePageChange={handlePageChange}
                   totalPages={data?.data?.totalPages || 1}
-                  totalItems={data?.data?.totalDocs || 0}
-                  totalItemsPerPage={data?.data?.limit || 10}
                 />
               )}
             </div>
@@ -128,8 +126,6 @@ export default function RolesPermissionsList() {
                 currentPage={page}
                 handlePageChange={handlePageChange}
                 totalPages={data?.data?.totalPages || 1}
-                totalItems={data?.data?.totalDocs || 0}
-                totalItemsPerPage={data?.data?.limit || 10}
               />
             )}
           </>
