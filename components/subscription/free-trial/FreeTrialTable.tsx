@@ -41,11 +41,7 @@ export default function FreeTrialTable({ dateRange }: Props) {
           {
             key: "sortBy",
             label: "Sort By",
-            options: [
-              "All User",
-              "Active Trial",
-              "Expired",
-            ],
+            options: ["All User", "Active Trial", "Expired"],
             defaultValue: "All",
           },
         ]}
@@ -55,8 +51,17 @@ export default function FreeTrialTable({ dateRange }: Props) {
         }}
         onFilterChange={(key, value) => handleFilterStatusChange(value)}
       />
-      <SubscriptionFreeTrialTable isPending={isPending} freeUsersData={freeUsersData} />
-      <PaginationComponent handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+      <SubscriptionFreeTrialTable
+        isPending={isPending}
+        freeUsersData={freeUsersData}
+      />
+      <PaginationComponent
+        currentPage={page}
+        handlePageChange={handlePageChange}
+        totalPages={data?.data?.totalPages || 1}
+        totalItems={data?.data?.totalDocs || 0}
+        totalItemsPerPage={data?.data?.limit || 10}
+      />
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import Pagination from "@/components/common/Pagination";
 
 interface PaginationComponentProps {
@@ -8,22 +7,23 @@ interface PaginationComponentProps {
   totalPages: number;
   totalItems: number;
   totalItemsPerPage: number;
+  currentPage: number;
 }
 
-export default function PaginationComponent({ handlePageChange, totalPages, totalItems, totalItemsPerPage }: PaginationComponentProps) {
-  const [page, setPage] = useState(1);
+export default function PaginationComponent({
+  handlePageChange,
+  totalPages,
+  totalItems,
+  totalItemsPerPage,
+  currentPage,
+}: PaginationComponentProps) {
   return (
     <Pagination
-      currentPage={page}
-      totalItems={totalItems && totalItems}
-      itemsPerPage={totalItemsPerPage && totalItemsPerPage}
-      totalPages={totalPages && totalPages}
-      onPageChange={(page) => {
-        setPage(page);
-        if (handlePageChange) {
-          handlePageChange(page);
-        }
-      }}
+      currentPage={currentPage}
+      totalItems={totalItems || 0}
+      itemsPerPage={totalItemsPerPage || 10}
+      totalPages={totalPages || 1}
+      onPageChange={handlePageChange}
     />
   );
 }

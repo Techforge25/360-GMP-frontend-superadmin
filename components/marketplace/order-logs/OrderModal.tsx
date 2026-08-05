@@ -40,9 +40,7 @@ const OrderModal = forwardRef<OrderModalRef, Props>(({ orderId }, ref) => {
         <div className="relative border-b border-gray-100 p-6 sm:px-8">
           <button
             className="absolute right-6 top-6 text-gray-400 hover:text-gray-600"
-            onClick={() => {
-              setOpen(false)
-            }}
+            onClick={() => setOpen(false)}
           >
             <IoClose size={24} />
           </button>

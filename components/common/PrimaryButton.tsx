@@ -37,7 +37,7 @@ export default function PrimaryButton({
       type={type}
       onClick={handleClick}
       disabled={disabledKey}
-      className={`btn-primary ${className}`}
+      className={`btn-primary   xl:text-[1rem] ${className}`}
     >
       {icon && <span className="btn-primary-icon">{icon}</span>}
 

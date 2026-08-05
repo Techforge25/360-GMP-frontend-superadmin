@@ -30,6 +30,20 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
     ),
   },
   {
+    key: "createdAt",
+    header: "order ID & Date",
+    render: (row) => (
+      <div className="flex flex-col">
+        <span className="text-[1rem] font-medium text-text-light">
+          {`#${row?._id.slice(0, 8).toUpperCase()}`}
+        </span>
+        <span className="text-[1rem] text-date-time">
+          {formatDate(row?.createdAt)}
+        </span>
+      </div>
+    ),
+  },
+  {
     key: "buyer",
     header: "Buyer Info",
     render: (row) => (

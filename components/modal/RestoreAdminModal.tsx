@@ -1,22 +1,19 @@
 "use client";
 import { keys } from "@/keys";
-import { deleteAdmin } from "@/services/settings";
+import { restoreAdmin } from "@/services/settings";
+import { RestoreAdminModalRef } from "@/types";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ParamValue } from "next/dist/server/request/params";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { FiAlertCircle, FiX } from "react-icons/fi";
 import { toast } from "react-toastify";
-
-export interface DeleteRoleModalRef {
-  open: () => void;
-  close: () => void;
-}
+import PrimaryButton from "../common/PrimaryButton";
 
 interface TypeAdminId {
   adminId: ParamValue;
 }
 
-const DeleteRoleModal = forwardRef<DeleteRoleModalRef, TypeAdminId>(
+const RestoreAdminModal = forwardRef<RestoreAdminModalRef, TypeAdminId>(
   ({ adminId }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const queryClient = useQueryClient();
@@ -27,18 +24,15 @@ const DeleteRoleModal = forwardRef<DeleteRoleModalRef, TypeAdminId>(
     }));
 
     const mutation = useMutation({
-      mutationFn: deleteAdmin,
+      mutationFn: restoreAdmin,
       onSuccess: () => {
-        setIsOpen(false);
         queryClient.invalidateQueries({ queryKey: [keys.adminList] });
-        toast.success("Admin deleted successfully");
-      },
-      onError: (error: any) => {
-        console.error(error);
+        toast.success("Admin restored successfully");
+        setIsOpen(false); // Modal close on success
       },
     });
 
-    const adminDeleteConfirmation = () => {
+    const handleRestoreAdmin = () => {
       mutation.mutate(adminId);
     };
 
@@ -54,8 +48,8 @@ const DeleteRoleModal = forwardRef<DeleteRoleModalRef, TypeAdminId>(
             <FiX className="h-5 w-5" />
           </button>
 
-          <div className="mx-auto flex h-[3.8rem] w-[3.8rem] items-center justify-center rounded-full bg-red-50 shrink-0">
-            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-bg-delete shadow-sm">
+          <div className="mx-auto flex h-[3.8rem] w-[3.8rem] items-center justify-center rounded-full bg-dark-blue-200 shrink-0">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full bg-brand-primary shadow-sm">
               <FiAlertCircle className="h-6 w-6 text-white" strokeWidth="2" />
             </div>
           </div>
@@ -63,37 +57,27 @@ const DeleteRoleModal = forwardRef<DeleteRoleModalRef, TypeAdminId>(
           <div className="mt-6 text-center px-2 w-full overflow-hidden">
             <div className="w-full max-w-[500px] mx-auto overflow-hidden">
               <h2 className="text-[1.35rem] font-bold text-gray-900 leading-snug break-words">
-                Are You Sure You Want To Delete{" "}
-                <br className="hidden sm:inline" /> The Role?
+                Are You Sure You Want To Restore This Admin?
               </h2>
               <p className="mt-3 text-[0.9rem] font-normal leading-relaxed text-text-setting-light break-words whitespace-normal">
-                This Admin will temporarily be removed from the system and will
-                not have access to any of the modules or features. You can
-                restore this admin at any time from the deleted admin's tab.
+                Restoring this admin will instantly restore their system access, including all previously assigned roles, permissions, and active workflows. They will be able to log in and manage their account right away.
               </p>
             </div>
-          </div>
-
-          <div className="mt-7 flex items-center rounded-xl bg-bg-gray-delete border border-gray-100 border-l-[2px] border-l-orange-400 p-4 pl-3 overflow-hidden">
-            <span className="text-[0.95rem] font-medium text-gray-600 ml-2 break-words whitespace-normal">
-              This May Affect Active Workflows Associated With This Role.
-            </span>
           </div>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
             <button
               onClick={() => setIsOpen(false)}
-              className="flex-1 rounded-md border border-gray-200 bg-white py-2 text-[1rem] font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200 cursor-pointer"
+              className="rounded-md border border-gray-200 bg-white py-2 text-[1rem] font-medium text-gray-700 hover:bg-gray-50 transition-colors duration-200 cursor-pointer w-full"
             >
               Cancel
             </button>
-            <button
-              onClick={() => adminDeleteConfirmation()}
-              className="signout-btn flex-1 py-2 text-[1rem] font-medium text-white rounded-md flex items-center justify-center"
-              disabled={mutation.isPending}
-            >
-              {mutation.isPending ? "Deleting..." : "Delete Role"}
-            </button>
+            <PrimaryButton
+              text={mutation.isPending ? "Restoring..." : "Restore Admin"}
+              className="w-full"
+              onClick={() => handleRestoreAdmin()}
+              disabledKey={mutation.isPending}
+            />
           </div>
         </div>
       </div>
@@ -101,6 +85,6 @@ const DeleteRoleModal = forwardRef<DeleteRoleModalRef, TypeAdminId>(
   },
 );
 
-DeleteRoleModal.displayName = "DeleteRoleModal";
+RestoreAdminModal.displayName = "RestoreAdminModal";
 
-export default DeleteRoleModal;
+export default RestoreAdminModal;

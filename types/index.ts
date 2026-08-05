@@ -137,6 +137,10 @@ export interface EditPasswordRef {
   close: () => void;
 }
 
+export interface AdminInviteSentRef {
+  open: () => void;
+  close: () => void;
+}
 export interface OrderModalRef {
   open: () => void;
   close: () => void;
@@ -222,7 +226,6 @@ export interface MarketplaceReportTableRowData {
 export interface ReportModalRef {
   open: () => void;
   close: () => void;
-
 }
 
 export interface ReportModalProps {
@@ -288,6 +291,12 @@ export type TypeOrderItems = {
   pricePerUnit: number;
   title: string;
 }
+
+export interface RestoreAdminModalRef {
+  open: () => void;
+  close: () => void;
+}
+
 
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

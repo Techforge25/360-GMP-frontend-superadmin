@@ -71,8 +71,17 @@ export default function PaidMemberTable({ dateRange }: Props) {
         }}
         onFilterChange={(key, value) => handleFilterStatusChange(value)}
       />
-      <SubscriptionPaidMemberTable isPending={isPending} paidUsersData={paidUsersData} />
-      <PaginationComponent handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+      <SubscriptionPaidMemberTable
+        isPending={isPending}
+        paidUsersData={paidUsersData}
+      />
+      <PaginationComponent
+        currentPage={page}
+        handlePageChange={handlePageChange}
+        totalPages={data?.data?.totalPages || 1}
+        totalItems={data?.data?.totalDocs || 0}
+        totalItemsPerPage={data?.data?.limit || 10}
+      />
     </div>
   );
 }

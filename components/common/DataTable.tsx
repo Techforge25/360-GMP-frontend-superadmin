@@ -23,25 +23,27 @@ export default function DataTable<T>({
   isLoading,
 }: DataTableProps<T>) {
   return (
-    <div className="w-full overflow-x-auto rounded-xl border border-border-light bg-surface shadow-sm font-secondary">
-      <table className="w-full border-collapse text-sm">
+    <div className="w-full max-w-full overflow-x-auto rounded-xl border border-border-light bg-surface shadow-sm font-secondary">
+      <table className="w-full min-w-[900px] border-collapse text-sm md:text-base">
         <thead>
-          <tr className="border-b border-border-light bg-surface-muted font-secondary text-[1rem] font-medium capitalize tracking-wide text-black">
+          <tr className="border-b border-border-light bg-surface-muted font-secondary text-sm md:text-[1rem] font-medium capitalize tracking-wide text-black">
             {columns?.map((column) => (
               <th
                 key={String(column.key)}
-                className={`px-6 py-4 font-medium ${column.align === "center"
-                  ? "text-center"
-                  : column.align === "right"
-                    ? "text-right"
-                    : "text-left"
-                  }`}
+                className={`whitespace-nowrap px-3 py-3 md:px-6 md:py-4 font-medium ${
+                  column.align === "center"
+                    ? "text-center"
+                    : column.align === "right"
+                      ? "text-right"
+                      : "text-left"
+                }`}
               >
                 {column.header}
               </th>
             ))}
           </tr>
         </thead>
+
         {isLoading ? (
           <TableShimmer columns={columns?.length} rows={6} />
         ) : (
@@ -55,12 +57,13 @@ export default function DataTable<T>({
                   {columns?.map((column) => (
                     <td
                       key={String(column.key)}
-                      className={`px-6 py-4 ${column.align === "center"
-                        ? "text-center"
-                        : column.align === "right"
-                          ? "text-right"
-                          : "text-left"
-                        }`}
+                      className={`whitespace-nowrap px-3 py-3 text-sm md:px-6 md:py-4 md:text-base ${
+                        column.align === "center"
+                          ? "text-center"
+                          : column.align === "right"
+                            ? "text-right"
+                            : "text-left"
+                      }`}
                     >
                       {column.render
                         ? column.render(row)
@@ -73,7 +76,7 @@ export default function DataTable<T>({
               <tr className="bg-white transition-colors hover:bg-surface-muted/30">
                 <td
                   colSpan={columns?.length || 1}
-                  className="px-3 py-3 text-center text-base text-gray-500"
+                  className="px-3 py-3 text-center text-sm text-gray-500 md:text-base"
                 >
                   No Data Found
                 </td>

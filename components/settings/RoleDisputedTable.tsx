@@ -6,7 +6,7 @@ import RoleDisputedTableActions from "./RoleDisputedTableActions";
 const columns: Column<TableRowData>[] = [
   {
     key: "name",
-    header: "Role Name",
+    header: "Admin Name",
     render: (row) => {
       return (
         <div className="flex flex-col">
