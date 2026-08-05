@@ -5,6 +5,9 @@ import { IoCloseOutline } from "react-icons/io5";
 import { FiCheck } from "react-icons/fi";
 import RejectProductModal from "./RejectProductModalRef";
 import { RejectProductModalRef } from "@/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { keys } from "@/keys";
+import { productApproval } from "@/services/marketplace";
 
 interface ActionButtonsProps {
   onApprove?: () => void;
@@ -12,10 +15,18 @@ interface ActionButtonsProps {
 
 export default function RejectButtons({ onApprove }: ActionButtonsProps) {
   const rejectModalRef = useRef<RejectProductModalRef>(null);
+  const queryClient = useQueryClient()
 
   const handleOpenRejectModal = () => {
     rejectModalRef.current?.open();
   };
+
+  const mutation = useMutation({
+    mutationFn: productApproval,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: [keys.orderProductAuditQueue] });
+    },
+  });
 
   const handleApprove = () => {
     if (onApprove) {

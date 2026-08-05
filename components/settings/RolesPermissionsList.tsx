@@ -8,7 +8,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState, useTransition } from "react";
 import { keys } from "@/keys";
 import { getCreatedAdmins } from "@/services/settings";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import PaginationComponent from "../common/PaginationComponent";
 import InviteIcon from "@/assets/Icon.svg";
 import Image from "next/image";
@@ -49,15 +49,6 @@ export default function RolesPermissionsList() {
       });
     });
   };
-
-  console.log(data?.data, "data docsss");
-
-  console.log(
-    data?.data?.docs?.totalPages,
-    data?.data?.docs?.totalItemsPerPage,
-    data?.data?.docs?.totalItems,
-    "total iteeemsssss",
-  );
 
   return (
     <main className="min-h-screen min-w-0 bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6">

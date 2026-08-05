@@ -1,4 +1,4 @@
-import React from "react";
+'use client'
 import { product } from "@/constants/marketplace/product";
 import ProductImageGallery from "./ProductImageGallery";
 import ProductInfo from "./ProductInfo";
@@ -6,24 +6,47 @@ import ProductSpecifications from "./ProductSpecifications";
 import BackButtonMain from "@/components/common/BackButtonMain";
 import RejectButtons from "./RejectButtons";
 import ProductApprovedBy from "./ProductApprovedBy";
+import { useQuery } from "@tanstack/react-query";
+import { keys } from "@/keys";
+import { productDetails } from "@/services/marketplace";
+import ProductDetailShimmer from "@/components/skeleton/ProductShimmer";
 
 export default function ProductDetail({
-  marketplace,
+  productId,
+  marketplace
 }: {
-  marketplace: string | null;
+  productId: string,
+  marketplace: string | null
 }) {
+  const { data, isPending } = useQuery({
+    queryKey: [keys.orderProductAuditQueueDetails, productId],
+    queryFn: () => productDetails(productId),
+    enabled: !!productId,
+  });
+
+  const productDetail = data?.data
+
   return (
     <div className="p-4 md:p-6 ">
       <BackButtonMain text="Back" />
-      <div className="mb-8 flex flex-col gap-8 lg:flex-row">
-        <ProductImageGallery images={product.images} />
+      {isPending ? (
+        <ProductDetailShimmer />
+      ) : (
+        <>
+          <div className="mb-8 flex flex-col gap-8 lg:flex-row">
+            <ProductImageGallery image={productDetail?.image} groupImages={productDetail?.groupImages} />
+            <ProductInfo title={productDetail?.title} pricePerUnit={productDetail?.pricePerUnit} minOrderQty={productDetail?.minOrderQty} companyName={productDetail?.businessProfile?.companyName} logo={productDetail?.businessProfile?.logo} category={productDetail?.category} />
+          </div>
 
-        <ProductInfo />
-      </div>
-
-      <ProductSpecifications product={product} />
-      {marketplace === "product-approve-reject" && <ProductApprovedBy />}
-      {marketplace === "product-audit-queue" && <RejectButtons />}
+          <ProductSpecifications category={productDetail?.category} detail={productDetail?.detail} shippingCompany='MAERSK' shippingCost={0} estimatedDeliveryDays={productDetail?.estimatedDeliveryDays} minOrderQty={productDetail?.minOrderQty} />
+          {productDetail?.status !== 'pending' && (
+            <ProductApprovedBy />
+          )}
+          {productDetail?.status === 'pending' && (
+            <RejectButtons />
+          )}
+        </>
+      )}
     </div>
   );
 }

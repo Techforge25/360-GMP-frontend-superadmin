@@ -16,7 +16,7 @@ export default function ProductAuditTableActions({
 
   const handleViewAccount = () => {
     router.push(
-      `/marketplace/view-product-information/${id}?marketplace=${marketplace}`
+      `/marketplace/view-product-information/${id}`
     );
   };
 

@@ -40,7 +40,7 @@ export default function MarketPlace({ dateRange }: Props) {
           <OrderLogsTable dateRange={dateRange} />
         )}
         {currentTab === "product-audit-queue" && (
-          <ProductAuditTable />
+          <ProductAuditTable dateRange={dateRange} />
         )}
         {currentTab === "product-approve-reject" && (
           <ProductApprovedTable />

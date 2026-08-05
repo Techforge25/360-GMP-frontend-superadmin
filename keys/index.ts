@@ -9,5 +9,7 @@ export const keys = {
      subscriptionListPaidDetails: 'subscriptionListPaidDetails',
      orderStats: 'orderStats',
      orderLogs: 'orderLogs',
-     orderLogDetails: 'orderLogDetails'
+     orderLogDetails: 'orderLogDetails',
+     orderProductAuditQueue: 'orderProductAuditQueue',
+     orderProductAuditQueueDetails: 'orderProductAuditQueueDetails'
 }

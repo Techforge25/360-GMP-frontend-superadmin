@@ -10,8 +10,8 @@ import { dropdownOptions } from "@/constants/subscription/SubsriptionTable";
 import { TypeDropdownOption } from "@/types";
 
 export default function MarketPlaceMain() {
-  const [page, setPage] = useState(1)
   const [dateRange, setDateRange] = useState('all')
+
   const { data, isPending } = useQuery({
     queryKey: [keys.orderStats, dateRange],
     queryFn: () => fetchMarketplaceStats(dateRange),
@@ -24,10 +24,6 @@ export default function MarketPlaceMain() {
   const changeDateRange = (e: React.ChangeEvent<HTMLSelectElement>) => {
     setDateRange(e.target.value);
   }
-
-  const handlePageChange = (page: number) => {
-    setPage(page);
-  };
 
   return (
     <div className="min-h-screen bg-background p-6 md:p-4 font-sans">

@@ -194,7 +194,12 @@ interface Product {
 }
 
 export interface ProductSpecificationsProps {
-  product: Product;
+  category: string;
+  shippingCompany: string;
+  shippingCost: number;
+  estimatedDeliveryDays: string;
+  minOrderQty: number;
+  detail: string;
 }
 
 export interface RejectProductModalRef {
@@ -294,6 +299,18 @@ export type TypeOrderItems = {
 export interface RestoreAdminModalRef {
   open: () => void;
   close: () => void;
+}
+
+export type TypeProductData = {
+  _id: string,
+  title: string,
+  category: string,
+  createdAt: string,
+  sellerInfo: {
+    ownerName: string,
+    companyName: string,
+    logo: string
+  }
 }
 
 

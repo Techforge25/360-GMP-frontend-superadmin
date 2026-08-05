@@ -1,10 +1,15 @@
 import DataTable, { Column } from "@/components/common/DataTable";
-import { ProductAuditTableRowData } from "@/types";
+import { ProductAuditTableRowData, TypeProductData } from "@/types";
 import ProductAuditTableActions from "./ProductAuditTableActions";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
-import { productAuditTableData } from "@/constants/marketplace/ProductAuditTable";
 const marketplace = "product-audit-queue";
+
+interface Props {
+  productData: TypeProductData[]
+  isPending: boolean;
+}
+
 const columns: Column<ProductAuditTableRowData>[] = [
   {
     key: "createdAt",
@@ -12,7 +17,7 @@ const columns: Column<ProductAuditTableRowData>[] = [
     render: (row) => (
       <div className="flex flex-col">
         <span className="text-[1rem] font-medium text-text-light">
-         {row?.title}
+          {row?.title}
         </span>
         <span className="text-[1rem] text-date-time">
           {formatDate(row?.createdAt)}
@@ -54,7 +59,7 @@ const columns: Column<ProductAuditTableRowData>[] = [
       </div>
     ),
   },
-  
+
   {
     key: "action",
     header: "Action",
@@ -68,13 +73,14 @@ const columns: Column<ProductAuditTableRowData>[] = [
   },
 ];
 
-export default function MarketplaceProductAuditTable() {
+export default function MarketplaceProductAuditTable({ productData, isPending }: Props) {
   return (
     <div className="pt-8">
       <DataTable
         columns={columns}
-        data={productAuditTableData}
+        data={productData}
         rowKey={(row) => row._id}
+        isLoading={isPending}
       />
     </div>
   );
