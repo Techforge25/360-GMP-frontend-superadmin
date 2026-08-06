@@ -1,4 +1,5 @@
 import api from "@/lib/axios";
+import { ProductRejectionPayload } from "@/types";
 import { ParamValue } from "next/dist/server/request/params";
 import { toast } from "react-toastify";
 
@@ -35,9 +36,9 @@ export const fetchOrderLogsDetails = async (orderId: ParamValue) => {
      }
 };
 
-export const productAudits = async (dateRange: string) => {
+export const productAudits = async (dateRange: string, page: number) => {
      try {
-          const { data } = await api.get(`/marketplace/productAudits?dateRange=${dateRange}`);
+          const { data } = await api.get(`/marketplace/productAudits?dateRange=${dateRange}&page=${page}`);
           return data;
      } catch (error: any) {
           toast.error(error?.message)
@@ -57,9 +58,9 @@ export const productDetails = async (productId: string) => {
      }
 };
 
-export const generalProducts = async (dateRange: string) => {
+export const generalProducts = async (dateRange: string, page: number) => {
      try {
-          const { data } = await api.get(`/marketplace/generalProducts?dateRange=${dateRange}`);
+          const { data } = await api.get(`/marketplace/generalProducts?dateRange=${dateRange}&page=${page}&limit=10`);
           return data;
      } catch (error: any) {
           toast.error(error?.message)
@@ -71,6 +72,7 @@ export const generalProducts = async (dateRange: string) => {
 export const productApproval = async (productId: string) => {
      try {
           const { data } = await api.patch(`/marketplace/product/${productId}/approve`);
+          toast.success(data?.message)
           return data;
      } catch (error: any) {
           toast.error(error?.message)
@@ -79,14 +81,20 @@ export const productApproval = async (productId: string) => {
      }
 };
 
-export const productRejection = async (productId: string, note: string) => {
+export const productRejection = async ({
+     productId,
+     note,
+}: ProductRejectionPayload) => {
      try {
-          const { data } = await api.patch(`/marketplace/product/${productId}/reject`, { note });
+          const { data } = await api.patch(
+               `/marketplace/product/${productId}/reject`,
+               { note }
+          );
+
           return data;
      } catch (error: any) {
-          toast.error(error?.message)
-          console.error(error?.message)
-          throw error
+          toast.error(error?.message);
+          throw error;
      }
 };
 

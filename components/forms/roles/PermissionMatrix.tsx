@@ -55,7 +55,7 @@ export default function PermissionMatrix({ modules, control }: Props) {
                             : [...selectedModules, mod.name]
                         );
                       }}
-                      className="h-5 w-5 accent-[#0066FF]"
+                      className="h-5 w-5 accent-[#0066FF] cursor-pointer"
                     />
                   </div>
                 );

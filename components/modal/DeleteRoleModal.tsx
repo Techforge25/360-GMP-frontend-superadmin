@@ -67,9 +67,7 @@ const DeleteRoleModal = forwardRef<DeleteRoleModalRef, TypeAdminId>(
                 <br className="hidden sm:inline" /> The Role?
               </h2>
               <p className="mt-3 text-[0.9rem] font-normal leading-relaxed text-text-setting-light break-words whitespace-normal">
-                This Admin will temporarily be removed from the system and will
-                not have access to any of the modules or features. You can
-                restore this admin at any time from the deleted admin's tab.
+                This Admin will immediately lose access to their assigned module(s). You can restore this role later from the Deleted Admin tab if needed.
               </p>
             </div>
           </div>

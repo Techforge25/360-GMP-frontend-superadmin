@@ -27,7 +27,7 @@ export default function StatusBadge({ status }: StatusBadgeProps) {
       className={`inline-flex rounded-[2.375rem] px-[1.175rem] py-1 text-[0.875rem] font-normal font-inter capitalize ${statusStyles[status] || "bg-gray-100 text-gray-600"
         }`}
     >
-      {status}
+      {status === "Consumer / Individual" ? "Consumer" : status}
     </span>
   );
 }

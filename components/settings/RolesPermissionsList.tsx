@@ -5,7 +5,7 @@ import { roleTabs } from "@/constants/roles/tabs";
 import PrimaryButton from "../common/PrimaryButton";
 import Tabs from "../common/Tabs";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useState, useTransition } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import { keys } from "@/keys";
 import { getCreatedAdmins } from "@/services/settings";
 import { useQuery } from "@tanstack/react-query";
@@ -18,7 +18,7 @@ export default function RolesPermissionsList() {
   const [isPending, startTransition] = useTransition();
   const [page, setPage] = useState(1);
   const currentTab = searchParams.get("tab") || roleTabs[0]?.id;
-
+  const tableRef = useRef<HTMLDivElement>(null);
   const { data, isFetching } = useQuery({
     queryKey: [keys.adminList, currentTab, page],
     queryFn: () => getCreatedAdmins(currentTab, page),
@@ -40,6 +40,14 @@ export default function RolesPermissionsList() {
     setPage(page);
   };
 
+  useEffect(() => {
+    if (!isFetching) {
+      tableRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [page, isFetching]);
   const handleTabChange = (tabId: string) => {
     setPage(1);
 
@@ -51,7 +59,7 @@ export default function RolesPermissionsList() {
   };
 
   return (
-    <main className="min-h-screen min-w-0 bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6">
+    <main className="min-h-screen min-w-0 bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6" ref={tableRef}>
       <div className="flex flex-col xl:flex-row items-left xl:items-center justify-between gap-4">
         <div className="max-w-full sm:max-w-[90%] md:max-w-full">
           <h1 className="text-lg sm:text-xl md:text-[1.375rem] font-semibold text-brand-primary tracking-wide leading-tight">
@@ -72,14 +80,14 @@ export default function RolesPermissionsList() {
               alt="Invite Admin"
               width={15}
               height={15}
-              className="w-[12.83px] h-[9.33px]"
+              className="w-[1rem] h-[1rem]"
             />
           }
           route="/settings/invite-admin"
         />
       </div>
 
-      <div className="mt-2">
+      <div className="mt-2" >
         <Tabs
           tabs={roleTabs}
           activeTab={currentTab}

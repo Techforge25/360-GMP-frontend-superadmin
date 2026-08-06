@@ -384,7 +384,7 @@ body {
   }
 
   .confirm-reject {
-    @apply flex items-center justify-center gap-[0.5rem] px-[1.75rem] py-[0.625rem] bg-reject hover:bg-[#e0342b] text-white font-light text-[1rem] rounded-[0.5rem] cursor-pointer;
+    @apply flex items-center justify-center gap-[0.5rem] px-[1.75rem] py-[0.625rem] bg-reject hover:bg-[#e0342b] text-white font-light text-[1rem] rounded-[0.5rem] cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .action-Reject {

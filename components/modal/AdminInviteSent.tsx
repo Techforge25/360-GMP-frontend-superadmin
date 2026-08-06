@@ -1,12 +1,11 @@
 "use client";
 import { AdminInviteSentRef } from "@/types";
 import { forwardRef, useImperativeHandle, useState } from "react";
-
 import { HiChevronRight } from "react-icons/hi";
-import { IoClose } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Inviteicon from "@/assets/inviteicon.svg";
+import { ParamValue } from "next/dist/server/request/params";
 interface TypeAdminValues {
   defaultValues: {
     username: string;
@@ -14,10 +13,11 @@ interface TypeAdminValues {
     password: string;
     allowedModules: string[];
   };
+  adminId: ParamValue;
 }
 
 const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
-  ({ defaultValues }, ref) => {
+  ({ defaultValues, adminId }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
@@ -45,14 +45,26 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
             <h2 className="text-[1.375rem] font-medium tracking-tight text-gray-900">
               Invitation Sent Successfully
             </h2>
-
-            <p className="mt-[0.625rem] text-[0.875rem] font-regular leading-[1.35rem] text-gray-500 ">
-              An Invitation Email Has Been Sent To{" "}
-              <span className="text-[#3B82F6] font-normal">
-                {defaultValues?.email}
-              </span>{" "}
-              With Instructions To Set Up Their Account As A Admin.
-            </p>
+            {!adminId && (
+              <>
+              <p className="mt-[0.625rem] text-[0.875rem] font-regular leading-[1.35rem] text-gray-500 ">
+                An invitation email has been sent to{" "}
+                <span className="text-[#3B82F6] font-normal">
+                  {defaultValues?.email}
+                </span>{" "}
+                with instructions to set up their account an Admin.
+              </p>
+              </>
+            )}
+            {adminId && (
+                <p className="mt-[0.625rem] text-[0.875rem] font-regular leading-[1.35rem] text-gray-500 ">
+                An invitation email has been sent to{" "}
+                <span className="text-[#3B82F6] font-normal">
+                  {defaultValues?.email}
+                </span>{" "}
+                with the updated role permissions and instructions to access the assigned modules.
+              </p>
+            )}
 
             <div className="mt-[1.5rem] w-full rounded-[0.875rem] bg-[#F8F9FA] p-[1.25rem] text-left border border-gray-100">
               <h3 className="text-[1rem] font-medium text-gray-900 pb-[0.75rem] border-b border-gray-200/70">
