@@ -44,10 +44,10 @@ export default function Reports({ dateRange }: Props) {
           <BusinessReportTable dateRange={dateRange} />
         </>}
         {currentTab === "product-reports" && <>
-          <ProductReportTable />
+          <ProductReportTable dateRange={dateRange} />
         </>}
         {currentTab === "coummunity-reports" && <>
-          <CommunityReportTable />
+          <CommunityReportTable dateRange={dateRange} />
         </>}
       </div>
     </>

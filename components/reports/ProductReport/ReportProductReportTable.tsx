@@ -1,19 +1,19 @@
 "use client";
 import DataTable, { Column } from "@/components/common/DataTable";
-import { MarketplaceReportTableRowData } from "@/types";
+import { TypeProductReport } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
-import { marketplaceReportTableData } from "@/constants/reports/reportTable";
 import ReportActionButtons from "../ReportActionButtons";
+
 const reportType = "product";
-const columns: Column<MarketplaceReportTableRowData>[] = [
+const columns: Column<TypeProductReport>[] = [
   {
     key: "reportedJob",
     header: "product title",
     render: (row) => (
       <div className="flex flex-col">
         <span className="text-[1rem] font-medium text-text-secondary">
-          {row?.reportedJob?.jobTitle}
+          {row?.reportedProduct?.title}
         </span>
       </div>
     ),
@@ -71,8 +71,8 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
     render: (row) => (
       <div className="flex items-center gap-3">
         <Image
-          src={row?.reportedJob?.owner?.logo}
-          alt={row?.reportedJob?.owner?.companyName}
+          src={row?.reportedProduct?.owner?.logo}
+          alt={row?.reportedProduct?.owner?.companyName}
           width={40}
           height={40}
           className="h-10 w-10 rounded-full"
@@ -80,11 +80,11 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
 
         <div className="flex flex-col">
           <span className="text-[1rem] font-medium text-text-secondary">
-            {row?.reportedJob?.owner?.companyName}
+            {row?.reportedProduct?.owner?.companyName}
           </span>
 
           <span className="text-sm text-text-hint">
-            {row?.reportedJob?.owner?.email}
+            {row?.reportedProduct?.owner?.email}
           </span>
         </div>
       </div>
@@ -102,14 +102,20 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
   },
 ];
 
-export default function ReportProductReportTable() {
+interface Props {
+  reportsData: TypeProductReport[],
+  isPending: boolean
+}
+
+export default function ReportProductReportTable({ reportsData, isPending }: Props) {
   return (
     <>
       <div className="pt-4">
         <DataTable
           columns={columns}
-          data={marketplaceReportTableData}
+          data={reportsData}
           rowKey={(row) => row._id}
+          isLoading={isPending}
         />
       </div>
     </>

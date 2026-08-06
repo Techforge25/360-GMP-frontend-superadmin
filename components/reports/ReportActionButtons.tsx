@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { ReportModalRef, ReportType } from "@/types";
 import { FaEye } from "react-icons/fa6";
 // import ReportModal from "./ReportModal";

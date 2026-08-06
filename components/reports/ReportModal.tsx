@@ -148,7 +148,7 @@ const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
                       </div>
                     </div>
 
-                    {displayData?.media && (
+                    {displayData?.media?.length > 0 && (
                       <div className="rounded-lg border border-gray-200 p-5 shadow-sm">
                         <h3 className="mb-4 text-[13px] font-bold uppercase tracking-wide text-gray-800">
                           Attached Evidence & Proof
