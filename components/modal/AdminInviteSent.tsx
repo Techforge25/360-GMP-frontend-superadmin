@@ -62,7 +62,7 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
                 <span className="text-[#3B82F6] font-normal">
                   {defaultValues?.email}
                 </span>{" "}
-                with the updated role permissions and instructions to accessing the assigned modules.
+                with the updated role permissions and instructions to access the assigned modules.
               </p>
             )}
 
