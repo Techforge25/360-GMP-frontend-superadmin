@@ -3,7 +3,7 @@ import { PermissionModule } from "@/types";
 export const initialModules: PermissionModule[] = [
   {
     id: "m1",
-    name: "Account Management ",
+    name: "Account Management",
     checked: true,
   },
   {
