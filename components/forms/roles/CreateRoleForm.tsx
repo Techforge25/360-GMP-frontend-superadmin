@@ -168,6 +168,7 @@ export default function CreateRoleForm({ adminId }: Props) {
       <AdminInviteSent
         ref={adminInviteSentModalRef}
         defaultValues={adminDefaultValues}
+        adminId={adminId}
       />
     </>
   );
