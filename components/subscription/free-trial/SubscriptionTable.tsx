@@ -1,55 +1,72 @@
 import DataTable, { Column } from "@/components/common/DataTable";
 import { FreeTrialTableRowData } from "@/types";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
-import Image from "next/image";
 import SubscriptionTableActions from "../SubscriptionTableActions";
-
+import Image from "next/image";
+import EmailIcon from "@/assets/EmailIconPurple.svg";
+import UserIcon from "@/assets/UserIconPurple.svg";
 type Props = {
   isPending: boolean;
   freeUsersData: FreeTrialTableRowData[];
-}
+};
 
-export default function SubscriptionFreeTrialTable({ isPending, freeUsersData }: Props) {
+export default function SubscriptionFreeTrialTable({
+  isPending,
+  freeUsersData,
+}: Props) {
   const subscriptionManagement = "SubscriptionManagementUsersTable";
   const columns: Column<FreeTrialTableRowData>[] = [
     {
       key: "userProfile",
       header: "User",
       render: (row) => (
-        <div className="flex items-center space-x-3">
-          <Image
-            src={row?.userProfile?.logo || "/images/image 95.png"}
-            alt={row?.userProfile?.fullName}
-            width={40}
-            height={40}
-            className="w-10 h-10 rounded-full"
-          />
+        <div className="flex flex-col gap-2">
+          <div className="flex items-center gap-3">
+            <div className="bg-bg-light-purple p-[0.6rem] rounded-full">
+              <Image
+                src={EmailIcon}
+                width={100}
+                height={100}
+                alt=""
+                className="w-[0.938rem] h-[0.75rem] text-brand-btn-pills"
+              />
+            </div>
+            <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+              {row?.email || "No Email Found"}
+            </p>
+          </div>
+          <div className="flex items-center ml-10">
+            <div className="flex gap-3">
+            <Image
+              src={UserIcon}
+              width={100}
+              height={100}
+              alt=""
+              className="w-[0.75rem]  text-brand-btn-pills"
+            />
 
-          <div className="flex flex-col">
-            <span className="text-[1rem] font-medium text-date-time">
-              {row?.userProfile?.fullName}
-            </span>
-
-            <span className="mt-0.5 text-sm text-text-hint">
-              {row?.userProfile?.email}
-            </span>
+            <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+              {row?.userProfile?.fullName || "No User Profile"}
+            </p>
+            </div>
           </div>
         </div>
+    
       ),
     },
     {
-      key: "daysRemaining",
-      header: "Days Remaining",
+      key: "daysConsumed",
+      header: "Days Consumed",
       render: (row) => {
-        const total = 15;
-        const current = row?.daysRemaining;
+        const total = 14;
+        const current = row?.daysConsumed;
         const percentage = Math.min((current / total) * 100, 100);
         const isNearStart = current >= 12;
         const barColor = isNearStart ? "bg-[#ff3b30]" : "bg-[#2563eb]";
 
         return (
           <div className="flex items-center gap-[0.875rem]">
-            <div className="w-[5.5rem] h-[0.5rem] bg-gray-100 rounded-full overflow-hidden">
+            <div className="w-[7rem] h-[0.75rem] bg-gray-100 rounded-full overflow-hidden">
               <div
                 className={`h-full rounded-full transition-all duration-300 ${barColor}`}
                 style={{ width: `${percentage}%` }}
@@ -57,7 +74,7 @@ export default function SubscriptionFreeTrialTable({ isPending, freeUsersData }:
             </div>
 
             <span className="text-[0.875rem] font-medium text-kyc-text-subheading whitespace-nowrap">
-              {current}/{current > 15 ? current : total}
+              {current}/14
             </span>
           </div>
         );
@@ -80,14 +97,15 @@ export default function SubscriptionFreeTrialTable({ isPending, freeUsersData }:
       ),
     },
   ];
-
+ const borderRadius = "rounded-[0px]! border-none"
   return (
-    <div className="pt-8">
+    <div className="pt-2">
       <DataTable
         columns={columns}
         data={freeUsersData}
         rowKey={(row) => row?._id}
         isLoading={isPending}
+        borderRadius={borderRadius}
       />
     </div>
   );

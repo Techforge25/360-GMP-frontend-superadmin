@@ -13,6 +13,7 @@ export default function SubscriptionDetailsComp() {
      const { data, isPending } = useQuery({
           queryKey: [keys.subscriptionListPaidDetails],
           queryFn: () => getSubscriptionUsersPaidDetails(id),
+          staleTime: 0
      });
 
      const paidUsersDataDetails = data?.data;
@@ -21,6 +22,7 @@ export default function SubscriptionDetailsComp() {
      return (
           <div className="p-4">
                <BackButtonMain text="Back" />
+               <div className="mt-5">
                <EnterpriseMonitoringProfile
                     isPending={isPending}
                     email={paidUsersDataDetails?.email || ""}
@@ -28,11 +30,13 @@ export default function SubscriptionDetailsComp() {
                     lifetimeValue={paidUsersDataDetails?.lifetimeValue || 0}
                     joinDate={paidUsersDataDetails?.joinDate || ""}
                />
+               </div>
                <SubscriptionPlanDetails
                     startDate={paidUsersDataDetails?.subscription?.startDate || ""}
                     endDate={paidUsersDataDetails?.subscription?.endDate || ""}
                     planName={paidUsersDataDetails?.subscription?.planName || ""}
                     planPrice={paidUsersDataDetails?.subscription?.planPrice || 0}
+                    lastPlane={paidUsersDataDetails?.lastSubscription || ""}
                />
           </div>
      )

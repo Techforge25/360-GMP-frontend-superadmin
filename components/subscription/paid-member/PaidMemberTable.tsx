@@ -9,18 +9,32 @@ import PaginationComponent from "@/components/common/PaginationComponent";
 
 type Props = {
   dateRange: string;
-}
+};
 
 export default function PaidMemberTable({ dateRange }: Props) {
   const [page, setPage] = useState(1);
-  const [validityChange, setValidityChange] = useState('all')
-  const [tierType, setTierType] = useState('all');
+  const [validityChange, setValidityChange] = useState("all");
+  const [tierType, setTierType] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
   const { isPending, data } = useQuery({
-    queryKey: [keys.subscriptionList, dateRange, page, validityChange, debouncedSearch, tierType],
-    queryFn: () => getSubscriptionUsersPaid(dateRange, page, validityChange, debouncedSearch, tierType),
+    queryKey: [
+      keys.subscriptionListPaid,
+      dateRange,
+      page,
+      validityChange,
+      debouncedSearch,
+      tierType,
+    ],
+    queryFn: () =>
+      getSubscriptionUsersPaid(
+        dateRange,
+        page,
+        validityChange,
+        debouncedSearch,
+        tierType,
+      ),
   });
 
   const handlePageChange = (page: number) => {
@@ -28,19 +42,34 @@ export default function PaidMemberTable({ dateRange }: Props) {
   };
 
   const handleFilterStatusChange = (value: string) => {
-    if (value === 'Consumer / Individual' || value === 'Silver' || value === 'Gold' || value === 'Enterprise') {
-      setTierType(value);
+    if (
+      value === "All Tiers" ||
+      value === "Consumer / Individual" ||
+      value === "Silver" ||
+      value === "Gold" ||
+      value === "Enterprise"
+    ) {
+      setTierType(value === "All Tiers" ? "" : value);
     } else {
-      setValidityChange(value === 'Active' ? 'active' : value === 'In Active' ? 'expired' : 'all');
+      setValidityChange(
+        value === "Active"
+          ? "active"
+          : value === "Canceled"
+            ? "canceled"
+            : value === "Expired"
+              ? "expired"
+              : "all",
+      );
     }
+
     setPage(1);
-  }
+  };
 
   const paidUsersData = data?.data?.docs;
   return (
-    <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
+    <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm">
       <SearchFilterBar
-        placeholder="Search Users..."
+        placeholder="Search by Business name..."
         filters={[
           {
             key: "sortBy",
@@ -52,16 +81,12 @@ export default function PaidMemberTable({ dateRange }: Props) {
               "Gold",
               "Enterprise",
             ],
-            defaultValue: "All",
+            defaultValue: "All Tiers",
           },
           {
             key: "status",
             label: "Status",
-            options: [
-              "All Status",
-              "Active",
-              "In Active",
-            ],
+            options: ["All Status", "Active", "Canceled", "Expired"],
             defaultValue: "All Status",
           },
         ]}
@@ -75,13 +100,16 @@ export default function PaidMemberTable({ dateRange }: Props) {
         isPending={isPending}
         paidUsersData={paidUsersData}
       />
-      <PaginationComponent
-        currentPage={page}
-        handlePageChange={handlePageChange}
-        totalPages={data?.data?.totalPages || 1}
-        totalItems={data?.data?.totalDocs || 0}
-        totalItemsPerPage={data?.data?.limit || 10}
-      />
+
+      {(data?.data?.totalPages ?? 0) > 1 && (
+        <PaginationComponent
+          currentPage={page}
+          handlePageChange={handlePageChange}
+          totalPages={data?.data?.totalPages || 1}
+          totalItems={data?.data?.totalDocs || 0}
+          totalItemsPerPage={data?.data?.limit || 10}
+        />
+      )}
     </div>
   );
 }

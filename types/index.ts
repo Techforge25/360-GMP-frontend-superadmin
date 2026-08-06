@@ -17,12 +17,12 @@ export interface TableRowData {
 
 export interface FreeTrialTableRowData {
   _id: string;
+  email:string;
   userProfile: {
     fullName: string;
-    email: string;
     logo: string;
   };
-  daysRemaining: number;
+  daysConsumed: number;
   status: string;
 }
 
@@ -34,6 +34,7 @@ export interface PaidMemberTableRowData {
   subscriptionTier: string;
   joinDate: string;
   status: string;
+  email:string;
 }
 
 export interface OrderModalRef {
@@ -352,6 +353,13 @@ export type ReportStats = {
   productReports: number,
   communityReports: number
 }
+export interface SubscriptionLastPlan {
+  startDate: string;
+  endDate: string;
+  planName: string;
+  planPrice: number;
+}
+// export type ReportStats = {
 
 export type ReportsData = {
   _id: string,
