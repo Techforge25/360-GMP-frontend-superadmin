@@ -9,17 +9,29 @@ import { useDebounce } from "@/hooks/useDebounceSearch";
 
 type Props = {
   dateRange: string;
-}
+};
 
 export default function FreeTrialTable({ dateRange }: Props) {
   const [page, setPage] = useState(1);
-  const [validityChange, setValidityChange] = useState('all')
+  const [validityChange, setValidityChange] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
   const { isPending, data } = useQuery({
-    queryKey: [keys.subscriptionList, dateRange, page, validityChange, debouncedSearch],
-    queryFn: () => getSubscriptionFreeUsers(dateRange, page, validityChange, debouncedSearch),
+    queryKey: [
+      keys.subscriptionList,
+      dateRange,
+      page,
+      validityChange,
+      debouncedSearch,
+    ],
+    queryFn: () =>
+      getSubscriptionFreeUsers(
+        dateRange,
+        page,
+        validityChange,
+        debouncedSearch,
+      ),
   });
 
   const handlePageChange = (page: number) => {
@@ -27,22 +39,30 @@ export default function FreeTrialTable({ dateRange }: Props) {
   };
 
   const handleFilterStatusChange = (value: string) => {
-    setValidityChange(value === 'Active Trial' ? 'active' : value === 'Expired' ? 'expired' : 'all');
+    setValidityChange(
+      value === "Active Trial"
+        ? "active"
+        : value === "Expired"
+          ? "expired"
+          : value === "Canceled"
+            ? "canceled"
+            : "all",
+    );
     setPage(1);
-  }
+  };
 
   const freeUsersData = data?.data?.docs;
 
   return (
-    <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
+    <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm">
       <SearchFilterBar
-        placeholder="Search Users..."
+        placeholder="Search by Users name..."
         filters={[
           {
             key: "sortBy",
             label: "Sort By",
-            options: ["All User", "Active Trial", "Expired"],
-            defaultValue: "All",
+            options: ["All User", "Active Trial", "Expired", "Canceled"],
+            defaultValue: "All User",
           },
         ]}
         onSearch={(value) => {
@@ -55,13 +75,16 @@ export default function FreeTrialTable({ dateRange }: Props) {
         isPending={isPending}
         freeUsersData={freeUsersData}
       />
-      <PaginationComponent
-        currentPage={page}
-        handlePageChange={handlePageChange}
-        totalPages={data?.data?.totalPages || 1}
-        totalItems={data?.data?.totalDocs || 0}
-        totalItemsPerPage={data?.data?.limit || 10}
-      />
+
+      {data?.data?.totalPages > 1 && (
+        <PaginationComponent
+          currentPage={page}
+          handlePageChange={handlePageChange}
+          totalPages={data?.data?.totalPages}
+          totalItems={data?.data?.totalDocs}
+          totalItemsPerPage={data?.data?.totalItemsPerPage}
+        />
+      )}
     </div>
   );
 }

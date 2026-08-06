@@ -1,3 +1,4 @@
+import { formatNumber } from "@/helpers";
 import { TypeSubscriptionStats } from "@/types";
 import { BsWallet } from "react-icons/bs";
 import { FaCrown } from "react-icons/fa6";
@@ -7,7 +8,7 @@ export default function useSubscriptionStats(data: TypeSubscriptionStats) {
      return ([
           {
                title: "Active Paid Members",
-               value: data?.totalPaidMembers,
+               value: formatNumber(data?.totalPaidMembers),
                subtitle: "",
                subtitletwo: "",
                showDot: false,
@@ -17,7 +18,7 @@ export default function useSubscriptionStats(data: TypeSubscriptionStats) {
           },
           {
                title: "Total Active Trials",
-               value: data?.totalTrialMembers,
+               value: formatNumber(data?.totalTrialMembers),
                subtitle: "",
                subtitletwo: "",
                showDot: false,

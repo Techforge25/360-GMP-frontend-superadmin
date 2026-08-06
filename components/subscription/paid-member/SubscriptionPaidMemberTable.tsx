@@ -3,13 +3,14 @@ import { PaidMemberTableRowData } from "@/types";
 import SubscriptionTableActions from "@/components/subscription/SubscriptionTableActions";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import Image from "next/image";
-import { SubsriptionPaidTable } from "@/constants/subscription/SubsriptionPaidTable";
 import { formatDate } from "@/helpers";
-
+import EmailIcon from "@/assets/EmailIconPurple.svg";
+import UserIcon from "@/assets/UserIconPurple.svg";
+import companyIcon from "@/assets/companyIcon.svg";
 type Props = {
   isPending: boolean;
   paidUsersData: PaidMemberTableRowData[];
-}
+};
 
 const subscriptionManagement = "SubscriptionManagementPaidTable";
 const columns: Column<PaidMemberTableRowData>[] = [
@@ -17,11 +18,50 @@ const columns: Column<PaidMemberTableRowData>[] = [
     key: "name",
     header: "User Name",
     render: (row) => (
-      <div className="flex items-center space-x-3">
-        <Image src={row?.logo ? row.logo : '/images/user-icon.webp'} alt={row?.fullName} width={40} height={40} className="w-10 h-10 rounded-full" />
-        <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">{row?.fullName}</span>
-          <span className="mt-0.5 text-sm text-text-hint">{row?.companyName}</span>
+      <div className="flex flex-col gap-2 ">
+        <div className="flex items-center gap-3">
+          <div className="bg-bg-light-purple p-[0.6rem]  rounded-full">
+            <Image
+              src={EmailIcon}
+              width={100}
+              height={100}
+              alt=""
+              className="w-[0.938rem] text-brand-btn-pills"
+            />
+          </div>
+          <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+            {row?.email || "No Email Found"}
+          </p>
+        </div>
+        <div className="flex items-center ml-10">
+          <div className="flex gap-3">
+            <Image
+              src={UserIcon}
+              width={100}
+              height={100}
+              alt=""
+              className="w-[0.75rem]  text-brand-btn-pills"
+            />
+
+            <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+              {row?.fullName || "No User Profile"}
+            </p>
+          </div>
+        </div>
+        <div className="flex items-center ml-10">
+          <div className="flex gap-3">
+            <Image
+              src={companyIcon}
+              width={100}
+              height={100}
+              alt=""
+              className="w-[0.75rem]  text-brand-btn-pills"
+            />
+
+            <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+              {row?.companyName || "No Business Profile"}
+            </p>
+          </div>
         </div>
       </div>
     ),
@@ -35,7 +75,11 @@ const columns: Column<PaidMemberTableRowData>[] = [
   {
     key: "createdAt",
     header: "Join Date",
-    render: (row) => <span className="text-[1rem] text-date-time">{formatDate(row?.joinDate)}</span>,
+    render: (row) => (
+      <span className="text-[1rem] text-date-time">
+        {formatDate(row?.joinDate)}
+      </span>
+    ),
   },
   {
     key: "status",
@@ -46,20 +90,27 @@ const columns: Column<PaidMemberTableRowData>[] = [
     key: "action",
     header: "Action",
     align: "center",
-    render: (row) => <SubscriptionTableActions id={row?._id} subscriptionManagement={subscriptionManagement} />,
+    render: (row) => (
+      <SubscriptionTableActions
+        id={row?._id}
+        subscriptionManagement={subscriptionManagement}
+      />
+    ),
   },
 ];
-
-
-export default function SubscriptionPaidMemberTable({ isPending, paidUsersData }: Props) {
-
+ const borderRadius = "rounded-[0px]! border-none"
+export default function SubscriptionPaidMemberTable({
+  isPending,
+  paidUsersData,
+}: Props) {
   return (
-    <div className="pt-8">
+    <div className="pt-0">
       <DataTable
         columns={columns}
         data={paidUsersData}
         rowKey={(row) => row?._id}
         isLoading={isPending}
+        borderRadius={borderRadius}
       />
     </div>
   );

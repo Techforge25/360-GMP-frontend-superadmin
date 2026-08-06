@@ -18,7 +18,7 @@ export default function BackButtonMain({
     <button
       type="button"
       onClick={() => router.back()}
-      className={`mb-4 inline-flex cursor-pointer items-center gap-2 text-sm text-black transition-colors hover:text-brand-primary ${className}`}
+      className={`mb-4 inline-flex cursor-pointer items-center gap-2 text-sm text-black transition-colors hover:text-brand-primary m-0! mt-2! ${className}`}
     >
       <FiArrowLeft className="h-4 w-4" />
       {text}

@@ -1,54 +1,47 @@
-'use client'
+"use client";
 import OverviewCards from "../common/OverviewCards";
 import Subscription from "./Subscription";
 import { keys } from "@/keys";
 import { getSubscriptionStats } from "@/services/subscription";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
-import { TypeDropdownOption } from "@/types";
 import { dropdownOptions } from "@/constants/subscription/SubsriptionTable";
 import useSubscriptionStats from "@/hooks/useSubscriptionStats";
+import CustomDateDropdown from "../common/CustomDateDropdown";
 
 export default function SubscriptionComp() {
-     const [dateRange, setDateRange] = useState('all');
+  const [dateRange, setDateRange] = useState("all");
 
-     const { isPending, data } = useQuery({
-          queryKey: [keys.subscriptionStats, dateRange],
-          queryFn: () => getSubscriptionStats(dateRange),
-     });
+  const { isPending, data } = useQuery({
+    queryKey: [keys.subscriptionStats, dateRange],
+    queryFn: () => getSubscriptionStats(dateRange),
+  });
 
-     const subscriptionStats = useSubscriptionStats(data?.data);
+  const subscriptionStats = useSubscriptionStats(data?.data);
 
-     const changeDateRange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-          setDateRange(e.target.value);
-     }
+  const changeDateRange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setDateRange(e.target.value);
+  };
 
-     return (
-          <div className="min-h-screen bg-background p-6 md:p-4 font-sans">
-               <OverviewCards
-                    heading="Subscription & Access"
-                    description="Manage user subscriptions, track trial conversions,and oversee platform access controls."
-                    cards={subscriptionStats}
-                    className="sm:grid-cols-3! lg:grid-cols-3!"
-                    isPending={isPending}
-                    dropdown={
-                         <select
-                              value={dateRange}
-                              onChange={changeDateRange}
-                              className="border border-border bg-white px-3 py-2 rounded-xl text-sm font-medium text-gray-700 outline-none">
-                              {dropdownOptions?.map((option: TypeDropdownOption, index: number) => {
-                                   return (
-                                        <option value={option.value} key={index}>
-                                             {option.label}
-                                        </option>
-                                   )
-                              })}
-                         </select>
-                    }
-               />
-               <div className="grid grid-cols-1  gap-[1.5rem] mt-6">
-                    <Subscription dateRange={dateRange} />
-               </div>
-          </div>
-     )
+  return (
+    <div className="min-h-screen bg-background p-6 md:p-4 font-sans">
+      <OverviewCards
+        heading="Subscription & Access"
+        description="Manage user subscriptions, track trial conversions,and oversee platform access controls."
+        cards={subscriptionStats}
+        className="sm:grid-cols-3! lg:grid-cols-3!"
+        isPending={isPending}
+        dropdown={
+          <CustomDateDropdown
+            value={dateRange}
+            onChange={setDateRange}
+            options={dropdownOptions}
+          />
+        }
+      />
+      <div className="grid grid-cols-1  gap-[1.5rem] mt-6">
+        <Subscription dateRange={dateRange} />
+      </div>
+    </div>
+  );
 }

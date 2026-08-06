@@ -52,10 +52,10 @@ export default function SearchFilterBar({
     }, debounceTime);
 
     return () => clearTimeout(timer);
-  }, [searchValue, debounceTime, onSearch]);
+  }, [searchValue, debounceTime]);
 
   return (
-    <div className="flex w-full flex-wrap items-center justify-between gap-4">
+    <div className="flex w-full flex-wrap items-center justify-between gap-4 p-[1.25rem]">
       <div className="relative w-full md:w-[320px] lg:w-[400px]">
         <FiSearch className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[#768299]" />
 
@@ -66,7 +66,6 @@ export default function SearchFilterBar({
         />
       </div>
 
-
       <div className="flex flex-wrap items-center gap-4">
         {filters.map((filter) => (
           <Controller
@@ -76,7 +75,7 @@ export default function SearchFilterBar({
             render={({ field }) => (
               <div className="flex items-center gap-3">
                 {filter.label && (
-                  <label className="whitespace-nowrap text-sm font-medium text-[#475569]">
+                  <label className="whitespace-nowrap text-[1rem] font-normal text-text-setting-dark font-inter">
                     {filter.label}
                   </label>
                 )}
@@ -89,9 +88,11 @@ export default function SearchFilterBar({
                         prev === filter.key ? null : filter.key,
                       )
                     }
-                    className="flex h-[2.75rem] w-full items-center justify-between rounded-lg border border-[#D7DFEC] bg-white px-4 text-sm font-medium text-[#111827]"
+                    className="flex h-[2.75rem] w-full items-center justify-between rounded-lg border border-border-gray-200 bg-white px-4 text-sm font-medium text-[#111827]"
                   >
-                    <span className="truncate">{field.value}</span>
+                    <span className="truncate text-[0.875rem] font-normal font-inter text-text-primary">
+                      {field.value}
+                    </span>
 
                     {openDropdown === filter.key ? (
                       <FiChevronUp className="shrink-0 ml-2" />
@@ -111,7 +112,7 @@ export default function SearchFilterBar({
                             onFilterChange?.(filter.key, item);
                             setOpenDropdown(null);
                           }}
-                          className={`flex w-full items-center border-b border-[#E2E8F0] px-4 py-3 text-left text-sm last:border-none hover:bg-[#F8F5FF] ${
+                          className={`flex w-full items-center border-b border-[#E2E8F0] capitalize px-4 py-3 text-left text-sm last:border-none hover:bg-[#F8F5FF] ${
                             field.value === item
                               ? "bg-[#F8F5FF] text-[#35126F]"
                               : "bg-white text-[#111827]"

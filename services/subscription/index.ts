@@ -13,7 +13,7 @@ export const getSubscriptionStats = async (dateRange: string) => {
      }
 };
 
-export const getSubscriptionFreeUsers = async (dateRange: string, page: number, validityChange: string, debouncedSearch: string) => {
+export const getSubscriptionFreeUsers = async (dateRange: string, page: number, validityChange: string, debouncedSearch?: string) => {
      try {
           const { data } = await api.get(`/subscriptionAccess/trialUsers?dateRange=${dateRange}&page=${page}&limit=10&subscriptionStatus=${validityChange}&search=${debouncedSearch}`);
           return data;
