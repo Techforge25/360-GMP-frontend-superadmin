@@ -1,6 +1,6 @@
 import SearchFilterBar from "@/components/common/SearchFilterBar";
 import SubscriptionPaidMemberTable from "./SubscriptionPaidMemberTable";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
@@ -17,6 +17,7 @@ export default function PaidMemberTable({ dateRange }: Props) {
   const [tierType, setTierType] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
+  const tableRef = useRef<HTMLDivElement>(null);
 
   const { isPending, data } = useQuery({
     queryKey: [
@@ -40,6 +41,15 @@ export default function PaidMemberTable({ dateRange }: Props) {
   const handlePageChange = (page: number) => {
     setPage(page);
   };
+
+  useEffect(() => {
+    if (!isPending) {
+      tableRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [page, isPending]);
 
   const handleFilterStatusChange = (value: string) => {
     if (
@@ -67,7 +77,7 @@ export default function PaidMemberTable({ dateRange }: Props) {
 
   const paidUsersData = data?.data?.docs;
   return (
-    <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm">
+    <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm" ref={tableRef}>
       <SearchFilterBar
         placeholder="Search by Business name..."
         filters={[
