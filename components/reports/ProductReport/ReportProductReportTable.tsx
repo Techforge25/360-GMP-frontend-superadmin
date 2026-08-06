@@ -96,7 +96,7 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
     header: "Action",
     render: (row) => (
       <>
-        <ReportActionButtons ReportId={row._id} reportType={reportType} />
+        <ReportActionButtons ReportId={row._id} reportType={reportType} reportModal='Product' />
       </>
     ),
   },

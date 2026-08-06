@@ -1,33 +1,42 @@
 "use client";
-import React, { useRef } from "react";
-import {  ReportModalRef, ReportType } from "@/types";
+import React, { useRef, useState } from "react";
+import { ReportModalRef, ReportType } from "@/types";
 import { FaEye } from "react-icons/fa6";
-import ReportModal from "./ReportModal";
+// import ReportModal from "./ReportModal";
+import dynamic from "next/dynamic";
 
 interface ReportActionButtonsProps {
   ReportId: string;
   reportType: ReportType;
+  reportModal: 'Business' | 'Community' | 'Job' | 'Product';
 }
+
+const ReportModal = dynamic(() => import('./ReportModal'), {
+  ssr: false,
+});
 
 export default function ReportActionButtons({
   ReportId,
   reportType,
+  reportModal,
 }: ReportActionButtonsProps) {
   const modalRef = useRef<ReportModalRef>(null);
-
+  const [isOpen, setIsOpen] = useState(false)
   return (
     <>
       <div className="flex justify-end items-center gap-[1rem] font-sans">
         <span
           onClick={() => {
-            modalRef.current?.open()
+            setIsOpen(true)
           }}
           className="flex cursor-pointer items-center justify-center text-text-secondary text-[1rem]"
         >
           <FaEye />
         </span>
       </div>
-      <ReportModal ref={modalRef} reportType={reportType} />
+      {isOpen && (
+        <ReportModal isOpen={isOpen} ReportId={ReportId} ref={modalRef} reportType={reportType} reportModal={reportModal} onClose={() => setIsOpen(false)} />
+      )}
     </>
   );
 }

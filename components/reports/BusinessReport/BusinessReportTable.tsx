@@ -1,21 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 
 // import PaginationComponent from "@/components/common/PaginationComponent";
 
 import SearchFilterBar from "@/components/common/SearchFilterBar";
 import ReportBusinessReportTable from "./ReportBusinessReportTable";
+import { useDebounce } from "@/hooks/useDebounceSearch";
+import { useQuery } from "@tanstack/react-query";
+import { getBusinessReports } from "@/services/reports";
+import { keys } from "@/keys";
+import PaginationComponent from "@/components/common/PaginationComponent";
 
-export default function BusinessReportTable() {
+interface Props {
+  dateRange: string
+}
+
+export default function BusinessReportTable({ dateRange }: Props) {
+  const [page, setPage] = useState(1)
+  const [search, setSearch] = useState("");
+  const debouncedSearch = useDebounce(search, 500);
+
+  const { data, isPending } = useQuery({
+    queryKey: [keys.reportBusiness, page, debouncedSearch],
+    queryFn: () => getBusinessReports(dateRange, debouncedSearch, page),
+  });
+
+  const reportsData = data?.data?.docs
+
+  const handlePageChange = (page: number) => {
+    setPage(page)
+  }
+
+  const handleFilterStatusChange = (value: string) => {
+    setPage(1);
+  }
+
   return (
     <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
       <SearchFilterBar
         placeholder="Search Report..."
         onSearch={(value) => {
-          console.log("Business Search:", value);
+          setSearch(value);
+          setPage(1);
         }}
+        onFilterChange={(key, value) => handleFilterStatusChange(value)}
       />
-      <ReportBusinessReportTable />
-      {/* <PaginationComponent /> */}
+      <ReportBusinessReportTable reportsData={reportsData} isPending={isPending} />
+      {data?.data?.totalPages > 1 && (
+        <PaginationComponent currentPage={page} handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+      )}
     </div>
   );
 }

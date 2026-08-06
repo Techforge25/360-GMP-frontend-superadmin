@@ -262,7 +262,12 @@ export type ReportType =
 
 export interface ReportModalProps {
   reportType: ReportType;
+  ReportId: string;
+  reportModal: string;
+  onClose: () => void;
+  isOpen: boolean
 }
+
 export interface ReportEvidenceItem {
   id: number;
   fileName: string;
@@ -341,9 +346,113 @@ export type TypeProductData = {
   }
 }
 
-// export type ReportStats = {
+export type ReportStats = {
+  jobReports: number,
+  businessReports: number,
+  productReports: number,
+  communityReports: number
+}
 
-// }
+export type ReportsData = {
+  _id: string,
+  reason: string,
+  createdAt: string,
+  reportedBy: {
+    fullName: string,
+    email: string,
+    logo: string
+  },
+  reportedJob: {
+    jobTitle: string,
+    owner: {
+      companyName: string,
+      logo: string,
+      email: string
+    }
+  }
+}
+
+export type TypeViewJobReport = {
+  _id: string,
+  reason: string,
+  media: string[],
+  description: string,
+  createdAt: string,
+  reportedBy: {
+    fullName: string,
+    email: string,
+    logo: string
+  },
+  reportedJob: {
+    jobTitle: string,
+    employmentType: string,
+    owner: {
+      companyName: string
+    }
+  }
+}
+
+export type TypeViewBusinessReport = {
+  _id: string,
+  reason: string,
+  media: string[],
+  description: string,
+  createdAt: string,
+  reportedBy: {
+    fullName: string,
+    email: string,
+    logo: string
+  },
+  reportedBusiness: {
+    ownerName: string,
+    companyName: string,
+    primaryIndustry: string,
+    email: string
+  }
+}
+
+export type TypeViewProductReport = {
+  _id: string,
+  reason: string,
+  media: string[],
+  description: string,
+  createdAt: string,
+  reportedBy: {
+    fullName: string,
+    email: string,
+    logo: string
+  },
+  reportedProduct: {
+    title: string,
+    category: string,
+    pricePerUnit: number,
+    owner: {
+      companyName: string,
+      email: string
+    }
+  }
+}
+
+export type TypeViewCommunityReport = {
+  _id: string,
+  reason: string,
+  media: string[],
+  description: string,
+  createdAt: string,
+  reportedBy: {
+    fullName: string,
+    email: string,
+    logo: string
+  },
+  reportedCommunity: {
+    name: string,
+    type: string,
+    owner: {
+      companyName: string,
+      email: string
+    }
+  }
+}
 
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

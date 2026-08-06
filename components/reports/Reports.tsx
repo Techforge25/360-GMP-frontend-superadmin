@@ -1,5 +1,4 @@
 "use client";
-
 import { useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Tabs from "../common/Tabs";
@@ -9,7 +8,11 @@ import BusinessReportTable from "./BusinessReport/BusinessReportTable";
 import ProductReportTable from "./ProductReport/ProductReportTable";
 import CommunityReportTable from "./CommunityReport/CommunityReportTable";
 
-export default function Reports() {
+interface Props {
+  dateRange: string;
+}
+
+export default function Reports({ dateRange }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
@@ -35,16 +38,16 @@ export default function Reports() {
       <div
         className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
       >
-        {currentTab === "jobs-reports" && <JobReportTable />}
+        {currentTab === "jobs-reports" && <JobReportTable dateRange={dateRange} />}
 
         {currentTab === "business-reports" && <>
-        <BusinessReportTable/>
+          <BusinessReportTable dateRange={dateRange} />
         </>}
         {currentTab === "product-reports" && <>
-        <ProductReportTable/>
+          <ProductReportTable />
         </>}
         {currentTab === "coummunity-reports" && <>
-        <CommunityReportTable/>
+          <CommunityReportTable />
         </>}
       </div>
     </>

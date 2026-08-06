@@ -1,20 +1,25 @@
 "use client";
 import DataTable, { Column } from "@/components/common/DataTable";
-import { MarketplaceReportTableRowData } from "@/types";
+import { MarketplaceReportTableRowData, TypeViewBusinessReport } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
-import { marketplaceReportTableData } from "@/constants/reports/reportTable";
 import ReportActionButtons from "../ReportActionButtons";
+
+interface Props {
+  reportsData: TypeViewBusinessReport[];
+  isPending: boolean;
+}
+
 const reportType = "business";
-const columns: Column<MarketplaceReportTableRowData>[] = [
+const columns: Column<any>[] = [
   {
     key: "business",
     header: "Business Name",
     render: (row) => (
       <div className="flex items-center gap-3">
         <Image
-          src={row?.reportedJob?.owner?.logo}
-          alt={row?.reportedJob?.owner?.companyName}
+          src={row?.reportedBusiness?.logo}
+          alt={row?.reportedBusiness?.companyName}
           width={40}
           height={40}
           className="h-10 w-10 rounded-full"
@@ -22,11 +27,11 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
 
         <div className="flex flex-col">
           <span className="text-[1rem] font-medium text-text-secondary">
-            {row?.reportedJob?.owner?.companyName}
+            {row?.reportedBusiness?.companyName}
           </span>
 
           <span className="text-sm text-text-hint">
-            {row?.reportedJob?.owner?.email}
+            {row?.reportedBusiness?.email}
           </span>
         </div>
       </div>
@@ -83,20 +88,21 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
     header: "Action",
     render: (row) => (
       <>
-        <ReportActionButtons ReportId={row._id} reportType={reportType} />
+        <ReportActionButtons ReportId={row._id} reportType={reportType} reportModal='Business'/>
       </>
     ),
   },
 ];
 
-export default function ReportBusinessReportTable() {
+export default function ReportBusinessReportTable({ reportsData, isPending }: Props) {
   return (
     <>
       <div className="pt-4">
         <DataTable
           columns={columns}
-          data={marketplaceReportTableData}
+          data={reportsData}
           rowKey={(row) => row._id}
+          isLoading={isPending}
         />
       </div>
     </>

@@ -14,4 +14,12 @@ export const keys = {
      orderProductAuditQueueDetails: 'orderProductAuditQueueDetails',
      orderProductRejectionApproval: 'orderProductRejectionApproval',
      reportsStats: 'reportsStats',
+     reportJob: 'reportJob',
+     reportBusiness: 'reportBusiness',
+     reportProduct: 'reportProduct',
+     reportCommunity: 'reportCommunity',
+     viewReportJob: 'viewReportJob',
+     viewReportBusiness: 'viewReportBusiness',
+     viewReportProduct: 'viewReportProduct',
+     viewReportCommunity: 'viewReportCommunity'
 }

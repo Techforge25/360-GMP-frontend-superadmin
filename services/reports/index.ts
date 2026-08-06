@@ -11,3 +11,70 @@ export const getReportStat = async (dateRange: string) => {
           throw error
      }
 };
+
+export const getJobReports = async (dateRange: string, search: string, page: number) => {
+     try {
+          const { data } = await api.get(`/reportManagement/job?dateRange=${dateRange}&search=${search}&page=${page}&limit=10`);
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+export const getBusinessReports = async (dateRange: string, search: string, page: number) => {
+     try {
+          const { data } = await api.get(`/reportManagement/businessProfile?dateRange=${dateRange}&search=${search}&page=${page}&limit=10`);
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+export const viewJobReports = async (reportId: string) => {
+     try {
+          const { data } = await api.get(`/reportManagement/job/${reportId}`)
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+export const viewBusinessReports = async (reportId: string) => {
+     try {
+          const { data } = await api.get(`/reportManagement/business/${reportId}`)
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+export const viewProductReports = async (reportId: string) => {
+     try {
+          const { data } = await api.get(`/reportManagement/product/${reportId}`)
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+export const viewCommunityReports = async (reportId: string) => {
+     try {
+          const { data } = await api.get(`/reportManagement/community/${reportId}`)
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
