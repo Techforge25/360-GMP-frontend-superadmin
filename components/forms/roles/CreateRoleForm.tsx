@@ -38,6 +38,7 @@ export default function CreateRoleForm({ adminId }: Props) {
     password: "",
     allowedModules: [],
   });
+
   const adminInviteSentModalRef = useRef<AdminInviteSentRef>(null);
   const checkValidationRequest = adminId
     ? updateAdminSchema
@@ -85,7 +86,6 @@ export default function CreateRoleForm({ adminId }: Props) {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.adminList] });
       setAdminDefaultValues(getValues() as FormValues);
-
       adminInviteSentModalRef.current?.open();
     },
   });
@@ -103,8 +103,7 @@ export default function CreateRoleForm({ adminId }: Props) {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.adminList] });
-       setAdminDefaultValues(getValues() as FormValues);
-
+      setAdminDefaultValues(getValues() as FormValues);
       adminInviteSentModalRef.current?.open();
       toast.success("Admin updated successfully");
     },
@@ -135,11 +134,11 @@ export default function CreateRoleForm({ adminId }: Props) {
           <BackButtonMain text="Back" />
 
           <h1 className="text-[1.375rem] font-semibold text-brand-primary">
-           {adminId ? "Update Role & Permissions" : "Create New Role"}
+            {adminId ? "Update Role & Permissions" : "Create New Role"}
           </h1>
 
           <p className="mt-1 text-sm text-brand-rating-text-border">
-            {adminId ? "Modify the role details and permissions assigned to this role." :"Define specialized permissions for team members to manage mobility workflows."} 
+            {adminId ? "Modify the role details and permissions assigned to this role." : "Define specialized permissions for team members to manage mobility workflows."}
           </p>
         </div>
 
@@ -162,7 +161,7 @@ export default function CreateRoleForm({ adminId }: Props) {
                   ? "Sending Invitation..."
                   : "Send Invitation"
             }
-            disabledKey={!isValid}
+            disabledKey={!isValid || mutation.isPending || updateMutation.isPending}
           />
         </div>
       </form>

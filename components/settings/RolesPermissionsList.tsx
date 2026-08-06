@@ -58,15 +58,6 @@ export default function RolesPermissionsList() {
     });
   };
 
-  console.log(data?.data, "data docsss");
-
-  console.log(
-    data?.data?.docs?.totalPages,
-    data?.data?.docs?.totalItemsPerPage,
-    data?.data?.docs?.totalItems,
-    "total iteeemsssss",
-  );
-
   return (
     <main className="min-h-screen min-w-0 bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6" ref={tableRef}>
       <div className="flex flex-col xl:flex-row items-left xl:items-center justify-between gap-4">

@@ -14,21 +14,8 @@ interface Props {
   orderLogs: TypeOrderLog[];
   isPending: boolean;
 }
+
 const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
-  {
-    key: "createdAt",
-    header: "order ID & Date",
-    render: (row) => (
-      <div className="flex flex-col">
-        <span className="text-[1rem] font-medium text-text-light">
-          {`#${row?._id.slice(0, 8).toUpperCase()}`}
-        </span>
-        <span className="text-[1rem] text-date-time">
-          {formatDate(row?.createdAt)}
-        </span>
-      </div>
-    ),
-  },
   {
     key: "createdAt",
     header: "order ID & Date",
@@ -108,16 +95,16 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
     ),
   },
 
-  {
-    key: "action",
-    header: "Action",
-    // align: "center",
-    render: (row) => (
-      <>
-        <OrderLogActionButtons OrderId={row?._id} />
-      </>
-    ),
-  },
+  // {
+  //   key: "action",
+  //   header: "Action",
+  //   // align: "center",
+  //   render: (row) => (
+  //     <>
+  //       <OrderLogActionButtons OrderId={row?._id} />
+  //     </>
+  //   ),
+  // },
 ];
 
 export default function MarketplaceOrderLogsTable({

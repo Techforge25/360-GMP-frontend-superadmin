@@ -1,12 +1,18 @@
 import DataTable, { Column } from "@/components/common/DataTable";
-import { ProductApprovedTableRowData } from "@/types";
+import { ProductApprovedTableRowData, TypeProductApproveReject } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
 import ProductAuditTableActions from "../product-audit-queue/ProductAuditTableActions";
-import { ProductApprovedTable } from "@/constants/marketplace/ProductApprovedTable";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 const marketplace = "product-approve-reject";
-const columns: Column<ProductApprovedTableRowData>[] = [
+
+interface Props {
+  productApproveReject: TypeProductApproveReject[],
+  dateRange: string;
+  isPending: boolean;
+}
+
+const columns: Column<TypeProductApproveReject>[] = [
   {
     key: "createdAt",
     header: "Product",
@@ -27,8 +33,8 @@ const columns: Column<ProductApprovedTableRowData>[] = [
     render: (row) => (
       <div className="flex items-center space-x-3">
         <Image
-          src={row?.sellerInfo?.logo}
-          alt={row?.sellerInfo?.companyName}
+          src={row?.seller?.logo}
+          alt={row?.seller?.companyName}
           width={40}
           height={40}
           className="h-10 w-10 rounded-full"
@@ -36,11 +42,11 @@ const columns: Column<ProductApprovedTableRowData>[] = [
 
         <div className="flex flex-col">
           <span className="text-[1rem] font-medium text-text-secondary">
-            {row?.sellerInfo?.companyName}
+            {row?.seller?.companyName}
           </span>
 
           <span className="mt-0.5 text-sm text-text-hint">
-            {row?.sellerInfo?.ownerName}
+            {row?.seller?.ownerName}
           </span>
         </div>
       </div>
@@ -75,13 +81,15 @@ const columns: Column<ProductApprovedTableRowData>[] = [
   },
 ];
 
-export default function MarketplaceProductApprovedTable() {
+export default function MarketplaceProductApprovedTable({ productApproveReject, isPending }: Props) {
+  console.log(productApproveReject, 'product approve reject')
   return (
     <div className="pt-8">
       <DataTable
         columns={columns}
-        data={ProductApprovedTable}
+        data={productApproveReject}
         rowKey={(row) => row._id}
+        isLoading={isPending}
       />
     </div>
   );

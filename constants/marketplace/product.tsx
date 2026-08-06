@@ -16,26 +16,7 @@ export const product = {
   category: "Electronic",
 
   specifications: [
-    {
-      label: "Category",
-      value: "Sports & Fitness",
-    },
-    {
-      label: "Shipping Method",
-      value: "Paypal",
-    },
-    {
-      label: "Shipping Cost",
-      value: "$0",
-    },
-    {
-      label: "Estimated Delivery",
-      value: "Ready to ship in 7 days",
-    },
-    {
-      label: "Min Order Qty",
-      value: "2",
-    },
+    
   ],
 
   productDetail:

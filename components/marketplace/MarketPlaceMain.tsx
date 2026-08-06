@@ -10,8 +10,8 @@ import { dropdownOptions } from "@/constants/subscription/SubsriptionTable";
 import { TypeDropdownOption } from "@/types";
 
 export default function MarketPlaceMain() {
-  const [page, setPage] = useState(1)
   const [dateRange, setDateRange] = useState('all')
+
   const { data, isPending } = useQuery({
     queryKey: [keys.orderStats, dateRange],
     queryFn: () => fetchMarketplaceStats(dateRange),
@@ -25,17 +25,13 @@ export default function MarketPlaceMain() {
     setDateRange(e.target.value);
   }
 
-  const handlePageChange = (page: number) => {
-    setPage(page);
-  };
-
   return (
     <div className="min-h-screen bg-background p-6 md:p-4 font-sans">
       <OverviewCards
         heading="Marketplace Operation Center"
         description="Manage order logs product audit queue and disputed orders"
         cards={marketPlace}
-        className="sm:grid-cols-4! lg:grid-cols-4!"
+        className="sm:grid-cols-3! lg:grid-cols-3!"
         isPending={isPending}
         dropdown={
           <select
