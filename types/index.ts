@@ -341,6 +341,9 @@ export type TypeProductData = {
   }
 }
 
+// export type ReportStats = {
+
+// }
 
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

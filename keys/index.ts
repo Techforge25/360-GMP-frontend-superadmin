@@ -12,5 +12,6 @@ export const keys = {
      orderLogDetails: 'orderLogDetails',
      orderProductAuditQueue: 'orderProductAuditQueue',
      orderProductAuditQueueDetails: 'orderProductAuditQueueDetails',
-     orderProductRejectionApproval: 'orderProductRejectionApproval'
+     orderProductRejectionApproval: 'orderProductRejectionApproval',
+     reportsStats: 'reportsStats',
 }
