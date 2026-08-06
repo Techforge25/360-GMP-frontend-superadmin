@@ -5,6 +5,7 @@ import { HiChevronRight } from "react-icons/hi";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import Inviteicon from "@/assets/inviteicon.svg";
+import { ParamValue } from "next/dist/server/request/params";
 interface TypeAdminValues {
   defaultValues: {
     username: string;
@@ -12,7 +13,7 @@ interface TypeAdminValues {
     password: string;
     allowedModules: string[];
   };
-  adminId: string;
+  adminId: ParamValue;
 }
 
 const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
