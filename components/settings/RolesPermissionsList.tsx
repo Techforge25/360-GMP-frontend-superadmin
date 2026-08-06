@@ -48,6 +48,7 @@ export default function RolesPermissionsList() {
       });
     }
   }, [page, isFetching]);
+  
   const handleTabChange = (tabId: string) => {
     setPage(1);
 
