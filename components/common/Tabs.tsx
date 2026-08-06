@@ -35,7 +35,7 @@ export default function Tabs({
 
   return (
     <div
-      className={`flex items-center gap-8 border-b border-border-light overflow-x-auto select-none font-secondary ${className}`}
+      className={`flex items-center gap-13 border-b border-border-light overflow-x-auto select-none font-secondary ${className}`}
     >
       {tabs.map((tab) => (
         <TabButton

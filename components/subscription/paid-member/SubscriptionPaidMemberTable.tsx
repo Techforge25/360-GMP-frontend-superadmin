@@ -43,9 +43,16 @@ const columns: Column<PaidMemberTableRowData>[] = [
               className="w-[0.75rem]  text-brand-btn-pills"
             />
 
-            <p className="font-inter font-normal text-[1rem] text-text-setting-light">
-              {row?.fullName || "No User Profile"}
-            </p>
+            {row?.fullName ?
+              <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+                {row?.fullName}
+              </p>
+              :
+              <i className="font-inter font-normal text-[1rem] text-text-setting-light">
+                No User Profile
+              </i>
+            }
+
           </div>
         </div>
         <div className="flex items-center ml-10">
@@ -58,9 +65,16 @@ const columns: Column<PaidMemberTableRowData>[] = [
               className="w-[0.75rem]  text-brand-btn-pills"
             />
 
-            <p className="font-inter font-normal text-[1rem] text-text-setting-light">
-              {row?.companyName || "No Business Profile"}
-            </p>
+            {row?.companyName ? (
+              <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+                {row?.companyName}
+              </p>
+            ) : (
+              <i className="font-inter font-normal text-[1rem] text-text-setting-light">
+                No Business Profile
+              </i>
+            )}
+
           </div>
         </div>
       </div>
@@ -69,7 +83,7 @@ const columns: Column<PaidMemberTableRowData>[] = [
 
   {
     key: "subscriptionType",
-    header: "Subscription Type",
+    header: "Subscription Tiers",
     render: (row) => <StatusBadge status={row?.subscriptionTier} />,
   },
   {
@@ -98,7 +112,7 @@ const columns: Column<PaidMemberTableRowData>[] = [
     ),
   },
 ];
- const borderRadius = "rounded-[0px]! border-none"
+const borderRadius = "rounded-[0px]! border-none"
 export default function SubscriptionPaidMemberTable({
   isPending,
   paidUsersData,

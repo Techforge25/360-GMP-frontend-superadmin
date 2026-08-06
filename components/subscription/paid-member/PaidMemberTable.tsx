@@ -64,7 +64,7 @@ export default function PaidMemberTable({ dateRange }: Props) {
       setValidityChange(
         value === "Active"
           ? "active"
-          : value === "Canceled"
+          : value === "Cancelled"
             ? "canceled"
             : value === "Expired"
               ? "expired"
@@ -79,7 +79,7 @@ export default function PaidMemberTable({ dateRange }: Props) {
   return (
     <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm" ref={tableRef}>
       <SearchFilterBar
-        placeholder="Search by Business name..."
+        placeholder="Search by User or Business name..."
         filters={[
           {
             key: "sortBy",
@@ -96,7 +96,7 @@ export default function PaidMemberTable({ dateRange }: Props) {
           {
             key: "status",
             label: "Status",
-            options: ["All Status", "Active", "Canceled", "Expired"],
+            options: ["All Status", "Active", "Cancelled", "Expired"],
             defaultValue: "All Status",
           },
         ]}

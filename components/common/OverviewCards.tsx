@@ -36,7 +36,7 @@ export default function OverviewCards({
       <div>
         <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-[1.375rem] font-semibold text-[#1e1042] tracking-tight">
+            <h1 className="text-[1.375rem] font-semibold text-[#240457] tracking-tight">
               {heading}
             </h1>
             <p className="mt-0 text-[1rem] font-medium text-[#717b8f]">
@@ -65,7 +65,7 @@ export default function OverviewCards({
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <h3 className="text-[1rem] font-medium text-[#647087]">
+                      <h3 className="text-[1rem] font-normal text-[#647087]">
                         {card.title}
                       </h3>
 

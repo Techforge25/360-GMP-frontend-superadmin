@@ -16,7 +16,7 @@ export default function FreeTrialTable({ dateRange }: Props) {
   const [validityChange, setValidityChange] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
-const tableRef = useRef<HTMLDivElement>(null);
+  const tableRef = useRef<HTMLDivElement>(null);
   const { isPending, data } = useQuery({
     queryKey: [
       keys.subscriptionList,
@@ -39,21 +39,21 @@ const tableRef = useRef<HTMLDivElement>(null);
   };
 
   useEffect(() => {
-  if (!isPending) {
-    tableRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-}, [page, isPending]);
-    
+    if (!isPending) {
+      tableRef.current?.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+    }
+  }, [page, isPending]);
+
   const handleFilterStatusChange = (value: string) => {
     setValidityChange(
-      value === "Active Trial"
+      value === "Active"
         ? "active"
         : value === "Expired"
           ? "expired"
-          : value === "Canceled"
+          : value === "Cancelled"
             ? "canceled"
             : "all",
     );
@@ -65,12 +65,12 @@ const tableRef = useRef<HTMLDivElement>(null);
   return (
     <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm" ref={tableRef}>
       <SearchFilterBar
-        placeholder="Search by Users name..."
+        placeholder="Search by User Name..."
         filters={[
           {
             key: "sortBy",
             label: "Sort By",
-            options: ["All User", "Active Trial", "Expired", "Canceled"],
+            options: ["All User", "Active", "Expired", "Cancelled"],
             defaultValue: "All User",
           },
         ]}

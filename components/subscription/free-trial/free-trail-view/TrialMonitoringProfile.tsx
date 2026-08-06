@@ -15,10 +15,10 @@ export default function TrialMonitoringProfile() {
   const params = useParams();
   const { id } = params as { id: string };
   const { data, isPending } = useQuery({
-    queryKey: [keys.subscriptionDetails],
+    queryKey: [keys.subscriptionDetails, id],
     queryFn: () => getSubscriptionUsersFreeDetails(id),
-    enabled: !!id,
     staleTime: 0,
+    enabled: !!id,
   });
 
   return (
@@ -60,8 +60,8 @@ export default function TrialMonitoringProfile() {
               className="flex items-center gap-[0.5rem] px-[1.125rem] py-[0.625rem] bg-kyc-text-hover hover:bg-text-primary-hover text-white font-normal font-inter text-[1rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm"
             >
               <span>Contact</span>
-              <Image src={ContatEmail} width={100} height={100} alt="" className="w-[1.146rem] h-[0.917rem]"/>
-          
+              <Image src={ContatEmail} width={100} height={100} alt="" className="w-[1.146rem] h-[0.917rem]" />
+
             </button>
           </div>
 
@@ -108,12 +108,12 @@ export default function TrialMonitoringProfile() {
                   </div>
 
                   <div className="flex flex-col gap-[0.5rem] pt-[0.25rem]">
-                    <span className="text-[1rem] font-bold text-text-secondary font-inter">
+                    <span className="text-[1rem] font-semibold text-text-secondary font-inter">
                       Included In Free Trial
                     </span>
                     <div className="flex items-center gap-[0.5rem] text-[1rem] text-text-setting-light font-normal font-inter">
                       <span className="flex items-center justify-center w-[1.125rem] h-[1.125rem] rounded-full  text-text-dark-green">
-                          <Image src={checkIcon} width={100} height={100} alt=""  className="w-[0.966rem] h-[0.702rem]" />
+                        <Image src={checkIcon} width={100} height={100} alt="" className="w-[0.966rem] h-[0.702rem]" />
                       </span>
                       <span>Unlimited job postings</span>
                     </div>
