@@ -23,5 +23,7 @@ export const keys = {
      viewReportProduct: 'viewReportProduct',
      viewReportCommunity: 'viewReportCommunity',
      accountStats: 'accountStats',
-     accountUsersList: 'accountUsersList'
+     accountUsersList: 'accountUsersList',
+     accountBusinessList: 'accountBusinessList',
+     viewBusinessProfile: 'viewBusinessProfile'
 }

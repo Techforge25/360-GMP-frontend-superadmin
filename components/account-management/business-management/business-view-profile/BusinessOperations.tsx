@@ -1,6 +1,16 @@
-import React from "react";
+import { TypeAdditionalWarehouseAddress, TypeWarehouseAddress } from "@/types";
 import { IoLocationSharp } from "react-icons/io5";
-export default function BusinessOperations() {
+
+interface Props {
+  addressLine: string;
+  city: string;
+  country: string;
+  warehouseAddress: TypeWarehouseAddress | any;
+  additionalWarehouseAddress: TypeAdditionalWarehouseAddress[] | any;
+}
+
+export default function BusinessOperations({ addressLine, city, country, warehouseAddress }: Props) {
+  console.log(warehouseAddress, 'warehouse')
   return (
     <div className=" mt-8 border border-[#C3C6D7] rounded-[0.5rem] bg-white font-sans overflow-hidden">
       <div className="flex items-center gap-[0.75rem] bg-[#f5effa] px-[1.5rem] py-[1.25rem] border-b border-[#C3C6D7]">
@@ -17,9 +27,9 @@ export default function BusinessOperations() {
               Head Office
             </h3>
             <div className="flex flex-col gap-[0.25rem] text-[0.8125rem] text-[#64748b]">
-              <p>22 Baker Street, Marylebone</p>
-              <p>Ottawa, NW1 6XE</p>
-              <p>Canada</p>
+              <p>{addressLine}</p>
+              <p>{city}</p>
+              <p>{country}</p>
             </div>
           </div>
 
@@ -27,11 +37,16 @@ export default function BusinessOperations() {
             <h3 className="text-[0.9375rem] font-semibold text-[#22252B] mb-[0.5rem]">
               Warehouse Address
             </h3>
-            <div className="flex flex-col gap-[0.25rem] text-[0.8125rem] text-[#64748b]">
-              <p>22 Baker Street, Marylebone</p>
-              <p>Ottawa, NW1 6XE</p>
-              <p>Canada</p>
-            </div>
+            {warehouseAddress !== 'N/A' ? (
+              <div className="flex flex-col gap-[0.25rem] text-[0.8125rem] text-[#64748b]">
+                <p>{warehouseAddress?.addressLine}</p>
+                <p>{warehouseAddress?.city}</p>
+                <p>{warehouseAddress?.country}</p>
+              </div>
+            ) : (
+              <span className="text-[0.9375rem] font-semibold text-gray-400">N/A</span>
+            )}
+
           </div>
         </div>
 

@@ -40,7 +40,7 @@ export default function AccountManagement({ dateRange }: Props) {
         )}
 
         {currentTab === "all-business" && (
-          <AllBusinessTable />
+          <AllBusinessTable dateRange={dateRange} currentTab={currentTab} />
         )}
       </div>
     </>

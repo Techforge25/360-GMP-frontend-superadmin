@@ -549,5 +549,160 @@ export type TypeWorkExperience = {
   updatedAt: string,
 }
 
+export type TypeBusinessProfile = {
+  _id: string,
+  companyName: string,
+  logo: string,
+  createdAt: string,
+  status: string,
+  subscription: {
+    subscriptionType: string
+  },
+  email: string
+}
+
+export type TypeViewBusinessProfile = {
+  ownerName: string,
+  companyName: string,
+  tradeName?: string,
+  businessRegistrationNumber: string,
+  taxIdentificationNumber: string,
+  dunsNumber?: number,
+  countryOfRegistration: string,
+  businessType: string,
+  primaryIndustry: string,
+  foundedDate: string,
+  companySize: string,
+  operationHour: string,
+  website?: string,
+  description: string,
+  logo?: string,
+  banner?: string,
+
+  /* BUSINESS OPERATION */
+  // Head office address
+  headOffice: {
+    country: string,
+    city: string,
+    addressLine: string,
+  },
+
+  // Warehouse address
+  warehouseAddress?: {
+    country: string,
+    city: string,
+    addressLine: string,
+  },
+
+  // Additional warehouse addresses
+  additionalWarehouseAddress:
+  {
+    country: string,
+    city: string,
+    addressLine: string
+  }[]
+
+  // International Commercial Terms
+  incoterms: string,
+  termsAndCapability: string,
+
+  /* INTERNATIONAL OFFICES */
+  internationalOffices?:
+  {
+    officeName: string,
+    country: string,
+    city: string,
+    state: string,
+    addressLine: string,
+    zipCode: string
+  }[],
+
+  /* BUSINESS INTELLIGENCE & LEADERSHIP */
+  primaryContactPerson: {
+    name: string,
+    title: string,
+    phone: string,
+    supportEmail: string,
+  },
+
+  /* EXECUTIVE LEADERSHIP & STAKEHOLDER */
+  executiveAndLeadership: [
+    {
+      // Required fields
+      name: string,
+      ownershipPercentage: number,
+      role: string,
+      votingRights: string[],
+
+      // Ownership percentage is equal or greater than 25% Apply KYC
+      kyc: {
+        dob: string,
+        nationality: string,
+        phone: string,
+        residentialAddress: string,
+        governmentIdType: string,
+        idNumber: string,
+
+        // Media files (Documents)
+        idFront: string,
+        idBack: string,
+        proofOfResidentialAddress: string,
+        proofOfOwnership: string,
+      }
+    },
+    {
+      // Required fields
+      name: string,
+      ownershipPercentage: number,
+      role: string,
+
+      // Ownership percentage is less than 25% Apply Voting rights
+      votingRights: string[]
+    },
+    {
+      // Required fields
+      name: string,
+      ownershipPercentage: number,
+      role: string,
+
+      // Ownership percentage is less than 25% Apply Voting rights
+      votingRights: string[],
+    }
+  ],
+
+  // Parent company details if incase owned by another comapany
+  ownedByAnotherCompany: boolean,
+  parentCompany: {
+    companyName: string,
+    ownershipPercentage: number,
+    countryOfIncorporation: string,
+  },
+
+  /* OPERATIONAL & TRADE PROFILE */
+  operationalAndTradeProfile: {
+    auditingAgency?: string,
+    regionOfOperations: string[],
+    tradeAffiliations?: string[]
+  },
+
+  /* AML & TRANSACTION PROFILE */
+  amlAndTransactionProfile: {
+    purpose: string,
+    revenueRange?: string,
+    mainCounterParties?: string[],
+    tradeCorridors?: string[],
+    pep: boolean
+  },
+
+  /* REQUIRED DOCUMENTS (MEDIA FILES) */
+  certificateOfIncorporation: string,
+  taxRegistrationCertificate: string,
+  shareHolderRegister: string,
+  operatingLicense: string,
+  evidenceOfFunds: string,
+}
+
+export type TypeWarehouseAddress = Pick<TypeViewBusinessProfile, 'warehouseAddress'>
+export type TypeAdditionalWarehouseAddress = Pick<TypeViewBusinessProfile, 'additionalWarehouseAddress'>
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

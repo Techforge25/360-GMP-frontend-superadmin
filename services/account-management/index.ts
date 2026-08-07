@@ -35,9 +35,20 @@ export const viewUserProfile = async (id: ParamValue) => {
      }
 };
 
-export const getBusinessProfiles = async (dateRange: string, debounceSearch: string, page: number, validityChange: string) => {
+export const getBusinessProfiles = async (dateRange: string, page: number, validityChange: string, status: string, debounceSearch: string) => {
      try {
-          const { data } = await api.get(`/accountManagement/userProfiles?dateRange=${dateRange}&search=${debounceSearch}&page=${page}&limit=10&type=${validityChange}`);
+          const { data } = await api.get(`/accountManagement/businessProfiles?dateRange=${dateRange}&page=${page}&limit=10&type=${validityChange}&status=${status}&search=${debounceSearch}`);
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+export const viewBusinessProfiles = async (id: ParamValue) => {
+     try {
+          const { data } = await api.get(`/accountManagement/businessProfile/${id}`);
           return data;
      } catch (error: any) {
           toast.error(error?.message)
