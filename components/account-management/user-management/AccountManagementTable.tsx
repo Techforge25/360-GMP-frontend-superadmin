@@ -1,14 +1,20 @@
 import DataTable, { Column } from "@/components/common/DataTable";
-import { AccountTableRowData } from "@/types";
+import { AccountTableRowData, TypeAccountManagement } from "@/types";
 
 import AccountManagementTableActions from "./AccountManagementTableActions";
 import { accountTableData } from "@/constants/acount-management/AccountManagementTable";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
- const accountManagement = "accountManagementUsersTable";
+const accountManagement = "accountManagementUsersTable";
+
+interface Props {
+  isPending: boolean;
+  accountManagementData: TypeAccountManagement[]
+}
+
 const columns: Column<AccountTableRowData>[] = [
-   {
+  {
     key: "fullName",
     header: "User Name",
     render: (row) => (
@@ -49,7 +55,7 @@ const columns: Column<AccountTableRowData>[] = [
       </span>
     ),
   },
-   {
+  {
     key: "action",
     header: "Action",
     align: "center",
@@ -62,13 +68,14 @@ const columns: Column<AccountTableRowData>[] = [
   },
 ];
 
-export default function AccountManagementTable() {
+export default function AccountManagementTable({ isPending, accountManagementData }: Props) {
   return (
     <div className="pt-8">
       <DataTable
         columns={columns}
-        data={accountTableData}
+        data={accountManagementData}
         rowKey={(row) => row?._id}
+        isLoading={isPending}
       />
     </div>
   );

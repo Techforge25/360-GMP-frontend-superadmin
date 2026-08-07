@@ -10,6 +10,7 @@ export default function StatusBadge({ status }: StatusBadgeProps) {
     Gold: "bg-[#FFF9E6] text-[#D9A300] border-[1px] border-[#D9A300]",
     'Enterprise': "bg-bg-gray-200 text-[#9D4EDD] border-[1px] border-[#9D4EDD]",
     'Consumer / Individual': "bg-[#EFF5FF] text-[#2A75D3] border-[1px] border-[#2A75D3]",
+    'Sneak Peek Free – 14 Days': 'bg-[#E6F6E9] text-[#0B8806] border-[1px] border-[#0B8806]',
     canceled: 'bg-[#FFDFDF] text-[#FF383C] border-[1px] border-[#FF383C]',
     delivered: 'bg-[#EFF5FF] text-[#2A75D3]  border-[1px] border-[#2A75D3]',
     pending: "bg-[#FFF5EC] text-[#FF8D28] border-[1px] border-[#FF8D28]",

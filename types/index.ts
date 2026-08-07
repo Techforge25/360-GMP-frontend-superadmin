@@ -500,5 +500,23 @@ export type TypeCommunityReport = {
   }
 }
 
+export type TypeAccountStats = {
+  pendingBusinessProfiles: number;
+  totalBusinessProfiles: number;
+  totalParentUsers: number;
+  totalUserProfiles: number
+}
+
+export type TypeAccountManagement = {
+  _id: string,
+  fullName: string,
+  email: string,
+  logo: string,
+  createdAt: string,
+  subscription: {
+    subscriptionType: string
+  }
+}
+
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

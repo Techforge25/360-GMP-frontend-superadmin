@@ -67,7 +67,7 @@ export default function useReportDetails(data: any) {
                     { label: "Privacy Setting:", value: data?.reportedCommunity?.type },
                ],
                violation: {
-                    reasonLabel: "Fake Information",
+                    reasonLabel: "Reason",
                     reasonValue: data?.reason,
                     date: moment(data?.createdAt).format('YYYY-MM-DD'),
                     description:
