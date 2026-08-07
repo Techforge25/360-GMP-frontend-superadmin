@@ -17,6 +17,8 @@ export default function FreeTrialTable({ dateRange }: Props) {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
   const tableRef = useRef<HTMLDivElement>(null);
+  const prevPage = useRef(page);
+  const isFirstRender = useRef(true);
   const { isPending, data } = useQuery({
     queryKey: [
       keys.subscriptionList,
@@ -39,21 +41,29 @@ export default function FreeTrialTable({ dateRange }: Props) {
   };
 
   useEffect(() => {
-    if (!isPending) {
+    if (isFirstRender.current) {
+      isFirstRender.current = false;
+      prevPage.current = page;
+      return;
+    }
+
+    if (prevPage.current !== page && !isPending) {
       tableRef.current?.scrollIntoView({
         behavior: "smooth",
         block: "start",
       });
+
+      prevPage.current = page;
     }
   }, [page, isPending]);
 
   const handleFilterStatusChange = (value: string) => {
     setValidityChange(
-      value === "Active"
+      value === "Active Trial"
         ? "active"
         : value === "Expired"
           ? "expired"
-          : value === "Cancelled"
+          : value === "Canceled"
             ? "canceled"
             : "all",
     );
@@ -63,14 +73,17 @@ export default function FreeTrialTable({ dateRange }: Props) {
   const freeUsersData = data?.data?.docs;
 
   return (
-    <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm" ref={tableRef}>
+    <div
+      className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm"
+      ref={tableRef}
+    >
       <SearchFilterBar
-        placeholder="Search by User Name..."
+        placeholder="Search by Users name..."
         filters={[
           {
             key: "sortBy",
             label: "Sort By",
-            options: ["All User", "Active", "Expired", "Cancelled"],
+            options: ["All User", "Active Trial", "Expired", "Canceled"],
             defaultValue: "All User",
           },
         ]}

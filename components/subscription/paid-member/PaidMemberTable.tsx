@@ -17,7 +17,9 @@ export default function PaidMemberTable({ dateRange }: Props) {
   const [tierType, setTierType] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
-  const tableRef = useRef<HTMLDivElement>(null);
+const tableRef = useRef<HTMLDivElement>(null);
+const prevPage = useRef(page);
+const isFirstRender = useRef(true);
 
   const { isPending, data } = useQuery({
     queryKey: [
@@ -42,14 +44,22 @@ export default function PaidMemberTable({ dateRange }: Props) {
     setPage(page);
   };
 
-  useEffect(() => {
-    if (!isPending) {
-      tableRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [page, isPending]);
+useEffect(() => {
+  if (isFirstRender.current) {
+    isFirstRender.current = false;
+    prevPage.current = page;
+    return;
+  }
+
+  if (prevPage.current !== page && !isPending) {
+    tableRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    prevPage.current = page;
+  }
+}, [page, isPending]);
 
   const handleFilterStatusChange = (value: string) => {
     if (

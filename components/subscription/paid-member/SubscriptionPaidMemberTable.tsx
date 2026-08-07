@@ -48,7 +48,7 @@ const columns: Column<PaidMemberTableRowData>[] = [
                 {row?.fullName}
               </p>
               :
-              <i className="font-inter font-normal text-[1rem] text-text-setting-light">
+              <i className="font-inter font-normal text-[1rem] text-text-light-gray-100">
                 No User Profile
               </i>
             }
@@ -70,7 +70,7 @@ const columns: Column<PaidMemberTableRowData>[] = [
                 {row?.companyName}
               </p>
             ) : (
-              <i className="font-inter font-normal text-[1rem] text-text-setting-light">
+              <i className="font-inter font-normal text-[1rem] text-text-light-gray-100">
                 No Business Profile
               </i>
             )}

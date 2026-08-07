@@ -19,12 +19,7 @@ export default function SubscriptionComp() {
 
   const subscriptionStats = useSubscriptionStats(data?.data);
 
-  const changeDateRange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setDateRange(e.target.value);
-  };
-
   
-
   return (
     <div className="min-h-screen bg-background p-6 md:p-4 font-sans">
       <OverviewCards

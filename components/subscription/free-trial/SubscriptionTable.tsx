@@ -50,7 +50,7 @@ export default function SubscriptionFreeTrialTable({
                   {row?.userProfile?.fullName}
                 </p>
                 :
-                <i className="font-inter font-normal text-[1rem] text-text-setting-light">
+                <i className="font-inter font-normal text-[1rem] text-text-light-gray-100">
                   No User Profile
                 </i>
               }
