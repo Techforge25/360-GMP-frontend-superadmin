@@ -37,7 +37,7 @@ const RejectProductModal = forwardRef<
     },
   });
 
-   const note = watch("note") || "";
+  const note = watch("note") || "";
 
   const mutation = useMutation({
     mutationFn: productRejection,
@@ -92,11 +92,11 @@ const RejectProductModal = forwardRef<
               Please provide a reason for rejecting this product. This
               information will be shared with the business to help resolve the
               issue.
-            </p>  
+            </p>
 
             <div className="flex flex-col gap-[0.5rem]">
               <label className="text-[0.875rem] font-semibold text-kyc-text-subheading font-open-sans">
-                Reason for Rejection{" "} 
+                Reason for Rejection{" "}
                 <span className="text-red-500 font-normal">*</span>
               </label>
 
@@ -111,15 +111,11 @@ const RejectProductModal = forwardRef<
               {errors.note && (
                 <p className="text-sm text-red-500">{errors.note.message}</p>
               )}
-              <div className="mt-1 flex justify-between">
-  <span className="text-sm text-red-500">
-    {note.length === 1000 && "Maximum 1000 characters allowed."}
-  </span>
-
-  <span className="text-xs text-gray-500">
-    {note.length}/1000
-  </span>
-</div>
+              <div className="mt-1 flex justify-end">
+                <span className="text-xs text-gray-500">
+                  {note.length}/1000
+                </span>
+              </div>
             </div>
           </div>
 
