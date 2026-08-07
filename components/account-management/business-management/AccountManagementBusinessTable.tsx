@@ -1,11 +1,14 @@
 import DataTable, { Column } from "@/components/common/DataTable";
-import { AccountBusinessTableRowData } from "@/types";
-
+import { AccountBusinessTableRowData, TypeBusinessProfile } from "@/types";
 import AccountManagementTableActions from "../user-management/AccountManagementTableActions";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import Image from "next/image";
-import { accountManagementBusinessTable } from "@/constants/acount-management/AccountManagementBusinessTable";
 import { formatDate } from "@/helpers";
+
+interface Props {
+  businessProfilesData: TypeBusinessProfile[]
+  isPending: boolean;
+}
 
 const accountManagement = "accountManagementBusinessTable";
 
@@ -74,13 +77,14 @@ const columns: Column<AccountBusinessTableRowData>[] = [
   },
 ];
 
-export default function AccountManagementBusinessTable() {
+export default function AccountManagementBusinessTable({ isPending, businessProfilesData }: Props) {
   return (
     <div className="pt-8">
       <DataTable
         columns={columns}
-        data={accountManagementBusinessTable}
+        data={businessProfilesData}
         rowKey={(row) => row._id}
+        isLoading={isPending}
       />
     </div>
   );
