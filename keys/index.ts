@@ -21,5 +21,7 @@ export const keys = {
      viewReportJob: 'viewReportJob',
      viewReportBusiness: 'viewReportBusiness',
      viewReportProduct: 'viewReportProduct',
-     viewReportCommunity: 'viewReportCommunity'
+     viewReportCommunity: 'viewReportCommunity',
+     accountStats: 'accountStats',
+     accountUsersList: 'accountUsersList'
 }

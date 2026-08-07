@@ -1,4 +1,3 @@
-import React from "react";
 import { FiMail } from "react-icons/fi";
 
 export default function ProfileCard() {
@@ -7,7 +6,7 @@ export default function ProfileCard() {
       <div className="flex items-center gap-[1rem] p-[1rem] bg-bg-gray-200 rounded-[0.5rem] border border-border-gray-200">
         <div className="relative w-[3.5rem] h-[3.5rem] rounded-[0.5rem] overflow-hidden border border-gray-200 bg-white">
           <img
-            src="https://i.pravatar.cc/150?img=11" 
+            src="https://i.pravatar.cc/150?img=11"
             alt="Alex Morgan"
             className="object-cover w-full h-full"
           />
@@ -20,7 +19,7 @@ export default function ProfileCard() {
           <div className="flex items-center gap-[0.5rem] text-[1rem] font-normal text-text-secondary ">
             <span>alexamorgan@gmail.com</span>
 
-          <FiMail className="w-[1rem] h-[1rem] text-text-secondary" />
+            <FiMail className="w-[1rem] h-[1rem] text-text-secondary" />
           </div>
         </div>
       </div>

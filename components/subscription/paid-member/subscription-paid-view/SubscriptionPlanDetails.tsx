@@ -110,7 +110,7 @@ export default function SubscriptionPlanDetails({
                     </span>
                     <span className="text-[1rem] text-text-secondary font-normal font-inter">
                       {moment(lastPlane?.startDate).format("MMM DD, YYYY")} -{" "}
-                      {moment(lastPlane?.endDate).format("MMM DD, YYYY")}
+                      {moment(lastPlane?.endDate).add(1, 'days').format("MMM DD, YYYY")}
                     </span>
                   </div>
                   <span className="text-[1.125rem] font-semibold text-text-dark font-inter">
