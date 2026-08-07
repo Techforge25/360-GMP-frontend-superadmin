@@ -1,7 +1,12 @@
+import { Suspense } from "react";
 import MarketPlaceMain from "@/components/marketplace/MarketPlaceMain";
 
-export default function page() {
+export const dynamic = "force-dynamic";
+
+export default function Page() {
   return (
-    <MarketPlaceMain />
+    <Suspense fallback={null}>
+      <MarketPlaceMain />
+    </Suspense>
   );
 }
