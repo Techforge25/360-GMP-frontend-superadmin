@@ -9,10 +9,7 @@ interface Props {
   groupImages: string[];
 }
 
-export default function ProductImageGallery({
-  image,
-  groupImages,
-}: Props) {
+export default function ProductImageGallery({ image, groupImages }: Props) {
   const images = useMemo(() => {
     const allImages = [image, ...(groupImages || [])];
 
@@ -34,21 +31,19 @@ export default function ProductImageGallery({
   const prevImage = () => {
     if (!images.length) return;
 
-    setCurrent((prev) =>
-      prev === 0 ? images.length - 1 : prev - 1
-    );
+    setCurrent((prev) => (prev === 0 ? images.length - 1 : prev - 1));
   };
 
-  console.log(images, 'imagesss')
+  console.log(images, "imagesss");
 
   return (
     <div className="w-full lg:w-[40%]">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border bg-gray-100">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-2xl border bg-surface-DEFAULT">
         <Image
           src={images[current]}
           alt="Product"
           fill
-          className="object-fit"
+          className="object-contain"
         />
 
         {images.length > 1 && (
@@ -76,16 +71,17 @@ export default function ProductImageGallery({
             <button
               key={index}
               onClick={() => setCurrent(index)}
-              className={`relative aspect-[4/3] overflow-hidden rounded-xl border-2 transition ${current === index
-                ? "border-brand-primary"
-                : "border-transparent"
-                }`}
+              className={`relative w-full max-w-[155px] aspect-[155/146] overflow-hidden rounded-xl border-2 transition ${
+                current === index
+                  ? "border-brand-primary"
+                  : "border-transparent"
+              }`}
             >
               <Image
                 src={img}
                 alt={`Thumbnail ${index + 1}`}
                 fill
-                className="object-cover"
+                className="object-contain"
               />
             </button>
           ))}
