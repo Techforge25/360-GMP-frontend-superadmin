@@ -15,10 +15,10 @@ interface Props {
 const columns: Column<TypeProductApproveReject>[] = [
   {
     key: "createdAt",
-    header: "Product",
+    header: "Product Details",
     render: (row) => (
       <div className="flex flex-col">
-        <span className="text-[1rem] font-medium text-text-light">
+        <span className="text-[1rem] font-medium text-text-light truncate w-[250px] ">
           {row?.title}
         </span>
         <span className="text-[1rem] text-date-time">
@@ -29,11 +29,11 @@ const columns: Column<TypeProductApproveReject>[] = [
   },
   {
     key: "seller",
-    header: "Seller",
+    header: "Seller Info",
     render: (row) => (
       <div className="flex items-center space-x-3">
         <Image
-          src={row?.seller?.logo}
+          src={row?.seller?.logo || "/images/user-icon.webp"}
           alt={row?.seller?.companyName}
           width={40}
           height={40}
@@ -57,7 +57,7 @@ const columns: Column<TypeProductApproveReject>[] = [
     header: "Category",
     render: (row) => (
       <div className="flex flex-col">
-        <span className="mt-0.5 text-sm text-gray-600">{row.category}</span>
+         <span className="mt-0.5 text-[1rem] text-date-time font-inter font-normal">{row.category}</span>
       </div>
     ),
   },
@@ -83,13 +83,15 @@ const columns: Column<TypeProductApproveReject>[] = [
 
 export default function MarketplaceProductApprovedTable({ productApproveReject, isPending }: Props) {
   console.log(productApproveReject, 'product approve reject')
+   const borderRadius = "border-none"
   return (
-    <div className="pt-8">
+    <div className="pt-0">
       <DataTable
         columns={columns}
         data={productApproveReject}
         rowKey={(row) => row._id}
         isLoading={isPending}
+        borderRadius={borderRadius}
       />
     </div>
   );

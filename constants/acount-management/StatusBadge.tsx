@@ -20,6 +20,8 @@ export default function StatusBadge({ status }: StatusBadgeProps) {
     failed: "bg-[#FFDFDF] text-[#FF383C] border-[1px] border-[#FF383C]",
     paid: "bg-[#E6F6E9] text-[#0B8806] border-[1px] border-[#0B8806]",
     completed: "bg-[#E6F6E9] text-[#0B8806] border-[1px] border-[#0B8806]",
+    cancelled: "bg-[#FFDFDF] text-[#FF383C] border-[1px] border-[#FF383C]",
+    shiped:"text-[#922cdd] bg-[#f3e8ff] border-[1px] border-[#922cdd]"
   };
 
   return (

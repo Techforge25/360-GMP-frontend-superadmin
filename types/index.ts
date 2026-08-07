@@ -334,6 +334,11 @@ export interface RestoreAdminModalRef {
   open: () => void;
   close: () => void;
 }
+export interface ApprovedModalModalRef {
+  open: () => void;
+  close: () => void;
+}
+
 
 export type TypeProductData = {
   _id: string,

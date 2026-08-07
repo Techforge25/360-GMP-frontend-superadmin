@@ -1,3 +1,4 @@
+import { formatNumber } from "@/helpers";
 import { TypeMarketplaceStat } from "@/types";
 import { AiOutlineSafetyCertificate } from "react-icons/ai";
 import { FaDollarSign } from "react-icons/fa6";
@@ -5,10 +6,11 @@ import { IoAlertCircleOutline } from "react-icons/io5";
 import { MdOutlinePendingActions } from "react-icons/md";
 
 export default function useMarketplaceStats(data: TypeMarketplaceStat) {
+     
      return ([
           {
                title: "Total Marketplace Sales",
-               value: '$' + data?.totalSales?.toFixed(2),
+               value: '$' + formatNumber(Number(data?.totalSales?.toFixed(2))),
                subtitle: "",
                subtitletwo: "",
                showDot: false,
@@ -18,7 +20,7 @@ export default function useMarketplaceStats(data: TypeMarketplaceStat) {
           },
           {
                title: "Products Waiting Approval",
-               value: data?.totalPendingProducts,
+               value: formatNumber(data?.totalPendingProducts),
                subtitle: "",
                subtitletwo: "",
                showDot: false,
@@ -38,7 +40,7 @@ export default function useMarketplaceStats(data: TypeMarketplaceStat) {
           // },
           {
                title: "Funds Held Securely ( Active Escrow )",
-               value: '$' + data?.totalFundsHeldInEscrow?.toFixed(2),
+               value: '$' + formatNumber(Number(data?.totalFundsHeldInEscrow?.toFixed(2))),
                subtitle: "",
                subtitletwo: "",
                showDot: false,

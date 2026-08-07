@@ -48,7 +48,7 @@ export default function ProductImageGallery({
           src={images[current]}
           alt="Product"
           fill
-          className="object-cover"
+          className="object-fit"
         />
 
         {images.length > 1 && (

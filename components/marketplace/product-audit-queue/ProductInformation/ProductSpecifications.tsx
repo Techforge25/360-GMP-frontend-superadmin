@@ -19,7 +19,7 @@ export default function ProductSpecifications({
   )
 
   return (
-    <div className="rounded-2xl border border-gray-200 border bg-white p-6 shadow-sm md:p-8">
+    <div className="rounded-2xl border border-border-gray-200 border bg-surface-DEFAULT p-6 shadow-sm md:p-8">
       <h2 className="mb-6 text-xl font-medium text-slate-500">
         Product Specifications
       </h2>

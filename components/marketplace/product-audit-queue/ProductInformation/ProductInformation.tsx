@@ -27,15 +27,15 @@ export default function ProductDetail({
   const productDetail = data?.data
 
   return (
-    <div className="p-4 md:p-6 ">
+    <div className="p-4 pt-3! md:p-6 ">
       <BackButtonMain text="Back" />
       {isPending ? (
         <ProductDetailShimmer />
       ) : (
         <>
-          <div className="mb-8 flex flex-col gap-8 lg:flex-row">
+          <div className="mb-8 flex flex-col gap-4 lg:flex-row mt-4">
             <ProductImageGallery image={productDetail?.image} groupImages={productDetail?.groupImages} />
-            <ProductInfo title={productDetail?.title} pricePerUnit={productDetail?.pricePerUnit} minOrderQty={productDetail?.minOrderQty} companyName={productDetail?.businessProfile?.companyName} logo={productDetail?.businessProfile?.logo} category={productDetail?.category} />
+            <ProductInfo title={productDetail?.title} pricePerUnit={productDetail?.pricePerUnit} minOrderQty={productDetail?.minOrderQty} companyName={productDetail?.businessProfile?.companyName} logo={productDetail?.businessProfile?.logo} category={productDetail?.category} tieredPricing={productDetail?.tieredPricing}/>
           </div>
 
           <ProductSpecifications category={productDetail?.category} detail={productDetail?.detail} shippingCompany='MAERSK' shippingCost={0} estimatedDeliveryDays={productDetail?.estimatedDeliveryDays} minOrderQty={productDetail?.minOrderQty} />
@@ -45,6 +45,7 @@ export default function ProductDetail({
           {productDetail?.status === 'pending' && (
             <RejectButtons id={data?.data?._id} />
           )}
+               
         </>
       )}
     </div>

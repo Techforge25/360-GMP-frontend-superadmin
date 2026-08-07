@@ -1,57 +1,59 @@
 "use client";
 
 import Image from "next/image";
+import BundlePricing from "./BundlePricing";
 
 interface Props {
-  title: string,
-  pricePerUnit: number,
-  minOrderQty: number,
-  companyName: string,
-  logo: string,
-  category: string
+  title: string;
+  pricePerUnit: number;
+  minOrderQty: number;
+  companyName: string;
+  logo: string;
+  category: string;
+  tieredPricing: {
+    qty: string;
+    price: number;
+    _id: string;
+  }[];
 }
 
 
-export default function ProductInfo({ title, pricePerUnit, minOrderQty, companyName, logo, category }: Props) {
+export default function ProductInfo({ 
+   title,
+  pricePerUnit,
+  minOrderQty,
+  companyName,
+  logo,
+  category,
+  tieredPricing,
+
+}: Props) {
   return (
-    <div className="w-full lg:w-[60%] flex flex-col pt-2 rounded-2xl border-gray-200 border bg-white p-6 md:p-4 shadow-sm">
+    <div className="w-full lg:w-[60%] flex flex-col pt-2 rounded-2xl border-bg-light-icon border bg-surface-DEFAULT p-6 md:p-4 shadow-sm">
       <h1 className="text-[1.35rem] font-semibold text-gray-900 leading-tight">
         {title}
       </h1>
 
       <div className="mt-8 flex items-end justify-between border-b border-border-gray-dark pb-6">
         <div className="flex items-baseline gap-1">
-          <span className="text-[2rem] font-bold text-gray-900 leading-none">
+          <span className="text-[2rem] font-semibold text-text-primary leading-none font-open-sans">
             ${pricePerUnit?.toFixed(2)}
           </span>
-          <span className="text-[1rem] text-gray-500 font-medium">/Pc</span>
+          <span className="text-[1.125rem] text-text-gray-more font-semibold font-open-sans">/Pc</span>
         </div>
-        <span className="text-sm text-gray-400 font-medium uppercase tracking-wider">
-          MOQ: {minOrderQty} pc
-        </span>
+       
       </div>
-
+   
       <div className="mt-6 w-full rounded-xl bg-[#F4F4F5] p-4 flex items-center justify-center gap-3">
-        <div className="flex h-7 w-7 items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm">
-          <Image src={logo} alt="Logo" width={28} height={28} />
+        <div className="flex h-[1.938rem] w-[1.938rem] items-center justify-center rounded-md bg-white border border-gray-200 shadow-sm">
+          <Image src={logo} alt="Logo" width={28} height={28}  className="h-[1.938rem] w-[1.938rem]"/>
         </div>
-        <span className="text-[1.25rem] font-medium text-text-light">
+        <span className="text-[1.125rem] font-normal font-inter text-text-dark">
           {companyName}
         </span>
       </div>
-
-      <div className="mt-8 flex flex-col gap-5">
-        <div className="flex justify-between items-center pb-5 border-b border-gray-100">
-          <span className="text-[1rem] text-gray-500">Product category</span>
-          <span className="text-[1rem] font-medium text-gray-700">
-            {category}
-          </span>
-        </div>
-        <div className="flex justify-between items-center pb-5 border-b border-gray-100">
-          <span className="text-[1rem] text-gray-500">MOQ</span>
-          <span className="text-[1rem] font-medium text-gray-700">{minOrderQty}</span>
-        </div>
-      </div>
+<BundlePricing bundles={tieredPricing} />
+      
     </div>
   );
 }
