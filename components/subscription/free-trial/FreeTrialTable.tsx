@@ -83,8 +83,8 @@ export default function FreeTrialTable({ dateRange }: Props) {
           {
             key: "sortBy",
             label: "Sort By",
-            options: ["All User", "Active Trial", "Expired", "Canceled"],
-            defaultValue: "All User",
+            options: ["All Users", "Active Trial", "Expired", "Canceled"],
+            defaultValue: "All Users",
           },
         ]}
         onSearch={(value) => {

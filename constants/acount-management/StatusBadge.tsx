@@ -6,7 +6,7 @@ export default function StatusBadge({ status }: StatusBadgeProps) {
   const statusStyles: Record<string, string> = {
     "Free Trial": "bg-[#DCDCDC33] text-gray-600 border-[1px] border-gray-600",
     "Bronze": "bg-[#DCDCDC33] text-gray-600 border-[1px] border-gray-600",
-    Silver: "bg-[#FFF5EC] text-[#FF8D28] border-[1px] border-[#FF8D28]",
+    Silver: "bg-[#DCDCDC33] text-gray-600 border-[1px] border-gray-600",
     Gold: "bg-[#FFF9E6] text-[#D9A300] border-[1px] border-[#D9A300]",
     'Enterprise': "bg-bg-gray-200 text-[#9D4EDD] border-[1px] border-[#9D4EDD]",
     'Consumer / Individual': "bg-[#EFF5FF] text-[#2A75D3] border-[1px] border-[#2A75D3]",
