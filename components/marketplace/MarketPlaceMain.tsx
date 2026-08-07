@@ -22,7 +22,6 @@ export default function MarketPlaceMain() {
 
   const marketPlace = useMarketplaceStats(marketPlaceData);
 
- 
   return (
     <div className="min-h-screen bg-background p-6 md:p-4 font-sans">
       <OverviewCards
@@ -40,7 +39,7 @@ export default function MarketPlaceMain() {
         }
       />
       <div className="grid grid-cols-1 gap-[1.5rem] mt-6">
-        <MarketPlace dateRange={dateRange} />
+          <MarketPlace dateRange={dateRange} />
       </div>
     </div>
   );

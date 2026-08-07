@@ -19,21 +19,21 @@ export default function MarketPlace({ dateRange }: Props) {
 
   const currentTab = searchParams.get("tab") || MarketPlacetabs[0]?.id;
 
-const handleTabChange = (tabId: string) => {
-  console.log("Changing tab:", tabId);
+  const handleTabChange = (tabId: string) => {
+    console.log("Changing tab:", tabId);
 
-  startTransition(() => {
-    const params = new URLSearchParams(searchParams.toString());
+    startTransition(() => {
+      const params = new URLSearchParams(searchParams.toString());
 
-    params.set("tab", tabId);
+      params.set("tab", tabId);
 
-    console.log("New URL:", params.toString());
+      console.log("New URL:", params.toString());
 
-    router.replace(`?${params.toString()}`, {
-      scroll: false,
+      router.replace(`${window.location.pathname}?${params.toString()}`, {
+        scroll: false,
+      });
     });
-  });
-};
+  };
 
   return (
     <>
