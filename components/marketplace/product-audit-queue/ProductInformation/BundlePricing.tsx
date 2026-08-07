@@ -16,16 +16,16 @@ export default function BundlePricing({ bundles }: BundlePricingProps) {
       </h3>
 
       <div className="rounded-[0.75rem] border border-bg-light-icon bg-brand-business-button-light p-6">
-        <div className="grid grid-cols-1 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
-         {bundles.map((bundle) => (
-  <div key={bundle._id} className="flex items-center gap-3">
-    <span className="h-4 w-4 rounded-full bg-[#2D005C]" />
+        <div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3">
+          {bundles.map((bundle) => (
+            <div key={bundle._id} className="flex items-center gap-3">
+              <span className="h-[0.75rem] w-[0.75rem] rounded-full bg-brand-primary" />
 
-    <p className="text-[1rem] font-normal text-text-secondary">
-      {bundle.qty} Pcs - ${bundle.price.toFixed(2)}/pc
-    </p>
-  </div>
-))}
+              <p className="text-[1rem] font-normal text-text-secondary">
+                {bundle.qty} Pcs - ${bundle.price.toFixed(2)}/pc
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

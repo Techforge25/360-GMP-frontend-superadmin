@@ -55,14 +55,14 @@ export default function ProductImageGallery({
           <>
             <button
               onClick={prevImage}
-              className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow transition hover:bg-gray-100"
+              className="absolute left-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow transition hover:bg-gray-100 cursor-pointer"
             >
               <IoChevronBack size={20} className="text-gray-700" />
             </button>
 
             <button
               onClick={nextImage}
-              className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow transition hover:bg-gray-100"
+              className="absolute right-4 top-1/2 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow transition hover:bg-gray-100 cursor-pointer"
             >
               <IoChevronForward size={20} className="text-gray-700" />
             </button>

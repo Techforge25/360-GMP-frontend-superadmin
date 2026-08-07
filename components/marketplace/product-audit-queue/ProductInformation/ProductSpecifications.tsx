@@ -55,13 +55,13 @@ export default function ProductSpecifications({
           ))}
         </div>
         <div className="rounded-xl bg-[#F4F4F5] p-6 border-gray-200 border">
-          <h3 className="mb-4 text-[17px] font-semibold text-gray-900">
+          <h3 className="mb-4 text-[17px] font-semibold text-gray-900 ">
             Product Detail
           </h3>
 
           <div>
             <p
-              className="text-[15px] leading-relaxed text-gray-600"
+              className="text-[15px] leading-relaxed text-gray-600 break-words whitespace-normal leading-relaxed"
               dangerouslySetInnerHTML={{
                 __html: displayedDetail,
               }}
