@@ -6,7 +6,7 @@ import {
   TypeOrderLog,
 } from "@/types";
 import Image from "next/image";
-import { formatDate } from "@/helpers";
+import { formatDate, formatNumber } from "@/helpers";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import OrderLogActionButtons from "./OrderLogActionButtons";
 
@@ -22,9 +22,9 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
     render: (row) => (
       <div className="flex flex-col">
         <span className="text-[1rem] font-medium text-text-light">
-          {`#${row?._id.slice(0, 8).toUpperCase()}`}
+          {`#${row?._id.slice(-6).toUpperCase()}`}
         </span>
-        <span className="text-[1rem] text-date-time">
+        <span className="text-[0.875rem] text-date-time font-inter font-normal">
           {formatDate(row?.createdAt)}
         </span>
       </div>
@@ -36,7 +36,7 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
     render: (row) => (
       <div className="flex items-center space-x-3">
         <Image
-          src={row?.buyerInfo?.logo}
+          src={row?.buyerInfo?.logo || "/images/user-icon.webp"}
           alt={row?.buyerInfo?.fullName}
           width={40}
           height={40}
@@ -61,7 +61,7 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
     render: (row) => (
       <div className="flex items-center space-x-3">
         <Image
-          src={row?.sellerInfo?.logo}
+          src={row?.sellerInfo?.logo || "/images/user-icon.webp"}
           alt={row?.sellerInfo?.companyName}
           width={40}
           height={40}
@@ -90,7 +90,7 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
     header: "Amount",
     render: (row) => (
       <span className="text-[1rem] text-text-secondary">
-        ${row?.totalAmount?.toFixed(2)}
+        ${formatNumber(Number(row?.totalAmount?.toFixed(2)))}
       </span>
     ),
   },
@@ -112,15 +112,16 @@ export default function MarketplaceOrderLogsTable({
   orderLogs,
 }: Props) {
   const [page, setPage] = useState(1);
-
+ const borderRadius = "border-none"
   return (
     <>
-      <div className="pt-4">
+      <div className="pt-0">
         <DataTable
           columns={columns}
           data={orderLogs}
           rowKey={(row) => row._id}
           isLoading={isPending}
+          borderRadius={borderRadius}
         />
       </div>
     </>

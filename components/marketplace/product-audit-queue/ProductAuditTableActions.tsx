@@ -23,6 +23,8 @@ export default function ProductAuditTableActions({
   return (
     <div className="flex items-center justify-center gap-4">
       <PreviewButton onClick={handleViewAccount} />
+
+  
     </div>
   );
 }

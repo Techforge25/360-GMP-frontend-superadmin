@@ -1,10 +1,6 @@
 "use client";
 
-import {
-  forwardRef,
-  useImperativeHandle,
-  useState,
-} from "react";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { IoCloseOutline } from "react-icons/io5";
 import { FiCheck } from "react-icons/fi";
 import { RejectProductModalRef, TypeNotes } from "@/types";
@@ -26,12 +22,12 @@ const RejectProductModal = forwardRef<
   RejectProductModalProps
 >(({ id }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
-  const router = useRouter()
-  const queryClient = useQueryClient()
+  const router = useRouter();
+  const queryClient = useQueryClient();
   const {
     register,
     handleSubmit,
-    formState: { isValid }
+    formState: { isValid, errors },
   } = useForm<TypeNotes>({
     resolver: yupResolver(notesSchema),
     defaultValues: {
@@ -42,9 +38,11 @@ const RejectProductModal = forwardRef<
   const mutation = useMutation({
     mutationFn: productRejection,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [keys.orderProductAuditQueue] });
+      queryClient.invalidateQueries({
+        queryKey: [keys.orderProductAuditQueue],
+      });
       setIsOpen(false);
-      router.push('/marketplace')
+      router.push("/marketplace");
     },
   });
 
@@ -58,8 +56,6 @@ const RejectProductModal = forwardRef<
       productId: id,
       note: data.note,
     });
-
-
   };
 
   if (!isOpen) return null;
@@ -89,32 +85,45 @@ const RejectProductModal = forwardRef<
         <form onSubmit={handleSubmit(handleConfirm)}>
           <div className="p-[1.75rem] flex flex-col gap-[1.5rem]">
             <p className="text-[0.875rem] text-kyc-text-heading leading-[1.375rem]">
-              Please select a reason for rejecting this Product. This information
-              will be shared wit merchant to help them resolve the issue.
+              Please provide a reason for rejecting this product. This
+              information will be shared with the business to help resolve the
+              issue.
             </p>
 
             <div className="flex flex-col gap-[0.5rem]">
-              <label className="text-[0.875rem] font-semibold text-kyc-text-subheading">
-                Additional Notes{" "}
+              <label className="text-[0.875rem] font-semibold text-kyc-text-subheading font-open-sans">
+                Reason for Rejection{" "}
                 <span className="text-red-500 font-normal">*</span>
               </label>
 
               <textarea
-                {...register('note')}
+                {...register("note")}
                 rows={4}
-                placeholder="provide specific details regarding the rejection to assist the merchant."
-                className="text-area"
+                placeholder="Provide specific details regarding the rejection to assist the business."
+                className="text-area capitalize text-[0.875rem] font-inter font-normal"
               />
+
+              {errors.note && (
+                <p className="text-sm text-red-500">{errors.note.message}</p>
+              )}
             </div>
           </div>
 
           <div className="flex items-center justify-end gap-[1rem] px-[1.75rem] py-[1.25rem] border-t border-gray-100 bg-gray-50/50">
-            <button onClick={() => setIsOpen(false)} className="reject-btn">
+            <button
+              onClick={() => setIsOpen(false)}
+              className="reject-btn w-full"
+            >
               Cancel
             </button>
 
-            <button disabled={!isValid || mutation.isPending} className="confirm-reject">
-              <span>{mutation.isPending ? 'Rejecting...' : 'Confirm Rejection'}</span>
+            <button
+              disabled={!isValid || mutation.isPending}
+              className="confirm-reject w-full"
+            >
+              <span>
+                {mutation.isPending ? "Rejecting..." : "Confirm Rejection"}
+              </span>
               <span className="text-reject rounded-full bg-white px-1 py-1">
                 <FiCheck className="w-[0.7rem] h-[0.7rem]" />
               </span>

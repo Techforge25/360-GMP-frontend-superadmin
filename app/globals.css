@@ -390,7 +390,7 @@ body {
   }
 
   .action-Reject {
-    @apply flex items-center justify-center gap-[0.5rem] px-[2rem] py-[0.60rem] bg-reject hover:bg-reject-hover text-white font-semibold text-[0.9375rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm;
+    @apply flex items-center justify-center gap-[0.5rem] px-[2rem] py-[0.60rem] bg-reject hover:bg-reject-hover text-white font-semibold text-[1rem] rounded-[0.5rem] transition-colors cursor-pointer shadow-sm;
   }
 
   .approved-btn {

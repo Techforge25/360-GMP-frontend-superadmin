@@ -20,7 +20,7 @@ export const MarketPlacetabs = [
   // },
   {
     id: "product-approve-reject",
-    label: "Product Approve / Rejected",
+    label: "Product Approved / Rejected",
     icon: <FiCheckSquare />,
   },
 ];
