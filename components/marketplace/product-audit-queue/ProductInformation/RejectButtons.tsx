@@ -10,7 +10,8 @@ import { keys } from "@/keys";
 import { productApproval } from "@/services/marketplace";
 import { useRouter } from "next/navigation";
 import ApprovedModal from "@/components/modal/ApprovedModal";
-
+import approvedCheck from "@/assets/approvedCheck.svg"
+import Image from "next/image";
 interface ActionButtonsProps {
   id: string;
 }
@@ -53,7 +54,7 @@ export default function RejectButtons({ id }: ActionButtonsProps) {
           className="approved-btn"
         >
           <span>Approve</span>
-          <FiCheck className="w-[1.125rem] h-[1.125rem]" />
+          <Image src={approvedCheck} width={100} height={100} alt="" className="w-[0.934rem] h-[0.689rem]"/>
         </button>
       </div>
 
