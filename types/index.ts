@@ -523,5 +523,31 @@ export type TypeAccountManagement = {
   }
 }
 
+export type TypeEducation = {
+  degree: string;
+  description: string;
+  endDate: string;
+  fieldOfStudy: string;
+  grade: string;
+  institution: string;
+  isCurrent: boolean;
+  startDate: string;
+}
+
+export type TypeWorkExperience = {
+  _id: string,
+  userProfileId: string,
+  jobTitle: string,
+  employmentType: string[],
+  companyName: string,
+  startDate: string,
+  endDate: string | null,
+  location: string,
+  description: string,
+  isCurrentlyWorking: boolean,
+  createdAt: string,
+  updatedAt: string,
+}
+
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;

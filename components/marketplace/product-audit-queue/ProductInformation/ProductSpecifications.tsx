@@ -42,9 +42,8 @@ export default function ProductSpecifications({
           {specifications?.map((item, index) => (
             <div
               key={item.label}
-              className={`flex justify-between p-4 ${
-                index % 2 === 0 ? "bg-[#F8F9FA]" : "bg-white"
-              }`}
+              className={`flex justify-between p-4 ${index % 2 === 0 ? "bg-[#F8F9FA]" : "bg-white"
+                }`}
             >
               <span className="w-1/2 font-semibold text-gray-800">
                 {item.label}
