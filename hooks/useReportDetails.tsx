@@ -1,7 +1,6 @@
 import moment from "moment";
 
 export default function useReportDetails(data: any) {
-     console.log(data, 'data of reportssss')
      return {
           job: {
                headerTitle: "Report Job",
