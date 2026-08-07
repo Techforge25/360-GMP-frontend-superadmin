@@ -8,6 +8,7 @@ import { keys } from "@/keys";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useQuery } from "@tanstack/react-query";
 import { getProductReports } from "@/services/reports";
+import { useTableScroll } from "@/hooks/useTableScroll";
 
 interface Props {
   dateRange: string
@@ -22,7 +23,7 @@ export default function ProductReportTable({ dateRange }: Props) {
     queryKey: [keys.reportProduct, dateRange, page, debouncedSearch],
     queryFn: () => getProductReports(dateRange, debouncedSearch, page),
   });
-
+  const tableRef = useTableScroll(page, isPending);
   const reportsData = data?.data?.docs
 
   const handlePageChange = (page: number) => {
@@ -34,9 +35,9 @@ export default function ProductReportTable({ dateRange }: Props) {
   }
 
   return (
-    <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-border-light bg-white  shadow-sm" ref={tableRef}>
       <SearchFilterBar
-        placeholder="Search Report..."
+        placeholder="Search by Product name..."
         onSearch={(value) => {
           setSearch(value);
           setPage(1);

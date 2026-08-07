@@ -6,6 +6,7 @@ import { getSubscriptionFreeUsers } from "@/services/subscription";
 import PaginationComponent from "@/components/common/PaginationComponent";
 import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "@/hooks/useDebounceSearch";
+import { useTableScroll } from "@/hooks/useTableScroll";
 
 type Props = {
   dateRange: string;
@@ -16,9 +17,6 @@ export default function FreeTrialTable({ dateRange }: Props) {
   const [validityChange, setValidityChange] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
-  const tableRef = useRef<HTMLDivElement>(null);
-  const prevPage = useRef(page);
-  const isFirstRender = useRef(true);
   const { isPending, data } = useQuery({
     queryKey: [
       keys.subscriptionList,
@@ -35,27 +33,10 @@ export default function FreeTrialTable({ dateRange }: Props) {
         debouncedSearch,
       ),
   });
-
+  const tableRef = useTableScroll(page, isPending);
   const handlePageChange = (page: number) => {
     setPage(page);
   };
-
-  useEffect(() => {
-    if (isFirstRender.current) {
-      isFirstRender.current = false;
-      prevPage.current = page;
-      return;
-    }
-
-    if (prevPage.current !== page && !isPending) {
-      tableRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-
-      prevPage.current = page;
-    }
-  }, [page, isPending]);
 
   const handleFilterStatusChange = (value: string) => {
     setValidityChange(

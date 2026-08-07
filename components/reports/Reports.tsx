@@ -21,7 +21,11 @@ export default function Reports({ dateRange }: Props) {
 
   const handleTabChange = (tabId: string) => {
     startTransition(() => {
-      router.push(`?tab=${tabId}`, { scroll: false });
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("tab", tabId);
+      router.replace(`${window.location.pathname}?${params.toString()}`, {
+        scroll: false,
+      });
     });
   };
 
@@ -38,17 +42,25 @@ export default function Reports({ dateRange }: Props) {
       <div
         className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
       >
-        {currentTab === "jobs-reports" && <JobReportTable dateRange={dateRange} />}
+        {currentTab === "jobs-reports" && (
+          <JobReportTable dateRange={dateRange} />
+        )}
 
-        {currentTab === "business-reports" && <>
-          <BusinessReportTable dateRange={dateRange} />
-        </>}
-        {currentTab === "product-reports" && <>
-          <ProductReportTable dateRange={dateRange} />
-        </>}
-        {currentTab === "coummunity-reports" && <>
-          <CommunityReportTable dateRange={dateRange} />
-        </>}
+        {currentTab === "business-reports" && (
+          <>
+            <BusinessReportTable dateRange={dateRange} />
+          </>
+        )}
+        {currentTab === "product-reports" && (
+          <>
+            <ProductReportTable dateRange={dateRange} />
+          </>
+        )}
+        {currentTab === "coummunity-reports" && (
+          <>
+            <CommunityReportTable dateRange={dateRange} />
+          </>
+        )}
       </div>
     </>
   );

@@ -9,7 +9,7 @@ import PaidMemberTable from "./paid-member/PaidMemberTable";
 
 type Props = {
   dateRange: string;
-}
+};
 
 export default function Subscription({ dateRange }: Props) {
   const router = useRouter();
@@ -20,7 +20,11 @@ export default function Subscription({ dateRange }: Props) {
 
   const handleTabChange = (tabId: string) => {
     startTransition(() => {
-      router.push(`?tab=${tabId}`, { scroll: false });
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("tab", tabId);
+      router.replace(`${window.location.pathname}?${params.toString()}`, {
+        scroll: false,
+      });
     });
   };
 
@@ -34,9 +38,11 @@ export default function Subscription({ dateRange }: Props) {
         />
       </div>
 
-      <div className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}>
+      <div
+        className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
+      >
         {currentTab === "free-trial" && (
-          <FreeTrialTable dateRange={dateRange}/>
+          <FreeTrialTable dateRange={dateRange} />
         )}
 
         {currentTab === "all-business" && (
