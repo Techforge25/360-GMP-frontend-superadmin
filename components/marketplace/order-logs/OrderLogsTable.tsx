@@ -4,6 +4,7 @@ import { keys } from "@/keys";
 import { fetchOrderLogs } from "@/services/marketplace";
 import { useEffect, useRef, useState } from "react";
 import PaginationComponent from "@/components/common/PaginationComponent";
+import { useTableScroll } from "@/hooks/useTableScroll";
 
 interface Props {
   dateRange: string
@@ -15,20 +16,13 @@ export default function OrderLogsTable({ dateRange }: Props) {
     queryKey: [keys.orderLogs, dateRange, page],
     queryFn: () => fetchOrderLogs(dateRange, page),
   });
-const tableRef = useRef<HTMLDivElement>(null);
+  const tableRef = useTableScroll(page, isPending);
   const orderLogs = data?.data?.docs
 
   const handlePageChange = (page: number) => {
     setPage(page);
   };
-    useEffect(() => {
-  if (!isPending) {
-    tableRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "start",
-    });
-  }
-}, [page, isPending]);
+
 
   return (
     <div className="rounded-2xl border border-border-light bg-white p-0 shadow-sm" ref={tableRef}>

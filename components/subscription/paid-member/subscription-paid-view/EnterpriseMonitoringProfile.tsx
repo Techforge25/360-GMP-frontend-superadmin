@@ -32,7 +32,7 @@ export default function EnterpriseMonitoringProfile({
               <h1 className="text-[1.375rem] font-semibold text-text-primary font-open-sans">
                 Subscription Details
               </h1>
-              <p className="text-[0.875rem] font-normal font-inter text-kyc-text-heading">
+              <p className="text-[0.875rem] font-normal font-inter text-text-setting-dark">
                 View current subscription, billing information, plan
                 features and renewal date in one place.
               </p>

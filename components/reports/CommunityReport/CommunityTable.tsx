@@ -1,20 +1,25 @@
 "use client";
 import DataTable, { Column } from "@/components/common/DataTable";
-import { MarketplaceReportTableRowData } from "@/types";
+import { TypeCommunityReport } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
-import { marketplaceReportTableData } from "@/constants/reports/reportTable";
 import ReportActionButtons from "../ReportActionButtons";
 
 const reportType = "community";
-const columns: Column<MarketplaceReportTableRowData>[] = [
+
+interface Props {
+  isPending: boolean;
+  reportsData: TypeCommunityReport[];
+}
+
+const columns: Column<TypeCommunityReport>[] = [
   {
     key: "reportedJob",
     header: "community Name",
     render: (row) => (
       <div className="flex flex-col">
         <span className="text-[1rem] font-medium text-text-secondary">
-          {row?.reportedJob?.jobTitle}
+          {row?.reportedCommunity?.name}
         </span>
       </div>
     ),
@@ -72,8 +77,8 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
     render: (row) => (
       <div className="flex items-center gap-3">
         <Image
-          src={row?.reportedJob?.owner?.logo}
-          alt={row?.reportedJob?.owner?.companyName}
+          src={row?.reportedCommunity?.owner?.logo}
+          alt={row?.reportedCommunity?.owner?.companyName}
           width={40}
           height={40}
           className="h-10 w-10 rounded-full"
@@ -81,11 +86,11 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
 
         <div className="flex flex-col">
           <span className="text-[1rem] font-medium text-text-secondary">
-            {row?.reportedJob?.owner?.companyName}
+            {row?.reportedCommunity?.owner?.companyName}
           </span>
 
           <span className="text-sm text-text-hint">
-            {row?.reportedJob?.owner?.email}
+            {row?.reportedCommunity?.owner?.email}
           </span>
         </div>
       </div>
@@ -97,20 +102,21 @@ const columns: Column<MarketplaceReportTableRowData>[] = [
     header: "Action",
     render: (row) => (
       <>
-        <ReportActionButtons ReportId={row._id} reportType={reportType} reportModal='Community'/>
+        <ReportActionButtons ReportId={row._id} reportType={reportType} reportModal='Community' />
       </>
     ),
   },
 ];
 
-export default function CommunityTable() {
+export default function CommunityTable({ isPending, reportsData }: Props) {
   return (
     <>
       <div className="pt-4">
         <DataTable
           columns={columns}
-          data={marketplaceReportTableData}
+          data={reportsData}
           rowKey={(row) => row._id}
+          isLoading={isPending}
         />
       </div>
     </>

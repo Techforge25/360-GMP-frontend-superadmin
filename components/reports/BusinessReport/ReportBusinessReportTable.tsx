@@ -1,6 +1,6 @@
 "use client";
 import DataTable, { Column } from "@/components/common/DataTable";
-import { MarketplaceReportTableRowData, TypeViewBusinessReport } from "@/types";
+import { TypeViewBusinessReport } from "@/types";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
 import ReportActionButtons from "../ReportActionButtons";
@@ -88,7 +88,7 @@ const columns: Column<any>[] = [
     header: "Action",
     render: (row) => (
       <>
-        <ReportActionButtons ReportId={row._id} reportType={reportType} reportModal='Business'/>
+        <ReportActionButtons ReportId={row._id} reportType={reportType} reportModal='Business' />
       </>
     ),
   },

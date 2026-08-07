@@ -5,6 +5,7 @@ import { keys } from "@/keys";
 import { useQuery } from "@tanstack/react-query";
 import { generalProducts } from "@/services/marketplace";
 import PaginationComponent from "@/components/common/PaginationComponent";
+import { useTableScroll } from "@/hooks/useTableScroll";
 
 interface Props {
   dateRange: string;
@@ -16,19 +17,12 @@ export default function ProductApprovedTable({ dateRange }: Props) {
     queryKey: [keys.orderProductRejectionApproval, dateRange, page],
     queryFn: () => generalProducts(dateRange, page),
   });
-  const tableRef = useRef<HTMLDivElement>(null);
+  const tableRef = useTableScroll(page, isPending);
   const handlePageChange = (page: number) => {
     setPage(page);
   };
 
-  useEffect(() => {
-    if (!isPending) {
-      tableRef.current?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-      });
-    }
-  }, [page, isPending]);
+
 
   const productApproveReject = data?.data?.docs;
 

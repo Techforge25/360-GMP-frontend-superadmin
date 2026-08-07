@@ -1,6 +1,6 @@
 import SearchFilterBar from "@/components/common/SearchFilterBar";
 import SubscriptionPaidMemberTable from "./SubscriptionPaidMemberTable";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
@@ -17,6 +17,9 @@ export default function PaidMemberTable({ dateRange }: Props) {
   const [tierType, setTierType] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
+const tableRef = useRef<HTMLDivElement>(null);
+const prevPage = useRef(page);
+const isFirstRender = useRef(true);
 
   const { isPending, data } = useQuery({
     queryKey: [
@@ -41,6 +44,23 @@ export default function PaidMemberTable({ dateRange }: Props) {
     setPage(page);
   };
 
+useEffect(() => {
+  if (isFirstRender.current) {
+    isFirstRender.current = false;
+    prevPage.current = page;
+    return;
+  }
+
+  if (prevPage.current !== page && !isPending) {
+    tableRef.current?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+
+    prevPage.current = page;
+  }
+}, [page, isPending]);
+
   const handleFilterStatusChange = (value: string) => {
     if (
       value === "All Tiers" ||
@@ -54,7 +74,7 @@ export default function PaidMemberTable({ dateRange }: Props) {
       setValidityChange(
         value === "Active"
           ? "active"
-          : value === "Canceled"
+          : value === "Cancelled"
             ? "canceled"
             : value === "Expired"
               ? "expired"
@@ -67,9 +87,9 @@ export default function PaidMemberTable({ dateRange }: Props) {
 
   const paidUsersData = data?.data?.docs;
   return (
-    <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm">
+    <div className="rounded-[0.75rem] border border-bg-gray-200 bg-white p-0 shadow-sm" ref={tableRef}>
       <SearchFilterBar
-        placeholder="Search by Business name..."
+        placeholder="Search by User or Business name..."
         filters={[
           {
             key: "sortBy",
@@ -86,7 +106,7 @@ export default function PaidMemberTable({ dateRange }: Props) {
           {
             key: "status",
             label: "Status",
-            options: ["All Status", "Active", "Canceled", "Expired"],
+            options: ["All Status", "Active", "Cancelled", "Expired"],
             defaultValue: "All Status",
           },
         ]}

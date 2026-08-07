@@ -43,7 +43,7 @@ export default function SubscriptionPlanDetails({
             <div className="flex items-start justify-between">
               <div className="flex flex-col gap-[0.25rem]">
                 <span className="text-[1rem] font-normal text-text-light font-inter">
-                  {planName} Tier ( Monthly )
+                  {planName} Tier
                 </span>
                 <span className="text-[1rem] text-text-secondary font-normal font-inter">
                   {moment(startDate).format("MMM DD, YYYY")} -{" "}
@@ -84,7 +84,7 @@ export default function SubscriptionPlanDetails({
                         className="w-[0.966rem] h-[0.702rem]"
                       />
                     </span>
-                    <span>{item}</span>
+                    <span className="font-normal">{item}</span>
                   </div>
                 ))}
               </div>
@@ -106,7 +106,7 @@ export default function SubscriptionPlanDetails({
                 <div className="flex items-start justify-between">
                   <div className="flex flex-col gap-[0.25rem]">
                     <span className="text-[1rem] font-normal text-text-light font-inter">
-                      {lastPlane?.planName} Tier ( Monthly )
+                      {lastPlane?.planName} Tier
                     </span>
                     <span className="text-[1rem] text-text-secondary font-normal font-inter">
                       {moment(lastPlane?.startDate).format("MMM DD, YYYY")} -{" "}

@@ -17,7 +17,7 @@ export interface TableRowData {
 
 export interface FreeTrialTableRowData {
   _id: string;
-  email:string;
+  email: string;
   userProfile: {
     fullName: string;
     logo: string;
@@ -34,7 +34,7 @@ export interface PaidMemberTableRowData {
   subscriptionTier: string;
   joinDate: string;
   status: string;
-  email:string;
+  email: string;
 }
 
 export interface OrderModalRef {
@@ -462,6 +462,44 @@ export type TypeViewCommunityReport = {
     type: string,
     owner: {
       companyName: string,
+      email: string
+    }
+  }
+}
+
+export type TypeProductReport = {
+  _id: string,
+  reason: string,
+  createdAt: string,
+  reportedBy: {
+    fullName: string,
+    email: string,
+    logo: string
+  },
+  reportedProduct: {
+    title: string,
+    owner: {
+      companyName: string,
+      logo: string,
+      email: string
+    }
+  }
+}
+
+export type TypeCommunityReport = {
+  _id: string,
+  reason: string,
+  createdAt: string,
+  reportedBy: {
+    fullName: string,
+    email: string,
+    logo: string
+  },
+  reportedCommunity: {
+    name: string,
+    owner: {
+      companyName: string,
+      logo: string
       email: string
     }
   }

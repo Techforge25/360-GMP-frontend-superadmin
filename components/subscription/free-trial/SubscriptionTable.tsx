@@ -37,21 +37,30 @@ export default function SubscriptionFreeTrialTable({
           </div>
           <div className="flex items-center ml-10">
             <div className="flex gap-3">
-            <Image
-              src={UserIcon}
-              width={100}
-              height={100}
-              alt=""
-              className="w-[0.75rem]  text-brand-btn-pills"
-            />
+              <Image
+                src={UserIcon}
+                width={100}
+                height={100}
+                alt=""
+                className="w-[0.75rem]  text-brand-btn-pills"
+              />
 
-            <p className="font-inter font-normal text-[1rem] text-text-setting-light">
-              {row?.userProfile?.fullName || "No User Profile"}
-            </p>
+              {row?.userProfile?.fullName ?
+                <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+                  {row?.userProfile?.fullName}
+                </p>
+                :
+                <i className="font-inter font-normal text-[1rem] text-text-light-gray-100">
+                  No User Profile
+                </i>
+              }
+              {/* <p className="font-inter font-normal text-[1rem] text-text-setting-light">
+                {row?.userProfile?.fullName || "No User Profile"}
+              </p> */}
             </div>
           </div>
         </div>
-    
+
       ),
     },
     {
@@ -97,7 +106,7 @@ export default function SubscriptionFreeTrialTable({
       ),
     },
   ];
- const borderRadius = "rounded-[0px]! border-none"
+  const borderRadius = "rounded-[0px]! border-none"
   return (
     <div className="pt-2">
       <DataTable
