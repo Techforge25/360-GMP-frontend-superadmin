@@ -23,7 +23,7 @@ export default function SidebarMenuItems({ pathname }: SidebarMenuItemsProps) {
             }`}
           >
             <span className="text-[1rem]">{item.icon}</span>
-            <span className="text-[1rem]">{item.name}</span>
+            <span className="text-[1.05rem]">{item.name}</span>
           </Link>
         );
       })}

@@ -21,42 +21,42 @@ export interface NavigationItem {
 export const sidebarMenuItems: NavigationItem[] = [
   {
     name: "Dashboard",
-    icon: <FiGrid />,
+    icon: <FiGrid className="w-[1.05rem] h-[1.05rem]"/>,
     path: "/dashboard",
   },
   {
     name: "Account Management",
-    icon: <FaUsers  />,
+    icon: <FaUsers className="w-[1.05rem] h-[1.05rem]" />,
     path: "/account-management",
   },
   {
     name: "Subscription & Access",  
-    icon: <FiAward />,
+    icon: <FiAward className="w-[1.05rem] h-[1.05rem]" />,
     path: "/subscription",
   },
   {
     name: "Marketplace & Order Logs",
-    icon: <FiFileText />,
+    icon: <FiFileText className="w-[1.05rem] h-[1.05rem]" />,
     path: "/marketplace",
   },
   {
     name: "Financial Hub",
-    icon: <FiDollarSign />,
+    icon: <FiDollarSign className="w-[1.05rem] h-[1.05rem]" />,
     path: "/finance",
   },
   {
     name: "Communities & Networking",
-    icon: <FiActivity />,
+    icon: <FiActivity className="w-[1.05rem] h-[1.05rem]"/>,
     path: "/communities",
   },
   {
     name: "Recruitment (Job Board)",
-    icon: <FiBriefcase />,
+    icon: <FiBriefcase className="w-[1.05rem] h-[1.05rem]"/>,
     path: "/jobs",
   },
    {
     name: "Reports",
-    icon: <IoAlertCircleOutline />,
+    icon: <IoAlertCircleOutline className="w-[1.05rem] h-[1.05rem]"/>,
     path: "/reports",
   },
 ];
@@ -64,12 +64,12 @@ export const sidebarMenuItems: NavigationItem[] = [
 export const sidebarSettingsItems: NavigationItem[] = [
   {
     name: "Settings",
-    icon: <FiSettings />,
+    icon: <FiSettings className="w-[1.05rem] h-[1.05rem]"/>,
     path: "/settings",
   },
   {
     name: "Sign Out",
-    icon: <FiLogOut />,
+    icon: <FiLogOut className="w-[1.05rem] h-[1.05rem]"/>,
     path: "",
   },
 ];
