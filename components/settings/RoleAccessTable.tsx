@@ -62,7 +62,7 @@ export default function RoleAccessTable({
   ];
 
   return (
-    <div className="w-full overflow-x-scroll">
+    <div className="w-full">
       <DataTable
         columns={columns}
         data={adminData}
