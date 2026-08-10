@@ -22,8 +22,8 @@ export default function SidebarMenuItems({ pathname }: SidebarMenuItemsProps) {
                 : "text-black hover:bg-brand-primary hover:text-text-inverse"
             }`}
           >
-            <span className="text-[1rem]">{item.icon}</span>
-            <span className="text-[1.05rem]">{item.name}</span>
+            <span className="text-[1.05rem]">{item.icon}</span>
+            <span className="text-[1rem]">{item.name}</span>
           </Link>
         );
       })}
