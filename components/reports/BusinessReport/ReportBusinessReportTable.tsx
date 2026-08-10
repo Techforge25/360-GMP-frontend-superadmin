@@ -73,15 +73,15 @@ const columns: Column<any>[] = [
     ),
   },
 
-  {
-    key: "reason",
-    header: "Reason",
-    render: (row) => (
-      <span className="inline-flex rounded-full border border-gray-400 bg-gray-100 px-4 py-1 text-sm text-gray-700">
-        {row?.reason}
-      </span>
-    ),
-  },
+  // {
+  //   key: "reason",
+  //   header: "Reason",
+  //   render: (row) => (
+  //     <span className="inline-flex rounded-full border border-gray-400 bg-gray-100 px-4 py-1 text-sm text-gray-700">
+  //       {row?.reason}
+  //     </span>
+  //   ),
+  // },
 
   {
     key: "action",
@@ -95,14 +95,16 @@ const columns: Column<any>[] = [
 ];
 
 export default function ReportBusinessReportTable({ reportsData, isPending }: Props) {
+    const borderRadius = "rounded-[0px]! border-none"
   return (
     <>
-      <div className="pt-4">
+      <div>
         <DataTable
           columns={columns}
           data={reportsData}
           rowKey={(row) => row._id}
           isLoading={isPending}
+          borderRadius={borderRadius}
         />
       </div>
     </>

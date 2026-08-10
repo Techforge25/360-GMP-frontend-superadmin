@@ -48,13 +48,14 @@ export default function NewBusinessInnerTable() {
       ),
     },
   ];
-
+const borderRadius = "rounded-[0px]! border-none"
   return (
-    <div className="pt-8">
+    <div className="pt-4">
       <DataTable
         columns={columns}
         data={ProductApprovedTable}
         rowKey={(row) => row._id}
+        borderRadius={borderRadius}
       />
     </div>
   );

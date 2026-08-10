@@ -9,6 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getBusinessReports } from "@/services/reports";
 import { keys } from "@/keys";
 import PaginationComponent from "@/components/common/PaginationComponent";
+import { useTableScroll } from "@/hooks/useTableScroll";
 
 interface Props {
   dateRange: string
@@ -23,7 +24,7 @@ export default function BusinessReportTable({ dateRange }: Props) {
     queryKey: [keys.reportBusiness, page, debouncedSearch],
     queryFn: () => getBusinessReports(dateRange, debouncedSearch, page),
   });
-
+  const tableRef = useTableScroll(page, isPending);
   const reportsData = data?.data?.docs
 
   const handlePageChange = (page: number) => {
@@ -35,9 +36,9 @@ export default function BusinessReportTable({ dateRange }: Props) {
   }
 
   return (
-    <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-border-light bg-white shadow-sm" ref={tableRef}>
       <SearchFilterBar
-        placeholder="Search Report..."
+        placeholder="Search by Business name..."
         onSearch={(value) => {
           setSearch(value);
           setPage(1);

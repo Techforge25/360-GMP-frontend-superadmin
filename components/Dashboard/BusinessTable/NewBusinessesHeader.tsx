@@ -54,7 +54,7 @@ export default function NewBusinessesHeader({
   }, [watchedValues, onFilterChange]);
 
   return (
-    <div className="w-full bg-white px-0 py-0">
+    <div className="w-full bg-white px-4 py-5">
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <h2 className="text-xl font-bold text-gray-900 tracking-tight">
           New Businesses Created
