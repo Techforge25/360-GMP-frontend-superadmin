@@ -12,7 +12,7 @@ const columns: Column<TypeProductReport>[] = [
     header: "product title",
     render: (row) => (
       <div className="flex flex-col">
-        <span className="text-[1rem] font-medium text-text-secondary">
+        <span className="text-[1rem] font-medium text-text-secondary truncate w-[15.625rem]">
           {row?.reportedProduct?.title}
         </span>
       </div>
