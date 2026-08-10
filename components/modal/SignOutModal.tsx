@@ -10,10 +10,11 @@ export interface SignOutModalRef {
 
 interface SignOutModalProps {
   onConfirm?: () => void;
+  isPending: boolean;
 }
 
 const SignOutModal = forwardRef<SignOutModalRef, SignOutModalProps>(
-  ({ onConfirm }, ref) => {
+  ({ onConfirm, isPending }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
 
     useImperativeHandle(ref, () => ({
@@ -56,9 +57,11 @@ const SignOutModal = forwardRef<SignOutModalRef, SignOutModalProps>(
 
             <button
               onClick={onConfirm}
-              className="signout-btn"
+              disabled={isPending}
+              className="signout-btn disabled:cursor-not-allowed disabled:opacity-50"
             >
-              Yes
+              {" "}
+              {isPending ? "Logging out..." : "Yes"}{" "}
             </button>
           </div>
         </div>

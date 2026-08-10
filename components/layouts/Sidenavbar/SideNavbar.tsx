@@ -7,15 +7,13 @@ import { useRef, useState } from "react";
 import SidebarMenuItems from "./sidebarMenuItems";
 import SidebarSettingsItems from "./sidebarSettingsItems";
 
-import SignOutModal, {
-  SignOutModalRef,
-} from "@/components/modal/SignOutModal";
+import SignOutModal, { SignOutModalRef } from "@/components/modal/SignOutModal";
 import { logout } from "@/services/auth";
 import { useMutation } from "@tanstack/react-query";
 
 export default function SideNavbar() {
   const pathname = usePathname();
-  const router = useRouter()
+  const router = useRouter();
 
   const logoutMutation = useMutation({
     mutationFn: logout,
@@ -28,10 +26,9 @@ export default function SideNavbar() {
     },
   });
 
+  const { isPending } = logoutMutation;
 
-
-  const signOutModalRef =
-    useRef<SignOutModalRef>(null);
+  const signOutModalRef = useRef<SignOutModalRef>(null);
 
   const handleSignOutConfirm = () => {
     logoutMutation.mutate();
@@ -39,7 +36,6 @@ export default function SideNavbar() {
 
   return (
     <div className="h-screen flex flex-col border-r bg-surface border-border-light">
-
       <div className="flex items-center px-4 min-h-[5rem] border-b border-border-light">
         <div className="relative w-45 h-17">
           <Image
@@ -55,16 +51,10 @@ export default function SideNavbar() {
 
       <SidebarSettingsItems
         pathname={pathname}
-        openSignOutModal={() =>
-          signOutModalRef.current?.open()
-        }
+        openSignOutModal={() => signOutModalRef.current?.open()}
       />
 
-      <SignOutModal
-        ref={signOutModalRef}
-        onConfirm={handleSignOutConfirm}
-      />
-
+      <SignOutModal ref={signOutModalRef} onConfirm={handleSignOutConfirm}  isPending={isPending}/>
     </div>
   );
 }
