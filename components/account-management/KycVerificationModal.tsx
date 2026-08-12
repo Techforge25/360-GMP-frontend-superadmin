@@ -1,4 +1,5 @@
 "use client";
+import moment from "moment";
 import React, { useState, forwardRef, useImperativeHandle } from "react";
 import { IoEyeOutline, IoCloseOutline } from "react-icons/io5";
 import { MdOutlineAccountTree } from "react-icons/md";
@@ -10,38 +11,39 @@ interface FileItem {
 }
 
 export interface KycVerificationModalRef {
-  
+
   open: () => void;
   close: () => void;
 }
 
 interface KycVerificationModalProps {
   onConfirm?: () => void;
+  kycVerificationData: any;
 }
 
 const KycVerificationModal = forwardRef<
   KycVerificationModalRef,
   KycVerificationModalProps
->(({ onConfirm }, ref) => {
+>(({ onConfirm, kycVerificationData }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
-
+  console.log(kycVerificationData, 'kyc verifications')
   useImperativeHandle(ref, () => ({
     open: () => setIsOpen(true),
     close: () => setIsOpen(false),
   }));
 
   const files: FileItem[] = [
-    { title: "Upload ID Front", filename: "ID Card Front", fileUrl: "#" },
-    { title: "Upload ID Back", filename: "ID Card Back", fileUrl: "#" },
+    { title: "Upload ID Front", filename: "ID Card Front Document", fileUrl: kycVerificationData?.kyc?.idFront },
+    { title: "Upload ID Back", filename: "ID Card Back Document", fileUrl: kycVerificationData?.kyc?.idBack },
     {
       title: "Proof Of Residential Address",
-      filename: "Proof Of Residential Address",
-      fileUrl: "#",
+      filename: "Proof Of Residential Address Document",
+      fileUrl: kycVerificationData?.kyc?.proofOfResidentialAddress,
     },
     {
       title: "Proof Of Ownership",
-      filename: "Proof Of Ownership",
-      fileUrl: "#",
+      filename: "Proof Of Ownership Document",
+      fileUrl: kycVerificationData?.kyc?.proofOfOwnership,
     },
   ];
 
@@ -54,7 +56,7 @@ const KycVerificationModal = forwardRef<
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[0.125rem] p-[1rem] font-sans">
       <div className="relative w-full max-w-[55rem] bg-white rounded-[1rem] shadow-2xl border border-gray-100 overflow-hidden max-h-[90vh] flex flex-col">
-        
+
         {/* Header */}
         <div className="flex items-center justify-between px-[1.75rem] py-[1.25rem] border-b border-gray-100">
           <div className="flex items-center gap-[0.75rem]">
@@ -65,7 +67,7 @@ const KycVerificationModal = forwardRef<
               KYC Identity Verification
             </h2>
           </div>
-          
+
           <button
             onClick={() => setIsOpen(false)}
             className="text-gray-400 hover:text-gray-600 transition-colors p-[0.25rem] rounded-[0.375rem]"
@@ -82,7 +84,7 @@ const KycVerificationModal = forwardRef<
                 Date Of Birth
               </span>
               <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
-                26-07-1998
+                {moment(kycVerificationData?.kyc?.dob).format('YYYY-MM-DD')}
               </span>
             </div>
 
@@ -91,7 +93,7 @@ const KycVerificationModal = forwardRef<
                 Nationality
               </span>
               <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
-                United States
+                {kycVerificationData?.kyc?.nationality}
               </span>
             </div>
 
@@ -100,9 +102,7 @@ const KycVerificationModal = forwardRef<
                 Residential Address
               </span>
               <span className="text-[0.9375rem] font-medium text-kyc-text-subheading leading-[1.375rem]">
-                1270 North Ave, Apt 3B
-                <br />
-                New Rochelle, NY 10804
+                {kycVerificationData?.kyc?.residentialAddress}
               </span>
             </div>
 
@@ -111,7 +111,7 @@ const KycVerificationModal = forwardRef<
                 Government Id Type
               </span>
               <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
-                National Id
+                {kycVerificationData?.kyc?.governmentIdType}
               </span>
             </div>
 
@@ -120,7 +120,7 @@ const KycVerificationModal = forwardRef<
                 Phone Number
               </span>
               <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
-                +1 3052074593
+                {kycVerificationData?.kyc?.phone}
               </span>
             </div>
 
@@ -129,7 +129,7 @@ const KycVerificationModal = forwardRef<
                 ID Number
               </span>
               <span className="text-[0.9375rem] font-medium text-kyc-text-subheading">
-                National Id
+                {kycVerificationData?.kyc?.idNumber}
               </span>
             </div>
           </div>
@@ -138,11 +138,6 @@ const KycVerificationModal = forwardRef<
             <span className="text-[0.875rem] font-semibold text-kyc-text-heading">
               Region Of Operations
             </span>
-            <div>
-              <span className="inline-block px-[1.25rem] py-[0.375rem] bg-brand-primary text-white text-[0.8125rem] font-semibold rounded-[1.25rem]">
-                North America
-              </span>
-            </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[1rem] mt-[0.5rem]">
@@ -167,13 +162,15 @@ const KycVerificationModal = forwardRef<
                     </div>
                   </div>
 
-                  <button
-                    onClick={() => handleViewFile(file)}
-                    className="p-[0.5rem] text-gray-500 cursor-pointer hover:text-kyc-text-hover transition-colors"
+                  <a
+                    href={file?.fileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="cursor-pointer p-[0.5rem] text-gray-500 transition-colors hover:text-kyc-text-hover"
                     title="View file"
                   >
-                    <IoEyeOutline className="w-[1.25rem] h-[1.25rem]" />
-                  </button>
+                    <IoEyeOutline className="h-[1.25rem] w-[1.25rem]" />
+                  </a>
                 </div>
               </div>
             ))}

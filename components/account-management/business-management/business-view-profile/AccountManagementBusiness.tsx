@@ -21,8 +21,6 @@ export default function AccountManagementBusiness() {
 
   const viewBusinessProfileData = data?.data
 
-  console.log(viewBusinessProfileData, 'view businesses')
-
   return (
     <div>
       <BackButtonMain text="Back" />
@@ -41,6 +39,7 @@ export default function AccountManagementBusiness() {
         operationHour={viewBusinessProfileData?.operationHour}
         website={viewBusinessProfileData?.website ?? 'N/A'}
         description={viewBusinessProfileData?.description}
+        logo={viewBusinessProfileData?.logo}
       />
       <BusinessOperations
         addressLine={viewBusinessProfileData?.headOffice?.addressLine}
@@ -48,12 +47,19 @@ export default function AccountManagementBusiness() {
         country={viewBusinessProfileData?.headOffice?.country}
         warehouseAddress={viewBusinessProfileData?.warehouseAddress ?? 'N/A'}
         additionalWarehouseAddress={viewBusinessProfileData?.additionalWarehouseAddress ?? 'N/A'}
+        internationalOffices={viewBusinessProfileData?.internationalOffices ?? 'N/A'}
+        incoterms={viewBusinessProfileData?.incoterms ?? 'N/A'}
+        termsAndCapability={viewBusinessProfileData?.termsAndCapability ?? 'N/A'}
       />
-      <BusinessIntelligence />
-      <OperationalAndTradeProfile />
-      <AmlAndTransactionProfile />
-      <RequiredDocuments />
-      <ActionButtons />
+      <BusinessIntelligence primaryContactPerson={viewBusinessProfileData?.primaryContactPerson}
+        executiveAndLeadership={viewBusinessProfileData?.executiveAndLeadership}
+        ownedByAnotherCompany={viewBusinessProfileData?.ownedByAnotherCompany}
+        parentCompany={viewBusinessProfileData?.parentCompany ?? 'N/A'}
+      />
+      <OperationalAndTradeProfile auditingAgency={viewBusinessProfileData?.operationalAndTradeProfile?.auditingAgency ?? "N/A"} tradeAffiliations={viewBusinessProfileData?.operationalAndTradeProfile?.tradeAffiliations ?? "N/A"} regionOfOperations={viewBusinessProfileData?.operationalAndTradeProfile?.regionOfOperations} />
+      <AmlAndTransactionProfile purpose={viewBusinessProfileData?.amlAndTransactionProfile?.purpose} revenueRange={viewBusinessProfileData?.amlAndTransactionProfile?.revenueRange ?? 'N/A'} tradeCorridors={viewBusinessProfileData?.amlAndTransactionProfile?.tradeCorridors} mainCounterParties={viewBusinessProfileData?.amlAndTransactionProfile?.mainCounterParties ?? "N/A"} pep={viewBusinessProfileData?.amlAndTransactionProfile?.pep} evidenceOfFunds={viewBusinessProfileData?.evidenceOfFunds} />
+      <RequiredDocuments certificateOfIncorporation={viewBusinessProfileData?.certificateOfIncorporation} taxRegistrationCertificate={viewBusinessProfileData?.taxRegistrationCertificate} shareHolderRegister={viewBusinessProfileData?.shareHolderRegister} operatingLicense={viewBusinessProfileData?.operatingLicense} />
+      <ActionButtons id={viewBusinessProfileData?._id} />
     </div>
   )
 }

@@ -1,16 +1,27 @@
 "use client";
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { MdOutlineAccountTree } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
 import KycVerificationModal, {
   KycVerificationModalRef,
 } from "../../KycVerificationModal";
+import { TypeExecutiveLeadership, TypeParentCompany, TypePrimaryContactPerson } from "@/types";
 
-export default function BusinessIntelligence() {
+interface Props {
+  primaryContactPerson: TypePrimaryContactPerson | any;
+  executiveAndLeadership: TypeExecutiveLeadership | any;
+  ownedByAnotherCompany: boolean;
+  parentCompany: TypeParentCompany | any;
+}
+
+export default function BusinessIntelligence({ primaryContactPerson, executiveAndLeadership, ownedByAnotherCompany, parentCompany }: Props) {
+  console.log(executiveAndLeadership, 'executive and leadership')
   const kycModalRef = useRef<KycVerificationModalRef>(null);
+  const [kycSingleData, setSingleData] = useState<null>(null)
 
-  const handleOpenKycModal = () => {
+  const handleOpenKycModal = (data: any) => {
     kycModalRef.current?.open();
+    setSingleData(data)
   };
   return (
     <div className="mt-8 border border-gray-200 rounded-[0.5rem] bg-white font-sans overflow-hidden">
@@ -32,14 +43,14 @@ export default function BusinessIntelligence() {
               <span className="text-[0.875rem] font-semibold text-[#475569]">
                 Name
               </span>
-              <span className="text-[0.875rem] text-[#64748b]">John</span>
+              <span className="text-[0.875rem] text-[#64748b]">{primaryContactPerson?.name}</span>
             </div>
 
             <div className="flex flex-col gap-[0.25rem]">
               <span className="text-[0.875rem] font-semibold text-[#475569]">
                 Title
               </span>
-              <span className="text-[0.875rem] text-[#94a3b8]">CEO</span>
+              <span className="text-[0.875rem] text-[#94a3b8]">{primaryContactPerson?.title}</span>
             </div>
 
             <div className="flex flex-col gap-[0.25rem]">
@@ -47,7 +58,7 @@ export default function BusinessIntelligence() {
                 Phone Number
               </span>
               <span className="text-[0.875rem] text-[#64748b]">
-                +1 201 465123
+                {primaryContactPerson?.phone}
               </span>
             </div>
 
@@ -56,102 +67,109 @@ export default function BusinessIntelligence() {
                 Email
               </span>
               <span className="text-[0.875rem] text-[#64748b]">
-                Ceo@Merchant.Com
+                {primaryContactPerson?.supportEmail}
               </span>
             </div>
           </div>
         </div>
-        <div>
-          <h3 className="text-[1rem] font-semibold text-[#475569] mb-[1rem]">
-            Executive Leadership & Stakeholders
-          </h3>
+        <div className="overflow-hidden rounded-[0.5rem] border border-gray-100 bg-[#f8f9fb]">
+          <table className="w-full border-collapse text-left">
+            <thead>
+              <tr className="bg-[#f1f5f9]">
+                <th className="p-[1rem] text-[0.875rem] font-semibold text-[#475569]">
+                  Name
+                </th>
+                <th className="p-[1rem] text-[0.875rem] font-semibold text-[#475569]">
+                  Ownership %
+                </th>
+                <th className="p-[1rem] text-[0.875rem] font-semibold text-[#475569]">
+                  Role
+                </th>
+                <th className="p-[1rem] text-[0.875rem] font-semibold text-[#475569]">
+                  Nature Of Control
+                </th>
+              </tr>
+            </thead>
 
-          <div className="overflow-hidden rounded-[0.5rem] border border-gray-100 bg-[#f8f9fb]">
-            <table className="w-full text-left border-collapse">
-              <thead>
-                <tr className="bg-[#f1f5f9]">
-                  <th className="p-[1rem] text-[0.875rem] font-semibold text-[#475569]">
-                    Name
-                  </th>
-                  <th className="p-[1rem] text-[0.875rem] font-semibold text-[#475569]">
-                    Ownership %
-                  </th>
-                  <th className="p-[1rem] text-[0.875rem] font-semibold text-[#475569]">
-                    Role
-                  </th>
-                  <th className="p-[1rem] text-[0.875rem] font-semibold text-[#475569]">
-                    Nature Of Controle
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-100">
-                <tr>
-                  <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
-                    Alexander Sterling
-                  </td>
-                  <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
-                    30
-                  </td>
-                  <td className="p-[1rem] text-[0.875rem] text-[#94a3b8]">
-                    CFO
-                  </td>
-                  <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
-                    <button
-                      onClick={handleOpenKycModal}
-                      className="p-[0.25rem] hover:bg-gray-200 rounded-[0.375rem] transition-colors cursor-pointer"
-                      title="View KYC Verification"
-                    >
-                      <AiOutlineEye className="w-[1.25rem] h-[1.25rem] text-[#64748b]" />
-                    </button>
-                  </td>
-                </tr>
-                <tr>
-                  <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
-                    John
-                  </td>
-                  <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
-                    20
-                  </td>
-                  <td className="p-[1rem] text-[0.875rem] text-[#94a3b8]">
-                    CEO
-                  </td>
-                  <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
-                    Voting Rights
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
+            <tbody className="divide-y divide-gray-100">
+              {executiveAndLeadership?.map(
+                (executive: TypeExecutiveLeadership | any, index: number) =>
+                  executive?.ownershipPercentage >= 25 ? (
+                    <tr key={index}>
+                      <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
+                        {executive.name}
+                      </td>
+                      <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
+                        {executive.ownershipPercentage}
+                      </td>
+                      <td className="p-[1rem] text-[0.875rem] text-[#94a3b8]">
+                        {executive.role}
+                      </td>
+                      <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
+                        <button
+                          onClick={() => handleOpenKycModal(executive)}
+                          className="cursor-pointer rounded-[0.375rem] p-[0.25rem] transition-colors hover:bg-gray-200"
+                          title="View KYC Verification"
+                        >
+                          <AiOutlineEye className="h-[1.25rem] w-[1.25rem] text-[#64748b]" />
+                        </button>
+                      </td>
+                    </tr>
+                  ) : (
+                    <tr key={index}>
+                      <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
+                        {executive?.name}
+                      </td>
+                      <td className="p-[1rem] text-[0.875rem] text-[#64748b]">
+                        {executive?.ownershipPercentage}
+                      </td>
+                      <td className="p-[1rem] text-[0.875rem] text-[#94a3b8]">
+                        {executive?.role}
+                      </td>
+                      {executive?.votingRights?.map((rights: string, index: number) => {
+                        return (
+                          <td key={index} className="p-[1rem] text-[0.875rem] text-[#64748b]">
+                            {rights}
+                          </td>
+                        )
+                      })}
+                    </tr>
+                  )
+              )}
+            </tbody>
+          </table>
         </div>
 
-        <div className="bg-[#f8f9fb] border border-gray-100 rounded-[0.5rem] p-[1.5rem]">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-[1.5rem]">
-            <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#475569]">
-                Parent / Holding Company Name
-              </span>
-              <span className="text-[0.875rem] text-[#64748b]">NexusPeak</span>
-            </div>
+        {ownedByAnotherCompany && (
+          <div className="bg-[#f8f9fb] border border-gray-100 rounded-[0.5rem] p-[1.5rem]">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-[1.5rem]">
+              <div className="flex flex-col gap-[0.25rem]">
+                <span className="text-[0.875rem] font-semibold text-[#475569]">
+                  Parent / Holding Company Name
+                </span>
+                <span className="text-[0.875rem] text-[#64748b]">{parentCompany?.companyName}</span>
+              </div>
 
-            <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#475569]">
-                Ownership Percentage
-              </span>
-              <span className="text-[0.875rem] text-[#64748b]">10%</span>
-            </div>
+              <div className="flex flex-col gap-[0.25rem]">
+                <span className="text-[0.875rem] font-semibold text-[#475569]">
+                  Ownership Percentage
+                </span>
+                <span className="text-[0.875rem] text-[#64748b]">{parentCompany?.ownershipPercentage}</span>
+              </div>
 
-            <div className="flex flex-col gap-[0.25rem]">
-              <span className="text-[0.875rem] font-semibold text-[#475569]">
-                Country Of Incorporation
-              </span>
-              <span className="text-[0.875rem] text-[#64748b]">
-                +1 201 465123
-              </span>
+              <div className="flex flex-col gap-[0.25rem]">
+                <span className="text-[0.875rem] font-semibold text-[#475569]">
+                  Country Of Incorporation
+                </span>
+                <span className="text-[0.875rem] text-[#64748b]">
+                  {parentCompany?.countryOfIncorporation}
+                </span>
+              </div>
             </div>
           </div>
-        </div>
+        )}
       </div>
-      <KycVerificationModal ref={kycModalRef} />
+      <KycVerificationModal ref={kycModalRef} kycVerificationData={kycSingleData} />
     </div>
   );
 }

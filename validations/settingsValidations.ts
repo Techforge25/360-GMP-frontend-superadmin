@@ -31,12 +31,22 @@ export const createAdminSchema = yup.object({
     )
     .required("Password is required."),
 
-  allowedModules: yup
-    .array()
-    .of(yup.string().required())
-    .required("Please select at least one module.")
-    .min(1, "Please select at least one module.")
-    .default([]),
+  allowedModules: yup.array()
+    .of(
+      yup.object({
+        module: yup
+          .string()
+          .trim()
+          .required("Module name is required"),
+
+        url: yup
+          .string()
+          .trim()
+          .required("Module URL is required"),
+      })
+    )
+    .min(1, "At least one module is required")
+    .required("Allowed modules is required"),
 });
 
 export const updateAdminSchema = yup.object({
@@ -52,12 +62,22 @@ export const updateAdminSchema = yup.object({
     )
     .required("Username is required."),
 
-  allowedModules: yup
-    .array()
-    .of(yup.string().required())
-    .required("Please select at least one module.")
-    .min(1, "Please select at least one module.")
-    .default([]),
+  allowedModules: yup.array()
+    .of(
+      yup.object({
+        module: yup
+          .string()
+          .trim()
+          .required("Module name is required"),
+
+        url: yup
+          .string()
+          .trim()
+          .required("Module URL is required"),
+      })
+    )
+    .min(1, "At least one module is required")
+    .required("Allowed modules is required"),
 });
 
 export const updatePasswordSchema = yup.object({

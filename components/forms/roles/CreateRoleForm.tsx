@@ -32,12 +32,12 @@ type Props = {
 export default function CreateRoleForm({ adminId }: Props) {
   const queryClient = useQueryClient();
   const router = useRouter()
-  const [adminDefaultValues, setAdminDefaultValues] = useState<FormValues>({
-    username: "",
-    email: "",
-    password: "",
-    allowedModules: [],
-  });
+  // const [adminDefaultValues, setAdminDefaultValues] = useState<FormValues>({
+  //   username: "",
+  //   email: "",
+  //   password: "",
+  //   allowedModules: [],
+  // });
 
   const adminInviteSentModalRef = useRef<AdminInviteSentRef>(null);
   const checkValidationRequest = adminId
@@ -49,6 +49,7 @@ export default function CreateRoleForm({ adminId }: Props) {
     handleSubmit,
     reset,
     getValues,
+    watch,
     formState: { errors, isValid },
   } = useForm<FormValues | TypeUpdateAdmin>({
     resolver: yupResolver(checkValidationRequest),
@@ -62,7 +63,7 @@ export default function CreateRoleForm({ adminId }: Props) {
   });
 
   const { data } = useQuery({
-    queryKey: [keys.adminDetails],
+    queryKey: [keys.adminDetails, adminId],
     queryFn: () => getSingleAdminDetails(adminId),
     enabled: !!adminId,
     staleTime: 0,
@@ -85,7 +86,7 @@ export default function CreateRoleForm({ adminId }: Props) {
     mutationFn: createAdmin,
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.adminList] });
-      setAdminDefaultValues(getValues() as FormValues);
+      // setAdminDefaultValues(getValues() as FormValues);
       adminInviteSentModalRef.current?.open();
     },
   });
@@ -103,7 +104,7 @@ export default function CreateRoleForm({ adminId }: Props) {
 
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: [keys.adminList] });
-      setAdminDefaultValues(getValues() as FormValues);
+      // setAdminDefaultValues(getValues() as FormValues);
       adminInviteSentModalRef.current?.open();
       toast.success("Admin updated successfully");
     },
@@ -167,7 +168,9 @@ export default function CreateRoleForm({ adminId }: Props) {
       </form>
       <AdminInviteSent
         ref={adminInviteSentModalRef}
-        defaultValues={adminDefaultValues}
+        email={watch('email')}
+        name={watch('username')}
+        allowedModules={watch('allowedModules')}
         adminId={adminId}
       />
     </>

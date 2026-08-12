@@ -1,3 +1,4 @@
+import { Icon } from "next/dist/lib/metadata/types/metadata-types";
 import { ReactNode } from "react";
 
 export interface TabItem {
@@ -11,7 +12,7 @@ export interface TableRowData {
   _id: string;
   username: string;
   email: string;
-  allowedModules: string[];
+  allowedModules: TypeSingleAdmin[];
   status: boolean;
 }
 
@@ -88,7 +89,8 @@ export interface RoleMember {
 
 export interface PermissionModule {
   id: string;
-  name: string;
+  module: string;
+  url: string;
   checked: boolean;
 }
 
@@ -96,7 +98,10 @@ export interface FormValues {
   username: string;
   email: string;
   password: string;
-  allowedModules: string[];
+  allowedModules: {
+    module: string;
+    url: string;
+  }[];
 }
 
 export interface ExperienceEntry {
@@ -129,7 +134,10 @@ export type TypeCreateAdmin = {
   username: string;
   email: string;
   password: string;
-  allowedModules: string[]
+  allowedModules: {
+    module: string;
+    url: string;
+  }[]
 }
 
 export interface EditPasswordRef {
@@ -702,7 +710,17 @@ export type TypeViewBusinessProfile = {
   evidenceOfFunds: string,
 }
 
+export type TypeNavigation = {
+  module: string,
+  url: string,
+}
+
 export type TypeWarehouseAddress = Pick<TypeViewBusinessProfile, 'warehouseAddress'>
 export type TypeAdditionalWarehouseAddress = Pick<TypeViewBusinessProfile, 'additionalWarehouseAddress'>
+export type TypeInternationalOffices = Pick<TypeViewBusinessProfile, 'internationalOffices'>
 export type TypeUpdateAdmin = Omit<TypeCreateAdmin, "password" | 'email'>;
 export type TypeUpdateAdminPassword = Pick<TypeCreateAdmin, "password">;
+export type TypePrimaryContactPerson = Pick<TypeViewBusinessProfile, 'primaryContactPerson'>
+export type TypeExecutiveLeadership = Pick<TypeViewBusinessProfile, 'executiveAndLeadership'>
+export type TypeParentCompany = Pick<TypeViewBusinessProfile, 'parentCompany'>
+export type TypeSingleAdmin = Pick<PermissionModule, "module" | "url">

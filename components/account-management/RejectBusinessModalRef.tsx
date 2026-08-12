@@ -1,9 +1,16 @@
 "use client";
 
-import React, { forwardRef, useImperativeHandle, useRef, useState } from "react";
-import { IoCloseOutline, IoChevronDownOutline } from "react-icons/io5";
+import { forwardRef, useImperativeHandle, useState } from "react";
+import { IoCloseOutline } from "react-icons/io5";
 import { FiCheck } from "react-icons/fi";
 import { MdErrorOutline } from "react-icons/md";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { notesSchema } from "@/validations/notesValidations";
+import { rejectBusiness } from "@/services/account-management";
+import { keys } from "@/keys";
 
 export interface RejectBusinessModalRef {
   open: () => void;
@@ -11,42 +18,73 @@ export interface RejectBusinessModalRef {
 }
 
 interface RejectBusinessModalProps {
-  onConfirm?: (reason: string, notes: string) => void;
+  id: string;
 }
+
+type RejectBusinessFormValues = {
+  note: string;
+};
 
 const RejectBusinessModal = forwardRef<
   RejectBusinessModalRef,
   RejectBusinessModalProps
->(({ onConfirm }, ref) => {
+>(({ id }, ref) => {
   const [isOpen, setIsOpen] = useState(false);
 
-  const reasonRef = useRef<HTMLSelectElement>(null);
-  const notesRef = useRef<HTMLTextAreaElement>(null);
+  const router = useRouter();
+  const queryClient = useQueryClient();
+
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors, isValid },
+  } = useForm<RejectBusinessFormValues>({
+    resolver: yupResolver(notesSchema),
+    mode: "onChange",
+    defaultValues: {
+      note: "",
+    },
+  });
+
+  const mutation = useMutation({
+    mutationFn: rejectBusiness,
+    onSuccess: () => {
+      reset();
+      setIsOpen(false);
+
+      queryClient.invalidateQueries({
+        queryKey: [keys.accountBusinessList],
+      });
+
+      router.push("/account-management?tab=all-business");
+    },
+  });
 
   useImperativeHandle(ref, () => ({
     open: () => setIsOpen(true),
-    close: () => setIsOpen(false),
+    close: () => {
+      reset();
+      setIsOpen(false);
+    },
   }));
 
-  const handleConfirm = () => {
-    const reason = reasonRef.current?.value || "";
-    const notes = notesRef.current?.value || "";
-
-    onConfirm?.(reason, notes);
-
-    setIsOpen(false);
+  const handleConfirm = (data: RejectBusinessFormValues) => {
+    mutation.mutate({
+      id,
+      note: data.note,
+    });
   };
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 backdrop-blur-[0.125rem] p-[1rem] font-sans">
-      <div className="relative w-full max-w-[42rem] bg-white rounded-[1rem] shadow-2xl border border-gray-100 overflow-hidden flex flex-col">
-
-        <div className="flex items-center justify-between px-[1.75rem] py-[1.25rem] border-b border-gray-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
+      <div className="w-full max-w-[36rem] rounded-[1rem] bg-white shadow-xl">
+        <div className="flex items-center justify-between border-b border-gray-100 px-[1.75rem] py-[1.25rem]">
           <div className="flex items-center gap-[0.75rem]">
-            <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#ffebee] rounded-full text-reject">
-              <MdErrorOutline className="w-[1.25rem] h-[1.25rem]" />
+            <div className="flex h-[2.25rem] w-[2.25rem] items-center justify-center rounded-full bg-[#ffebee] text-reject">
+              <MdErrorOutline className="h-[1.25rem] w-[1.25rem]" />
             </div>
 
             <h2 className="text-[1.125rem] font-bold text-gray-900">
@@ -55,98 +93,73 @@ const RejectBusinessModal = forwardRef<
           </div>
 
           <button
-            onClick={() => setIsOpen(false)}
-            className="text-gray-400 hover:text-gray-600 p-[0.25rem] rounded-[0.375rem] cursor-pointer"
+            type="button"
+            onClick={() => {
+              reset();
+              setIsOpen(false);
+            }}
+            className="cursor-pointer rounded-[0.375rem] p-[0.25rem] text-gray-400 hover:text-gray-600"
           >
-            <IoCloseOutline className="w-[1.5rem] h-[1.5rem]" />
+            <IoCloseOutline className="h-[1.5rem] w-[1.5rem]" />
           </button>
         </div>
 
+        <form onSubmit={handleSubmit(handleConfirm)}>
+          <div className="flex flex-col gap-[1.5rem] p-[1.75rem]">
+            <p className="text-[0.875rem] leading-[1.375rem] text-kyc-text-heading">
+              Please select a reason for rejecting this profile. This
+              information will be shared with the business to help them resolve
+              the issue.
+            </p>
 
-        <div className="p-[1.75rem] flex flex-col gap-[1.5rem]">
+            <div className="flex flex-col gap-[0.5rem]">
+              <label className="text-[0.875rem] font-semibold text-kyc-text-subheading">
+                Additional Notes <span className="text-reject">*</span>
+              </label>
 
-          <p className="text-[0.875rem] text-kyc-text-heading leading-[1.375rem]">
-            Please select a reason for rejecting this profile. This information
-            will be shared with business to help them resolve the issue.
-          </p>
+              <textarea
+                {...register("note")}
+                rows={4}
+                maxLength={1000}
+                placeholder="Provide specific details regarding the rejection to assist the merchant."
+                className="w-full resize-none rounded-[0.5rem] border border-gray-200 bg-white p-[1rem] text-[0.9375rem] text-gray-700 placeholder:text-gray-400 focus:border-[#2c0a59] focus:outline-none"
+              />
 
-
-          <div className="flex flex-col gap-[0.5rem]">
-            <label className="text-[0.875rem] font-semibold text-kyc-text-subheading">
-              Reason For Rejection <span className="text-reject">*</span>
-            </label>
-
-            <div className="relative">
-              <select
-                ref={reasonRef}
-                defaultValue=""
-                className="w-full appearance-none px-[1rem] py-[0.75rem] bg-white border border-gray-200 rounded-[0.5rem] text-[0.9375rem] text-gray-700 focus:outline-none focus:border-[#2c0a59] cursor-pointer"
-              >
-                <option value="" disabled>
-                  Select a reason..
-                </option>
-
-                <option value="Incorrect Documentation">
-                  Incorrect Documentation
-                </option>
-
-                <option value="Invalid Business Details">
-                  Invalid Business Details
-                </option>
-
-                <option value="Compliance Failure">
-                  Compliance Failure
-                </option>
-
-                <option value="Other">
-                  Other
-                </option>
-              </select>
-
-              <div className="absolute inset-y-0 right-0 flex items-center pr-[1rem] pointer-events-none text-gray-400">
-                <IoChevronDownOutline className="w-[1rem] h-[1rem]" />
-              </div>
+              {errors.note && (
+                <span className="text-sm text-red-500">
+                  {errors.note.message}
+                </span>
+              )}
             </div>
           </div>
 
+          <div className="flex items-center justify-end gap-[1rem] border-t border-gray-100 bg-gray-50/50 px-[1.75rem] py-[1.25rem]">
+            <button
+              type="button"
+              onClick={() => {
+                reset();
+                setIsOpen(false);
+              }}
+              className="cursor-pointer rounded-[0.5rem] border border-gray-200 bg-white px-[1.75rem] py-[0.625rem] text-[0.9375rem] font-semibold text-gray-700 hover:bg-gray-50"
+            >
+              Cancel
+            </button>
 
-          <div className="flex flex-col gap-[0.5rem]">
-            <label className="text-[0.875rem] font-semibold text-kyc-text-subheading">
-              Additional Notes{" "}
-              <span className="text-gray-400 font-normal">(Optional)</span>
-            </label>
+            <button
+              type="submit"
+              disabled={!isValid || mutation.isPending}
+              className="flex cursor-pointer items-center justify-center gap-[0.5rem] rounded-[0.5rem] bg-reject px-[1.75rem] py-[0.625rem] text-[0.9375rem] font-semibold text-white hover:bg-[#e0342b] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <span>
+                {mutation.isPending
+                  ? "Rejecting..."
+                  : "Confirm Rejection"}
+              </span>
 
-            <textarea
-              ref={notesRef}
-              rows={4}
-              placeholder="provide specific details regarding the rejection to assist the merchant."
-              className="w-full p-[1rem] bg-white border border-gray-200 rounded-[0.5rem] text-[0.9375rem] text-gray-700 placeholder:text-gray-400 focus:outline-none focus:border-[#2c0a59] resize-none"
-            />
+              <FiCheck className="h-[1.125rem] w-[1.125rem]" />
+            </button>
           </div>
-
-        </div>
-
-
-        <div className="flex items-center justify-end gap-[1rem] px-[1.75rem] py-[1.25rem] border-t border-gray-100 bg-gray-50/50">
-
-          <button
-            onClick={() => setIsOpen(false)}
-            className="px-[1.75rem] py-[0.625rem] bg-white border border-gray-200 hover:bg-gray-50 text-gray-700 font-semibold text-[0.9375rem] rounded-[0.5rem] cursor-pointer"
-          >
-            Cancel
-          </button>
-
-
-          <button
-            onClick={handleConfirm}
-            className="flex items-center justify-center gap-[0.5rem] px-[1.75rem] py-[0.625rem] bg-reject hover:bg-[#e0342b] text-white font-semibold text-[0.9375rem] rounded-[0.5rem] cursor-pointer"
-          >
-            <span>Confirm Rejection</span>
-            <FiCheck className="w-[1.125rem] h-[1.125rem]" />
-          </button>
-
-        </div>
-
+        </form>
       </div>
     </div>
   );

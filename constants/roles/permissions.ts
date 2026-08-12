@@ -3,37 +3,38 @@ import { PermissionModule } from "@/types";
 export const initialModules: PermissionModule[] = [
   {
     id: "m1",
-    name: "Account Management",
+    module: "Account Management",
+    url: '/account-management',
     checked: true,
   },
   {
     id: "m2",
-    name: "Subscription & Access",
+    module: "Subscription & Access",
+    url: '/subscription',
     checked: false,
   },
   {
     id: "m3",
-    name: "Marketplace & Order Logs",
-    checked: false,
-  },
-  {
-    id: "m4",
-    name: "Financial Hub",
+    module: "Marketplace & Order Logs",
+    url: '/marketplace',
     checked: false,
   },
   {
     id: "m5",
-    name: "Communities & Networking",
+    module: "Communities & Networking",
+    url: '/communities',
     checked: false,
   },
   {
     id: "m6",
-    name: "Reports",
+    module: "Reports",
+    url: '/jobs',
     checked: false,
   },
   {
     id: "m7",
-    name: "Recruitment (Job Board)",
+    module: "Recruitment (Job Board)",
+    url: '/reports',
     checked: false,
   },
 ];

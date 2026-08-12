@@ -4,14 +4,38 @@ import { FileItem } from "@/types";
 import { AiOutlineEye } from "react-icons/ai";
 import { MdOutlineAccountTree } from "react-icons/md";
 import {
-  requiredDocuments,
   regulatedDocument,
 } from "@/constants/acount-management/documents";
 
-export default function RequiredDocuments() {
+interface Props {
+  certificateOfIncorporation: string;
+  taxRegistrationCertificate: string;
+  shareHolderRegister: string;
+  operatingLicense: string;
+}
+
+export default function RequiredDocuments({ certificateOfIncorporation, taxRegistrationCertificate, shareHolderRegister, operatingLicense }: Props) {
   const handleViewFile = (file: FileItem) => {
     alert(`Viewing: ${file.filename} (${file.subtext})`);
   };
+
+  const requiredDocuments = [
+    {
+      title: "Certificate Of Incorporation",
+      filename: "Certificate Of Incorporation",
+      fileUrl: certificateOfIncorporation,
+    },
+    {
+      title: "Tax Registration Certificate",
+      filename: "Tax Registration Certificate",
+      fileUrl: taxRegistrationCertificate,
+    },
+    {
+      title: "Share holder Register Certificate",
+      filename: "Share holder Register Certificate",
+      fileUrl: shareHolderRegister,
+    },
+  ]
 
   return (
     <div className="mt-8 border border-gray-200 rounded-[0.5rem] bg-white font-sans overflow-hidden">
@@ -32,26 +56,22 @@ export default function RequiredDocuments() {
 
               <div className="flex items-center justify-between p-[0.875rem] border border-gray-200 rounded-[0.5rem] bg-[#fcfcfd] hover:border-gray-300 transition-all">
                 <div className="flex items-center gap-[0.75rem]">
-                  <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#ffebee] text-[#d32f2f] rounded-[0.375rem]">
-                    <span className="text-[0.75rem] font-bold">PDF</span>
-                  </div>
                   <div className="flex flex-col">
                     <span className="text-[0.875rem] font-semibold text-[#1e293b]">
                       {doc.filename}
                     </span>
-                    <span className="text-[0.75rem] text-[#64748b]">
-                      {doc.subtext}
-                    </span>
                   </div>
                 </div>
 
-                <button
-                  onClick={() => handleViewFile(doc)}
+                <a
+                  href={doc?.fileUrl}
+                  target="_blank"
+                  rel="noopener"
                   className="p-[0.5rem] text-gray-500 hover:text-[#2c0a59] transition-colors cursor-pointer"
                   title="View file"
                 >
                   <AiOutlineEye className="w-[1.25rem] h-[1.25rem]" />
-                </button>
+                </a>
               </div>
             </div>
           ))}
@@ -70,26 +90,22 @@ export default function RequiredDocuments() {
             <div className="max-w-[26rem]">
               <div className="flex items-center justify-between p-[0.875rem] border border-gray-200 rounded-[0.5rem] bg-[#fcfcfd] hover:border-gray-300 transition-all">
                 <div className="flex items-center gap-[0.75rem]">
-                  <div className="flex items-center justify-center w-[2.25rem] h-[2.25rem] bg-[#ffebee] text-[#d32f2f] rounded-[0.375rem]">
-                    <span className="text-[0.75rem] font-bold">PDF</span>
-                  </div>
                   <div className="flex flex-col">
                     <span className="text-[0.875rem] font-semibold text-[#1e293b]">
-                      {regulatedDocument.filename}
-                    </span>
-                    <span className="text-[0.75rem] text-[#64748b]">
-                      {regulatedDocument.subtext}
+                      Operating License Certificate
                     </span>
                   </div>
                 </div>
 
-                <button
-                  onClick={() => handleViewFile(regulatedDocument)}
+                <a
+                  href={operatingLicense}
+                  target="_blank"
+                  rel="noopener"
                   className="p-[0.5rem] text-gray-500 hover:text-[#2c0a59] transition-colors cursor-pointer"
                   title="View file"
                 >
                   <AiOutlineEye className="w-[1.25rem] h-[1.25rem]" />
-                </button>
+                </a>
               </div>
             </div>
           </div>

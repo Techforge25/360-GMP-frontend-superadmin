@@ -1,5 +1,5 @@
 "use client";
-import { AdminInviteSentRef } from "@/types";
+import { AdminInviteSentRef, TypeSingleAdmin } from "@/types";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { HiChevronRight } from "react-icons/hi";
 import { useRouter } from "next/navigation";
@@ -7,17 +7,14 @@ import Image from "next/image";
 import Inviteicon from "@/assets/inviteicon.svg";
 import { ParamValue } from "next/dist/server/request/params";
 interface TypeAdminValues {
-  defaultValues: {
-    username: string;
-    email: string;
-    password: string;
-    allowedModules: string[];
-  };
+  name: string;
+  email: string;
+  allowedModules: TypeSingleAdmin[];
   adminId: ParamValue;
 }
 
 const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
-  ({ defaultValues, adminId }, ref) => {
+  ({ email, name, allowedModules, adminId }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
     const router = useRouter();
 
@@ -31,6 +28,10 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
     };
 
     if (!isOpen) return null;
+
+    let arr: string[] = []
+
+    allowedModules?.map((mod) => arr.push(mod?.module))
 
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-[1rem] font-['Inter',sans-serif]">
@@ -47,20 +48,20 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
             </h2>
             {!adminId && (
               <>
-              <p className="mt-[0.625rem] text-[0.875rem] font-regular leading-[1.35rem] text-gray-500 ">
-                An invitation email has been sent to{" "}
-                <span className="text-[#3B82F6] font-normal">
-                  {defaultValues?.email}
-                </span>{" "}
-                with instructions to set up their account an Admin.
-              </p>
+                <p className="mt-[0.625rem] text-[0.875rem] font-regular leading-[1.35rem] text-gray-500 ">
+                  An invitation email has been sent to{" "}
+                  <span className="text-[#3B82F6] font-normal">
+                    {email}
+                  </span>{" "}
+                  with instructions to set up their account an Admin.
+                </p>
               </>
             )}
             {adminId && (
-                <p className="mt-[0.625rem] text-[0.875rem] font-regular leading-[1.35rem] text-gray-500 ">
+              <p className="mt-[0.625rem] text-[0.875rem] font-regular leading-[1.35rem] text-gray-500 ">
                 An invitation email has been sent to{" "}
                 <span className="text-[#3B82F6] font-normal">
-                  {defaultValues?.email}
+                  {email}
                 </span>{" "}
                 with the updated role permissions and instructions to access the assigned modules.
               </p>
@@ -77,7 +78,7 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
                     User Name
                   </p>
                   <p className="mt-[0.25rem] text-[1rem] font-semibold text-gray-900">
-                    {defaultValues?.username}
+                    {name}
                   </p>
                 </div>
 
@@ -86,7 +87,7 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
                     Email Address
                   </p>
                   <p className="mt-[0.25rem] text-[1rem] truncate font-semibold text-gray-900">
-                    {defaultValues?.email}
+                    {email}
                   </p>
                 </div>
 
@@ -95,7 +96,7 @@ const AdminInviteSent = forwardRef<AdminInviteSentRef, TypeAdminValues>(
                     Assign Module
                   </p>
                   <p className="mt-[0.25rem] text-[1rem] font-semibold text-gray-900">
-                    {defaultValues?.allowedModules?.join(", ")}
+                    {arr?.join(", ")}
                   </p>
                 </div>
               </div>

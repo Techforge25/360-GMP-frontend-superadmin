@@ -8,8 +8,11 @@ import { checkStatus, login } from "@/services/auth";
 import { useMutation } from "@tanstack/react-query";
 import { TypeLoginForm } from "@/types";
 import { useEffect } from "react";
+import { useNavigationStore } from "@/store/modulesStore";
 
 export default function LoginForm() {
+  const type = useNavigationStore((state) => state.type)
+  const nav = useNavigationStore((state) => state.nav)
   const router = useRouter();
   const {
     register,
@@ -26,8 +29,7 @@ export default function LoginForm() {
     const checkAuthStatus = async () => {
       const res = await checkStatus()
       if (res?.data?.isLoggedIn) {
-        console.log('authenticated')
-        router.replace('/dashboard')
+        router.replace(type === 'superAdmin' ? '/dashboard' : `${nav[0]?.url}`)
       } else {
         console.log('unauthenticated')
         router.replace('/')
@@ -39,7 +41,7 @@ export default function LoginForm() {
   const mutation = useMutation({
     mutationFn: login,
     onSuccess: () => {
-      router.push('/dashboard')
+      router.push('/account-management')
     },
   })
 

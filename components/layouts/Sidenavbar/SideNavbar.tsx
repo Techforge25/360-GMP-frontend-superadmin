@@ -10,10 +10,12 @@ import SidebarSettingsItems from "./sidebarSettingsItems";
 import SignOutModal, { SignOutModalRef } from "@/components/modal/SignOutModal";
 import { logout } from "@/services/auth";
 import { useMutation } from "@tanstack/react-query";
+import { useNavigationStore } from "@/store/modulesStore";
 
 export default function SideNavbar() {
   const pathname = usePathname();
   const router = useRouter();
+  const type = useNavigationStore((state) => state.type)
 
   const logoutMutation = useMutation({
     mutationFn: logout,
@@ -48,13 +50,12 @@ export default function SideNavbar() {
       </div>
 
       <SidebarMenuItems pathname={pathname} />
-
       <SidebarSettingsItems
         pathname={pathname}
         openSignOutModal={() => signOutModalRef.current?.open()}
       />
 
-      <SignOutModal ref={signOutModalRef} onConfirm={handleSignOutConfirm}  isPending={isPending}/>
+      <SignOutModal ref={signOutModalRef} onConfirm={handleSignOutConfirm} isPending={isPending} />
     </div>
   );
 }

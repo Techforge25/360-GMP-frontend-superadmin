@@ -3,18 +3,17 @@ import { useForm, Controller } from "react-hook-form";
 import { HiChevronDown, HiChevronUp } from "react-icons/hi2";
 
 export interface FilterFormValues {
-  status: string;
-  dateRange: string;
+  note: string;
 }
 
 interface NewBusinessesHeaderProps {
-  onFilterChange?: (data: FilterFormValues) => void;
+  onFilterChange?: (data: any) => void;
 }
 
 export default function NewBusinessesHeader({
   onFilterChange,
 }: NewBusinessesHeaderProps) {
-  const { control, watch } = useForm<FilterFormValues>({
+  const { control, watch } = useForm<any>({
     defaultValues: {
       status: "Status",
       dateRange: "Last 7 Days",
@@ -96,11 +95,10 @@ export default function NewBusinessesHeader({
                             field.onChange(option);
                             setIsStatusOpen(false);
                           }}
-                          className={`px-4 py-2.5 text-sm font-normal cursor-pointer transition-colors ${
-                            isActive
-                              ? "bg-[#FAF5FF] text-gray-900"
-                              : "text-gray-800 hover:bg-gray-50"
-                          }`}
+                          className={`px-4 py-2.5 text-sm font-normal cursor-pointer transition-colors ${isActive
+                            ? "bg-[#FAF5FF] text-gray-900"
+                            : "text-gray-800 hover:bg-gray-50"
+                            }`}
                         >
                           {option}
                         </div>
@@ -144,11 +142,10 @@ export default function NewBusinessesHeader({
                             field.onChange(option);
                             setIsDateOpen(false);
                           }}
-                          className={`px-4 py-2.5 text-sm font-normal cursor-pointer transition-colors ${
-                            isActive
-                              ? "bg-[#FAF5FF] text-gray-900"
-                              : "text-gray-800 hover:bg-gray-50"
-                          }`}
+                          className={`px-4 py-2.5 text-sm font-normal cursor-pointer transition-colors ${isActive
+                            ? "bg-[#FAF5FF] text-gray-900"
+                            : "text-gray-800 hover:bg-gray-50"
+                            }`}
                         >
                           {option}
                         </div>

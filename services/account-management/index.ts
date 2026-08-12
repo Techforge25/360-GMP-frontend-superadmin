@@ -2,6 +2,11 @@ import api from "@/lib/axios";
 import { ParamValue } from "next/dist/server/request/params";
 import { toast } from "react-toastify";
 
+interface RejectBusinessPayload {
+     id: ParamValue;
+     note: string;
+}
+
 export const getAccountStat = async (dateRange: string) => {
      try {
           const { data } = await api.get(`/accountManagement/stats?dateRange=${dateRange}`);
@@ -54,5 +59,35 @@ export const viewBusinessProfiles = async (id: ParamValue) => {
           toast.error(error?.message)
           console.error(error?.message)
           throw error
+     }
+};
+
+export const approveBusiness = async (id: ParamValue) => {
+     try {
+          const { data } = await api.patch(`/accountManagement/businessProfile/${id}/approve`);
+          toast.success(data?.message)
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+export const rejectBusiness = async ({
+     id,
+     note,
+}: RejectBusinessPayload) => {
+     try {
+          const { data } = await api.patch(
+               `/accountManagement/businessProfile/${id}/reject`,
+               { note }
+          );
+          toast.success(data?.message)
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message);
+          console.error(error?.message);
+          throw error;
      }
 };

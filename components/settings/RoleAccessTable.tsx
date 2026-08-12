@@ -20,7 +20,6 @@ export default function RoleAccessTable({
         return (
           <div className="flex flex-col">
             <span className="text-[1rem] font-medium">{row?.username}</span>
-
             <span className="mt-0.5 text-sm text-gray-600">{row?.email}</span>
           </div>
         );
@@ -35,7 +34,7 @@ export default function RoleAccessTable({
           <div className="flex flex-wrap gap-2">
             {row?.allowedModules?.map((module, index) => (
               <span key={index} className="roles-status">
-                {module}
+                {module?.module}
               </span>
             ))}
           </div>
@@ -54,7 +53,7 @@ export default function RoleAccessTable({
             id={row?._id}
             email={row?.email}
             userName={row?.username}
-      
+
           />
         );
       },

@@ -1,7 +1,7 @@
 "use client";
 
 import { Controller, Control } from "react-hook-form";
-import { FormValues, PermissionModule, TypeUpdateAdmin } from "@/types";
+import { FormValues, PermissionModule, TypeSingleAdmin } from "@/types";
 
 
 interface Props {
@@ -29,18 +29,21 @@ export default function PermissionMatrix({ modules, control }: Props) {
         control={control}
         render={({ field }) => {
           const selectedModules = field.value ?? [];
+          console.log(selectedModules, 'selected moduless')
           return (
             <div className="divide-y divide-[#E2E8F0]">
               {modules.map((mod) => {
-                const checked = selectedModules.includes(mod.name);
-
+                const checked = selectedModules.some(
+                  (item: TypeSingleAdmin) => item.module === mod.module
+                );
+                console.log(checked, 'checked')
                 return (
                   <div
                     key={mod.id}
                     className="flex items-center justify-between bg-white px-6 py-4 transition hover:bg-[#F8FAFC]"
                   >
                     <span className="text-[1rem] font-medium text-text-dark">
-                      {mod.name}
+                      {mod.module}
                     </span>
 
                     <input
@@ -50,9 +53,9 @@ export default function PermissionMatrix({ modules, control }: Props) {
                         field.onChange(
                           checked
                             ? selectedModules.filter(
-                              (item: string) => item !== mod.name
-                            )
-                            : [...selectedModules, mod.name]
+                              (item: TypeSingleAdmin) => item?.module !== mod.module
+                            ) :
+                            [...selectedModules, { module: mod.module, url: mod.url }]
                         );
                       }}
                       className="h-5 w-5 accent-[#0066FF] cursor-pointer"

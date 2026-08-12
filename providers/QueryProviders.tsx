@@ -1,15 +1,18 @@
 "use client";
 
-import { authMe, refreshToken } from "@/services/auth";
+import { authMe } from "@/services/auth";
+import { useNavigationStore } from "@/store/modulesStore";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
 
 export function QueryProvider({ children }: { children: React.ReactNode }) {
      const pathname = usePathname()
      const router = useRouter();
+     const setNav = useNavigationStore((state) => state.setNav);
+     const setType = useNavigationStore((state) => state.setType);
      const [loading, setLoading] = useState(true);
 
      useLayoutEffect(() => {
@@ -18,10 +21,16 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
                     setLoading(false);
                     return;
                }
+
                try {
                     const res = await authMe();
+                    if (res?.data?.role === 'admin' && (pathname.startsWith('/settings') || pathname.startsWith('/dashboard'))) {
+                         return router.replace('/forbidden')
+                    }
+                    setNav(res?.data?.allowedModules)
+                    setType(res?.data?.role)
                     if (res?.data?.redirectURL) {
-                         router.replace("/");
+                         router.replace('/');
                          return;
                     }
                } finally {
@@ -29,8 +38,9 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
                }
           };
 
+
           checkUserAuthentication();
-     }, [router]);
+     }, [router, pathname]);
 
      // useEffect(() => {
      //      if (pathname === '/') {
@@ -78,3 +88,6 @@ export function QueryProvider({ children }: { children: React.ReactNode }) {
           </QueryClientProvider>
      );
 }
+
+
+

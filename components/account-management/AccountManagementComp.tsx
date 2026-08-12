@@ -16,14 +16,12 @@ export default function AccountManagementComp() {
           queryFn: () => getAccountStat(dateRange),
      });
 
-
      const changeDateRange = (e: React.ChangeEvent<HTMLSelectElement>) => {
           setDateRange(e.target.value);
      }
 
      const accountCards = data?.data
      const accountStatistics = useAccountStats(accountCards)
-
      return (
           <>
                <OverviewCards

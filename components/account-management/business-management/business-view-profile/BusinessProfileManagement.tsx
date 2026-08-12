@@ -22,6 +22,7 @@ interface TypeCompanyProfile {
   operationHour: string;
   website: string;
   description: string;
+  logo: string;
 }
 
 export default function CompanyProfile({
@@ -38,7 +39,8 @@ export default function CompanyProfile({
   dunsNumber,
   operationHour,
   website,
-  description
+  description,
+  logo
 }: TypeCompanyProfile) {
   return (
     <div className=" p-[1.5rem] border border-gray-200 rounded-[0.5rem] bg-white font-sans text-gray-900">
@@ -46,7 +48,7 @@ export default function CompanyProfile({
         <div className="flex items-start gap-[1.25rem]">
           <div className="flex-shrink-0 flex items-center justify-center w-[4rem] h-[4rem] bg-white border border-gray-200 rounded-[0.5rem] shadow-sm">
             <Image
-              src="/images/image 55.png"
+              src={logo}
               alt="Company Logo"
               width={64}
               height={64}

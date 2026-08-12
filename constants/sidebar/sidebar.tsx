@@ -40,11 +40,6 @@ export const sidebarMenuItems: NavigationItem[] = [
     path: "/marketplace",
   },
   {
-    name: "Financial Hub",
-    icon: <FiDollarSign className="w-[1.05rem] h-[1.05rem]" />,
-    path: "/finance",
-  },
-  {
     name: "Communities & Networking",
     icon: <FiActivity className="w-[1.05rem] h-[1.05rem]"/>,
     path: "/communities",
