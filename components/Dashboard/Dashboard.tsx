@@ -8,7 +8,7 @@ export default function Dashboard() {
     <div className="min-h-screen bg-[#fafafc] p-6 md:p-4 font-sans">
       <OverviewCards
         heading="Dashboard Overview"
-        className="sm:grid-cols-4 lg:grid-cols-4"
+        className="sm:grid-cols-3 lg:grid-cols-3"
         description="Welcome back john doe"
         cards={dashboardCard}
       />
