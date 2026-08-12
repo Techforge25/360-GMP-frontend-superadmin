@@ -54,7 +54,7 @@ export default function AllBusinessTable({ dateRange }: Props) {
   const businessProfilesData = data?.data?.docs
 
   return (
-    <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-border-light bg-white  shadow-sm">
       <SearchFilterBar
         placeholder="Search Business..."
         filters={[

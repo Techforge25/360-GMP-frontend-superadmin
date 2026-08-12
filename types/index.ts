@@ -715,6 +715,8 @@ export type TypeNavigation = {
   url: string,
 }
 
+
+
 export type TypeWarehouseAddress = Pick<TypeViewBusinessProfile, 'warehouseAddress'>
 export type TypeAdditionalWarehouseAddress = Pick<TypeViewBusinessProfile, 'additionalWarehouseAddress'>
 export type TypeInternationalOffices = Pick<TypeViewBusinessProfile, 'internationalOffices'>

@@ -39,7 +39,7 @@ export default function AllUserTable({ dateRange, currentTab }: Props) {
   const accountManagementData = data?.data?.docs
 
   return (
-    <div className="rounded-2xl border border-border-light bg-white p-6 shadow-sm">
+    <div className="rounded-2xl border border-border-light bg-white  shadow-sm">
       <SearchFilterBar
         placeholder="Search Users..."
         filters={[
