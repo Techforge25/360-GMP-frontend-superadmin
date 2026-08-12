@@ -85,7 +85,7 @@ const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
           <>
             <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40 p-4 sm:p-6 font-sans">
               <div className="flex w-full max-w-2xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl max-h-[90vh]">
-                <div className="relative border-b border-gray-100 px-8 py-6">
+                <div className="relative border-b border-gray-100 px-8 py-6 pb-3 pt-5">
                   <button
                     className="absolute right-6 top-6 cursor-pointer text-gray-400 transition-colors hover:text-gray-600"
                     onClick={() => {
@@ -172,7 +172,7 @@ const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
                       <p className="mb-1 text-[1rem] text-text-light-gray-50 font-normal font-inter">
                         User Description:
                       </p>
-                      <p className="text-[0.8rem] leading-relaxed text-text-light font-inter font-normal break-words whitespace-normal">
+                      <p className="text-[0.875rem] leading-relaxed text-text-light font-inter font-normal break-words whitespace-normal">
                         {currentData.violation.description}
                       </p>
                     </div>

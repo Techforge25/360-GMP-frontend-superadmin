@@ -3,7 +3,7 @@ import moment from "moment";
 export default function useReportDetails(data: any) {
      return {
           job: {
-               headerTitle: "Report Job",
+               headerTitle: "Reported Job",
                headerSubtitle: `Reported Date ${moment(data?.createdAt).format("YYYY MM DD")} at ${moment(data?.createdAt).format("hh:mm A")}`,
                sectionTitle: "JOB DETAILS",
                details: [
@@ -19,7 +19,7 @@ export default function useReportDetails(data: any) {
                },
           },
           business: {
-               headerTitle: "Report Business",
+               headerTitle: "Reported Business",
                headerSubtitle: `Reported against Business • Submitted ${moment(data?.createdAt).format('YYYY-MM-DD')}`,
                sectionTitle: "BUSINESS PROFILE DETAILS",
                details: [
@@ -37,7 +37,7 @@ export default function useReportDetails(data: any) {
                },
           },
           product: {
-               headerTitle: "Report Product",
+               headerTitle: "Reported Product",
                headerSubtitle: "Reported against Product • Submitted 2026-07-24 10:00 AM",
                sectionTitle: "PRODUCT DETAILS",
                details: [
@@ -56,7 +56,7 @@ export default function useReportDetails(data: any) {
                },
           },
           community: {
-               headerTitle: "Report Community",
+               headerTitle: "Reported Community",
                headerSubtitle: `Reported against Community • Submitted ${data?.createdAt}`,
                sectionTitle: "COMMUNITY DETAILS",
                details: [
