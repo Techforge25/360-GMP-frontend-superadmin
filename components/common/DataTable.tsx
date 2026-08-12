@@ -33,7 +33,7 @@ export default function DataTable<T>({
             {columns?.map((column) => (
               <th
                 key={String(column.key)}
-                className={`whitespace-nowrap px-3 py-3 md:px-6 md:py-4 font-medium ${
+                className={`whitespace-nowrap px-3 py-3 md:px-6 md:py-4 font-medium truncate w-[14rem] ${
                   column.align === "center"
                     ? "text-center"
                     : column.align === "right"
@@ -60,7 +60,7 @@ export default function DataTable<T>({
                   {columns?.map((column) => (
                     <td
                       key={String(column.key)}
-                      className={`whitespace-nowrap px-3 py-3 text-sm md:px-6 md:py-4 md:text-base ${
+                      className={`whitespace-nowrap px-3 py-3 text-sm md:px-6 md:py-4 md:text-base truncate w-[14rem] ${
                         column.align === "center"
                           ? "text-center"
                           : column.align === "right"

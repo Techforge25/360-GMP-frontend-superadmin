@@ -19,7 +19,7 @@ export default function ReportJobReportTable({ reportsData, isPending }: Props) 
       header: "Job Title",
       render: (row) => (
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">
+          <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
             {row?.reportedJob?.jobTitle}
           </span>
         </div>
@@ -40,9 +40,9 @@ export default function ReportJobReportTable({ reportsData, isPending }: Props) 
       key: "reportedBy",
       header: "Reported By",
       render: (row) => (
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 ">
           <Image
-            src={row?.reportedBy?.logo}
+            src={row?.reportedBy?.logo || "/images/user-icon.webp"}
             alt={row?.reportedBy?.fullName}
             width={40}
             height={40}
@@ -50,11 +50,11 @@ export default function ReportJobReportTable({ reportsData, isPending }: Props) 
           />
 
           <div className="flex flex-col">
-            <span className="text-[1rem] font-medium text-text-secondary">
+            <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
               {row?.reportedBy?.fullName}
             </span>
 
-            <span className="text-sm text-text-hint">
+            <span className="text-sm text-text-gray-more truncate w-[14rem]">
               {row?.reportedBy?.email}
             </span>
           </div>
@@ -78,7 +78,7 @@ export default function ReportJobReportTable({ reportsData, isPending }: Props) 
       render: (row) => (
         <div className="flex items-center gap-3">
           <Image
-            src={row?.reportedJob?.owner?.logo}
+            src={row?.reportedJob?.owner?.logo || "/images/user-icon.webp"}
             alt={row?.reportedJob?.owner?.companyName}
             width={40}
             height={40}
@@ -86,11 +86,11 @@ export default function ReportJobReportTable({ reportsData, isPending }: Props) 
           />
 
           <div className="flex flex-col">
-            <span className="text-[1rem] font-medium text-text-secondary">
+            <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
               {row?.reportedJob?.owner?.companyName}
             </span>
 
-            <span className="text-sm text-text-hint">
+            <span className="text-sm text-text-gray-more truncate w-[14rem]">
               {row?.reportedJob?.owner?.email}
             </span>
           </div>

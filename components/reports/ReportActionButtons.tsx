@@ -24,7 +24,7 @@ export default function ReportActionButtons({
   const [isOpen, setIsOpen] = useState(false)
   return (
     <>
-      <div className="flex justify-end items-center gap-[1rem] font-sans">
+      <div className="flex justify-start items-center gap-[1rem] font-sans p-4">
         <span
           onClick={() => {
             setIsOpen(true)

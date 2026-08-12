@@ -12,7 +12,7 @@ const columns: Column<TypeProductReport>[] = [
     header: "product title",
     render: (row) => (
       <div className="flex flex-col">
-        <span className="text-[1rem] font-medium text-text-secondary truncate w-[15.625rem]">
+        <span className="text-[1rem] font-medium text-text-secondary truncate w-[15.625rem] ">
           {row?.reportedProduct?.title}
         </span>
       </div>
@@ -35,7 +35,7 @@ const columns: Column<TypeProductReport>[] = [
     render: (row) => (
       <div className="flex items-center gap-3">
         <Image
-          src={row?.reportedBy?.logo}
+          src={row?.reportedBy?.logo || "/images/user-icon.webp"}
           alt={row?.reportedBy?.fullName}
           width={40}
           height={40}
@@ -43,11 +43,11 @@ const columns: Column<TypeProductReport>[] = [
         />
 
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">
+          <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
             {row?.reportedBy?.fullName}
           </span>
 
-          <span className="text-sm text-text-hint">
+          <span className="text-sm text-text-gray-more truncate w-[14rem]">
             {row?.reportedBy?.email}
           </span>
         </div>
@@ -71,7 +71,7 @@ const columns: Column<TypeProductReport>[] = [
     render: (row) => (
       <div className="flex items-center gap-3">
         <Image
-          src={row?.reportedProduct?.owner?.logo}
+          src={row?.reportedProduct?.owner?.logo || "/images/user-icon.webp"}
           alt={row?.reportedProduct?.owner?.companyName}
           width={40}
           height={40}
@@ -79,11 +79,11 @@ const columns: Column<TypeProductReport>[] = [
         />
 
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">
+          <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
             {row?.reportedProduct?.owner?.companyName}
           </span>
 
-          <span className="text-sm text-text-hint">
+          <span className="text-sm text-text-gray-more truncate w-[14rem]">
             {row?.reportedProduct?.owner?.email}
           </span>
         </div>
