@@ -67,15 +67,16 @@ const columns: Column<AccountTableRowData>[] = [
     ),
   },
 ];
-
+const borderRadius = "rounded-[0px]! border-none"
 export default function AccountManagementTable({ isPending, accountManagementData }: Props) {
   return (
-    <div className="pt-8">
+    <div >
       <DataTable
         columns={columns}
         data={accountManagementData}
         rowKey={(row) => row?._id}
         isLoading={isPending}
+        borderRadius={borderRadius}
       />
     </div>
   );

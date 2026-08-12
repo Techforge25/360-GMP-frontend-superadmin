@@ -8,7 +8,7 @@ import AllUserTable from "./AllUserTable";
 import AllBusinessTable from "../business-management/AllBusinessTable";
 
 interface Props {
-  dateRange: string
+  dateRange: string;
 }
 
 export default function AccountManagement({ dateRange }: Props) {
@@ -20,7 +20,11 @@ export default function AccountManagement({ dateRange }: Props) {
 
   const handleTabChange = (tabId: string) => {
     startTransition(() => {
-      router.push(`?tab=${tabId}`, { scroll: false });
+      const params = new URLSearchParams(searchParams.toString());
+      params.set("tab", tabId);
+      router.replace(`${window.location.pathname}?${params.toString()}`, {
+        scroll: false,
+      });
     });
   };
 
@@ -34,7 +38,9 @@ export default function AccountManagement({ dateRange }: Props) {
         />
       </div>
 
-      <div className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}>
+      <div
+        className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
+      >
         {currentTab === "all-user" && (
           <AllUserTable dateRange={dateRange} currentTab={currentTab} />
         )}

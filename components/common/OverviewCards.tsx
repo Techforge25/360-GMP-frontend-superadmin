@@ -65,7 +65,7 @@ export default function OverviewCards({
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <h3 className="text-[1rem] font-normal font-inter text-text-light-gray-50">
+                      <h3 className="text-[1rem] font-normal font-inter text-[#4E596E]">
                         {card.title}
                       </h3>
 

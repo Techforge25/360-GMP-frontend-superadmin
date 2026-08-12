@@ -1,7 +1,9 @@
 "use client";
 import { RiShieldCheckLine } from "react-icons/ri";
 import { AiOutlineEye } from "react-icons/ai";
-
+import amlIcon from "@/assets/amlIcon.svg";
+import CheckIcon from "@/assets/CheckIcons.svg"
+import Image from "next/image";
 interface Props {
   purpose: string;
   revenueRange: string | any;
@@ -13,50 +15,52 @@ interface Props {
 
 export default function AmlAndTransactionProfile({ purpose, revenueRange, tradeCorridors, mainCounterParties, pep, evidenceOfFunds }: Props) {
   return (
-    <div className="mt-8 border border-gray-200 rounded-[0.5rem] bg-white font-sans overflow-hidden">
-      <div className="flex items-center gap-[0.75rem] bg-[#f5effa] px-[1.5rem] py-[1.25rem] border-b border-gray-200">
-        <RiShieldCheckLine className="w-[1.25rem] h-[1.25rem] text-[#2c0a59]" />
-        <h2 className="text-[1rem] font-semibold text-[#334155]">
+<div className=" mt-8 border border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
+      <div className="flex items-center gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
+                 <Image
+          src={amlIcon}
+          width={100}
+          height={100}
+          alt=""
+          className="w-[1.083rem] h-[1.083rem] text-brand-primary"
+        />
+            <h2 className="text-[1.125rem] font-semibold font-open-sans text-text-light">
           AML & Transaction Profile
         </h2>
       </div>
 
       <div className="p-[1.5rem] flex flex-col gap-[2rem]">
         <div className="flex flex-col gap-[0.375rem]">
-          <span className="text-[0.875rem] font-semibold text-[#64748b]">
+          <span className="text-[0.875rem] font-semibold font-inter text-text-secondary">
             Purpose Of Using Platform
           </span>
-          <span className="text-[0.9375rem] font-medium text-[#1e293b]" dangerouslySetInnerHTML={{
+          <span className="text-[1rem] font-semibold font-open-sans text-text-light" dangerouslySetInnerHTML={{
             __html: purpose,
           }} />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-y-[1.5rem] gap-x-[1.5rem]">
           <div className="flex flex-col gap-[0.375rem]">
-            <span className="text-[0.875rem] font-semibold text-[#64748b]">
+            <span className="text-[0.875rem] font-semibold font-inter text-text-secondary">
               Expected Value Range
             </span>
-            <span className="text-[0.9375rem] font-medium text-[#1e293b]">
+            <span className="text-[0.9375rem] font-medium text-text-light">
               {revenueRange}
             </span>
           </div>
 
           <div className="flex flex-col gap-[0.375rem]">
-            <span className="text-[0.875rem] font-semibold text-[#64748b]">
+          <span className="text-[0.875rem] font-semibold font-inter text-text-secondary">
               PEP (Politically Exposed Person) Status
             </span>
             {pep ? (
-              <div className="flex items-center gap-[0.375rem] text-[#16a34a] font-medium text-[0.9375rem]">
-                <span className="flex items-center justify-center w-[1.125rem] h-[1.125rem] rounded-full border border-[#16a34a] text-xs">
-                  ✓
-                </span>
+              <div className="flex items-center gap-[0.375rem]  text-text-light font-medium text-[1rem]">
+                <Image src={CheckIcon} width={100} height={100} alt="" className="w-[1.25rem] h-[1.25rem]"/>
                 Detected
               </div>
             ) : (
-              <div className="flex items-center gap-[0.375rem] text-[#16a34a] font-medium text-[0.9375rem]">
-                <span className="flex items-center justify-center w-[1.125rem] h-[1.125rem] rounded-full border border-[#16a34a] text-xs">
-                  ✓
-                </span>
+              <div className="flex items-center gap-[0.375rem] text-text-light  font-medium text-[1rem]">
+                 <Image src={CheckIcon} width={100} height={100} alt="" className="w-[1.25rem] h-[1.25rem]"/>
                 None Detected
               </div>
             )}
@@ -65,7 +69,7 @@ export default function AmlAndTransactionProfile({ purpose, revenueRange, tradeC
         </div>
 
         <div className="flex flex-col gap-[0.5rem]">
-          <span className="text-[0.875rem] font-semibold text-[#64748b]">
+         <span className="text-[0.875rem] font-semibold font-inter text-text-secondary">
             Trade Corridors
           </span>
 
@@ -73,16 +77,13 @@ export default function AmlAndTransactionProfile({ purpose, revenueRange, tradeC
             {tradeCorridors?.length > 0 ? (
               tradeCorridors?.map((trade: string, index: number) => {
                 return (
-                  <span
-                    key={index}
-                    className="inline-block rounded-[1.25rem] bg-[#2c0a59] px-[1.25rem] py-[0.375rem] text-[0.8125rem] font-semibold text-white"
-                  >
+                    <span key={index} className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem]">
                     {trade}
                   </span>
                 );
               })
             ) : (
-              <span className="text-[0.9375rem] font-medium text-[#1e293b]">
+              <span className="text-[0.9375rem] font-medium text-text-light">
                 N/A
               </span>
             )}
@@ -90,14 +91,14 @@ export default function AmlAndTransactionProfile({ purpose, revenueRange, tradeC
         </div>
 
         <div className="flex flex-col gap-[0.75rem]">
-          <span className="text-[0.875rem] font-semibold text-[#475569]">
+          <span className="text-[1rem] font-semibold font-open-sans text-text-light">
             Evidence Of Funds
           </span>
 
           <div className="max-w-[26rem]">
-            <div className="flex items-center justify-between p-[0.875rem] border border-gray-200 rounded-[0.5rem] bg-[#fcfcfd] hover:border-gray-300 transition-all">
-              <div className="flex items-center justify-between gap-[0.75rem]">
-                <span className="text-[0.875rem] font-semibold text-[#1e293b]">
+            <div className="flex items-center justify-between p-[1rem] border border-border-gray-200 rounded-[0.75rem] bg-surface-DEFAULT hover:border-gray-300 transition-all">
+              <div className="flex items-center justify-between gap-[0.75rem] w-full">
+                <span className="text-[1rem] font-semibold font-open-sans text-text-light">
                   Evidence Of Funds Proof
                 </span>
 
@@ -105,7 +106,7 @@ export default function AmlAndTransactionProfile({ purpose, revenueRange, tradeC
                   href={evidenceOfFunds}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-[0.75rem] text-[#64748b] hover:text-blue-600 hover:underline"
+                  className="text-[0.75rem] text-text-setting-light hover:text-brand-primary"
                 >
                   <AiOutlineEye className="w-[1.25rem] h-[1.25rem]" />
                 </a>
