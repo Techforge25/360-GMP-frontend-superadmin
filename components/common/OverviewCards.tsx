@@ -36,10 +36,10 @@ export default function OverviewCards({
       <div>
         <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-[1.375rem] font-semibold text-[#240457] tracking-tight">
+            <h1 className="text-[1.375rem] font-semibold text-[#240457] tracking-tight font-open-sans">
               {heading}
             </h1>
-            <p className="mt-0 text-[1rem] font-medium text-[#717b8f]">
+            <p className="mt-0 text-[1rem] font-normal text-[#717b8f]">
               {description}
             </p>
           </div>
