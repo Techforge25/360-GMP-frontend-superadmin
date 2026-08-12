@@ -48,7 +48,7 @@ export default function useReportDetails(data: any) {
                     { label: "Business Email:", value: data?.reportedProduct?.owner?.email },
                ],
                violation: {
-                    reasonLabel: "Fake Information",
+                    reasonLabel: "Primary Reason:",
                     reasonValue: data?.reason,
                        date: moment(data?.createdAt).format('YYYY-MM-DD [at] hh:mm A'),
                     description:
@@ -66,7 +66,7 @@ export default function useReportDetails(data: any) {
                     { label: "Privacy Setting:", value: data?.reportedCommunity?.type },
                ],
                violation: {
-                    reasonLabel: "Reason",
+                    reasonLabel: "Primary Reason:",
                     reasonValue: data?.reason,
                       date: moment(data?.createdAt).format('YYYY-MM-DD [at] hh:mm A'),
                     description:
