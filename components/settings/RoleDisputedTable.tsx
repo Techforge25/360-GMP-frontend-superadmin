@@ -26,7 +26,7 @@ const columns: Column<TableRowData>[] = [
         <div className="flex flex-wrap gap-2">
           {row?.allowedModules?.map((module, index) => (
             <span key={index} className="roles-status">
-              {module}
+              {module?.module}
             </span>
           ))}
         </div>

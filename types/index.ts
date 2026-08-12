@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 export interface TabItem {
   id: string;
   label: string;
-  icon?: ReactNode;
+  icon?: ReactNode ;
   active?: boolean;
 }
 
@@ -12,7 +12,7 @@ export interface TableRowData {
   _id: string;
   username: string;
   email: string;
-  allowedModules: TypeSingleAdmin[];
+  allowedModules: TypeSingleAdmin[] ;
   status: boolean;
 }
 
