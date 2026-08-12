@@ -38,15 +38,15 @@ export default function useMarketplaceStats(data: TypeMarketplaceStat) {
           //      iconColor: "text-[#FF383C]",
           //      icon: <IoAlertCircleOutline size="1.375rem" />,
           // },
-          {
-               title: "Funds Held Securely ( Active Escrow )",
-               value: '$' + formatNumber(Number(data?.totalFundsHeldInEscrow?.toFixed(2))),
-               subtitle: "",
-               subtitletwo: "",
-               showDot: false,
-               iconBg: "bg-[#FFF5EC]",
-               iconColor: "text-[#FF8D28]",
-               icon: <AiOutlineSafetyCertificate size="1.375rem" />,
-          },
+          // {
+          //      title: "Funds Held Securely ( Active Escrow )",
+          //      value: '$' + formatNumber(Number(data?.totalFundsHeldInEscrow?.toFixed(2))),
+          //      subtitle: "",
+          //      subtitletwo: "",
+          //      showDot: false,
+          //      iconBg: "bg-[#FFF5EC]",
+          //      iconColor: "text-[#FF8D28]",
+          //      icon: <AiOutlineSafetyCertificate size="1.375rem" />,
+          // },
      ])
 }                    
