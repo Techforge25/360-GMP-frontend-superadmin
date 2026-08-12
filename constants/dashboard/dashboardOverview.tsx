@@ -7,7 +7,7 @@ export const dashboardCard: OverviewCardItem[] = [
     id: 1,
     title: "Total Revenue",
     value: 124500,
-    subtitle: "",
+    subtitle: "Subscription",
     subtitletwo: "",
     showDot: false,
     iconBg: "bg-[#f4f2fa]",
