@@ -16,7 +16,7 @@ export  const reportEvidence = [
 
 export const REPORT_CONTENT_MAP = {
   job: {
-    headerTitle: "Report Job",
+    headerTitle: "Reported Job",
     headerSubtitle: "Reported against Jobs • Submitted 2026-07-24 09:20 AM",
     sectionTitle: "JOB LISTING DETAILS",
     details: [
@@ -33,7 +33,7 @@ export const REPORT_CONTENT_MAP = {
     },
   },
   business: {
-    headerTitle: "Report Business",
+    headerTitle: "Reported Business",
     headerSubtitle: "Reported against Business • Submitted 2026-07-24 10:00 AM",
     sectionTitle: "BUSINESS PROFILE DETAILS",
     details: [
@@ -51,7 +51,7 @@ export const REPORT_CONTENT_MAP = {
     },
   },
   product: {
-    headerTitle: "Report Product",
+    headerTitle: "Reported Product",
     headerSubtitle: "Reported against Product • Submitted 2026-07-24 10:00 AM",
     sectionTitle: "PRODUCT LISTING METADATA",
     details: [
@@ -70,7 +70,7 @@ export const REPORT_CONTENT_MAP = {
     },
   },
   community: {
-    headerTitle: "Report Community",
+    headerTitle: "Reported Community",
     headerSubtitle: "Reported against Community • Submitted 2026-07-24 10:00 AM",
     sectionTitle: "COMMUNITY GROUP INFORMATION",
     details: [
