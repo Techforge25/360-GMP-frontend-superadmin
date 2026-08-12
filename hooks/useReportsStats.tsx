@@ -1,9 +1,13 @@
 import { ReportStats } from "@/types";
+import Image from "next/image";
 import { BsBox } from "react-icons/bs";
 import { FaUsers } from "react-icons/fa6";
 import { IoBagRemoveSharp } from "react-icons/io5";
 import { PiSuitcaseSimple } from "react-icons/pi";
-
+import jobIcon from "@/assets/jobCardIcons.svg"
+import businessIcon from "@/assets/BusinessIcon.svg"
+import productIcon from "@/assets/productIcon.svg"
+import comunnityIcon from "@/assets/TotalComunnituesIcon.svg"
 export default function useReportsStats(jobReports: number, businessReports: number, productReports: number, communityReports: number) {
      return [
           {
@@ -15,7 +19,9 @@ export default function useReportsStats(jobReports: number, businessReports: num
                showDot: false,
                iconBg: "bg-[#f5eeff]",
                iconColor: "text-[#9d4edd]",
-               icon: <PiSuitcaseSimple size="1.375rem" />,
+               icon: 
+               <Image src={jobIcon} alt="" width={100} height={100} className="w-[1.146rem] h-[1.089rem]" />
+               
           },
           {
                id: 2,
@@ -26,7 +32,7 @@ export default function useReportsStats(jobReports: number, businessReports: num
                showDot: false,
                iconBg: "bg-[#f5eeff]",
                iconColor: "text-[#9d4edd]",
-               icon: <IoBagRemoveSharp size="1.375rem" />,
+               icon: <Image src={businessIcon} alt="" width={100} height={100} className="w-[1.146rem] h-[1.089rem]" />,
           },
           {
                id: 3,
@@ -37,7 +43,7 @@ export default function useReportsStats(jobReports: number, businessReports: num
                showDot: false,
                iconBg: "bg-[#f5eeff]",
                iconColor: "text-[#9d4edd]",
-               icon: <BsBox size="1.375rem" />,
+               icon: <Image src={productIcon} alt="" width={100} height={100} className="w-[1.146rem] h-[1.089rem]" />,
           },
           {
                id: 4,
@@ -48,7 +54,7 @@ export default function useReportsStats(jobReports: number, businessReports: num
                showDot: false,
                iconBg: "bg-[#f5eeff]",
                iconColor: "text-[#9d4edd]",
-               icon: <FaUsers size="1.375rem" />,
+               icon: <Image src={comunnityIcon} alt="" width={100} height={100} className="w-[1.146rem] h-[1.089rem]" />,
           },
      ]
 }

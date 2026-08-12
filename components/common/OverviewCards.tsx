@@ -56,20 +56,20 @@ export default function OverviewCards({
                 cards?.map((card, index) => (
                   <div
                     key={index}
-                    className="flex flex-col rounded-2xl border border-[#f0f0f5] bg-white p-4 shadow-sm"
+                    className="flex flex-col rounded-[0.75rem] border border-[#f0f0f5] bg-white p-4 shadow-sm"
                   >
                     <div
-                      className={`mb-4 flex h-[2.875rem] w-[2.875rem] items-center justify-center rounded-[0.625rem] ${card.iconBg} ${card.iconColor}`}
+                      className={`mb-4 flex h-[2.875rem] w-[2.875rem] items-center justify-center rounded-[0.25rem] ${card.iconBg} ${card.iconColor}`}
                     >
                       {card.icon}
                     </div>
 
                     <div className="flex flex-col gap-1.5">
-                      <h3 className="text-[1rem] font-normal text-[#647087]">
+                      <h3 className="text-[1rem] font-normal font-inter text-text-light-gray-50">
                         {card.title}
                       </h3>
 
-                      <p className="mb-1 text-[2rem] leading-none font-semibold text-[#1c1d22]">
+                      <p className="mb-1 text-[2rem] leading-none font-semibold text-text-light-black-50 font-open-sans">
                         {card.value} {card.title === "Trial Conversion Rate" ? "%" : ""}
                       </p>
                       <div className="flex items-center gap-2">

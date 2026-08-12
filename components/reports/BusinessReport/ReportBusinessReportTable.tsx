@@ -18,7 +18,7 @@ const columns: Column<any>[] = [
     render: (row) => (
       <div className="flex items-center gap-3">
         <Image
-          src={row?.reportedBusiness?.logo}
+          src={row?.reportedBusiness?.logo || "/images/user-icon.webp"}
           alt={row?.reportedBusiness?.companyName}
           width={40}
           height={40}
@@ -26,11 +26,11 @@ const columns: Column<any>[] = [
         />
 
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">
+          <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
             {row?.reportedBusiness?.companyName}
           </span>
 
-          <span className="text-sm text-text-hint">
+          <span className="text-sm text-text-gray-more truncate w-[14rem]">
             {row?.reportedBusiness?.email}
           </span>
         </div>
@@ -41,7 +41,7 @@ const columns: Column<any>[] = [
     key: "createdAt",
     header: "Date",
     render: (row) => (
-      <span className="text-[1rem] text-text-light">
+      <span className="text-[1rem] text-text-light truncate w-[14rem] ">
         {formatDate(row?.createdAt)}
       </span>
     ),
@@ -53,7 +53,7 @@ const columns: Column<any>[] = [
     render: (row) => (
       <div className="flex items-center gap-3">
         <Image
-          src={row?.reportedBy?.logo}
+          src={row?.reportedBy?.logo || "/images/user-icon.webp"}
           alt={row?.reportedBy?.fullName}
           width={40}
           height={40}
@@ -61,11 +61,11 @@ const columns: Column<any>[] = [
         />
 
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">
+          <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
             {row?.reportedBy?.fullName}
           </span>
 
-          <span className="text-sm text-text-hint">
+          <span className="text-sm text-text-gray-more truncate w-[14rem]">
             {row?.reportedBy?.email}
           </span>
         </div>
@@ -87,9 +87,9 @@ const columns: Column<any>[] = [
     key: "action",
     header: "Action",
     render: (row) => (
-      <>
+      <div>
         <ReportActionButtons ReportId={row._id} reportType={reportType} reportModal='Business' />
-      </>
+      </div>
     ),
   },
 ];

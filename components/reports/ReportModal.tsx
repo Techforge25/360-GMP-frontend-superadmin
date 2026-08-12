@@ -27,21 +27,25 @@ const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
     });
 
     const { data: dataBusiness, isPending: isPendingBusiness } = useQuery({
-      queryKey: [keys.viewReportBusiness ,ReportId, reportModal === "Business"],
+      queryKey: [keys.viewReportBusiness, ReportId, reportModal === "Business"],
       queryFn: () => viewBusinessReports(ReportId),
       staleTime: 0,
       enabled: !!ReportId && reportModal === "Business",
     });
 
     const { data: dataProduct, isPending: isPendingProduct } = useQuery({
-      queryKey: [keys.viewReportProduct ,ReportId, reportModal === "Product"],
+      queryKey: [keys.viewReportProduct, ReportId, reportModal === "Product"],
       queryFn: () => viewProductReports(ReportId),
       staleTime: 0,
       enabled: !!ReportId && reportModal === "Product",
     });
 
     const { data: dataCommunity, isPending: isPendingCommunity } = useQuery({
-      queryKey: [keys.viewReportCommunity ,ReportId, reportModal === "Community"],
+      queryKey: [
+        keys.viewReportCommunity,
+        ReportId,
+        reportModal === "Community",
+      ],
       queryFn: () => viewCommunityReports(ReportId),
       staleTime: 0,
       enabled: !!ReportId && reportModal === "Community",
@@ -93,9 +97,9 @@ const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
                   <h2 className="text-[1.375rem] font-medium text-text-light font-inter break-words whitespace-normal">
                     {currentData.headerTitle}
                   </h2>
-                  <p className="mt-1 text-[0.875rem] text-text-setting-dark font-normal font-inter break-words whitespace-normal">
+                  {/* <p className="mt-1 text-[0.875rem] text-text-setting-dark font-normal font-inter break-words whitespace-normal">
                     {currentData.headerSubtitle}
-                  </p>
+                  </p> */}
                 </div>
 
                 <div className="flex-1 overflow-y-auto p-6 sm:px-8 space-y-5 custom-scrollbar">
@@ -105,7 +109,10 @@ const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
                     </h3>
                     <div className="flex items-center gap-4">
                       <img
-                        src={displayData?.reportedBy?.logo}
+                        src={
+                          displayData?.reportedBy?.logo ||
+                          "/images/user-icon.webp"
+                        }
                         alt="Alex Morgan"
                         className="h-12 w-12 rounded-full object-cover"
                       />
@@ -142,21 +149,21 @@ const ReportModal = forwardRef<ReportModalRef, ReportModalProps>(
                     <h3 className="mb-4 text-[1rem] font-semibold font-inter uppercase tracking-wide text-text-light">
                       Violation Details
                     </h3>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-4 mb-5">
-                      <div>
-                        <p className="mb-1 text-[1rem] font-normal text-text-light-gray-50 break-words whitespace-normal">
-                          {currentData.violation.reasonLabel}
-                        </p>
-                        <p className="font-medium text-[1rem] text-text-light font-inter break-words whitespace-normal">
-                          {currentData.violation.reasonValue}
-                        </p>
-                      </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-1 gap-y-4 gap-x-4 mb-5">
                       <div>
                         <p className="mb-1 text-[1rem] text-text-light-gray-50 font-inter font-normal">
                           Reported Date:
                         </p>
                         <p className="font-medium text-[1rem] text-text-light font-inter break-words whitespace-normal">
                           {currentData.violation.date}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="mb-1 text-[1rem] font-normal text-text-light-gray-50 break-words whitespace-normal">
+                          {currentData.violation.reasonLabel}
+                        </p>
+                        <p className="font-medium text-[1rem] text-text-light font-inter break-words whitespace-normal">
+                          {currentData.violation.reasonValue}
                         </p>
                       </div>
                     </div>
