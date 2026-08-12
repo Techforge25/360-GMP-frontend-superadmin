@@ -28,7 +28,7 @@ export default function MarketPlaceMain() {
         heading="Marketplace Operation Center"
         description="Manage order logs product audit queue and disputed orders"
         cards={marketPlace}
-        className="sm:grid-cols-3! lg:grid-cols-3!"
+        className="sm:grid-cols-2! lg:grid-cols-2!"
         isPending={isPending}
         dropdown={
           <CustomDateDropdown
