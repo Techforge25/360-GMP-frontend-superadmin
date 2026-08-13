@@ -21,7 +21,7 @@ export default function BusinessReportTable({ dateRange }: Props) {
   const debouncedSearch = useDebounce(search, 500);
 
   const { data, isPending } = useQuery({
-    queryKey: [keys.reportBusiness, page, debouncedSearch],
+    queryKey: [keys.reportBusiness, page, debouncedSearch, dateRange],
     queryFn: () => getBusinessReports(dateRange, debouncedSearch, page),
   });
   const tableRef = useTableScroll(page, isPending);

@@ -9,12 +9,10 @@ export default function Dashboard() {
       <OverviewCards
         heading="Dashboard Overview"
         className="sm:grid-cols-3 lg:grid-cols-3"
-        description="Welcome back john doe"
+        description="Welcome back"
         cards={dashboardCard}
       />
-
       <Graphs />
-
       <NewBusinessTable />
     </div>
   );

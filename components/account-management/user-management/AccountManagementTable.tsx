@@ -43,7 +43,7 @@ const columns: Column<AccountTableRowData>[] = [
     key: "subscription",
     header: "Subscription Type",
     render: (row) => (
-      <StatusBadge status={row?.subscription.subscriptionType} />
+      <StatusBadge status={row?.subscription?.subscriptionType} />
     ),
   },
   {

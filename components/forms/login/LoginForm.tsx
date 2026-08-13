@@ -40,8 +40,8 @@ export default function LoginForm() {
 
   const mutation = useMutation({
     mutationFn: login,
-    onSuccess: () => {
-      router.push('/account-management')
+    onSuccess: (data) => {
+      router.push(data?.data?.role === 'admin' ? `${data?.data?.allowedModules[0]?.url}` : `/dashboard`)
     },
   })
 

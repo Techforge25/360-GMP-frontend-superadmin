@@ -19,7 +19,7 @@ export default function JobReportTable({ dateRange }: Props) {
   const debouncedSearch = useDebounce(search, 500);
 
   const { data, isPending } = useQuery({
-    queryKey: [keys.reportJob, page, debouncedSearch],
+    queryKey: [keys.reportJob, page, debouncedSearch, dateRange],
     queryFn: () => getJobReports(dateRange, debouncedSearch, page),
   });
 

@@ -44,7 +44,7 @@ export default function SubscriptionGraph() {
               Subscription-Based Users
             </h2>
             <p className="text-[0.75rem] text-[#94a3b8] ">
-              Trial to Premium upgrades
+              Trial to Paid upgrades
             </p>
           </div>
         </div>
@@ -70,11 +70,10 @@ export default function SubscriptionGraph() {
                     setSelected(option);
                     setIsOpen(false);
                   }}
-                  className={`px-[1rem] py-[0.625rem] text-[0.875rem] cursor-pointer transition-colors ${
-                    selected === option
+                  className={`px-[1rem] py-[0.625rem] text-[0.875rem] cursor-pointer transition-colors ${selected === option
                       ? "bg-[#f4f2fa] text-[#1e293b]"
                       : "text-[#64748b] hover:bg-[#f4f2fa] hover:text-[#1e293b]"
-                  }`}
+                    }`}
                 >
                   {option}
                 </div>

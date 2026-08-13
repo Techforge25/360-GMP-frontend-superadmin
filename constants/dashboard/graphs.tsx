@@ -5,6 +5,12 @@ export const lineChartData = [
   { name: "Apr", revenue: 43500 },
   { name: "May", revenue: 45000 },
   { name: "Jun", revenue: 46500 },
+  { name: "Jul", revenue: 46500 },
+  { name: "Aug", revenue: 46500 },
+  { name: "Sep", revenue: 46500 },
+  { name: "Oct", revenue: 46500 },
+  { name: "Nov", revenue: 46500 },
+  { name: "Dec", revenue: 46500 },
 ];
 
 export const dropdownOptions = [
@@ -15,7 +21,7 @@ export const dropdownOptions = [
 ];
 
 export const barChartData = [
-  { name: "Trial user", users: 32 },
+  { name: "Trial", users: 32 },
   { name: "Consumer", users: 54 },
   { name: "Silver", users: 32 },
   { name: "Gold", users: 70 },
