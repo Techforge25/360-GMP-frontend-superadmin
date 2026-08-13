@@ -21,7 +21,7 @@ export default function AllBusinessTable({ dateRange }: Props) {
   const debounceSearch = useDebounce(search, 500)
 
   const { data, isPending } = useQuery({
-    queryKey: [keys.accountBusinessList, page, validityChange, status, debounceSearch],
+    queryKey: [keys.accountBusinessList, page, validityChange, status, debounceSearch, dateRange],
     queryFn: () => getBusinessProfiles(dateRange, page, validityChange, status, debounceSearch),
   });
 
