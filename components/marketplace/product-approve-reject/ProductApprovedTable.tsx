@@ -17,6 +17,9 @@ export default function ProductApprovedTable({ dateRange }: Props) {
     queryKey: [keys.orderProductRejectionApproval, dateRange, page],
     queryFn: () => generalProducts(dateRange, page),
   });
+
+    
+
   const tableRef = useTableScroll(page, isPending);
   const handlePageChange = (page: number) => {
     setPage(page);

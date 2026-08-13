@@ -95,23 +95,22 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
     ),
   },
 
-  // {
-  //   key: "action",
-  //   header: "Action",
-  //   // align: "center",
-  //   render: (row) => (
-  //     <>
-  //       <OrderLogActionButtons OrderId={row?._id} />
-  //     </>
-  //   ),
-  // },
+  {
+    key: "action",
+    header: "Action",
+    // align: "center",
+    render: (row) => (
+      <>
+        <OrderLogActionButtons OrderId={row?._id} />
+      </>
+    ),
+  },
 ];
 
 export default function MarketplaceOrderLogsTable({
   isPending,
   orderLogs,
 }: Props) {
-  const [page, setPage] = useState(1);
  const borderRadius = "border-none"
   return (
     <>

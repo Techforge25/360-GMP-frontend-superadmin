@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 // import PaginationComponent from "@/components/common/PaginationComponent";
 import SearchFilterBar from "@/components/common/SearchFilterBar";
@@ -23,6 +23,9 @@ export default function CommunityReportTable({ dateRange }: Props) {
     queryKey: [keys.reportCommunity, dateRange, page, debouncedSearch],
     queryFn: () => getCommunityReports(dateRange, debouncedSearch, page),
   });
+
+  
+
   const tableRef = useTableScroll(page, isPending);
   const reportsData = data?.data?.docs
 

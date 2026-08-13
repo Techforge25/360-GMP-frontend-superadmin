@@ -53,8 +53,9 @@ export default function CustomDateDropdown({
           border border-[#E5E7EB]
           px-3
           text-[0.875rem]
-          font-medium
-          text-gray-700
+          font-normal
+          font-inter
+          text-text-primary
         "
       >
         {selectedLabel}
@@ -91,8 +92,10 @@ export default function CustomDateDropdown({
                 text-left
                 px-3
                 py-[10px]
-                text-[0.875rem]
-                text-gray-700
+                 text-[0.875rem]
+          font-normal
+          font-inter
+          text-text-primary
                 hover:bg-[#F5F0FF]
                 border-b last:border-none border-[#E5E7EB]
                 ${option.value === value ? "bg-[#F6F0FF]" : "bg-white"}

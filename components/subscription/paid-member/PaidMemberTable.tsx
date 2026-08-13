@@ -19,6 +19,8 @@ export default function PaidMemberTable({ dateRange }: Props) {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
+  
+
   const { isPending, data } = useQuery({
     queryKey: [
       keys.subscriptionListPaid,

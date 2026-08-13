@@ -20,6 +20,9 @@ export default function ProductAuditTable({ dateRange }: Props) {
     queryKey: [keys.orderProductAuditQueue, dateRange, page],
     queryFn: () => productAudits(dateRange, page),
   });
+
+    
+  
   const tableRef = useTableScroll(page, isPending);
   const productData = data?.data?.docs
 
