@@ -28,6 +28,8 @@ export default function AccountManagement({ dateRange }: Props) {
     });
   };
 
+  console.log(isPending, 'is pending state')
+
   return (
     <>
       <div className="mt-2">
