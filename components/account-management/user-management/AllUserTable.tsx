@@ -33,7 +33,7 @@ export default function AllUserTable({ dateRange, currentTab }: Props) {
   }
 
   const handleFilterStatusChange = (value: string) => {
-    setValidityChange(value === "All Tiers" ? "" : value === 'Enterprise' ? 'Premium' : value);
+    setValidityChange(value === "All Tiers" ? "" : value);
     setPage(1);
   }
 

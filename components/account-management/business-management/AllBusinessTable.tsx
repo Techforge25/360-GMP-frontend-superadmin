@@ -32,9 +32,7 @@ export default function AllBusinessTable({ dateRange }: Props) {
     setValidityChange(
       value === "All Subscriptions"
         ? ""
-        : value === "Enterprise"
-          ? "Premium"
-          : value
+        : value
     );
     setPage(1);
   };

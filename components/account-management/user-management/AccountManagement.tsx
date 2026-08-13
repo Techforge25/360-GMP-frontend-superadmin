@@ -21,14 +21,14 @@ export default function AccountManagement({ dateRange }: Props) {
   const handleTabChange = (tabId: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("tab", tabId);
-    startTransition(() => {
-      router.replace(`${window.location.pathname}?${params.toString()}`, {
-        scroll: false,
-      });
+    // startTransition(() => {
+    router.replace(`${window.location.pathname}?${params.toString()}`, {
+      scroll: false,
     });
+    // });
   };
 
-  console.log(isPending, 'is pending state')
+  // console.log(isPending, 'is pending state')
 
   return (
     <>
@@ -43,21 +43,14 @@ export default function AccountManagement({ dateRange }: Props) {
       <div
         className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
       >
-        {isPending ? (
-          <h1>Loading......</h1>
-        ) : (
-          <>
-            {currentTab === "all-user" && (
-              <AllUserTable dateRange={dateRange} currentTab={currentTab} />
-            )}
-
-            {currentTab === "all-business" && (
-              <AllBusinessTable dateRange={dateRange} currentTab={currentTab} />
-            )}
-          </>
+        {currentTab === "all-user" && (
+          <AllUserTable dateRange={dateRange} currentTab={currentTab} />
         )}
 
-      </div>
+        {currentTab === "all-business" && (
+          <AllBusinessTable dateRange={dateRange} currentTab={currentTab} />
+        )}
+      </div >
     </>
   );
 }
