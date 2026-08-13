@@ -21,6 +21,7 @@ export default function AllUserTable({ dateRange, currentTab }: Props) {
   const [validityChange, setValidityChange] = useState("");
   const debouncedSearch = useDebounce(search, 500)
 
+  
   const { data, isPending } = useQuery({
     queryKey: [keys.accountUsersList, dateRange, page, debouncedSearch, validityChange],
     queryFn: () => getUserProfiles(dateRange, debouncedSearch, page, validityChange),

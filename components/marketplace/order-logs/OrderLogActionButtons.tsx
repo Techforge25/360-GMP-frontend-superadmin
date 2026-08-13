@@ -11,13 +11,13 @@ export default function OrderLogActionButtons({ OrderId }: { OrderId: string }) 
 
   return (
     <>
-      <div className="flex justify-end items-center gap-[1rem] font-sans">
+      <div className="flex justify-left items-center w-[4rem] gap-[1rem] font-sans">
         <span
           onClick={() => {
             modalRef.current?.open()
             setOpenModal(true)
           }}
-          className="flex cursor-pointer items-center justify-center text-text-secondary text-[1rem]"
+          className="flex cursor-pointer w-full items-center justify-center text-text-secondary text-[1rem]"
         >
           <FaEye />
         </span>

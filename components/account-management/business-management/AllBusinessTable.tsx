@@ -4,7 +4,7 @@ import SearchFilterBar from "../../common/SearchFilterBar";
 import AccountManagementBusinessTable from "./AccountManagementBusinessTable";
 import PaginationComponent from "@/components/common/PaginationComponent";
 import { keys } from "@/keys";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getBusinessProfiles } from "@/services/account-management";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 
@@ -19,6 +19,8 @@ export default function AllBusinessTable({ dateRange }: Props) {
   const [validityChange, setValidityChange] = useState('')
   const [status, setStatus] = useState('')
   const debounceSearch = useDebounce(search, 500)
+
+  
 
   const { data, isPending } = useQuery({
     queryKey: [keys.accountBusinessList, page, validityChange, status, debounceSearch],

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // import PaginationComponent from "@/components/common/PaginationComponent";
 
@@ -24,6 +24,9 @@ export default function BusinessReportTable({ dateRange }: Props) {
     queryKey: [keys.reportBusiness, page, debouncedSearch],
     queryFn: () => getBusinessReports(dateRange, debouncedSearch, page),
   });
+
+  
+
   const tableRef = useTableScroll(page, isPending);
   const reportsData = data?.data?.docs
 

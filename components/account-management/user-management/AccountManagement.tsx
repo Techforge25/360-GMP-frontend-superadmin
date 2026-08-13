@@ -18,15 +18,18 @@ export default function AccountManagement({ dateRange }: Props) {
 
   const currentTab = searchParams.get("tab") || accountManagementTabs[0]?.id;
 
-  const handleTabChange = (tabId: string) => {
-    startTransition(() => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("tab", tabId);
-      router.replace(`${window.location.pathname}?${params.toString()}`, {
-        scroll: false,
-      });
+const handleTabChange = (tabId: string) => {
+  console.log("Tab Clicked:", tabId);
+
+  const params = new URLSearchParams(searchParams.toString());
+  params.set("tab", tabId);
+
+  startTransition(() => {
+    router.replace(`?${params.toString()}`, {
+      scroll: false,
     });
-  };
+  });
+};
 
   return (
     <>
