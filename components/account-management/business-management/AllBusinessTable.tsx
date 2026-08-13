@@ -29,7 +29,7 @@ export default function AllBusinessTable({ dateRange }: Props) {
 
   const handleFilterSubsChange = (value: string) => {
     setValidityChange(
-      value === "All Subscriptions"
+      value === "All Tiers"
         ? ""
         : value
     );
@@ -38,7 +38,7 @@ export default function AllBusinessTable({ dateRange }: Props) {
 
   const handleFilterStatusChange = (value: string) => {
     setStatus(
-      value === "All Statuses"
+      value === "All Status"
         ? ""
         : value.toLowerCase()
     );
@@ -59,15 +59,14 @@ export default function AllBusinessTable({ dateRange }: Props) {
         filters={[
           {
             key: "type",
-            label: "Subscription Type",
-            options: ["All Subscriptions", "Silver", "Gold", "Enterprise"],
-            defaultValue: "All Subscriptions"
+            label: "Sort By",
+            options: ["All Tiers", "Silver", "Gold", "Enterprise"],
+            defaultValue: "All Tiers"
           },
           {
             key: "status",
-            label: "Status",
-            options: ["All Statuses", "Pending", "Approved", "Rejected"],
-            defaultValue: "All Statuses"
+            options: ["All Status", "Pending", "Approved", "Rejected"],
+            defaultValue: "All Status"
           }
         ]}
         onSearch={(value) => {
