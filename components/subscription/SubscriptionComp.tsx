@@ -8,12 +8,9 @@ import { useState } from "react";
 import { dropdownOptions } from "@/constants/subscription/SubsriptionTable";
 import useSubscriptionStats from "@/hooks/useSubscriptionStats";
 import CustomDateDropdown from "../common/CustomDateDropdown";
-import { useNavigationStore } from "@/store/modulesStore";
 
 export default function SubscriptionComp() {
   const [dateRange, setDateRange] = useState("all");
-  const setPage = useNavigationStore((state) => state.setPage)
-  const page = useNavigationStore((state) => state.nav)
 
   const { isPending, data } = useQuery({
     queryKey: [keys.subscriptionStats, dateRange],
@@ -33,10 +30,7 @@ export default function SubscriptionComp() {
         dropdown={
           <CustomDateDropdown
             value={dateRange}
-            onChange={() => {
-              setDateRange
-              setPage(1)
-            }}
+            onChange={setDateRange}
             options={dropdownOptions}
           />
         }

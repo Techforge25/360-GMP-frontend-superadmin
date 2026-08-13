@@ -4,7 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { getSubscriptionFreeUsers } from "@/services/subscription";
 import PaginationComponent from "@/components/common/PaginationComponent";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useTableScroll } from "@/hooks/useTableScroll";
 import { useNavigationStore } from "@/store/modulesStore";
@@ -21,8 +21,6 @@ export default function FreeTrialTable({ dateRange }: Props) {
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
-    
-  
   const { isPending, data } = useQuery({
     queryKey: [
       keys.subscriptionList,
@@ -40,6 +38,7 @@ export default function FreeTrialTable({ dateRange }: Props) {
       ),
   });
   const tableRef = useTableScroll(page, isPending);
+
   const handlePageChange = (page: number) => {
     setPage(page);
   };

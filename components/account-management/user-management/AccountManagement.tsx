@@ -1,6 +1,4 @@
 "use client";
-
-// import { useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { accountManagementTabs } from "@/constants/acount-management/AccountManagementtabs";
 import Tabs from "../../common/Tabs";
@@ -14,21 +12,15 @@ interface Props {
 export default function AccountManagement({ dateRange }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  // const [isPending, startTransition] = useTransition();
-
   const currentTab = searchParams.get("tab") || accountManagementTabs[0]?.id;
 
   const handleTabChange = (tabId: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("tab", tabId);
-    // startTransition(() => {
     router.replace(`${window.location.pathname}?${params.toString()}`, {
       scroll: false,
     });
-    // });
   };
-
-  // console.log(isPending, 'is pending state')
 
   return (
     <>

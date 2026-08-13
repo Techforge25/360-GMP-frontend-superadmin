@@ -13,12 +13,15 @@ import PaginationComponent from "../common/PaginationComponent";
 import InviteIcon from "@/assets/Icon.svg";
 import Image from "next/image";
 import { useTableScroll } from "@/hooks/useTableScroll";
+import { useNavigationStore } from "@/store/modulesStore";
 export default function RolesPermissionsList() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isPending, startTransition] = useTransition();
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const currentTab = searchParams.get("tab") || roleTabs[0]?.id;
+  const page = useNavigationStore((state) => state.page)
+  const setPage = useNavigationStore((state) => state.setPage)
   const { data, isFetching } = useQuery({
     queryKey: [keys.adminList, currentTab, page],
     queryFn: () => getCreatedAdmins(currentTab, page),
@@ -39,7 +42,6 @@ export default function RolesPermissionsList() {
   const handlePageChange = (page: number) => {
     setPage(page);
   };
-
 
   const handleTabChange = (tabId: string) => {
     setPage(1);
