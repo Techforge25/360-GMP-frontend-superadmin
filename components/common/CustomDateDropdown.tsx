@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useRef, useEffect } from "react";
 import { IoChevronUp, IoChevronDown } from "react-icons/io5";
 import { TypeDropdownOption } from "@/types";

@@ -7,6 +7,7 @@ import { keys } from "@/keys";
 import { useState } from "react";
 import { getBusinessProfiles } from "@/services/account-management";
 import { useDebounce } from "@/hooks/useDebounceSearch";
+import { useNavigationStore } from "@/store/modulesStore";
 
 interface Props {
   dateRange: string;
@@ -14,11 +15,13 @@ interface Props {
 }
 
 export default function AllBusinessTable({ dateRange }: Props) {
-  const [page, setPage] = useState(1)
+  // const [page, setPage] = useState(1)
   const [search, setSearch] = useState('');
   const [validityChange, setValidityChange] = useState('')
   const [status, setStatus] = useState('')
   const debounceSearch = useDebounce(search, 500)
+  const setPage = useNavigationStore((state) => state.setPage)
+  const page = useNavigationStore((state) => state.page)
 
   const { data, isPending } = useQuery({
     queryKey: [keys.accountBusinessList, page, validityChange, status, debounceSearch, dateRange],
@@ -33,7 +36,6 @@ export default function AllBusinessTable({ dateRange }: Props) {
           ? "Premium"
           : value
     );
-
     setPage(1);
   };
 

@@ -4,14 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { useState } from "react";
 import { dropdownOptions } from "@/constants/subscription/SubsriptionTable";
-import { TypeDropdownOption } from "@/types";
 import OverviewCards from "../common/OverviewCards";
 import AccountManagement from "./user-management/AccountManagement";
 import useAccountStats from "@/hooks/useAccontStats";
 import CustomDateDropdown from "../common/CustomDateDropdown";
+import { useNavigationStore } from "@/store/modulesStore";
 
 export default function AccountManagementComp() {
   const [dateRange, setDateRange] = useState("all");
+  const setPage = useNavigationStore((state) => state.setPage)
   const { data, isPending } = useQuery({
     queryKey: [keys.accountStats, dateRange],
     queryFn: () => getAccountStat(dateRange),
@@ -29,7 +30,10 @@ export default function AccountManagementComp() {
         dropdown={
           <CustomDateDropdown
             value={dateRange}
-            onChange={setDateRange}
+            onChange={() => {
+              setDateRange
+              setPage(1)
+            }}
             options={dropdownOptions}
           />
         }

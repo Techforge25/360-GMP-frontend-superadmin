@@ -41,13 +41,20 @@ export default function AccountManagement({ dateRange }: Props) {
       <div
         className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
       >
-        {currentTab === "all-user" && (
-          <AllUserTable dateRange={dateRange} currentTab={currentTab} />
+        {isPending ? (
+          <h1>Loading......</h1>
+        ) : (
+          <>
+            {currentTab === "all-user" && (
+              <AllUserTable dateRange={dateRange} currentTab={currentTab} />
+            )}
+
+            {currentTab === "all-business" && (
+              <AllBusinessTable dateRange={dateRange} currentTab={currentTab} />
+            )}
+          </>
         )}
 
-        {currentTab === "all-business" && (
-          <AllBusinessTable dateRange={dateRange} currentTab={currentTab} />
-        )}
       </div>
     </>
   );

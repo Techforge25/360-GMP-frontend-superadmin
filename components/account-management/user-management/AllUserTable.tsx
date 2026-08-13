@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { getUserProfiles } from "@/services/account-management";
 import { useDebounce } from "@/hooks/useDebounceSearch";
+import { useNavigationStore } from "@/store/modulesStore";
 // import PaginationComponent from "@/components/common/PaginationComponent";
 
 interface Props {
@@ -16,11 +17,12 @@ interface Props {
 
 export default function AllUserTable({ dateRange, currentTab }: Props) {
   console.log(currentTab, 'current tab')
-  const [page, setPage] = useState(1)
+  // const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
   const [validityChange, setValidityChange] = useState("");
   const debouncedSearch = useDebounce(search, 500)
-
+  const setPage = useNavigationStore((state) => state.setPage)
+  const page = useNavigationStore((state) => state.page)
   const { data, isPending } = useQuery({
     queryKey: [keys.accountUsersList, dateRange, page, debouncedSearch, validityChange],
     queryFn: () => getUserProfiles(dateRange, debouncedSearch, page, validityChange),
@@ -31,7 +33,6 @@ export default function AllUserTable({ dateRange, currentTab }: Props) {
   }
 
   const handleFilterStatusChange = (value: string) => {
-    console.log(value, 'all vasasdasd')
     setValidityChange(value === "All Tiers" ? "" : value === 'Enterprise' ? 'Premium' : value);
     setPage(1);
   }
