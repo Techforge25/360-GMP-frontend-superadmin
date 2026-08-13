@@ -44,7 +44,7 @@ export default function SidebarSettingsItems({
         }
 
         return (
-          <>
+          <div key={index}>
             {type === 'superAdmin' ? (
               <Link key={index} href={item.path} className={className}>
                 <span className="text-[1rem]">{item.icon}</span>
@@ -53,7 +53,7 @@ export default function SidebarSettingsItems({
             ) : (
               ""
             )}
-          </>
+          </div>
         );
       })}
     </div >

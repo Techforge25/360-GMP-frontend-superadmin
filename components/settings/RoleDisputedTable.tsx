@@ -17,7 +17,6 @@ const columns: Column<TableRowData>[] = [
       );
     },
   },
-
   {
     key: "allowedModules",
     header: "Module Access",
@@ -33,7 +32,6 @@ const columns: Column<TableRowData>[] = [
       );
     },
   },
-
   {
     key: "action",
     header: "Action",

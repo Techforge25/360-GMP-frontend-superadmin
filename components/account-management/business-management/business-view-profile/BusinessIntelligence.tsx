@@ -1,5 +1,5 @@
 "use client";
-import React, { useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { MdOutlineAccountTree } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
 import KycVerificationModal, {

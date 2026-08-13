@@ -67,11 +67,10 @@ export default function RevenueGraph() {
                     setSelected(option);
                     setIsOpen(false);
                   }}
-                  className={`px-[1rem] py-[0.625rem] text-[0.875rem] cursor-pointer transition-colors ${
-                    selected === option
+                  className={`px-[1rem] py-[0.625rem] text-[0.875rem] cursor-pointer transition-colors ${selected === option
                       ? "bg-[#f4f2fa] text-[#1e293b]"
                       : "text-[#64748b] hover:bg-[#f4f2fa] hover:text-[#1e293b]"
-                  }`}
+                    }`}
                 >
                   {option}
                 </div>
@@ -89,7 +88,7 @@ export default function RevenueGraph() {
         >
           <LineChart
             data={lineChartData}
-            margin={{ top: 10, right: 10, left: -20, bottom: 0 }}
+            margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
           >
             <CartesianGrid
               strokeDasharray="3 3"
@@ -107,7 +106,7 @@ export default function RevenueGraph() {
             <YAxis
               tick={{ fill: "#6b7280", fontSize: "0.8125rem" }}
               tickFormatter={(value) => `$${value}`}
-              ticks={[0, 40000, 50000, 60000, 70000]}
+              ticks={[0, 10000, 20000, 30000, 40000, 50000, 60000, 70000, 80000, 90000, 100000, 110000]}
               axisLine={{ stroke: "#9ca3af" }}
               tickLine={{ stroke: "#9ca3af" }}
             />

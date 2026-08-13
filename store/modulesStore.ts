@@ -8,12 +8,15 @@ interface NavigationState {
      setLoading: (loading: boolean) => void;
      type: string | null;
      setType: (type: string | null) => void;
+     page: number;
+     setPage: (page: number) => void;
 }
 
 export const useNavigationStore = create<NavigationState>((set) => ({
      nav: null,
      loading: false,
      type: null,
+     page: 1,
      setNav: (nav) =>
           set({
                nav,
@@ -25,5 +28,9 @@ export const useNavigationStore = create<NavigationState>((set) => ({
      setType: (type) =>
           set({
                type,
+          }),
+     setPage: (page) =>
+          set({
+               page
           })
 }));

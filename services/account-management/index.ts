@@ -7,6 +7,18 @@ interface RejectBusinessPayload {
      note: string;
 }
 
+export const accountInitiator = async () => {
+     try {
+          const { data } = await api.get(`/accountManagement/init`);
+          return data;
+     } catch (error: any) {
+          toast.error(error?.message)
+          console.error(error?.message)
+          throw error
+     }
+};
+
+
 export const getAccountStat = async (dateRange: string) => {
      try {
           const { data } = await api.get(`/accountManagement/stats?dateRange=${dateRange}`);

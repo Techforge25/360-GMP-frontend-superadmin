@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition } from "react";
+// import { useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { accountManagementTabs } from "@/constants/acount-management/AccountManagementtabs";
 import Tabs from "../../common/Tabs";
@@ -14,22 +14,21 @@ interface Props {
 export default function AccountManagement({ dateRange }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
+  // const [isPending, startTransition] = useTransition();
 
   const currentTab = searchParams.get("tab") || accountManagementTabs[0]?.id;
 
-const handleTabChange = (tabId: string) => {
-  console.log("Tab Clicked:", tabId);
-
-  const params = new URLSearchParams(searchParams.toString());
-  params.set("tab", tabId);
-
-  startTransition(() => {
-    router.replace(`?${params.toString()}`, {
+  const handleTabChange = (tabId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab", tabId);
+    // startTransition(() => {
+    router.replace(`${window.location.pathname}?${params.toString()}`, {
       scroll: false,
     });
-  });
-};
+    // });
+  };
+
+  // console.log(isPending, 'is pending state')
 
   return (
     <>
@@ -42,7 +41,7 @@ const handleTabChange = (tabId: string) => {
       </div>
 
       <div
-        className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
+        className={`mt-6 transition-opacity duration-200"}`}
       >
         {currentTab === "all-user" && (
           <AllUserTable dateRange={dateRange} currentTab={currentTab} />
@@ -51,7 +50,7 @@ const handleTabChange = (tabId: string) => {
         {currentTab === "all-business" && (
           <AllBusinessTable dateRange={dateRange} currentTab={currentTab} />
         )}
-      </div>
+      </div >
     </>
   );
 }
