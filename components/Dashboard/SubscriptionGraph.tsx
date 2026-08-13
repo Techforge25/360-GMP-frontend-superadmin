@@ -49,7 +49,7 @@ export default function SubscriptionGraph() {
           </div>
         </div>
 
-        <div className="relative" ref={dropdownRef}>
+        {/* <div className="relative" ref={dropdownRef}>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="flex items-center gap-[0.5rem] bg-white border border-[#e2e8f0] rounded-[0.5rem] px-[0.75rem] py-[0.375rem] text-[0.875rem] text-[#1e293b] font-medium hover:bg-gray-50 transition-colors"
@@ -80,7 +80,7 @@ export default function SubscriptionGraph() {
               ))}
             </div>
           )}
-        </div>
+        </div> */}
       </div>
 
       <div className="h-[20rem] w-full">

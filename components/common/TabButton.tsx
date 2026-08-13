@@ -19,7 +19,7 @@ export default function TabButton({
     <button
       type="button"
       onClick={onClick}
-      className={`relative flex items-center gap-2 whitespace-nowrap pb-3 pt-1 text-[1rem] font-medium cursor-pointer
+      className={`relative flex items-center gap-2 whitespace-nowrap pb-3 pt-1 text-[1rem] font-normal font-inter cursor-pointer
         after:absolute after:left-0 after:bottom-0 after:h-[2px] after:w-full
         after:origin-left after:transition-transform after:duration-300
         ${
