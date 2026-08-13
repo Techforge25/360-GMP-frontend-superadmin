@@ -28,8 +28,9 @@ export default function LoginForm() {
   useEffect(() => {
     const checkAuthStatus = async () => {
       const res = await checkStatus()
+      console.log(res, 'responseeeee')
       if (res?.data?.isLoggedIn) {
-        router.replace(type === 'superAdmin' ? '/dashboard' : `${nav[0]?.url}`)
+        router.replace(res?.data?.role === 'superAdmin' ? '/dashboard' : `${res?.data?.allowedModules[0]?.url}`)
       } else {
         console.log('unauthenticated')
         router.replace('/')
