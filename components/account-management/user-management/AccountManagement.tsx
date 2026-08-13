@@ -19,9 +19,9 @@ export default function AccountManagement({ dateRange }: Props) {
   const currentTab = searchParams.get("tab") || accountManagementTabs[0]?.id;
 
   const handleTabChange = (tabId: string) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("tab", tabId);
     startTransition(() => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("tab", tabId);
       router.replace(`${window.location.pathname}?${params.toString()}`, {
         scroll: false,
       });
