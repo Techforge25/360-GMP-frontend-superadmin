@@ -237,13 +237,17 @@
   --color-bg-time-brand: #2D1B69;
   --color-purple-dark-light: #6D28D9;
   --color-border-gray-dark: #E3E7EE;
-  --color-bg-gray-200: #DCDCDC33;
-  --color-border-gray-200: #E3E7EE;
-  --color-bg-light-icon: #ECEFF6;
-  --color-bg-light-purple: #8A38F51A;
-  --color-text-light-gray-100: #7F8693;
-  --color-text-light-gray-50: #4E596E;
-  --color-text-light-black-50: #1F2228;
+
+  --color-bg-gray-200:#DCDCDC33;
+  --color-border-gray-200:#E3E7EE;
+  --color-bg-light-icon:#ECEFF6;
+  --color-bg-light-purple:#8A38F51A;
+  --color-text-light-gray-100:#7F8693;
+  --color-text-light-gray-50:#4E596E;
+  --color-text-light-black-50:#1F2228;
+  --color-border-shadow-50:#D1D7E3;
+  --color-border-shadow-dark:#C3C6D7;
+  --color-border-shadow-pink:#8A38F599;
 }
 
 .font-inter {

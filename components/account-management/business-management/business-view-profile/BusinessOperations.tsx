@@ -1,6 +1,10 @@
-import { TypeAdditionalWarehouseAddress, TypeInternationalOffices, TypeWarehouseAddress } from "@/types";
-import { IoLocationSharp } from "react-icons/io5";
-
+import {
+  TypeAdditionalWarehouseAddress,
+  TypeInternationalOffices,
+  TypeWarehouseAddress,
+} from "@/types";
+import locationIcon from "@/assets/locationIcon.svg";
+import Image from "next/image";
 interface Props {
   addressLine: string;
   city: string;
@@ -12,187 +16,235 @@ interface Props {
   termsAndCapability: string;
 }
 
-export default function BusinessOperations({ addressLine, city, country, warehouseAddress, additionalWarehouseAddress, internationalOffices, incoterms, termsAndCapability }: Props) {
-  console.log(incoterms, 'international offices')
+export default function BusinessOperations({
+  addressLine,
+  city,
+  country,
+  warehouseAddress,
+  additionalWarehouseAddress,
+  internationalOffices,
+  incoterms,
+  termsAndCapability,
+}: Props) {
+  console.log(incoterms, "international offices");
+
+  const hasInternationalOffice =
+    Array.isArray(internationalOffices) &&
+    internationalOffices.length > 0 &&
+    internationalOffices.some((office) => Object.keys(office).length > 1);
+
+  const hasadditionalWarehouseAddress =
+    Array.isArray(additionalWarehouseAddress) &&
+    additionalWarehouseAddress.length > 0 &&
+    additionalWarehouseAddress.some(
+      (address) => Object.keys(address).length > 1,
+    );
+
   return (
-    <div className=" mt-8 border border-[#C3C6D7] rounded-[0.5rem] bg-white font-sans overflow-hidden">
-      <div className="flex items-center gap-[0.75rem] bg-[#f5effa] px-[1.5rem] py-[1.25rem] border-b border-[#C3C6D7]">
-        <IoLocationSharp className="w-[1.25rem] h-[1.25rem] text-[#2c0a59]" />
-        <h2 className="text-[1rem] font-semibold text-[#334155]">
+    <div className=" mt-8 border border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
+      <div className="flex items-center gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
+        <Image
+          src={locationIcon}
+          width={100}
+          height={100}
+          alt=""
+          className="w-[1.083rem] h-[1.083rem] text-brand-primary"
+        />
+        <h2 className="text-[1.125rem] font-semibold font-open-sans text-text-light">
           Business Operations
         </h2>
       </div>
 
       <div className="p-[1.5rem] flex flex-col gap-[1.5rem]">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-[1.5rem]">
-          <div className="bg-[#f8f9fb] border border-gray-100 rounded-[0.5rem] p-[1.25rem] border-l-[0.25rem] border-l-[#a15ced]">
-            <h3 className="text-[0.9375rem] font-semibold text-[#22252B] mb-[0.5rem]">
+          <div
+            className="bg-bg-gray-200 border border-gray-100 rounded-[0.75rem] p-[1rem] border-l-[0.25rem]
+           border-l-brand-btn-pills"
+          >
+            <h3 className="text-[1rem] font-semibold font-open-sans text-text-light mb-[0.5rem]">
               Head Office
             </h3>
-            <div className="flex flex-col gap-[0.25rem] text-[0.8125rem] text-[#64748b]">
+            <div className="flex flex-col gap-[0.25rem] text-[0.875rem] font-normal font-inter text-text-secondary">
               <p>{addressLine}</p>
               <p>{city}</p>
               <p>{country}</p>
             </div>
           </div>
 
-          <div className="bg-[#f8f9fb] border border-gray-100 rounded-[0.5rem] p-[1.25rem] border-l-[0.25rem] border-l-[#a15ced]">
-            <h3 className="text-[0.9375rem] font-semibold text-[#22252B] mb-[0.5rem]">
+          <div
+            className="bg-bg-gray-200 border border-gray-100 rounded-[0.75rem] p-[1rem] border-l-[0.25rem]
+           border-l-brand-btn-pills"
+          >
+            <h3 className="text-[1rem] font-semibold font-open-sans text-text-light mb-[0.5rem]">
               Warehouse Address
             </h3>
-            {warehouseAddress !== 'N/A' ? (
-              <div className="flex flex-col gap-[0.25rem] text-[0.8125rem] text-[#64748b]">
+            {warehouseAddress !== "N/A" ? (
+              <div className="flex flex-col gap-[0.25rem] text-[0.875rem] font-normal font-inter text-text-secondary">
                 <p>{warehouseAddress?.addressLine}</p>
                 <p>{warehouseAddress?.city}</p>
                 <p>{warehouseAddress?.country}</p>
               </div>
             ) : (
-              <span className="text-[0.9375rem] font-semibold text-gray-400">N/A</span>
+              <span className="text-[0.9375rem] font-semibold font-inter text-gray-400">
+                N/A
+              </span>
             )}
-
           </div>
         </div>
+        {hasadditionalWarehouseAddress && (
+          <div className="bg-bg-gray-200 border border-border-gray-dark rounded-[0.75rem] p-[1rem]">
+            <h3 className="text-[1.125rem] font-semibold font-open-sans text-text-secondary mb-[1.25rem]">
+              Additional Warehouse Address
+            </h3>
 
-        <div className="bg-[#f8f9fb] border border-gray-100 rounded-[0.5rem] p-[1.5rem]">
-          <h3 className="text-[0.9375rem] font-semibold text-[#64748b] mb-[1.25rem]">
-            Additional Warehouse Address
-          </h3>
+            {additionalWarehouseAddress.map(
+              (add: TypeAdditionalWarehouseAddress | any, index: number) => (
+                <div key={index}>
+                  <div className="grid grid-cols-3 gap-[1.5rem]">
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        Country
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {add.country}
+                      </span>
+                    </div>
 
-          {additionalWarehouseAddress !== "N/A" &&
-            additionalWarehouseAddress?.map((add: TypeAdditionalWarehouseAddress | any, index: number) => (
-              <div key={index} className="grid grid-cols-3 gap-[1.5rem]">
-                <div className="flex flex-col gap-[0.25rem]">
-                  <span className="text-[0.875rem] font-semibold text-[#334155]">
-                    Country
-                  </span>
-                  <span className="text-[0.8125rem] text-[#64748b]">
-                    {add.country}
-                  </span>
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        City
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {add.city}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        Address Line
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {add.addressLine}
+                      </span>
+                    </div>
+                  </div>
+
+                  {index < additionalWarehouseAddress.length - 1 && (
+                    <hr className="border-t border-gray-200 my-[1.25rem]" />
+                  )}
                 </div>
+              ),
+            )}
+          </div>
+        )}
 
-                <div className="flex flex-col gap-[0.25rem]">
-                  <span className="text-[0.875rem] font-semibold text-[#334155]">
-                    City
-                  </span>
-                  <span className="text-[0.8125rem] text-[#64748b]">
-                    {add.city}
-                  </span>
+        {hasInternationalOffice && (
+          <div className="bg-bg-gray-200 border border-border-gray-dark rounded-[0.75rem] p-[1rem]">
+            <h3 className="text-[1.125rem] font-semibold font-open-sans text-text-secondary mb-[1.25rem]">
+              International Office
+            </h3>
+
+            {internationalOffices?.map(
+              (
+                international: TypeInternationalOffices | any,
+                index: number,
+              ) => (
+                <div key={index}>
+                  <div className="grid grid-cols-3 gap-[1.5rem]">
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        Office Name
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {international?.officeName}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        Country
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {international?.country}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        City
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {international?.city}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        State
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {international?.state}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        Address Line
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {international?.addressLine}
+                      </span>
+                    </div>
+
+                    <div className="flex flex-col gap-[0.25rem]">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        Postal/Zip Code
+                      </span>
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                        {international?.zipCode}
+                      </span>
+                    </div>
+                  </div>
+                  {index < internationalOffices.length - 1 && (
+                    <hr className="border-t border-gray-200 my-[1.25rem]" />
+                  )}
                 </div>
-
-                <div className="flex flex-col gap-[0.25rem]">
-                  <span className="text-[0.875rem] font-semibold text-[#334155]">
-                    Address Line
-                  </span>
-                  <span className="text-[0.8125rem] text-[#64748b]">
-                    {add.addressLine}
-                  </span>
-                </div>
-              </div>
-            ))}
-
-          <hr className="border-t border-gray-200 my-[1.25rem]" />
-        </div>
-
-        <div className="bg-[#f8f9fb] border border-gray-100 rounded-[0.5rem] p-[1.5rem]">
-          <h3 className="text-[0.9375rem] font-semibold text-[#64748b] mb-[1.25rem]">
-            International Office
-          </h3>
-
-          {internationalOffices !== 'N/A' &&
-            internationalOffices?.map((international: TypeInternationalOffices | any, index: number) => (
-              <div key={index}>
-                <div className="grid grid-cols-3 gap-[1.5rem]">
-                  <div className="flex flex-col gap-[0.25rem]">
-                    <span className="text-[0.875rem] font-semibold text-[#334155]">
-                      Office Name
-                    </span>
-                    <span className="text-[0.8125rem] text-[#64748b]">
-                      {international?.officeName}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col gap-[0.25rem]">
-                    <span className="text-[0.875rem] font-semibold text-[#334155]">
-                      Country
-                    </span>
-                    <span className="text-[0.8125rem] text-[#64748b]">
-                      {international?.country}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col gap-[0.25rem]">
-                    <span className="text-[0.875rem] font-semibold text-[#334155]">
-                      City
-                    </span>
-                    <span className="text-[0.8125rem] text-[#64748b]">
-                      {international?.city}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col gap-[0.25rem]">
-                    <span className="text-[0.875rem] font-semibold text-[#334155]">
-                      State
-                    </span>
-                    <span className="text-[0.8125rem] text-[#64748b]">
-                      {international?.state}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col gap-[0.25rem]">
-                    <span className="text-[0.875rem] font-semibold text-[#334155]">
-                      Address Line
-                    </span>
-                    <span className="text-[0.8125rem] text-[#64748b]">
-                      {international?.addressLine}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-col gap-[0.25rem]">
-                    <span className="text-[0.875rem] font-semibold text-[#334155]">
-                      Postal/Zip Code
-                    </span>
-                    <span className="text-[0.8125rem] text-[#64748b]">
-                      {international?.zipCode}
-                    </span>
-                  </div>
-                </div>
-
-                <hr className="my-[1.5rem] border-t border-gray-200" />
-              </div>
-            ))}
-
-        </div>
+              ),
+            )}
+          </div>
+        )}
 
         <div className="pt-[1rem] border-t border-gray-100 flex flex-col gap-[1.5rem]">
           <div className="flex flex-col gap-[0.75rem]">
-            <h3 className="text-[0.9375rem] font-semibold text-[#64748b]">
+            <h3 className="text-[1.125rem] font-semibold font-open-sans text-text-secondary">
               Incoterms
             </h3>
-            {incoterms !== 'N/A' ? (
+            {incoterms !== "N/A" ? (
               <div className="flex gap-[0.5rem]">
-                <span className="px-[1rem] py-[0.375rem] bg-[#2c0a59] text-white text-[0.8125rem] font-medium rounded-[1.25rem]">
+                <span className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem]">
                   {incoterms}
                 </span>
               </div>
             ) : (
-              <span className="text-[0.875rem] text-gray-500">{incoterms}</span>
+              <span className="text-[1rem] text-gray-500">{incoterms}</span>
             )}
-
           </div>
 
           <div className="flex flex-col gap-[0.75rem]">
-            <h3 className="text-[0.9375rem] font-semibold text-[#64748b]">
+            <h3 className="font-semibold text-[1.125rem]  font-open-sans text-text-secondary">
               Terms And Capability
             </h3>
 
-            {termsAndCapability !== 'N/A' ? (
+            {termsAndCapability !== "N/A" ? (
               <div className="flex gap-[0.5rem]">
-                <span className="px-[1rem] py-[0.375rem] bg-[#2c0a59] text-white text-[0.8125rem] font-medium rounded-[1.25rem]">
+                <span className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem]">
                   {termsAndCapability}
                 </span>
               </div>
             ) : (
-              <span className="text-[0.875rem] text-gray-500">{termsAndCapability}</span>
+             <span className="text-[1rem] text-gray-500">
+                {termsAndCapability}
+              </span>
             )}
           </div>
         </div>
