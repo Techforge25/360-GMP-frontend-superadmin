@@ -1,11 +1,11 @@
 "use client";
+
+import { useEffect, useState } from "react";
 import RoleAccessTable from "./RoleAccessTable";
 import RoleDisputedTable from "./RoleDisputedTable";
 import { roleTabs } from "@/constants/roles/tabs";
 import PrimaryButton from "../common/PrimaryButton";
 import Tabs from "../common/Tabs";
-import { useRouter, useSearchParams } from "next/navigation";
-import { useEffect, useRef, useState, useTransition } from "react";
 import { keys } from "@/keys";
 import { getCreatedAdmins } from "@/services/settings";
 import { useQuery } from "@tanstack/react-query";
@@ -13,20 +13,32 @@ import PaginationComponent from "../common/PaginationComponent";
 import InviteIcon from "@/assets/Icon.svg";
 import Image from "next/image";
 import { useTableScroll } from "@/hooks/useTableScroll";
+
 import { useNavigationStore } from "@/store/modulesStore";
 export default function RolesPermissionsList() {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
-  // const [page, setPage] = useState(1);
-  const currentTab = searchParams.get("tab") || roleTabs[0]?.id;
-  const page = useNavigationStore((state) => state.page)
-  const setPage = useNavigationStore((state) => state.setPage)
-  const { data, isFetching } = useQuery({
+  const [currentTab, setCurrentTab] = useState(
+    roleTabs[0]?.id || "role-control",
+  );
+  const page = useNavigationStore((state) => state.page);
+  const setPage = useNavigationStore((state) => state.setPage);
+  const { data, isFetching, isPending } = useQuery({
     queryKey: [keys.adminList, currentTab, page],
     queryFn: () => getCreatedAdmins(currentTab, page),
   });
+
   const tableRef = useTableScroll(page, isPending);
+
+  const adminData = data?.data?.docs;
+
+  const handleTabChange = (tabId: string) => {
+    setCurrentTab(tabId);
+    setPage(1);
+  };
+
+  const handlePageChange = (page: number) => {
+    setPage(page);
+  };
+
   useEffect(() => {
     if (!data?.data) return;
 
@@ -37,28 +49,12 @@ export default function RolesPermissionsList() {
     }
   }, [data, page]);
 
-  const adminData = data?.data?.docs;
-
-  const handlePageChange = (page: number) => {
-    setPage(page);
-  };
-
-  const handleTabChange = (tabId: string) => {
-    setPage(1);
-    startTransition(() => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("tab", tabId);
-      router.replace(`${window.location.pathname}?${params.toString()}`, {
-        scroll: false,
-      });
-    });
-  };
-
   return (
     <main
       className="min-h-screen min-w-0 bg-surface p-6 md:p-1 font-secondary flex flex-col gap-6"
       ref={tableRef}
     >
+      {/* Header */}
       <div className="flex flex-col xl:flex-row items-left xl:items-center justify-between gap-4">
         <div className="max-w-full sm:max-w-[90%] md:max-w-full">
           <h1 className="text-lg sm:text-xl md:text-[1.375rem] font-semibold text-brand-primary tracking-wide leading-tight">
@@ -86,6 +82,7 @@ export default function RolesPermissionsList() {
         />
       </div>
 
+      {/* Tabs */}
       <div className="mt-2">
         <Tabs
           tabs={roleTabs}
@@ -94,33 +91,12 @@ export default function RolesPermissionsList() {
         />
       </div>
 
-      <div
-        className={`
-    mt-6 min-h-[500px] min-w-0 w-full
-    transition-opacity duration-200
-    ${isPending ? "opacity-50" : "opacity-100"}
-  `}
-      >
+      {/* Content */}
+      <div className="mt-6 min-h-[500px] min-w-0 w-full">
         {currentTab === "role-control" && (
-          <>
-            <div className="w-full min-w-0 overflow-x-auto">
-              <RoleAccessTable adminData={adminData} isFetching={isFetching} />
-              {data?.data?.totalPages > 1 && (
-                <PaginationComponent
-                  currentPage={page}
-                  handlePageChange={handlePageChange}
-                  totalPages={data?.data?.totalPages || 1}
-                  totalItems={data?.data?.totalDocs || 0}
-                  totalItemsPerPage={data?.data?.limit || 10}
-                />
-              )}
-            </div>
-          </>
-        )}
+          <div className="w-full min-w-0 overflow-x-auto">
+            <RoleAccessTable adminData={adminData} isFetching={isFetching} />
 
-        {currentTab === "deleted-admins" && (
-          <>
-            <RoleDisputedTable adminData={adminData} isFetching={isFetching} />
             {data?.data?.totalPages > 1 && (
               <PaginationComponent
                 currentPage={page}
@@ -130,7 +106,23 @@ export default function RolesPermissionsList() {
                 totalItemsPerPage={data?.data?.limit || 10}
               />
             )}
-          </>
+          </div>
+        )}
+
+        {currentTab === "deleted-admins" && (
+          <div className="w-full min-w-0 overflow-x-auto">
+            <RoleDisputedTable adminData={adminData} isFetching={isFetching} />
+
+            {data?.data?.totalPages > 1 && (
+              <PaginationComponent
+                currentPage={page}
+                handlePageChange={handlePageChange}
+                totalPages={data?.data?.totalPages || 1}
+                totalItems={data?.data?.totalDocs || 0}
+                totalItemsPerPage={data?.data?.limit || 10}
+              />
+            )}
+          </div>
         )}
       </div>
     </main>

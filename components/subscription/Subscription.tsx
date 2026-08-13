@@ -1,33 +1,18 @@
 "use client";
-
-import { useTransition } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import FreeTrialTable from "./free-trial/FreeTrialTable";
 import Tabs from "../common/Tabs";
 import { Subscriptiontabs } from "@/constants/subscription/Subscriptiontabs";
 import PaidMemberTable from "./paid-member/PaidMemberTable";
-import { useNavigationStore } from "@/store/modulesStore";
 
 type Props = {
   dateRange: string;
 };
 
 export default function Subscription({ dateRange }: Props) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
-
-  const currentTab = searchParams.get("tab") || Subscriptiontabs[0]?.id;
-
-  const handleTabChange = (tabId: string) => {
-    startTransition(() => {
-      const params = new URLSearchParams(searchParams.toString());
-      params.set("tab", tabId);
-      router.replace(`${window.location.pathname}?${params.toString()}`, {
-        scroll: false,
-      });
-    });
-  };
+  const [currentTab, setCurrentTab] = useState(
+    Subscriptiontabs[0]?.id || "free-trial",
+  );
 
   return (
     <>
@@ -35,13 +20,11 @@ export default function Subscription({ dateRange }: Props) {
         <Tabs
           tabs={Subscriptiontabs}
           activeTab={currentTab}
-          onTabChange={handleTabChange}
+          onTabChange={setCurrentTab}
         />
       </div>
 
-      <div
-        className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
-      >
+      <div className={`mt-6 transition-opacity duration-200`}>
         {currentTab === "free-trial" && (
           <FreeTrialTable dateRange={dateRange} />
         )}

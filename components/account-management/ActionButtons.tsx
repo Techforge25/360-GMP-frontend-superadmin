@@ -26,7 +26,7 @@ export default function ActionButtons({ id }: ActionButtonsProps) {
   const mutation = useMutation({
     mutationFn: approveBusiness,
     onSuccess: () => {
-      router.push('/account-management?tab=all-business')
+      router.push('/account-management')
       queryClient.invalidateQueries({ queryKey: [keys.accountBusinessList] });
     },
   })
