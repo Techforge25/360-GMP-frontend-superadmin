@@ -14,21 +14,17 @@ interface Props {
 export default function AccountManagement({ dateRange }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  // const [isPending, startTransition] = useTransition();
 
   const currentTab = searchParams.get("tab") || accountManagementTabs[0]?.id;
 
   const handleTabChange = (tabId: string) => {
     const params = new URLSearchParams(searchParams.toString());
     params.set("tab", tabId);
-    // startTransition(() => {
+
     router.replace(`${window.location.pathname}?${params.toString()}`, {
       scroll: false,
     });
-    // });
   };
-
-  // console.log(isPending, 'is pending state')
 
   return (
     <>
@@ -40,9 +36,7 @@ export default function AccountManagement({ dateRange }: Props) {
         />
       </div>
 
-      <div
-        className={`mt-6 transition-opacity duration-200"}`}
-      >
+      <div className={`mt-6 transition-opacity duration-200"}`}>
         {currentTab === "all-user" && (
           <AllUserTable dateRange={dateRange} currentTab={currentTab} />
         )}
@@ -50,7 +44,7 @@ export default function AccountManagement({ dateRange }: Props) {
         {currentTab === "all-business" && (
           <AllBusinessTable dateRange={dateRange} currentTab={currentTab} />
         )}
-      </div >
+      </div>
     </>
   );
 }

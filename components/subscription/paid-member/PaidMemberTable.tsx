@@ -91,7 +91,6 @@ export default function PaidMemberTable({ dateRange }: Props) {
           },
           {
             key: "status",
-            label: "Status",
             options: ["All Status", "Active", "Cancelled", "Expired"],
             defaultValue: "All Status",
           },
