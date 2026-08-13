@@ -8,13 +8,16 @@ import { getJobReports } from "@/services/reports";
 import { useEffect, useState } from "react";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useTableScroll } from "@/hooks/useTableScroll";
+import { useNavigationStore } from "@/store/modulesStore";
 
 interface Props {
   dateRange: string;
 }
 
 export default function JobReportTable({ dateRange }: Props) {
-  const [page, setPage] = useState(1)
+  // const [page, setPage] = useState(1)
+  const page = useNavigationStore((state) => state.page)
+  const setPage = useNavigationStore((state) => state.setPage)
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
@@ -23,9 +26,9 @@ export default function JobReportTable({ dateRange }: Props) {
     queryFn: () => getJobReports(dateRange, debouncedSearch, page),
   });
 
-    useEffect(() => {
-      setPage(1);
-    }, [dateRange]);
+  useEffect(() => {
+    setPage(1);
+  }, [dateRange]);
 
   const tableRef = useTableScroll(page, isPending);
   const reportsData = data?.data?.docs

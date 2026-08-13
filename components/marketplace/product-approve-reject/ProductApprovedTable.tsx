@@ -6,26 +6,25 @@ import { useQuery } from "@tanstack/react-query";
 import { generalProducts } from "@/services/marketplace";
 import PaginationComponent from "@/components/common/PaginationComponent";
 import { useTableScroll } from "@/hooks/useTableScroll";
+import { useNavigationStore } from "@/store/modulesStore";
 
 interface Props {
   dateRange: string;
 }
 
 export default function ProductApprovedTable({ dateRange }: Props) {
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
+  const page = useNavigationStore((state) => state.page)
+  const setPage = useNavigationStore((state) => state.setPage)
   const { data, isPending } = useQuery({
     queryKey: [keys.orderProductRejectionApproval, dateRange, page],
     queryFn: () => generalProducts(dateRange, page),
   });
 
-    
-
   const tableRef = useTableScroll(page, isPending);
   const handlePageChange = (page: number) => {
     setPage(page);
   };
-
-
 
   const productApproveReject = data?.data?.docs;
 
@@ -39,7 +38,7 @@ export default function ProductApprovedTable({ dateRange }: Props) {
         dateRange={dateRange}
         isPending={isPending}
       />
-     {data?.data?.totalPages > 1 && (
+      {data?.data?.totalPages > 1 && (
         <PaginationComponent
           currentPage={page}
           handlePageChange={handlePageChange}

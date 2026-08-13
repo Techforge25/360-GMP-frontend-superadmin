@@ -14,13 +14,13 @@ import InviteIcon from "@/assets/Icon.svg";
 import Image from "next/image";
 import { useTableScroll } from "@/hooks/useTableScroll";
 
+import { useNavigationStore } from "@/store/modulesStore";
 export default function RolesPermissionsList() {
   const [currentTab, setCurrentTab] = useState(
     roleTabs[0]?.id || "role-control",
   );
-
-  const [page, setPage] = useState(1);
-
+  const page = useNavigationStore((state) => state.page);
+  const setPage = useNavigationStore((state) => state.setPage);
   const { data, isFetching, isPending } = useQuery({
     queryKey: [keys.adminList, currentTab, page],
     queryFn: () => getCreatedAdmins(currentTab, page),
@@ -42,9 +42,7 @@ export default function RolesPermissionsList() {
   useEffect(() => {
     if (!data?.data) return;
 
-    const totalPages = Math.ceil(
-      data.data.totalDocs / data.data.limit,
-    );
+    const totalPages = Math.ceil(data.data.totalDocs / data.data.limit);
 
     if (page > totalPages) {
       setPage(totalPages || 1);
@@ -97,10 +95,7 @@ export default function RolesPermissionsList() {
       <div className="mt-6 min-h-[500px] min-w-0 w-full">
         {currentTab === "role-control" && (
           <div className="w-full min-w-0 overflow-x-auto">
-            <RoleAccessTable
-              adminData={adminData}
-              isFetching={isFetching}
-            />
+            <RoleAccessTable adminData={adminData} isFetching={isFetching} />
 
             {data?.data?.totalPages > 1 && (
               <PaginationComponent
@@ -116,10 +111,7 @@ export default function RolesPermissionsList() {
 
         {currentTab === "deleted-admins" && (
           <div className="w-full min-w-0 overflow-x-auto">
-            <RoleDisputedTable
-              adminData={adminData}
-              isFetching={isFetching}
-            />
+            <RoleDisputedTable adminData={adminData} isFetching={isFetching} />
 
             {data?.data?.totalPages > 1 && (
               <PaginationComponent

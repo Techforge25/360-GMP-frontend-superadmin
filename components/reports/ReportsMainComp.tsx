@@ -4,12 +4,10 @@ import useReportsStats from "@/hooks/useReportsStats";
 import OverviewCards from "../common/OverviewCards";
 import Reports from "./Reports";
 import { useQuery } from "@tanstack/react-query";
-import { ReportsCard } from "@/constants/reports/ReportsCard";
 import { keys } from "@/keys";
 import { getReportStat } from "@/services/reports";
 import { useState } from "react";
 import { dropdownOptions } from "@/constants/subscription/SubsriptionTable";
-import { TypeDropdownOption } from "@/types";
 import CustomDateDropdown from "../common/CustomDateDropdown";
 
 export default function ReportsMainComp() {

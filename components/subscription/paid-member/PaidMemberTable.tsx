@@ -7,19 +7,20 @@ import { keys } from "@/keys";
 import { getSubscriptionUsersPaid } from "@/services/subscription";
 import PaginationComponent from "@/components/common/PaginationComponent";
 import { useTableScroll } from "@/hooks/useTableScroll";
+import { useNavigationStore } from "@/store/modulesStore";
 
 type Props = {
   dateRange: string;
 };
 
 export default function PaidMemberTable({ dateRange }: Props) {
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
   const [validityChange, setValidityChange] = useState("all");
   const [tierType, setTierType] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
-
-  
+  const page = useNavigationStore((state) => state.page)
+  const setPage = useNavigationStore((state) => state.setPage)
 
   const { isPending, data } = useQuery({
     queryKey: [

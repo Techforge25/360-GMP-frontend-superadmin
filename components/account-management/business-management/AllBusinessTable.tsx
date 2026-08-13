@@ -15,15 +15,12 @@ interface Props {
 }
 
 export default function AllBusinessTable({ dateRange }: Props) {
-  // const [page, setPage] = useState(1)
   const [search, setSearch] = useState('');
   const [validityChange, setValidityChange] = useState('')
   const [status, setStatus] = useState('')
   const debounceSearch = useDebounce(search, 500)
   const setPage = useNavigationStore((state) => state.setPage)
   const page = useNavigationStore((state) => state.page)
-
-  
 
   const { data, isPending } = useQuery({
     queryKey: [keys.accountBusinessList, page, validityChange, status, debounceSearch, dateRange],

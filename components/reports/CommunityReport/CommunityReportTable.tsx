@@ -9,13 +9,16 @@ import { useQuery } from "@tanstack/react-query";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { getCommunityReports } from "@/services/reports";
 import { useTableScroll } from "@/hooks/useTableScroll";
+import { useNavigationStore } from "@/store/modulesStore";
 
 interface Props {
   dateRange: string;
 }
 
 export default function CommunityReportTable({ dateRange }: Props) {
-  const [page, setPage] = useState(1)
+  // const [page, setPage] = useState(1)
+  const page = useNavigationStore((state) => state.page)
+  const setPage = useNavigationStore((state) => state.setPage)
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
 
@@ -23,8 +26,6 @@ export default function CommunityReportTable({ dateRange }: Props) {
     queryKey: [keys.reportCommunity, dateRange, page, debouncedSearch],
     queryFn: () => getCommunityReports(dateRange, debouncedSearch, page),
   });
-
-  
 
   const tableRef = useTableScroll(page, isPending);
   const reportsData = data?.data?.docs
@@ -36,6 +37,7 @@ export default function CommunityReportTable({ dateRange }: Props) {
   const handleFilterStatusChange = (value: string) => {
     setPage(1);
   }
+  
   return (
     <div className="rounded-2xl border border-border-light bg-white  shadow-sm" ref={tableRef}>
       <SearchFilterBar
