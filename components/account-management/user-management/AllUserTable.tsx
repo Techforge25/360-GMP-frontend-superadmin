@@ -16,7 +16,6 @@ interface Props {
 }
 
 export default function AllUserTable({ dateRange, currentTab }: Props) {
-  console.log(currentTab, 'current tab')
   // const [page, setPage] = useState(1)
   const [search, setSearch] = useState('')
   const [validityChange, setValidityChange] = useState("");

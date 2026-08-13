@@ -33,7 +33,7 @@ export default function RejectButtons({ id }: ActionButtonsProps) {
         queryKey: [keys.orderProductAuditQueue],
       });
       ApprovedModalModalRef.current?.close();
-      router.push("/marketplace?tab=product-audit-queue");
+      router.push("/marketplace");
     },
   });
 
