@@ -6,6 +6,7 @@ import FreeTrialTable from "./free-trial/FreeTrialTable";
 import Tabs from "../common/Tabs";
 import { Subscriptiontabs } from "@/constants/subscription/Subscriptiontabs";
 import PaidMemberTable from "./paid-member/PaidMemberTable";
+import { useNavigationStore } from "@/store/modulesStore";
 
 type Props = {
   dateRange: string;
