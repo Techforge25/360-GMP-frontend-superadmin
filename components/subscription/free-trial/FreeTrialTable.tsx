@@ -7,13 +7,16 @@ import PaginationComponent from "@/components/common/PaginationComponent";
 import { useEffect, useRef, useState } from "react";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useTableScroll } from "@/hooks/useTableScroll";
+import { useNavigationStore } from "@/store/modulesStore";
 
 type Props = {
   dateRange: string;
 };
 
 export default function FreeTrialTable({ dateRange }: Props) {
-  const [page, setPage] = useState(1);
+  // const [page, setPage] = useState(1);
+  const setPage = useNavigationStore((state) => state.setPage)
+  const page = useNavigationStore((state) => state.page)
   const [validityChange, setValidityChange] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);

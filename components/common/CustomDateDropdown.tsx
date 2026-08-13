@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from "react";
 import { IoChevronUp, IoChevronDown } from "react-icons/io5";
 import { TypeDropdownOption } from "@/types";
+import { useNavigationStore } from "@/store/modulesStore";
 
 interface Props {
   value: string;
@@ -16,6 +17,7 @@ export default function CustomDateDropdown({
 }: Props) {
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const setPage = useNavigationStore((state) => state.setPage)
 
   const selectedLabel =
     options.find((item) => item.value === value)?.label || "";
@@ -82,6 +84,7 @@ export default function CustomDateDropdown({
               onClick={() => {
                 onChange(option.value);
                 setOpen(false);
+                setPage(1)
               }}
               className={`
                 w-full
