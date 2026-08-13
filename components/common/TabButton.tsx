@@ -30,6 +30,7 @@ export default function TabButton({
       `}
     >
       {tab.icon && <span className="text-base">{tab.icon}</span>}
+
       {tab.label}
     </button>
   );

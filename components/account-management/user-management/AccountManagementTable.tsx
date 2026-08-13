@@ -30,7 +30,7 @@ const columns: Column<AccountTableRowData>[] = [
           <span className="text-[1rem] font-medium text-date-time truncate w-[16rem]">
             {row?.fullName}
           </span>
-          <span className="mt-0.5 text-sm text-text-hint">
+          <span className="mt-0.5 text-sm text-text-hint truncate w-[16rem]">
             {row?.email}
           </span>
         </div>

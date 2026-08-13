@@ -1,7 +1,6 @@
 "use client";
 
-// import { useTransition } from "react";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useState } from "react";
 import { accountManagementTabs } from "@/constants/acount-management/AccountManagementtabs";
 import Tabs from "../../common/Tabs";
 import AllUserTable from "./AllUserTable";
@@ -12,19 +11,9 @@ interface Props {
 }
 
 export default function AccountManagement({ dateRange }: Props) {
-  const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const currentTab = searchParams.get("tab") || accountManagementTabs[0]?.id;
-
-  const handleTabChange = (tabId: string) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.set("tab", tabId);
-
-    router.replace(`${window.location.pathname}?${params.toString()}`, {
-      scroll: false,
-    });
-  };
+  const [currentTab, setCurrentTab] = useState(
+    accountManagementTabs[0]?.id || "all-user"
+  );
 
   return (
     <>
@@ -32,17 +21,23 @@ export default function AccountManagement({ dateRange }: Props) {
         <Tabs
           tabs={accountManagementTabs}
           activeTab={currentTab}
-          onTabChange={handleTabChange}
+          onTabChange={setCurrentTab}
         />
       </div>
 
-      <div className={`mt-6 transition-opacity duration-200"}`}>
+      <div className="mt-6">
         {currentTab === "all-user" && (
-          <AllUserTable dateRange={dateRange} currentTab={currentTab} />
+          <AllUserTable
+            dateRange={dateRange}
+            currentTab={currentTab}
+          />
         )}
 
         {currentTab === "all-business" && (
-          <AllBusinessTable dateRange={dateRange} currentTab={currentTab} />
+          <AllBusinessTable
+            dateRange={dateRange}
+            currentTab={currentTab}
+          />
         )}
       </div>
     </>
