@@ -7,12 +7,9 @@ import FormPasswordInput from "@/components/common/FormPasswordInput";
 import { checkStatus, login } from "@/services/auth";
 import { useMutation } from "@tanstack/react-query";
 import { TypeLoginForm } from "@/types";
-import { useEffect } from "react";
-import { useNavigationStore } from "@/store/modulesStore";
+import { useLayoutEffect } from "react";
 
 export default function LoginForm() {
-  const type = useNavigationStore((state) => state.type)
-  const nav = useNavigationStore((state) => state.nav)
   const router = useRouter();
   const {
     register,
@@ -25,10 +22,9 @@ export default function LoginForm() {
     },
   });
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const checkAuthStatus = async () => {
       const res = await checkStatus()
-      console.log(res, 'responseeeee')
       if (res?.data?.isLoggedIn) {
         router.replace(res?.data?.role === 'superAdmin' ? '/dashboard' : `${res?.data?.allowedModules[0]?.url}`)
       } else {
