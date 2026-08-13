@@ -2,7 +2,7 @@
 import PaginationComponent from "@/components/common/PaginationComponent";
 import SearchFilterBar from "../../common/SearchFilterBar";
 import AccountManagementTable from "./AccountManagementTable";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { getUserProfiles } from "@/services/account-management";

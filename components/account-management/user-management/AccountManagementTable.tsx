@@ -2,7 +2,6 @@ import DataTable, { Column } from "@/components/common/DataTable";
 import { AccountTableRowData, TypeAccountManagement } from "@/types";
 
 import AccountManagementTableActions from "./AccountManagementTableActions";
-import { accountTableData } from "@/constants/acount-management/AccountManagementTable";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
 import Image from "next/image";
 import { formatDate } from "@/helpers";
@@ -28,7 +27,7 @@ const columns: Column<AccountTableRowData>[] = [
         />
 
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-date-time">
+          <span className="text-[1rem] font-medium text-date-time truncate w-[16rem]">
             {row?.fullName}
           </span>
           <span className="mt-0.5 text-sm text-text-hint">

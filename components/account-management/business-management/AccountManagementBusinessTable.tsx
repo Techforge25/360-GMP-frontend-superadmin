@@ -27,7 +27,7 @@ const columns: Column<AccountBusinessTableRowData>[] = [
         />
 
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">
+          <span className="text-[1rem] font-medium text-text-secondary truncate w-[16rem]">
             {row.companyName}
           </span>
           <span className="mt-0.5 text-sm text-text-hint">
