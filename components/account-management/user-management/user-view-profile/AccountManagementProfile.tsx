@@ -13,7 +13,7 @@ interface Props {
 
 export default function ProfileCard({ fullName, email, bio, year, logo }: Props) {
   return (
-    <div className="p-[1rem] border border-gray-200 rounded-[0.75rem] bg-surface-DEFAULT font-sans">
+    <div className="p-[1rem] mt-6 border border-gray-200 rounded-[0.75rem] bg-surface-DEFAULT font-sans">
       <div className="flex items-center gap-[1rem] p-[1rem] bg-bg-gray-200 rounded-[0.5rem] border border-border-gray-200">
         <div className="relative w-[3.5rem] h-[3.5rem] rounded-[0.5rem] overflow-hidden border border-gray-200 bg-white">
           <img

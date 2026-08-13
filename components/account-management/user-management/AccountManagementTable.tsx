@@ -19,7 +19,7 @@ const columns: Column<AccountTableRowData>[] = [
     render: (row) => (
       <div className="flex items-center space-x-3">
         <Image
-          src={row?.logo || "/images/image 95.png"}
+          src={row?.logo || "/images/user-icon.webp"}
           alt={row?.fullName}
           width={40}
           height={40}
@@ -30,7 +30,7 @@ const columns: Column<AccountTableRowData>[] = [
           <span className="text-[1rem] font-medium text-date-time truncate w-[16rem]">
             {row?.fullName}
           </span>
-          <span className="mt-0.5 text-sm text-text-hint truncate w-[16rem]">
+          <span className="mt-0.5 text-sm text-text-gray-more truncate w-[16rem]">
             {row?.email}
           </span>
         </div>

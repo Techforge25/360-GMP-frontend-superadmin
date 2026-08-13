@@ -8,7 +8,7 @@ export default function useAccountStats(data: TypeAccountStats) {
           title: "Total Users",
           value: data?.totalParentUsers,
           subtitle: `${data?.totalUserProfiles} Users`,
-          subtitletwo: `${data?.totalBusinessProfiles} Business`,
+          subtitletwo: `${data?.totalBusinessProfiles} Approved  Business`,
           showDot: true,
           iconBg: "bg-[#f5eeff]",
           iconColor: "text-[#9d4edd]",
