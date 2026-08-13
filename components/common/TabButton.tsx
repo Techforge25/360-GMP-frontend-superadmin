@@ -14,7 +14,6 @@ export default function TabButton({ tab, activeTab, onClick }: TabButtonProps) {
   return (
     <button
       onClick={() => {
-        console.log("Tab Clicked",tab.id);
         onClick();
       }}
       className={`relative flex items-center gap-2 whitespace-nowrap pb-3 pt-1 text-[1rem] font-medium transition-colors duration-300 cursor-pointer

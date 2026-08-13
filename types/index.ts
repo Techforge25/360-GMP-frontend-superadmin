@@ -715,6 +715,17 @@ export type TypeNavigation = {
   url: string,
 }
 
+export type TypeShippingCharge = {
+  _id: string;
+  region: string;
+  Asia: string;
+  Africa: string;
+  America: string;
+  Antarctica: string;
+  Europe: string;
+  Australia: string;
+};
+
 
 
 export type TypeWarehouseAddress = Pick<TypeViewBusinessProfile, 'warehouseAddress'>

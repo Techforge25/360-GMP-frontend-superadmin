@@ -5,7 +5,7 @@ import SearchFilterBar from "@/components/common/SearchFilterBar";
 import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { getJobReports } from "@/services/reports";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useTableScroll } from "@/hooks/useTableScroll";
 
@@ -22,6 +22,10 @@ export default function JobReportTable({ dateRange }: Props) {
     queryKey: [keys.reportJob, page, debouncedSearch, dateRange],
     queryFn: () => getJobReports(dateRange, debouncedSearch, page),
   });
+
+    useEffect(() => {
+      setPage(1);
+    }, [dateRange]);
 
   const tableRef = useTableScroll(page, isPending);
   const reportsData = data?.data?.docs

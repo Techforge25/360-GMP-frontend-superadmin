@@ -10,6 +10,7 @@ import { keys } from "@/keys";
 import { productDetails } from "@/services/marketplace";
 import ProductDetailShimmer from "@/components/skeleton/ProductShimmer";
 import { product } from "@/constants/marketplace/product";
+import ShippingCharges from "../../product-approve-reject/ShippingCharges";
 
 export default function ProductDetail({
   productId,
@@ -42,6 +43,7 @@ export default function ProductDetail({
           {productDetail?.status !== 'pending' && (
             <ProductApprovedBy status={productDetail?.status} approval={data?.data?.approval} rejection={data?.data?.rejection} />
           )}
+          <ShippingCharges />
           {productDetail?.status === 'pending' && (
             <RejectButtons id={data?.data?._id} />
           )}

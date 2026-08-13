@@ -16,6 +16,7 @@ export default function OrderLogsTable({ dateRange }: Props) {
     queryKey: [keys.orderLogs, dateRange, page],
     queryFn: () => fetchOrderLogs(dateRange, page),
   });
+    
   const tableRef = useTableScroll(page, isPending);
   const orderLogs = data?.data?.docs
 

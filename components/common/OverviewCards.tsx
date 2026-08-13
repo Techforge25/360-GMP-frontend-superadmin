@@ -39,7 +39,7 @@ export default function OverviewCards({
             <h1 className="text-[1.375rem] font-semibold text-[#240457] tracking-tight font-open-sans">
               {heading}
             </h1>
-            <p className="mt-0 text-[1rem] font-normal text-[#717b8f]">
+            <p className="mt-0 text-[1rem] font-normal text-[#5B6984]">
               {description}
             </p>
           </div>
@@ -47,7 +47,7 @@ export default function OverviewCards({
           {dropdown && <div>{dropdown}</div>}
         </div>
 
-        <div className={`grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-2 ${className}`}>
+        <div className={`grid grid-cols-1 gap-[1rem] sm:grid-cols-2 lg:grid-cols-2 ${className}`}>
           {isPending ? (
             <CardShimmer />
           ) : (
@@ -74,10 +74,10 @@ export default function OverviewCards({
                       </p>
                       <div className="flex items-center gap-2">
                         {card.showDot && (
-                          <span className="h-1.5 w-1.5 rounded-full bg-[#8994a5]" />
+                          <span className="h-1.5 w-1.5 rounded-full bg-text-secondary" />
                         )}
 
-                        <p className="text-sm font-medium text-[#8994a5]">
+                        <p className="text-sm font-medium text-text-light-gray-50">
                           {card.subtitle}
                         </p>
 
@@ -85,7 +85,7 @@ export default function OverviewCards({
                           <>
                             <span className="h-1.5 w-1.5 rounded-full bg-[#8A38F5]" />
 
-                            <p className="text-sm font-medium text-[#8994a5]">
+                            <p className="text-sm font-medium text-text-light-gray-50">
                               {card.subtitletwo}
                             </p>
                           </>

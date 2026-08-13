@@ -1,6 +1,7 @@
 import { TypeAccountStats } from "@/types";
-import { FiBriefcase, FiUsers } from "react-icons/fi";
-
+import Image from "next/image";
+import { FiUsers } from "react-icons/fi";
+import businessCheckIcon from "@/assets/businessCheckIcon.svg"
 export default function useAccountStats(data: TypeAccountStats) {
      return [{
           id: 1,
@@ -22,7 +23,7 @@ export default function useAccountStats(data: TypeAccountStats) {
           showDot: false,
           iconBg: "bg-[#eff5ff]",
           iconColor: "text-[#2a75d3]",
-          icon: <FiBriefcase size="1.375rem" />,
+          icon: <Image src={businessCheckIcon} alt="" width={100} height={100} className="w-[1.375rem] h-[1.375rem]"/>   ,
      },
      ]
 }

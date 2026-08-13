@@ -17,6 +17,9 @@ export default function FreeTrialTable({ dateRange }: Props) {
   const [validityChange, setValidityChange] = useState("all");
   const [search, setSearch] = useState("");
   const debouncedSearch = useDebounce(search, 500);
+
+    
+  
   const { isPending, data } = useQuery({
     queryKey: [
       keys.subscriptionList,

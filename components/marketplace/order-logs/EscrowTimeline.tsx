@@ -1,5 +1,6 @@
 import { LuClock3 } from "react-icons/lu";
-
+import OrderTimeline from "@/assets/OrderTimeline.svg"
+import Image from "next/image";
 interface TimelineItem {
   date: string;
   time: string;
@@ -14,18 +15,18 @@ interface Props {
 
 const EscrowTimeline = ({ timeline }: Props) => {
   return (
-    <div className="rounded-xl border border-gray-100 bg-white p-6 shadow-sm">
+    <div className="rounded-[0.5rem] border border-border-gray-200 bg-white p-6 pb-4">
       <div className="mb-6 flex items-center gap-3">
-        <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-bg-white-light text-bg-time-brand">
-          <LuClock3 size={20} />
+        <div className="flex h-[1.875rem] w-[2rem] items-center justify-center rounded-lg bg-brand-setting-tab text-bg-time-brand">
+        <Image src={OrderTimeline} alt="" width={100} height={100} className="w-[1.146rem] h-[0.833rem]"/>  
         </div>
 
-        <h3 className="text-xl font-semibold text-gray-900">
-          Escrow Timeline
+        <h3 className="text-[1.25rem] font-open-sans  font-semibold text-text-primary">
+          Order Timeline
         </h3>
       </div>
 
-      <div className="border-t border-gray-100 pt-6">
+      <div className="border-t border-border-gray-200 pt-6">
         {timeline.map((item, index) => {
           const isLast = index === timeline.length - 1;
 
@@ -51,19 +52,19 @@ const EscrowTimeline = ({ timeline }: Props) => {
               />
 
               <div>
-                <p className="text-xs font-medium uppercase tracking-wider text-gray-500">
+                <p className="text-[0.875rem] font-normal font-inter uppercase tracking-wider text-text-gray-more">
                   {item.date}
-                  <span className="mx-1 lowercase">•</span>
+                  <span className="mx-1 lowercase text-text-secondary w-[0.438rem] h-[0.438rem]">•</span>
                   {item.time}
                 </p>
 
-                <h4 className="mt-1 text-lg font-semibold text-gray-900">
+                <h4 className="mt-1 text-[1.125rem] font-medium font-inter text-text-light">
                   {item.title}
                 </h4>
 
                 <p
-                  className={`mt-0.5 text-sm ${
-                    item.active ? "text-gray-500" : "text-gray-400"
+                  className={`mt-0.5 text-[0.875rem] font-normal font-inter ${
+                    item.active ? "text-text-gray-more" : "text-gray-400"
                   }`}
                 >
                   {item.description}

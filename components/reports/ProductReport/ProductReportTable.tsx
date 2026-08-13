@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // import PaginationComponent from "@/components/common/PaginationComponent";
 import SearchFilterBar from "@/components/common/SearchFilterBar";
@@ -25,6 +25,9 @@ export default function ProductReportTable({ dateRange }: Props) {
   });
   const tableRef = useTableScroll(page, isPending);
   const reportsData = data?.data?.docs
+
+  
+
 
   const handlePageChange = (page: number) => {
     setPage(page)

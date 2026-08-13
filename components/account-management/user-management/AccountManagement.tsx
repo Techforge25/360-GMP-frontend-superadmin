@@ -1,6 +1,6 @@
 "use client";
 
-import { useTransition } from "react";
+// import { useTransition } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { accountManagementTabs } from "@/constants/acount-management/AccountManagementtabs";
 import Tabs from "../../common/Tabs";
@@ -14,7 +14,7 @@ interface Props {
 export default function AccountManagement({ dateRange }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
+  // const [isPending, startTransition] = useTransition();
 
   const currentTab = searchParams.get("tab") || accountManagementTabs[0]?.id;
 
@@ -41,7 +41,7 @@ export default function AccountManagement({ dateRange }: Props) {
       </div>
 
       <div
-        className={`mt-6 transition-opacity duration-200 ${isPending ? "opacity-50" : "opacity-100"}`}
+        className={`mt-6 transition-opacity duration-200"}`}
       >
         {currentTab === "all-user" && (
           <AllUserTable dateRange={dateRange} currentTab={currentTab} />
