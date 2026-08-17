@@ -1,10 +1,12 @@
 import dynamic from "next/dynamic";
+import RevenueShimmer from "../skeleton/RevenueShimmer";
+import SubscriptionShimmer from "../skeleton/SubscriptionShimmer";
 
 const RevenueGraph = dynamic(
   () => import("@/components/Dashboard/RevenueGraph"),
   {
     loading: () => (
-      <div className="h-[350px] rounded-xl bg-white animate-pulse" />
+      <RevenueShimmer />
     ),
   },
 );
@@ -13,7 +15,7 @@ const SubscriptionGraph = dynamic(
   () => import("@/components/Dashboard/SubscriptionGraph"),
   {
     loading: () => (
-      <div className="h-[350px] rounded-xl bg-white animate-pulse" />
+      <SubscriptionShimmer />
     ),
   },
 );

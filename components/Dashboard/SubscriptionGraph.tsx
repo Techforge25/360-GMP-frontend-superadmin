@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef } from "react";
 import { TbArrowsRightLeft } from "react-icons/tb";
-import { FiChevronDown, FiChevronUp } from "react-icons/fi";
 import {
   BarChart,
   Bar,
@@ -12,11 +11,14 @@ import {
   Tooltip,
   ResponsiveContainer,
 } from "recharts";
-import { barChartData, dropdownOptions } from "@/constants/dashboard/graphs";
+import { barChartData } from "@/constants/dashboard/graphs";
+import { keys } from "@/keys";
+import { useQuery } from "@tanstack/react-query";
+import { fetchSubscriptionChart } from "@/services/dashboard";
+import SubscriptionShimmer from "../skeleton/SubscriptionShimmer";
 
 export default function SubscriptionGraph() {
   const [isOpen, setIsOpen] = useState(false);
-  const [selected, setSelected] = useState(dropdownOptions[0]);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -31,6 +33,17 @@ export default function SubscriptionGraph() {
     document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
+
+  const { data, isPending } = useQuery({
+    queryKey: [keys.subscriptionChart],
+    queryFn: fetchSubscriptionChart
+  })
+  
+  console.log(data, 'data of data of data of subs')
+
+  if (isPending) {
+    return <SubscriptionShimmer />
+  }
 
   return (
     <div className="bg-white rounded-[1rem] p-[1.5rem] border border-[#e5e7eb] shadow-sm flex flex-col w-full font-sans">
@@ -86,7 +99,7 @@ export default function SubscriptionGraph() {
       <div className="h-[20rem] w-full">
         <ResponsiveContainer width="100%" height="100%">
           <BarChart
-            data={barChartData}
+            data={data?.data}
             margin={{ top: 10, right: 10, left: -30, bottom: 0 }}
             barSize={45}
           >
@@ -109,7 +122,7 @@ export default function SubscriptionGraph() {
               tickLine={false}
             />
             <Tooltip cursor={{ fill: "#f8fafc" }} />
-            <Bar dataKey="users" fill="#845ef7" radius={[6, 6, 0, 0]} />
+            <Bar dataKey="count" fill="#845ef7" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

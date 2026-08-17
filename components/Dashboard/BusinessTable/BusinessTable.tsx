@@ -1,20 +1,25 @@
 import DataTable, { Column } from "@/components/common/DataTable";
-import { ProductApprovedTableRowData } from "@/types";
-import { ProductApprovedTable } from "@/constants/marketplace/ProductApprovedTable";
+import { TypeNewBusinesses } from "@/types";
 import PreviewButton from "@/components/common/PreviewButton";
 import { useRouter } from "next/navigation";
+import moment from "moment";
 
-export default function NewBusinessInnerTable() {
+interface Props {
+  isPending: boolean;
+  newBusinessData: TypeNewBusinesses[]
+}
+
+export default function NewBusinessInnerTable({ newBusinessData, isPending }: Props) {
   const router = useRouter();
 
-  const columns: Column<ProductApprovedTableRowData>[] = [
+  const columns: Column<TypeNewBusinesses>[] = [
     {
       key: "createdAt",
       header: "Company Name",
       render: (row) => (
         <div className="flex flex-col">
           <span className="text-[1rem] font-medium text-text-light">
-            Global Manufacturing Co.
+            {row?.companyName}
           </span>
         </div>
       ),
@@ -25,7 +30,7 @@ export default function NewBusinessInnerTable() {
       render: (row) => (
         <div className="flex items-center space-x-3">
           <span className="text-[1rem] font-medium text-text-secondary">
-            2 hours ago
+            {moment(row?.createdAt).startOf('day').fromNow()}
           </span>
         </div>
       ),
@@ -48,14 +53,15 @@ export default function NewBusinessInnerTable() {
       ),
     },
   ];
-const borderRadius = "rounded-[0px]! border-none"
+  const borderRadius = "rounded-[0px]! border-none"
   return (
     <div className="pt-4">
       <DataTable
         columns={columns}
-        data={ProductApprovedTable}
+        data={newBusinessData}
         rowKey={(row) => row._id}
         borderRadius={borderRadius}
+        isLoading={isPending}
       />
     </div>
   );

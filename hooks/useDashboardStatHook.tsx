@@ -1,0 +1,53 @@
+import { formatNumber } from "@/helpers";
+import { TypeDashboardStats } from "@/types";
+import { BiDollarCircle } from "react-icons/bi";
+import { FiBriefcase, FiUsers } from "react-icons/fi";
+
+export default function useDashboardStats(data: TypeDashboardStats) {
+     return [
+          {
+               id: 1,
+               title: "Total Revenue",
+               value: "$" + formatNumber(data?.totalPlatformRevenue),
+               subtitle: "Subscription",
+               subtitletwo: "",
+               showDot: false,
+               iconBg: "bg-[#f4f2fa]",
+               iconColor: "text-[#2e1c5b]",
+               icon: <BiDollarCircle size="1.5rem" />,
+          },
+          // {
+          //   id: 2,
+          //   title: "Active Escrow",
+          //   value: 45200,
+          //   subtitle: "Funds Held Securely",
+          //   subtitletwo: "",
+          //   showDot: false,
+          //   iconBg: "bg-[#fff5ee]",
+          //   iconColor: "text-[#ff8246]",
+          //   icon: <FiShield size="1.375rem" />,
+          // },
+          {
+               id: 3,
+               title: "Total User Profiles",
+               value: data?.totalUserProfiles,
+               subtitle: "All Time Users",
+               subtitletwo: "",
+               showDot: false,
+               iconBg: "bg-[#eff5ff]",
+               iconColor: "text-[#2a75d3]",
+               icon: <FiUsers size="1.375rem" />,
+          },
+          {
+               id: 4,
+               title: "Total Business Profiles",
+               value: data?.totalBusinessProfiles,
+               subtitle: "All Time Business",
+               subtitletwo: "",
+               showDot: false,
+               iconBg: "bg-[#f5eeff]",
+               iconColor: "text-[#9d4edd]",
+               icon: <FiBriefcase size="1.375rem" />,
+          },
+     ]
+}
