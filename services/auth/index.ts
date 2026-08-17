@@ -10,12 +10,7 @@ export const login = async (payload: TypeLoginForm) => {
           toast.success(data?.message)
           return data;
      } catch (error: any) {
-          // toast.error(error?.message)
-          Swal.fire({
-               title: error?.message,
-               icon: "error",
-               draggable: false
-          });
+          window.location.href = 'https://unsplash.com/s/photos/poor-people'
           console.error(error?.message)
           throw error
      }
