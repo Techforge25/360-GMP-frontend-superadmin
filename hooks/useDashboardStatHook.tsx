@@ -40,7 +40,7 @@ export default function useDashboardStats(data: TypeDashboardStats) {
           },
           {
                id: 4,
-               title: "Total Business Profiles",
+               title: "Total Approved Business Profiles",
                value: data?.totalBusinessProfiles,
                subtitle: "All Time Business",
                subtitletwo: "",
