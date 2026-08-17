@@ -11,6 +11,8 @@ import { useParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { viewBusinessProfiles } from "@/services/account-management";
+import moment from "moment";
+import RejectedReason from "./RejectedReason";
 
 export default function AccountManagementBusiness() {
   const { id } = useParams();
@@ -107,6 +109,11 @@ export default function AccountManagementBusiness() {
         shareHolderRegister={viewBusinessProfileData?.shareHolderRegister}
         operatingLicense={viewBusinessProfileData?.operatingLicense}
       />
+
+      {viewBusinessProfileData?.status === "rejected" || viewBusinessProfileData?.status === "approved" && (
+        <RejectedReason viewBusinessProfileData={viewBusinessProfileData} />
+      )}
+
       {viewBusinessProfileData?.status !== "rejected" &&
         viewBusinessProfileData?.status !== "approved" && (
           <ActionButtons id={viewBusinessProfileData?._id} />
