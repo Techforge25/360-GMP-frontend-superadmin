@@ -1,7 +1,6 @@
 import api from "@/lib/axios";
 import { TypeLoginForm } from "@/types";
 import { toast } from "react-toastify";
-import Swal from 'sweetalert2'
 
 export const login = async (payload: TypeLoginForm) => {
      const { username, password } = payload;
@@ -10,7 +9,7 @@ export const login = async (payload: TypeLoginForm) => {
           toast.success(data?.message)
           return data;
      } catch (error: any) {
-          window.location.href = 'https://unsplash.com/s/photos/poor-people'
+          toast.error(error?.message)
           console.error(error?.message)
           throw error
      }
