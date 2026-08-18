@@ -7,7 +7,7 @@ export interface Column<T> {
   header: string;
   align?: "left" | "center" | "right";
   render?: (row: T) => ReactNode;
- 
+
 }
 
 interface DataTableProps<T> {
@@ -15,7 +15,7 @@ interface DataTableProps<T> {
   data?: T[];
   rowKey?: (row: T) => string;
   isLoading?: boolean;
-  borderRadius?:string;
+  borderRadius?: string;
 }
 
 export default function DataTable<T>({
@@ -33,13 +33,12 @@ export default function DataTable<T>({
             {columns?.map((column) => (
               <th
                 key={String(column.key)}
-                className={`whitespace-nowrap px-3 py-3 md:px-6 md:py-4 font-medium truncate w-[14rem] ${
-                  column.align === "center"
+                className={`whitespace-nowrap px-3 py-3 md:px-6 md:py-4 font-medium truncate w-[14rem] ${column.align === "center"
                     ? "text-center"
                     : column.align === "right"
                       ? "text-right"
                       : "text-left"
-                }`}
+                  }`}
               >
                 {column.header}
               </th>
@@ -60,13 +59,12 @@ export default function DataTable<T>({
                   {columns?.map((column) => (
                     <td
                       key={String(column.key)}
-                      className={`whitespace-nowrap px-3 py-3 text-sm md:px-6 md:py-4 md:text-base truncate w-[14rem] ${
-                        column.align === "center"
+                      className={`whitespace-nowrap px-3 py-3 text-sm md:px-6 md:py-4 md:text-base truncate w-[14rem] ${column.align === "center"
                           ? "text-center"
                           : column.align === "right"
                             ? "text-right"
                             : "text-left"
-                      }`}
+                        }`}
                     >
                       {column.render
                         ? column.render(row)

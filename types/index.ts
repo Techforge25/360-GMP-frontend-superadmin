@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 export interface TabItem {
   id: string;
   label: string;
-  icon?: ReactNode ;
+  icon?: ReactNode;
   active?: boolean;
 }
 
@@ -12,7 +12,7 @@ export interface TableRowData {
   _id: string;
   username: string;
   email: string;
-  allowedModules: TypeSingleAdmin[] ;
+  allowedModules: TypeSingleAdmin[];
   status: boolean;
 }
 
@@ -726,7 +726,28 @@ export type TypeShippingCharge = {
   Australia: string;
 };
 
+export type TypeDashboardStats = {
+  totalPlatformRevenue: number;
+  totalUserProfiles: number;
+  totalBusinessProfiles: number;
+}
 
+export type TypeSubscriptionChart = {
+  name: string;
+  count: number;
+  percentage: number;
+}
+
+export type TypeRevenueGraph = {
+  month: string;
+  earning: number;
+}
+
+export type TypeNewBusinesses = {
+  _id: string;
+  companyName: string;
+  createdAt: string;
+}
 
 export type TypeWarehouseAddress = Pick<TypeViewBusinessProfile, 'warehouseAddress'>
 export type TypeAdditionalWarehouseAddress = Pick<TypeViewBusinessProfile, 'additionalWarehouseAddress'>

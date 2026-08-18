@@ -25,5 +25,9 @@ export const keys = {
      accountStats: 'accountStats',
      accountUsersList: 'accountUsersList',
      accountBusinessList: 'accountBusinessList',
-     viewBusinessProfile: 'viewBusinessProfile'
+     viewBusinessProfile: 'viewBusinessProfile',
+     dashboardStats: 'dashboardStats',
+     revenueGraph: 'revenueGraph',
+     subscriptionChart: 'subscriptionChart',
+     latestBusinesses: 'latestBusinesses'
 }
