@@ -74,18 +74,18 @@ export default function OverviewCards({
                       </p>
                       <div className="flex items-center gap-2">
                         {card.showDot && (
-                          <span className="h-1.5 w-1.5 rounded-full bg-text-secondary" />
+                          <span className="h-[0.499rem] w-[0.499rem] rounded-full bg-text-secondary" />
                         )}
 
-                        <p className="text-sm font-medium text-text-light-gray-50">
+                        <p className="text-sm font-normal text-text-light-gray-50">
                           {card.subtitle}
                         </p>
 
                         {card.subtitletwo && (
                           <>
-                            <span className="h-1.5 w-1.5 rounded-full bg-[#8A38F5]" />
+                            <span className="h-[0.499rem] w-[0.499rem] rounded-full bg-[#8A38F5]" />
 
-                            <p className="text-sm font-medium text-text-light-gray-50">
+                            <p className="text-sm font-normal text-text-light-gray-50">
                               {card.subtitletwo}
                             </p>
                           </>

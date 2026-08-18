@@ -34,7 +34,7 @@ export default function BusinessIntelligence({
     setSingleData(data);
   };
   return (
-    <div className=" mt-8 border border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
+    <div className=" mt-[1.5rem] border border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
       <div className="flex items-center gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
         <Image
           src={businessIcon}
@@ -60,7 +60,7 @@ export default function BusinessIntelligence({
                 Name
               </span>
               <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
-                {primaryContactPerson?.name}
+                {primaryContactPerson?.name || "N/A"}
               </span>
             </div>
 
@@ -69,7 +69,7 @@ export default function BusinessIntelligence({
                 Title
               </span>
               <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
-                {primaryContactPerson?.title}
+                {primaryContactPerson?.title || "N/A"}
               </span>
             </div>
 
@@ -78,7 +78,7 @@ export default function BusinessIntelligence({
                 Phone Number
               </span>
               <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
-                {primaryContactPerson?.phone}
+                {primaryContactPerson?.phone || "N/A"}
               </span>
             </div>
 
@@ -87,12 +87,12 @@ export default function BusinessIntelligence({
                 Email
               </span>
               <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
-                {primaryContactPerson?.supportEmail}
+                {primaryContactPerson?.supportEmail || "N/A"}
               </span>
             </div>
           </div>
         </div>
-        <h3 className="text-[1.125rem] font-semibold font-open-sans text-text-secondary ">
+        <h3 className="text-[1.125rem] font-semibold font-open-sans text-text-dark ">
           Executive Leadership & Stakeholders
         </h3>
         <div className="bg-brand-business-button-light p-[1rem] rounded-[0.75rem]">
@@ -141,13 +141,13 @@ export default function BusinessIntelligence({
                       </tr>
                     ) : (
                       <tr key={index}>
-                       <td className="p-[1rem] text-[0.875rem] text-text-secondary">
+                        <td className="p-[1rem] text-[0.875rem] text-text-secondary">
                           {executive?.name}
                         </td>
-                         <td className="p-[1rem] text-[0.875rem] text-text-secondary">
+                        <td className="p-[1rem] text-[0.875rem] text-text-secondary">
                           {executive?.ownershipPercentage}
                         </td>
-                          <td className="p-[1rem] text-[0.875rem] text-text-secondary">
+                        <td className="p-[1rem] text-[0.875rem] text-text-secondary">
                           {executive?.role}
                         </td>
                         {executive?.votingRights?.map(
@@ -155,7 +155,7 @@ export default function BusinessIntelligence({
                             return (
                               <span
                                 key={index}
-                                className="p-[0.875rem] text-[0.875rem] font-normal font-inter text-text-secondary"
+                                className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem] ml-2"
                               >
                                 {rights}
                               </span>
@@ -177,7 +177,7 @@ export default function BusinessIntelligence({
                   Parent / Holding Company Name
                 </span>
                 <span className="text-[0.875rem] font-inter font-normal text-text-secondary">
-                  {parentCompany?.companyName}
+                  {parentCompany?.companyName || "N/A"}
                 </span>
               </div>
 
@@ -186,7 +186,7 @@ export default function BusinessIntelligence({
                   Ownership Percentage
                 </span>
                 <span className="text-[0.875rem] font-inter font-normal text-text-secondary">
-                  {parentCompany?.ownershipPercentage}
+                  {parentCompany?.ownershipPercentage || "N/A"}
                 </span>
               </div>
 
@@ -195,7 +195,7 @@ export default function BusinessIntelligence({
                   Country Of Incorporation
                 </span>
                 <span className="text-[0.875rem] font-inter font-normal text-text-secondary">
-                  {parentCompany?.countryOfIncorporation}
+                  {parentCompany?.countryOfIncorporation || "N/A"}
                 </span>
               </div>
             </div>

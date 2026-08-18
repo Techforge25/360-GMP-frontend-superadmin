@@ -2,7 +2,7 @@ import moment from "moment";
 
 function RejectedReason({ viewBusinessProfileData }: any) {
   return (
-    <div className=" mt-8 border mb-7 border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
+    <div className=" mt-[1.5rem] border mb-7 border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
       <div className="flex items-center justify-between gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
         <h3 className="text-[1rem] font-semibold font-open-sans text-text-light">
           Business Profile Status
@@ -31,7 +31,7 @@ function RejectedReason({ viewBusinessProfileData }: any) {
         </span>
       </div>
 
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div className="grid grid-cols-1 gap-4 xl:grid-cols-1">
         <div className="rounded-lg border   p-4">
           <p className="text-[0.875rem] font-semibold font-inter text-text-secondary">
             {viewBusinessProfileData?.status === "rejected"

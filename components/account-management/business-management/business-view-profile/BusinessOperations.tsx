@@ -41,7 +41,7 @@ export default function BusinessOperations({
     );
 
   return (
-    <div className=" mt-8 border border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
+    <div className=" mt-[1.5rem] border border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
       <div className="flex items-center gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
         <Image
           src={locationIcon}
@@ -61,11 +61,11 @@ export default function BusinessOperations({
             className="bg-bg-gray-200 border border-gray-100 rounded-[0.75rem] p-[1rem] border-l-[0.25rem]
            border-l-brand-btn-pills"
           >
-            <h3 className="text-[1rem] font-semibold font-open-sans text-text-light mb-[0.5rem]">
+            <h3 className="text-[1rem] font-semibold font-open-sans text-text-light mb-[0.5rem] break-words whitespace-normal  ">
               Head Office
             </h3>
             <div className="flex flex-col gap-[0.25rem] text-[0.875rem] font-normal font-inter text-text-secondary">
-              <p>{addressLine}</p>
+              <p className="break-words whitespace-normals">{addressLine}</p>
               <p>{city}</p>
               <p>{country}</p>
             </div>
@@ -79,7 +79,7 @@ export default function BusinessOperations({
               Warehouse Address
             </h3>
             {warehouseAddress !== "N/A" ? (
-              <div className="flex flex-col gap-[0.25rem] text-[0.875rem] font-normal font-inter text-text-secondary">
+              <div className="flex flex-col gap-[0.25rem] text-[0.875rem] font-normal font-inter text-text-secondary break-words whitespace-normal ">
                 <p>{warehouseAddress?.addressLine}</p>
                 <p>{warehouseAddress?.city}</p>
                 <p>{warehouseAddress?.country}</p>
@@ -102,10 +102,13 @@ export default function BusinessOperations({
                 <div key={index}>
                   <div className="grid grid-cols-3 gap-[1.5rem]">
                     <div className="flex flex-col gap-[0.25rem]">
-                      <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                      <span className="text-[1rem] font-semibold font-open-sans text-text-light break-words whitespace-normal">
+                        {additionalWarehouseAddress.length > 1 && (
+                          <span className="text-black">{index + 1})</span>
+                        )}{" "}
                         Country
                       </span>
-                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary break-words whitespace-normal ">
                         {add.country}
                       </span>
                     </div>
@@ -114,7 +117,7 @@ export default function BusinessOperations({
                       <span className="text-[1rem] font-semibold font-open-sans text-text-light">
                         City
                       </span>
-                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary break-words whitespace-normal ">
                         {add.city}
                       </span>
                     </div>
@@ -123,7 +126,7 @@ export default function BusinessOperations({
                       <span className="text-[1rem] font-semibold font-open-sans text-text-light">
                         Address Line
                       </span>
-                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary break-words whitespace-normal">
                         {add.addressLine}
                       </span>
                     </div>
@@ -153,6 +156,9 @@ export default function BusinessOperations({
                   <div className="grid grid-cols-3 gap-[1.5rem]">
                     <div className="flex flex-col gap-[0.25rem]">
                       <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+                        {internationalOffices.length > 1 && (
+                          <span className="text-black">{index + 1})</span>
+                        )}{" "}
                         Office Name
                       </span>
                       <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
@@ -173,7 +179,7 @@ export default function BusinessOperations({
                       <span className="text-[1rem] font-semibold font-open-sans text-text-light">
                         City
                       </span>
-                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary break-words whitespace-normal">
                         {international?.city}
                       </span>
                     </div>
@@ -182,7 +188,7 @@ export default function BusinessOperations({
                       <span className="text-[1rem] font-semibold font-open-sans text-text-light">
                         State
                       </span>
-                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary break-words whitespace-normal">
                         {international?.state}
                       </span>
                     </div>
@@ -191,7 +197,7 @@ export default function BusinessOperations({
                       <span className="text-[1rem] font-semibold font-open-sans text-text-light">
                         Address Line
                       </span>
-                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary">
+                      <span className="text-[0.875rem] font-normal font-inter  text-text-secondary break-words whitespace-normal">
                         {international?.addressLine}
                       </span>
                     </div>
@@ -242,7 +248,7 @@ export default function BusinessOperations({
                 </span>
               </div>
             ) : (
-             <span className="text-[1rem] text-gray-500">
+              <span className="text-[1rem] text-gray-500">
                 {termsAndCapability}
               </span>
             )}

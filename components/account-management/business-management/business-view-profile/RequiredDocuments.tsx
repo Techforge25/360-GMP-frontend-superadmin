@@ -27,19 +27,19 @@ export default function RequiredDocuments({ certificateOfIncorporation, taxRegis
       fileUrl: certificateOfIncorporation,
     },
     {
-      title: "Tax Registration Certificate",
-      filename: "Tax Registration Certificate",
+      title: "Tax Registration",
+      filename: "Tax Registration",
       fileUrl: taxRegistrationCertificate,
     },
     {
-      title: "Share holder Register Certificate",
-      filename: "Share holder Register Certificate",
+      title: "Shareholder Register",
+      filename: "Shareholder Register",
       fileUrl: shareHolderRegister,
     },
   ]
 
   return (
-   <div className=" mt-8 border mb-7 border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
+   <div className=" mt-[1.5rem] border mb-7 border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
       <div className="flex items-center gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
                  <Image
           src={businessIcon}
@@ -99,7 +99,7 @@ export default function RequiredDocuments({ certificateOfIncorporation, taxRegis
                 <div className="flex items-center gap-[0.75rem]">
                   <div className="flex flex-col">
                     <span className="text-[1rem] font-semibold font-open-sans text-[#1e293b]">
-                      Operating License Certificate
+                      Operating License
                     </span>
                   </div>
                 </div>

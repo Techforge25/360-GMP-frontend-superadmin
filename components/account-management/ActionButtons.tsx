@@ -39,7 +39,7 @@ export default function ActionButtons({ id }: ActionButtonsProps) {
 
   return (
     <>
-      <div className="flex justify-end items-center gap-[1rem] font-sans">
+      <div className="flex mt-[1.5rem] justify-end items-center gap-[1rem] font-sans">
         <button onClick={handleOpenRejectModal} className="action-Reject">
           <span>Reject</span>
         <Image src={CheckX} alt="" width={100} height={100} className="w-[0.934rem] h-[0.689rem]"/>

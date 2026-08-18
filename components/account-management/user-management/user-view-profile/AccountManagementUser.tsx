@@ -28,11 +28,11 @@ export default function AccountManagementUser() {
         <UserProfileShimmer />
       ) : (
         <>
-          <ProfileCard fullName={userProfileViewData?.fullName} email={userProfileViewData?.email} bio={userProfileViewData?.bio} year={userProfileViewData?.createdAt} logo={userProfileViewData?.logo} />
+          <ProfileCard fullName={userProfileViewData?.fullName} email={userProfileViewData?.email} bio={userProfileViewData?.bio} year={userProfileViewData?.createdAt} logo={userProfileViewData?.logo} location={userProfileViewData?.location} phone={userProfileViewData?.phone} />
           {userProfileViewData?.workExperience?.length > 0 && (
             <ExperienceEntry workExperience={userProfileViewData?.workExperience} />
           )}
-          <Education education={userProfileViewData?.education} employmentType={userProfileViewData?.employmentType} title={userProfileViewData?.title} />
+          <Education education={userProfileViewData?.education} employmentType={userProfileViewData?.employmentType} title={userProfileViewData?.title} targetJob={userProfileViewData?.targetJob} resumeUrl={userProfileViewData?.resumeUrl} />
         </>
       )}
 
