@@ -34,9 +34,9 @@ export const fetchRevenueGraph = async () => {
      }
 };
 
-export const fetchLatestBusinesses = async () => {
+export const fetchLatestBusinesses = async (page: number) => {
      try {
-          const { data } = await api.get(`/dashboard/latestBusinesses`);
+          const { data } = await api.get(`/dashboard/latestBusinesses?page=${page}&limit=2`);
           return data;
      } catch (error: any) {
           toast.error(error?.message)

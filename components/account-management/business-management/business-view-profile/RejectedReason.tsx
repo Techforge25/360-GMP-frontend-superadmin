@@ -1,30 +1,29 @@
 import moment from "moment";
 
 function RejectedReason({ viewBusinessProfileData }: any) {
+  const redBg = 'bg-[#F3ECFF]'
   return (
     <div className=" mt-[1.5rem] border mb-7 border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
-      <div className="flex items-center justify-between gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
+      <div className={`flex items-center justify-between gap-[0.75rem] ${viewBusinessProfileData?.status === "approved" ? 'bg-[#E6F6E9]!' : 'bg-[#FFDFDF]!'} bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark`}>
         <h3 className="text-[1rem] font-semibold font-open-sans text-text-light">
           Business Profile Status
         </h3>
 
         <span
-          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${
-            viewBusinessProfileData?.status === "approved"
-              ? "bg-green-100 text-green-700"
-              : viewBusinessProfileData?.status === "rejected"
-                ? "bg-red-100 text-red-700"
-                : "bg-yellow-100 text-yellow-700"
-          }`}
+          className={`inline-flex items-center rounded-full px-3 py-1 text-xs font-semibold capitalize ${viewBusinessProfileData?.status === "approved"
+            ? "bg-green-100 text-green-700"
+            : viewBusinessProfileData?.status === "rejected"
+              ? "bg-red-100 text-red-700"
+              : "bg-yellow-100 text-yellow-700"
+            }`}
         >
           <span
-            className={`mr-2 h-2 w-2 rounded-full ${
-              viewBusinessProfileData?.status === "approved"
-                ? "bg-green-500"
-                : viewBusinessProfileData?.status === "rejected"
-                  ? "bg-red-500"
-                  : "bg-yellow-500"
-            }`}
+            className={`mr-2 h-2 w-2 rounded-full ${viewBusinessProfileData?.status === "approved"
+              ? "bg-green-500"
+              : viewBusinessProfileData?.status === "rejected"
+                ? "bg-red-500"
+                : "bg-yellow-500"
+              }`}
           />
 
           {viewBusinessProfileData?.status || "N/A"}
@@ -43,13 +42,13 @@ function RejectedReason({ viewBusinessProfileData }: any) {
             {viewBusinessProfileData?.status === "rejected"
               ? viewBusinessProfileData?.rejection?.rejectedAt
                 ? moment(viewBusinessProfileData.rejection.rejectedAt).format(
-                    "MMM DD, YYYY",
-                  )
+                  "MMM DD, YYYY",
+                )
                 : "N/A"
               : viewBusinessProfileData?.approval?.approvedAt
                 ? moment(viewBusinessProfileData.approval.approvedAt).format(
-                    "MMM DD, YYYY",
-                  )
+                  "MMM DD, YYYY",
+                )
                 : "N/A"}
           </p>
         </div>

@@ -43,10 +43,10 @@ export default function CompanyProfile({
   logo
 }: TypeCompanyProfile) {
   return (
-    <div className=" p-[1.5rem] mt-[1.5rem] border border-border-shadow-50 rounded-[0.75rem] bg-surface-DEFAULT font-sans text-text-light">
+    <div className=" p-[1rem] mt-[1.5rem] border border-border-shadow-50 rounded-[0.75rem] bg-surface-DEFAULT font-sans text-text-light">
       <div className="flex flex-col md:flex-row md:items-start justify-between p-[1.25rem] bg-bg-gray-200 rounded-[0.75rem] border border-border-gray-200 mb-[1.5rem]">
         <div className="flex items-start gap-[1.25rem]">
-          <div className="flex-shrink-0 flex items-center justify-center w-[4.437rem] h-[4.437rem] bg-white border border-gray-200 rounded-[0.5rem] shadow-sm">
+          <div className="flex-shrink-0 flex items-center justify-center w-[4.437rem] h-[4.437rem] bg-white border border-gray-200 rounded-[0.75rem] shadow-sm">
             <Image
               src={logo || "/images/user-icon.webp"}
               alt="Company Logo"
@@ -114,7 +114,9 @@ export default function CompanyProfile({
             <h3 className="text-[1rem] font-semibold font-open-sans text-text-light">
               Business Registration Number
             </h3>
-            <p className="text-[0.875rem] text-text-secondary font-normal font-inter">{businessRegistrationNumber}</p>
+            <p className="text-[0.875rem] text-text-secondary font-normal font-inter break-all">
+              {businessRegistrationNumber}
+            </p>
           </div>
 
           <div className="flex flex-col gap-[0.25rem]">
@@ -133,7 +135,7 @@ export default function CompanyProfile({
             <h3 className="text-[1rem] font-semibold font-open-sans text-text-light">
               Operating Hours
             </h3>
-            <p className="text-[0.875rem] text-text-secondary font-normal font-inter">{operationHour}</p>
+            <p className="text-[0.875rem] text-text-secondary font-normal font-inter  break-all">{operationHour}</p>
           </div>
 
           <div className="flex flex-col gap-[0.25rem]">
@@ -145,10 +147,10 @@ export default function CompanyProfile({
             ) : (
               <>
                 <a
-                  href="https://www.globalmanufacturing.com"
+                  href={website}
                   className="text-[0.875rem] text-brand-business-icon-dark font-normal font-inter hover:underline"
                 >
-                  www.globalmanufacturing.com
+                  {website}
                 </a>
               </>
             )}

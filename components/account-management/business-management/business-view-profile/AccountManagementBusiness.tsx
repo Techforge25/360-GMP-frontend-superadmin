@@ -19,7 +19,6 @@ import OperationalAndTradeProfileShimmer from "@/components/skeleton/Operational
 import AmlAndTransactionProfileShimmer from "@/components/skeleton/AmlAndTransactionProfileShimmer";
 import RequiredDocumentsShimmer from "@/components/skeleton/RequiredDocumentsShimmer";
 import RejectedReasonShimmer from "@/components/skeleton/RejectedReasonShimmer";
-import moment from "moment";
 
 export default function AccountManagementBusiness() {
   const { id } = useParams();

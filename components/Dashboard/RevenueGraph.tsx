@@ -56,7 +56,7 @@ export default function RevenueGraph() {
       <div className="flex justify-between items-center mb-[1.5rem] border-b border-[#f3f4f6] pb-[1.25rem]">
         <div className="flex items-center gap-[0.75rem]">
           <div className="w-[2.25rem] h-[2.25rem] rounded-[0.375rem] bg-[#f4f2fa] text-[#845ef7] flex items-center justify-center">
-            <BiDollar size="1.25rem" />
+            <BiDollar size="1.25rem" color="#8943fe"/>
           </div>
 
           <h2 className="text-lg font-semibold text-[#1f2937]">

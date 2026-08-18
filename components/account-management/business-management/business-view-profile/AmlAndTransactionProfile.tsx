@@ -89,7 +89,7 @@ export default function AmlAndTransactionProfile({
           </div>
         </div>
 
-        <div className="grid grid-cols-1 xl:grid-cols-3 gap-y-[1.5rem] gap-x-[1.5rem]">
+        <div className="">
           <div className="flex flex-col gap-[0.375rem]">
             <span className="text-[0.875rem] font-semibold font-inter text-text-secondary">
               Main Counterparties
@@ -113,29 +113,30 @@ export default function AmlAndTransactionProfile({
               )}
             </div>
           </div>
-          <div className="flex flex-col gap-[0.5rem]">
-            <span className="text-[0.875rem] font-semibold font-inter text-text-secondary">
-              Trade Corridors
-            </span>
 
-            <div className="flex flex-wrap gap-[0.5rem]">
-              {tradeCorridors?.length > 0 ? (
-                tradeCorridors?.map((trade: string, index: number) => {
-                  return (
-                    <span
-                      key={index}
-                      className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem] break-words whitespace-normal"
-                    >
-                      {trade}
-                    </span>
-                  );
-                })
-              ) : (
-                <span className="text-[0.9375rem] font-medium text-text-light">
-                  N/A
-                </span>
-              )}
-            </div>
+        </div>
+        <div className="flex flex-col gap-[0.5rem]">
+          <span className="text-[0.875rem] font-semibold font-inter text-text-secondary">
+            Trade Corridors
+          </span>
+
+          <div className="flex flex-wrap gap-[0.5rem]">
+            {tradeCorridors?.length > 0 ? (
+              tradeCorridors?.map((trade: string, index: number) => {
+                return (
+                  <span
+                    key={index}
+                    className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem] break-words whitespace-normal"
+                  >
+                    {trade}
+                  </span>
+                );
+              })
+            ) : (
+              <span className="text-[0.9375rem] font-medium text-text-light">
+                N/A
+              </span>
+            )}
           </div>
         </div>
         <div className="flex flex-col gap-[0.75rem]">

@@ -1,6 +1,5 @@
 "use client";
 import { useRef, useState } from "react";
-import { MdOutlineAccountTree } from "react-icons/md";
 import { AiOutlineEye } from "react-icons/ai";
 import KycVerificationModal, {
   KycVerificationModalRef,
@@ -150,18 +149,20 @@ export default function BusinessIntelligence({
                         <td className="p-[1rem] text-[0.875rem] text-text-secondary">
                           {executive?.role}
                         </td>
-                        {executive?.votingRights?.map(
-                          (rights: string, index: number) => {
-                            return (
-                              <span
-                                key={index}
-                                className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem] ml-2"
-                              >
-                                {rights}
-                              </span>
-                            );
-                          },
-                        )}
+                        <td className="flex items-baseline mt-[1rem]">
+                          {executive?.votingRights?.map(
+                            (rights: string, index: number) => {
+                              return (
+                                <span
+                                  key={index}
+                                  className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[12px] font-normal font-inter text-center rounded-[5.75rem] ml-2"
+                                >
+                                  {rights}
+                                </span>
+                              );
+                            },
+                          )}
+                        </td>
                       </tr>
                     ),
                 )}

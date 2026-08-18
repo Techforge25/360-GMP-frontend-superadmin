@@ -36,7 +36,7 @@ export default function OverviewCards({
       <div>
         <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           <div>
-            <h1 className="text-[1.375rem] font-semibold text-[#240457] tracking-tight font-open-sans">
+            <h1 className="text-[1.375rem] leading-5 font-semibold text-[#240457] tracking-tight font-open-sans">
               {heading}
             </h1>
             <p className="mt-0 text-[1rem] font-normal text-[#5B6984]">
@@ -74,7 +74,7 @@ export default function OverviewCards({
                       </p>
                       <div className="flex items-center gap-2">
                         {card.showDot && (
-                          <span className="h-[0.499rem] w-[0.499rem] rounded-full bg-text-secondary" />
+                          <span className="h-2 w-2 rounded-full bg-text-secondary" />
                         )}
 
                         <p className="text-sm font-normal text-text-light-gray-50">

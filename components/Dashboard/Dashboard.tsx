@@ -20,7 +20,7 @@ export default function Dashboard() {
   const dashboardStatistics = useDashboardStats(data?.data)
 
   return (
-    <div className="min-h-screen bg-[#fafafc] p-6 md:p-4 font-sans">
+    <section className="min-h-screen bg-[#fafafc] p-6 md:p-4 font-sans">
       <OverviewCards
         heading="Dashboard Overview"
         className="sm:grid-cols-3 lg:grid-cols-3"
@@ -30,6 +30,6 @@ export default function Dashboard() {
       />
       <Graphs />
       <NewBusinessTable />
-    </div>
+    </section>
   );
 }

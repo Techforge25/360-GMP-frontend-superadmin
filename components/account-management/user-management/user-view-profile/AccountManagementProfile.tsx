@@ -59,7 +59,7 @@ export default function ProfileCard({
 
       <div className="mt-[1.5rem]">
         <h3 className="text-[1.125rem] font-semibold text-text-light mb-[0.75rem] font-open-sans ">
-          Company Bio
+          About
         </h3>
         <p
           className="text-[0.875rem] text-text-secondary font-normal  leading-[1.375rem] font-inter"

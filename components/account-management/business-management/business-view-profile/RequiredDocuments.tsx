@@ -2,7 +2,6 @@
 
 import { FileItem } from "@/types";
 import { AiOutlineEye } from "react-icons/ai";
-import { MdOutlineAccountTree } from "react-icons/md";
 import {
   regulatedDocument,
 } from "@/constants/acount-management/documents";
@@ -28,7 +27,7 @@ export default function RequiredDocuments({ certificateOfIncorporation, taxRegis
     },
     {
       title: "Tax Registration",
-      filename: "Tax Registration",
+      filename: "Tax Registration Certificate",
       fileUrl: taxRegistrationCertificate,
     },
     {
@@ -39,16 +38,16 @@ export default function RequiredDocuments({ certificateOfIncorporation, taxRegis
   ]
 
   return (
-   <div className=" mt-[1.5rem] border mb-7 border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
+    <div className=" mt-[1.5rem] border mb-7 border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
       <div className="flex items-center gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
-                 <Image
+        <Image
           src={businessIcon}
           width={100}
           height={100}
           alt=""
           className="w-[1.083rem] h-[1.083rem] text-brand-primary"
         />
-            <h2 className="text-[1.125rem] font-semibold font-open-sans text-text-light">
+        <h2 className="text-[1.125rem] font-semibold font-open-sans text-text-light">
           Required Documents
         </h2>
       </div>

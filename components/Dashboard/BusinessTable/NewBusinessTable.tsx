@@ -13,8 +13,8 @@ export default function NewBusinessTable() {
   const setPage = useNavigationStore((state) => state.setPage)
   const page = useNavigationStore((state) => state.page)
   const { data, isPending } = useQuery({
-    queryKey: [keys.latestBusinesses],
-    queryFn: fetchLatestBusinesses
+    queryKey: [keys.latestBusinesses, page],
+    queryFn: () => fetchLatestBusinesses(page)
   })
 
   if (isPending) {

@@ -50,13 +50,13 @@ export default function SubscriptionGraph() {
       <div className="flex justify-between items-start mb-[1.5rem] border-b border-[#f3f4f6] pb-[1.25rem]">
         <div className="flex items-start gap-[0.75rem]">
           <div className="w-[2.25rem] h-[2.25rem] rounded-[0.375rem] bg-[#f4f2fa] text-[#845ef7] flex items-center justify-center mt-[0.125rem]">
-            <TbArrowsRightLeft size="1.25rem" />
+            <TbArrowsRightLeft size="1.25rem" color="#8943fe" />
           </div>
           <div className="flex flex-col">
             <h2 className="text-lg font-semibold text-[#1f2937]">
               Subscription-Based Users
             </h2>
-            <p className="text-[0.75rem] text-[#94a3b8] ">
+            <p className="text-[0.75rem] text-[#768299] ">
               Trial to Paid upgrades
             </p>
           </div>
@@ -122,7 +122,7 @@ export default function SubscriptionGraph() {
               tickLine={false}
             />
             <Tooltip cursor={{ fill: "#f8fafc" }} />
-            <Bar dataKey="count" fill="#845ef7" radius={[6, 6, 0, 0]} />
+            <Bar dataKey="count" fill="#8a38f5" radius={[6, 6, 0, 0]} />
           </BarChart>
         </ResponsiveContainer>
       </div>

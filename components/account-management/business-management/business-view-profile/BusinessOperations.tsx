@@ -66,7 +66,7 @@ export default function BusinessOperations({
             </h3>
             <div className="flex flex-col gap-[0.25rem] text-[0.875rem] font-normal font-inter text-text-secondary">
               <p className="break-words whitespace-normals">{addressLine}</p>
-              <p>{city}</p>
+              <p className="break-all">{city}</p>
               <p>{country}</p>
             </div>
           </div>

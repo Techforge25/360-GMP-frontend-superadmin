@@ -19,8 +19,6 @@ export default function AccountManagementUser() {
 
   const userProfileViewData = data?.data
 
-  console.log(userProfileViewData, 'user profile view data')
-
   return (
     <div>
       <BackButtonMain text="Back" />
