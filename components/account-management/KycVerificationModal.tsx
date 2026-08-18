@@ -165,9 +165,7 @@ const KycVerificationModal = forwardRef<
                       <span className="text-[1rem] font-semibold font-open-sans text-text-light">
                         {file.filename}
                       </span>
-                      <span className="text-[0.875rem] text-text-secondary font-normal">
-                        Certificate.PDF2
-                      </span>
+                     
                     </div>
                   </div>
 

@@ -15,7 +15,7 @@ export default function OperationalAndTradeProfile({
   regionOfOperations,
 }: Props) {
   return (
-     <div className=" mt-8 border border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
+     <div className=" mt-[1.5rem] border border-border-shadow-50 rounded-[0.75rem] bg-white font-sans overflow-hidden">
       <div className="flex items-center gap-[0.75rem] bg-brand-btn-pills-background px-[1.5rem] py-[1.25rem] border-b border-border-shadow-dark">
          <Image
           src={businessIcon}
@@ -35,7 +35,7 @@ export default function OperationalAndTradeProfile({
             <span className="text-[0.875rem] font-semibold font-inter text-text-secondary">
               Auditing Agency
             </span>
-            <span className="text-[1rem] font-semibold font-open-sans text-text-light">
+            <span className="text-[1rem] font-semibold font-open-sans text-text-light break-words whitespace-normal">
               {auditingAgency}
             </span>
           </div>
@@ -49,7 +49,7 @@ export default function OperationalAndTradeProfile({
               {Array.isArray(tradeAffiliations) &&
                 tradeAffiliations.length > 0 ? (
                 tradeAffiliations.map((trade: string, index: number) => (
-                 <span className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem]">
+                 <span className="px-[1rem] py-[0.375rem] bg-brand-primary text-white text-[1rem] font-normal font-inter rounded-[5.75rem] break-words whitespace-normal ">
                     {trade}
                   </span>
                 ))

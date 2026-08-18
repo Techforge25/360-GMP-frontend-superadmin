@@ -43,12 +43,12 @@ export default function CompanyProfile({
   logo
 }: TypeCompanyProfile) {
   return (
-    <div className=" p-[1.5rem] mt-6 border border-border-shadow-50 rounded-[0.5rem] bg-surface-DEFAULT font-sans text-text-light">
+    <div className=" p-[1.5rem] mt-[1.5rem] border border-border-shadow-50 rounded-[0.75rem] bg-surface-DEFAULT font-sans text-text-light">
       <div className="flex flex-col md:flex-row md:items-start justify-between p-[1.25rem] bg-bg-gray-200 rounded-[0.75rem] border border-border-gray-200 mb-[1.5rem]">
         <div className="flex items-start gap-[1.25rem]">
           <div className="flex-shrink-0 flex items-center justify-center w-[4.437rem] h-[4.437rem] bg-white border border-gray-200 rounded-[0.5rem] shadow-sm">
             <Image
-              src={logo}
+              src={logo || "/images/user-icon.webp"}
               alt="Company Logo"
               width={64}
               height={64}
@@ -56,7 +56,7 @@ export default function CompanyProfile({
           </div>
 
           <div className="flex flex-col gap-[0.5rem]">
-            <h1 className="text-[1rem] font-inter font-semibold text-text-light">
+            <h1 className="text-[1rem] font-inter font-semibold text-text-light break-words whitespace-normal ">
               {companyName}
             </h1>
 
@@ -65,11 +65,13 @@ export default function CompanyProfile({
                 <HiOutlineOfficeBuilding className="w-[1.042rem] h-[1.042rem] text-text-secondary" />
                 <span>{businessType}</span>
               </div>
-              <span className="text-gray-400 text-[0.8rem]">●</span>
+              {/* <span className="text-gray-400 text-[0.8rem]">●</span> */}
 
-              <div className="flex items-center gap-[0.375rem]">
-                <HiOutlineBriefcase className="w-[1.042rem] h-[1.042rem] text-text-secondary" />
-                <span>{primaryIndustry}</span>
+              <div className="flex items-center gap-[0.375rem] ">
+                <HiOutlineBriefcase className="w-[1.042rem] h-[1.042rem] text-text-secondary " />
+                <span className="break-words whitespace-normal">
+                  {primaryIndustry}
+                </span>
               </div>
               <span className="text-gray-400 text-[0.8rem]">●</span>
 
@@ -106,7 +108,7 @@ export default function CompanyProfile({
             <h3 className="text-[1rem] font-semibold font-open-sans text-text-light">
               Trade Name
             </h3>
-            <p className="text-[0.875rem] text-text-secondary font-normal font-inter">{tradeName}</p>
+            <p className="text-[0.875rem] text-text-secondary font-normal font-inter break-words whitespace-normal">{tradeName}</p>
           </div>
           <div className="flex flex-col gap-[0.25rem]">
             <h3 className="text-[1rem] font-semibold font-open-sans text-text-light">
@@ -156,9 +158,9 @@ export default function CompanyProfile({
       </div >
       <div>
         <h3 className="text-[1.125rem] font-semibold font-open-sans text-text-light mb-[0.5rem]">
-          Mission/Bio
+          Company Bio
         </h3>
-        <p className="text-[0.875rem] text-text-secondary font-inter font-normal leading-[1.375rem]"
+        <p className="text-[0.875rem] text-text-secondary font-inter font-normal leading-[1.375rem] break-words whitespace-normal"
           dangerouslySetInnerHTML={{
             __html: description,
           }}
