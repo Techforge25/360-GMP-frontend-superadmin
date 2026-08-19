@@ -25,16 +25,17 @@ export const initialModules: PermissionModule[] = [
     url: '/communities',
     checked: false,
   },
-  {
-    id: "m6",
-    module: "Reports",
-    url: '/reports',
-    checked: false,
-  },
+  
   {
     id: "m7",
     module: "Recruitment (Job Board)",
     url: '/jobs',
+    checked: false,
+  },
+  {
+    id: "m6",
+    module: "Reports",
+    url: '/reports',
     checked: false,
   },
 ];

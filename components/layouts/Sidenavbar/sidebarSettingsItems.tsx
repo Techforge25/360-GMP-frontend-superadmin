@@ -35,7 +35,7 @@ export default function SidebarSettingsItems({
               key={index}
               type="button"
               onClick={openSignOutModal}
-              className={`${className} w-full text-left`}
+              className={`${className} w-full text-left cursor-pointer`}
             >
               <span className="text-[1rem]">{item.icon}</span>
               <span className="text-[1rem]">{item.name}</span>
