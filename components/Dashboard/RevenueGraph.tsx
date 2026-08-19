@@ -44,8 +44,6 @@ export default function RevenueGraph() {
     queryFn: fetchRevenueGraph,
   });
 
-  console.log(data, 'dataaaaa offff dataaaaa')
-
   if (isPending) {
     return <RevenueShimmer />;
   }

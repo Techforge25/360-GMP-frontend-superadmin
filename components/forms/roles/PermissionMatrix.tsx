@@ -36,7 +36,6 @@ export default function PermissionMatrix({ modules, control }: Props) {
                 const checked = selectedModules.some(
                   (item: TypeSingleAdmin) => item.module === mod.module
                 );
-                console.log(checked, 'checked')
                 return (
                   <div
                     key={mod.id}

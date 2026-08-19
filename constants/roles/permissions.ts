@@ -28,13 +28,13 @@ export const initialModules: PermissionModule[] = [
   {
     id: "m6",
     module: "Reports",
-    url: '/jobs',
+    url: '/reports',
     checked: false,
   },
   {
     id: "m7",
     module: "Recruitment (Job Board)",
-    url: '/reports',
+    url: '/jobs',
     checked: false,
   },
 ];
