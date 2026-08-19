@@ -31,7 +31,7 @@ export default function Education({
   console.log(education, 'education in cs')
   return (
     <div className="grid grid-cols-1 xl:grid-cols-2 w-full mt-[1.5rem] border border-border-gray-light rounded-[0.75rem] bg-surface-DEFAULT font-sans overflow-hidden p-4 gap-3">
-      <div className="flex-1 p-[1.25re] border border-border-gray-dark rounded-[0.75rem]">
+      <div className="flex-1 p-[1rem] border border-border-gray-dark rounded-[0.75rem]">
         <div className="flex items-center gap-[1rem] mb-[1rem]">
           <div className="flex items-center justify-center w-[2rem] h-[2rem] rounded-[0.375rem] bg-bg-light-icon">
             <Image

@@ -22,7 +22,7 @@ const SubscriptionGraph = dynamic(
 
 export default function Graphs() {
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
+    <div className="grid grid-cols-1 lg:grid-cols-1 gap-6 mt-6">
       <RevenueGraph />
       <SubscriptionGraph />
     </div>
