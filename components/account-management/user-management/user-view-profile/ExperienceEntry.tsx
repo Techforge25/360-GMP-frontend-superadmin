@@ -58,7 +58,7 @@ function ExperienceEntry({ workExperience }: Props) {
               </p>
             </div>
 
-            <div className="mt-1.5 flex flex-col">
+            <div className="mt-[0.5rem] flex flex-col ">
               <div className="flex">
                 {entry?.employmentType?.map((type, index) => {
                   return (
@@ -71,6 +71,7 @@ function ExperienceEntry({ workExperience }: Props) {
                   );
                 })}
               </div>
+              <div className="mt-[0.5rem]">
               <p className="flex-1 text-[0.875rem] leading-[1.75rem] font-normal text-text-secondary break-words whitespace-normal">
                 {entry?.location}
               </p>
@@ -85,6 +86,7 @@ function ExperienceEntry({ workExperience }: Props) {
                     __html: entry?.description,
                   }}
                 />
+              </div>
               </div>
             </div>
           </div>

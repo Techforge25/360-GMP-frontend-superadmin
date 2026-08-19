@@ -40,10 +40,11 @@ export default function ProductDetail({
           </div>
 
           <ProductSpecifications category={productDetail?.category} detail={productDetail?.detail} shippingCompany='MAERSK' shippingCost={0} estimatedDeliveryDays={productDetail?.estimatedDeliveryDays} minOrderQty={productDetail?.minOrderQty} />
+          <ShippingCharges />
           {productDetail?.status !== 'pending' && (
             <ProductApprovedBy status={productDetail?.status} approval={data?.data?.approval} rejection={data?.data?.rejection} />
           )}
-          <ShippingCharges />
+       
           {productDetail?.status === 'pending' && (
             <RejectButtons id={data?.data?._id} />
           )}

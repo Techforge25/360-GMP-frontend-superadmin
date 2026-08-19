@@ -35,15 +35,15 @@ export default function OverviewCards({
     <div className="bg-[#fafafc] font-sans">
       <div>
         <div className="mb-4 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-          <div>
-            <h1 className="text-[1.375rem] leading-5 font-semibold text-[#240457] tracking-tight font-open-sans">
-              {heading}
-            </h1>
-            <p className="mt-0 text-[1rem] font-normal text-[#5B6984]">
-              {description}
-            </p>
-          </div>
+           <div className="max-w-full sm:max-w-[90%] md:max-w-full">
+          <h1 className="text-lg sm:text-xl md:text-[1.375rem] font-semibold text-brand-primary tracking-wide leading-tight">
+             {heading}
+          </h1>
 
+          <p className="mt-1 text-sm sm:text-base text-text-secondary leading-relaxed">
+               {description}
+          </p>
+        </div>
           {dropdown && <div>{dropdown}</div>}
         </div>
 

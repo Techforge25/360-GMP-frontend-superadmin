@@ -48,7 +48,7 @@ function ProductApprovedBy({
         <span className="text-gray-500">
           {status === "approved"
             ? moment(approval?.approvedAt).format("YYYY/MM/DD")
-            : moment(rejection?.rejectedAt).format("YYYY MM DD")}
+            : moment(rejection?.rejectedAt).format("YYYY/MM/DD")}
         </span>
       </div>
 

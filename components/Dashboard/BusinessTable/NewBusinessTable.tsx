@@ -28,7 +28,7 @@ export default function NewBusinessTable() {
   const newBusinesses = data?.data?.docs
 
   return (
-    <div className="rounded-2xl border border-border-light bg-white  mt-14 shadow-sm">
+    <div className="rounded-t-[0.75rem] border border-border-gray-200 bg-white  mt-14 shadow-sm">
       <NewBusinessesHeader />
       <NewBusinessInnerTable newBusinessData={newBusinesses} isPending={isPending} />
       {data?.data?.totalPages > 1 && (
