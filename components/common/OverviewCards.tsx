@@ -59,7 +59,7 @@ export default function OverviewCards({
                     className="flex flex-col rounded-[0.75rem] border border-[#f0f0f5] bg-white p-4 shadow-sm"
                   >
                     <div
-                      className={`mb-4 flex h-[2.875rem] w-[2.875rem] items-center justify-center rounded-[0.25rem] ${card.iconBg} ${card.iconColor}`}
+                      className={`mb-4 flex h-[2.375rem] w-[2.375rem] items-center justify-center rounded-[0.25rem] ${card.iconBg} ${card.iconColor}`}
                     >
                       {card.icon}
                     </div>

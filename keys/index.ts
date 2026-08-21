@@ -29,5 +29,8 @@ export const keys = {
      dashboardStats: 'dashboardStats',
      revenueGraph: 'revenueGraph',
      subscriptionChart: 'subscriptionChart',
-     latestBusinesses: 'latestBusinesses'
+     latestBusinesses: 'latestBusinesses',
+     communitiesStats:'communitiesStats',
+     communitiesList: 'communitiesList',
+
 }

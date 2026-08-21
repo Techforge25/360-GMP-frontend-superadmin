@@ -26,7 +26,7 @@ export default function RequiredDocuments({ certificateOfIncorporation, taxRegis
       fileUrl: certificateOfIncorporation,
     },
     {
-      title: "Tax Registration",
+      title: "Tax Registration Certificate",
       filename: "Tax Registration Certificate",
       fileUrl: taxRegistrationCertificate,
     },
