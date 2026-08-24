@@ -749,6 +749,89 @@ export type TypeNewBusinesses = {
   createdAt: string;
 }
 
+
+export type TypeCommunityStats = {
+  activeCommunitiesCount: number;
+  reportedCommunitiesCount: number;
+}
+
+
+export type TypeCommunities = {
+  _id: string,
+  name: string,
+  category: string,
+  type: string,
+  profileImage: string,
+  status: string
+  membersCount:string,
+  creator:string,
+}
+
+export interface CommunityRef {
+  open: () => void;
+  close: () => void;
+}
+
+export interface WarningFormData {
+  reason: string;
+  description: string;
+}
+export interface TypeCommunityId {
+  communityId: string;
+}
+
+export interface CommunityMemberData {
+  _id: string;
+  role: string;
+  joinedAt: string;
+  member: {
+  logo:string,
+  name:string,
+  }
+}
+
+
+export type FeedType = "post" | "poll" | "event";
+
+export interface PostedBy {
+  logo: string;
+  name: string;
+}
+
+export interface PollOption {
+  option: string;
+  votedBy: string[];
+  votes: number;
+  _id: string;
+}
+
+export interface PollData {
+  question: string;
+  options: PollOption[];
+  duration: string;
+}
+
+export interface EventData {
+  name: string;
+  description: string;
+  date: string;
+  location: string;
+}
+
+export interface FeedItem {
+  _id: string;
+  type: FeedType;
+  content?: string;
+  images: string[];
+  createdAt: string;
+  postedBy: PostedBy;
+  poll?: PollData;
+  event?: EventData;
+  role?: string;
+  title?: string;
+}
+
+
 export type TypeWarehouseAddress = Pick<TypeViewBusinessProfile, 'warehouseAddress'>
 export type TypeAdditionalWarehouseAddress = Pick<TypeViewBusinessProfile, 'additionalWarehouseAddress'>
 export type TypeInternationalOffices = Pick<TypeViewBusinessProfile, 'internationalOffices'>

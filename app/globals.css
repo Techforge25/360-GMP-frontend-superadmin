@@ -118,6 +118,7 @@
   --color-brand-rating-text-border-line: #DCDCDC1A;
   --color-brand-btn-pills: #8A38F5;
   --color-brand-btn-pills-background: #8943FE1A;
+  --color-border-green: #0B8806;
   /* ===== Surfaces ===== */
   --color-surface-DEFAULT: #ffffff;
   --color-surface-muted: #f3f4f6;
@@ -249,6 +250,8 @@
   --color-border-shadow-dark:#C3C6D7;
   --color-border-shadow-pink:#8A38F599;
   --color-border-dark-black:#1E1E1E;
+  --color-border-red-dark:#FF383C;
+  --color-border-orange-dark:#BF600C;
 
 
 
@@ -405,6 +408,9 @@ body {
 
   .invite-btn {
     @apply mt-[1.25rem] flex w-full items-center justify-center gap-[0.375rem] rounded-[0.75rem] border border-gray-300 bg-white py-[0.75rem] text-[1rem] font-medium text-gray-800 transition-all hover:bg-gray-50 hover:border-gray-400 active:scale-[0.99] focus:outline-none cursor-pointer;
+  }
+  .category-type{
+    @apply rounded-[2.375rem] border-[#E3E7EE] bg-white  text-[0.875rem]  text-[#22252B];
   }
 }
 

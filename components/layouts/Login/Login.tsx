@@ -28,7 +28,7 @@ export default function LoginPage() {
       <div className="relative z-10 w-full max-w-md rounded-2xl bg-white p-6 shadow-2xl sm:max-w-lg sm:p-8 lg:max-w-xl lg:p-10">
         <div className="mb-8 text-center">
           <h1 className="text-md sm:text-xl font-semibold uppercase text-gray-900 sm:text-2xl lg:text-3xl">
-            Welcome to 360GMP Super Admin
+            Welcome to 360GMP Admin
           </h1>
         </div>
         <LoginForm />
