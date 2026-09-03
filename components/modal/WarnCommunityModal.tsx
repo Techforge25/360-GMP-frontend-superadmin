@@ -1,31 +1,55 @@
 "use client";
 
 import { warningReasons } from "@/constants/communities/WarnReason";
-import { TypeCommunityId, WarningFormData } from "@/types";
+import { TypeCommunityId, TypeCommunityPayload, WarningFormData } from "@/types";
 import Image from "next/image";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { useForm } from "react-hook-form";
 import { FiAlertCircle, FiChevronDown, FiX } from "react-icons/fi";
 import WarningIcon from "@/assets/SendWarningIcon.svg"
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
+import { sendWarning } from "@/services/communities";
+import { keys } from "@/keys";
+import { warnCommunityOwnerValidator } from "@/validations/communitySuspendValidation";
+import { yupResolver } from "@hookform/resolvers/yup";
 export interface WarnCommunityModalRef {
   open: () => void;
   close: () => void;
 }
 
 const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
-  ({ communityId }, ref) => {
+  ({ communityId, name }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
+    const queryClient = useQueryClient()
+    const router = useRouter()
 
     const {
       register,
       watch,
       handleSubmit,
       reset,
-      formState: { errors },
+      formState: { errors, isValid },
     } = useForm<WarningFormData>({
+      resolver: yupResolver(warnCommunityOwnerValidator),
+      mode: 'onChange',
       defaultValues: {
         reason: "",
         description: "",
+      },
+    });
+
+    const mutation = useMutation({
+      mutationFn: sendWarning,
+      onSuccess: () => {
+        reset();
+        setIsOpen(false);
+
+        queryClient.invalidateQueries({
+          queryKey: [keys.sendWarning],
+        });
+
+        router.push("/communities");
       },
     });
 
@@ -48,6 +72,14 @@ const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
       reset();
     };
 
+    const onSubmit = (data: WarningFormData) => {
+      mutation.mutate({
+        communityId,
+        reason: data.reason,
+        description: data.description
+      });
+    }
+
     if (!isOpen) return null;
 
     return (
@@ -61,7 +93,7 @@ const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
             <FiX className="h-5 w-5" />
           </button>
 
-          <form>
+          <form onSubmit={handleSubmit(onSubmit)} >
             <div className="flex items-center gap-3 pb-4">
               <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-[#FF8A2B]">
                 <FiAlertCircle className="h-5 w-5 text-white" strokeWidth={2} />
@@ -84,20 +116,17 @@ const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
                 htmlFor="warningReason"
                 className="mb-2 block text-[0.875rem] font-semibold font-open-sans text-text-light"
               >
-                Warning Reason
+                Warning Reason <span className="text-red-500">*</span>
               </label>
 
               <div className="relative">
                 <select
                   id="reason"
-                  {...register("reason", {
-                    required: "Please select a warning reason",
-                  })}
-                  className={`h-[2.25rem] w-full appearance-none rounded-[0.5rem] border bg-white px-3 pr-10 text-[0.875rem] font-normal font-inter text-text-primary outline-none transition-colors cursor-pointer ${
-                    errors.reason
-                      ? "border-red-500"
-                      : "border-border-gray-200 "
-                  }`}
+                  {...register("reason")}
+                  className={`h-[2.25rem] w-full appearance-none rounded-[0.5rem] border bg-white px-3 pr-10 text-[0.875rem] font-normal font-inter text-text-primary outline-none transition-colors cursor-pointer ${errors.reason
+                    ? "border-red-500"
+                    : "border-border-gray-200 "
+                    }`}
                 >
                   <option value="">Select a reason</option>
 
@@ -121,9 +150,9 @@ const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
             <div className="mt-4">
               <label
                 htmlFor="description"
-                 className="mb-2 block text-[0.875rem] font-semibold font-open-sans text-text-light"
+                className="mb-2 block text-[0.875rem] font-semibold font-open-sans text-text-light"
               >
-                Custom Message (Optional)
+                Description  <span className="text-red-500">*</span>
               </label>
 
               <textarea
@@ -132,6 +161,11 @@ const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
                 placeholder="Add Additional Context Or Instructions For The Owner..."
                 className="h-[5.875rem] w-full resize-none rounded-[0.5rem] border border-border-gray-200 bg-white px-3 py-2.5 text-[0.75rem] font-normal text-text-secondary placeholder:text-text-secondary font-inter outline-none "
               />
+              {errors.description && (
+                <p className="mt-1 text-[0.6875rem] text-red-500">
+                  {errors.description.message}
+                </p>
+              )}
             </div>
 
             <div className="mt-4 rounded-[0.375rem] border border-brand-rating-star bg-[#FFFBED] p-3">
@@ -151,12 +185,12 @@ const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
                   </p>
 
                   <p className="mt-2 text-[0.875rem] font-normal font-inter leading-relaxed text-brand-rating-star">
-                    Your Community <span className="font-semibold">(The Techvision Hub)</span> Has Received A
+                    Your Community <span className="font-semibold">{name}</span>&nbsp; Has Received A
                     Moderation Warning.
                   </p>
 
                   <p className="mt-1 text-[0.875rem]  font-normal leading-relaxed text-brand-rating-star">
-                    Reason: {selectedReason || "Spam Content"}
+                    Reason: {selectedReason || 'Not Selected'}
                   </p>
 
                   <p className="mt-2 text-[0.75rem] font-normal font-inter leading-relaxed text-text-gray-more">
@@ -178,11 +212,12 @@ const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
 
               <button
                 type="submit"
-                className="flex flex-1 items-center justify-center gap-2 rounded-[0.5rem] border border-[#FF8A2B] bg-[#FFF5EC] py-2 text-[1rem] font-normal font-inter text-brand-rating-star transition-colors duration-200 hover:bg-[#FFF0E1] cursor-pointer"
+                disabled={!isValid || mutation.isPending}
+                className="flex flex-1 items-center justify-center gap-2 rounded-[0.5rem] border border-[#FF8A2B] bg-[#FFF5EC] py-2 text-[1rem] font-normal font-inter text-brand-rating-star transition-colors duration-200 hover:bg-[#FFF0E1] cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
               >
-                <span>Send Warning</span>
+                <span>{mutation.isPending ? 'Sending...' : 'Send Warning'}</span>
 
-                <Image src={WarningIcon} alt="" width={100} height={100} className="w-[1.089rem] h-[0.917rem]"/>
+                <Image src={WarningIcon} alt="" width={100} height={100} className="w-[1.089rem] h-[0.917rem]" />
               </button>
             </div>
           </form>

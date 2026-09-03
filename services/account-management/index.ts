@@ -129,29 +129,3 @@ export const getCommunitiesStats = async () => {
     throw error;
   }
 };
-
-export const getCommunities = async (
-  page: number,
-  limit: number,
-  search: string,
-  status: string,
-  category: string,
-) => {
-  try {
-    const { data } = await api.get("/communityManagement", {
-      params: {
-        page,
-        limit,
-        search,
-        status,
-        category,
-      },
-    });
-
-    return data;
-  } catch (error: any) {
-    toast.error(error?.message);
-    console.error(error?.message);
-    throw error;
-  }
-};

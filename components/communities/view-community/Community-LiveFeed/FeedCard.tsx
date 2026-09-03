@@ -5,6 +5,7 @@ import { PollContent } from "./PollContent";
 import { EventContent } from "./EventContent";
 
 export function FeedCard({ item }: { item: FeedItem }) {
+
   return (
     <article className="overflow-hidden rounded-[10px] border border-[#e1e5ea] bg-white">
       <FeedHeader item={item} />

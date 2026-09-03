@@ -34,10 +34,10 @@ export default function DataTable<T>({
               <th
                 key={String(column.key)}
                 className={`whitespace-nowrap px-3 py-3 md:px-6 md:py-4 font-medium truncate w-[14rem] ${column.align === "center"
-                    ? "text-center"
-                    : column.align === "right"
-                      ? "text-right"
-                      : "text-left"
+                  ? "text-center"
+                  : column.align === "right"
+                    ? "text-right"
+                    : "text-left"
                   }`}
               >
                 {column.header}
@@ -60,10 +60,10 @@ export default function DataTable<T>({
                     <td
                       key={String(column.key)}
                       className={`whitespace-nowrap px-3 py-3 text-sm md:px-6 md:py-4 md:text-base truncate w-[14rem] ${column.align === "center"
-                          ? "text-center"
-                          : column.align === "right"
-                            ? "text-right"
-                            : "text-left"
+                        ? "text-center"
+                        : column.align === "right"
+                          ? "text-right"
+                          : "text-left"
                         }`}
                     >
                       {column.render

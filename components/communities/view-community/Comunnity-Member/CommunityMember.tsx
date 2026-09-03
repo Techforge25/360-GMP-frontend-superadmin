@@ -4,8 +4,13 @@ import Tabs from "@/components/common/Tabs";
 import { Communitiestabs } from "@/constants/communities/Communitiestabs";
 import CommunityMemberMainTable from "./CommunityMemberMainTable";
 import CommunityFeedPage from "../Community-LiveFeed/CommunityFeedPage";
+import { ParamValue } from "next/dist/server/request/params";
 
-export default function CommunityMember() {
+interface Props {
+  communityId: ParamValue
+}
+
+export default function CommunityMember({ communityId }: Props) {
   const [currentTab, setCurrentTab] = useState(
     Communitiestabs[0]?.id || "member",
   );
@@ -21,11 +26,10 @@ export default function CommunityMember() {
       </div>
 
       <div className="mt-6">
-        {currentTab === "member" && <CommunityMemberMainTable currentTab={currentTab} />}
+        {currentTab === "member" && <CommunityMemberMainTable communityId={communityId} />}
 
         {currentTab === "live-feed-content" && (
-          <CommunityFeedPage currentTab={currentTab} />
-  
+          <CommunityFeedPage currentTab={currentTab} communityId={communityId} />
         )}
       </div>
     </div>

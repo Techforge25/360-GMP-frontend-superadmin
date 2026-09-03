@@ -1,4 +1,5 @@
 import { Icon } from "next/dist/lib/metadata/types/metadata-types";
+import { ParamValue } from "next/dist/server/request/params";
 import { ReactNode } from "react";
 
 export interface TabItem {
@@ -763,8 +764,8 @@ export type TypeCommunities = {
   type: string,
   profileImage: string,
   status: string
-  membersCount:string,
-  creator:string,
+  membersCount: string,
+  creator: string,
 }
 
 export interface CommunityRef {
@@ -773,11 +774,19 @@ export interface CommunityRef {
 }
 
 export interface WarningFormData {
+  // communityId: any;
   reason: string;
   description: string;
 }
 export interface TypeCommunityId {
-  communityId: string;
+  communityId: ParamValue;
+  name?: string;
+}
+
+export type TypeCommunityPayload = {
+  communityId: any;
+  reason: string;
+  description: string
 }
 
 export interface CommunityMemberData {
@@ -785,8 +794,8 @@ export interface CommunityMemberData {
   role: string;
   joinedAt: string;
   member: {
-  logo:string,
-  name:string,
+    logo: string,
+    name: string,
   }
 }
 
@@ -830,7 +839,6 @@ export interface FeedItem {
   role?: string;
   title?: string;
 }
-
 
 export type TypeWarehouseAddress = Pick<TypeViewBusinessProfile, 'warehouseAddress'>
 export type TypeAdditionalWarehouseAddress = Pick<TypeViewBusinessProfile, 'additionalWarehouseAddress'>

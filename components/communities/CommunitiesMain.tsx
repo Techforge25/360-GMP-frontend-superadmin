@@ -4,8 +4,8 @@ import OverviewCards from "@/components/common/OverviewCards";
 import Communities from "./Communities";
 import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
-import { getCommunitiesStats } from "@/services/account-management";
 import getCommunityStatsCards from "@/constants/communities/CommunitiesCards";
+import { getCommunitiesStats } from "@/services/communities";
 
 export default function CommunitiesMain() {
   const { data, isPending } = useQuery({
@@ -23,6 +23,7 @@ export default function CommunitiesMain() {
         description="Real-time overview of communities & networking activity and moderation status."
         cards={communitiesStatistics}
         className="sm:grid-cols-2! lg:grid-cols-2!"
+        isPending={isPending}
       />
 
       <div className="grid grid-cols-1 gap-[1.5rem] mt-6">

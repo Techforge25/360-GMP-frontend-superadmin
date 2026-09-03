@@ -8,34 +8,30 @@ import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useNavigationStore } from "@/store/modulesStore";
 import SearchFilterBar from "@/components/common/SearchFilterBar";
 import CommunityMemberTable from "./CommunityMemberTable";
+import { getCommunityMembers } from "@/services/communities";
+import { ParamValue } from "next/dist/server/request/params";
 // import PaginationComponent from "@/components/common/PaginationComponent";
 
 interface Props {
-  currentTab: string;
+  communityId: ParamValue
 }
 
-export default function CommunityMemberMainTable({currentTab}: Props) {
-  // const [page, setPage] = useState(1)
+export default function CommunityMemberMainTable({ communityId }: Props) {
   const [search, setSearch] = useState('')
-  // const [validityChange, setValidityChange] = useState("");
-  // const debouncedSearch = useDebounce(search, 500)
   const setPage = useNavigationStore((state) => state.setPage)
-  // const page = useNavigationStore((state) => state.page)
-  // const { data, isFetching } = useQuery({
-  //   queryKey: [keys.accountUsersList, dateRange, page, debouncedSearch, validityChange],
-  //   queryFn: () => getUserProfiles(dateRange, debouncedSearch, page, validityChange),
-  // });
+  const page = useNavigationStore((state) => state.page)
+  const debouncedSearch = useDebounce(search, 500);
 
-  // const handlePageChange = (page: number) => {
-  //   setPage(page)
-  // }
+  const { data, isPending } = useQuery({
+    queryKey: [keys.members, debouncedSearch, page],
+    queryFn: () => getCommunityMembers(communityId, debouncedSearch, page),
+  });
 
-  // const handleFilterStatusChange = (value: string) => {
-  //   setValidityChange(value === "All Tiers" ? "" : value);
-  //   setPage(1);
-  // }
+  const handlePageChange = (newPage: number) => {
+    setPage(newPage);
+  }
 
-  // const CommunityMemberData = data?.data?.docs
+  const communityMembers = data?.data?.docs
 
   return (
     <div className="rounded-2xl border border-border-light bg-white  shadow-sm">
@@ -45,12 +41,11 @@ export default function CommunityMemberMainTable({currentTab}: Props) {
           setSearch(value);
           setPage(1);
         }}
-        // onFilterChange={(key, value) => handleFilterStatusChange(value)}
       />
-      <CommunityMemberTable />
-      {/* {data?.data?.totalPages > 1 && (
+      <CommunityMemberTable data={communityMembers} isLoading={isPending} />
+      {data?.data?.totalPages > 1 && (
         <PaginationComponent currentPage={page} handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
-      )} */}
+      )}
     </div>
   );
 }

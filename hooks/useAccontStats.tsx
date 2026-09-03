@@ -8,7 +8,7 @@ export default function useAccountStats(data: TypeAccountStats) {
           title: "Total Users",
           value: data?.totalParentUsers,
           subtitle: `${data?.totalUserProfiles} Users`,
-          subtitletwo: `${data?.totalBusinessProfiles} Approved  Business`,
+          subtitletwo: `${data?.totalBusinessProfiles} Approved  Businesses`,
           showDot: true,
           iconBg: "bg-[#f5eeff]",
           iconColor: "text-[#9d4edd]",
@@ -23,7 +23,7 @@ export default function useAccountStats(data: TypeAccountStats) {
           showDot: false,
           iconBg: "bg-[#eff5ff]",
           iconColor: "text-[#2a75d3]",
-          icon: <Image src={businessCheckIcon} alt="" width={100} height={100} className="w-[1.375rem] h-[1.375rem]"/>   ,
+          icon: <Image src={businessCheckIcon} alt="" width={100} height={100} className="w-[1.375rem] h-[1.375rem]" />,
      },
      ]
 }

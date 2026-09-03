@@ -1,10 +1,14 @@
 "use client";
 import DataTable, { Column } from "@/components/common/DataTable";
 import StatusBadge from "@/constants/acount-management/StatusBadge";
-import { communityMembers } from "@/constants/communities/CommunityMemberData";
 import { formatDate } from "@/helpers";
 import { CommunityMemberData } from "@/types";
 import Image from "next/image";
+
+export type Props = {
+  data: CommunityMemberData[];
+  isLoading: boolean;
+}
 
 const columns: Column<CommunityMemberData>[] = [
   {
@@ -47,8 +51,8 @@ const columns: Column<CommunityMemberData>[] = [
   },
 ];
 const borderRadius = "rounded-[0px]! border-none"
-export default function CommunityMemberTable() {
+export default function CommunityMemberTable({ data, isLoading }: Props) {
   return (
-    <DataTable columns={columns} data={communityMembers} rowKey={(row) => row._id}  borderRadius={borderRadius}/>
+    <DataTable columns={columns} data={data} rowKey={(row) => row._id} borderRadius={borderRadius} isLoading={isLoading} />
   );
 }

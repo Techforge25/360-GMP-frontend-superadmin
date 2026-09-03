@@ -1,4 +1,3 @@
-import React from "react";
 import { OverviewCardItem } from "@/components/common/OverviewCards";
 import Image from "next/image";
 import User from "@/assets/image 95.png";
@@ -50,7 +49,6 @@ export default function getCommunityStatsCards(
     },
   ];
 }
-
 
 export const communityCards = [
   {

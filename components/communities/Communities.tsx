@@ -4,12 +4,12 @@ import { useQuery } from "@tanstack/react-query";
 import PaginationComponent from "@/components/common/PaginationComponent";
 import { keys } from "@/keys";
 import { useState } from "react";
-import { getCommunities } from "@/services/account-management";
 import { useDebounce } from "@/hooks/useDebounceSearch";
 import { useNavigationStore } from "@/store/modulesStore";
 import CommunitiesTable from "./CommunitiesTable";
 import SearchFilterBar from "../common/SearchFilterBar";
 import { BUSINESS_TYPE_OPTIONS } from "@/constants/communities/Categories";
+import { getAllCommunities } from "@/services/communities";
 
 export default function Communities() {
   const [search, setSearch] = useState("");
@@ -21,19 +21,16 @@ export default function Communities() {
   const setPage = useNavigationStore((state) => state.setPage);
   const page = useNavigationStore((state) => state.page);
 
-  const limit = 10;
-
   const { data, isPending } = useQuery({
     queryKey: [
       keys.communitiesList,
       page,
-      limit,
       category,
       status,
       debounceSearch,
     ],
     queryFn: () =>
-      getCommunities(page, limit, debounceSearch, status, category),
+      getAllCommunities(status, category, page, debounceSearch),
   });
 
   const handleFilterCategoryChange = (value: string) => {
@@ -94,7 +91,7 @@ export default function Communities() {
           handlePageChange={handlePageChange}
           totalPages={data?.data?.totalPages || 1}
           totalItems={data?.data?.totalDocs || 0}
-          totalItemsPerPage={data?.data?.limit || limit}
+          totalItemsPerPage={data?.data?.limit}
         />
       )}
     </div>

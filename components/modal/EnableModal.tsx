@@ -1,22 +1,45 @@
 "use client";
 
+import { keys } from "@/keys";
+import { activate } from "@/services/communities";
 import { CommunityRef } from "@/types";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { ParamValue } from "next/dist/server/request/params";
+import { useRouter } from "next/navigation";
 import { forwardRef, useImperativeHandle, useState } from "react";
 import { FiCheckCircle, FiX } from "react-icons/fi";
 
 interface TypeCommunityId {
   communityId: ParamValue;
+  name: string;
 }
 
 const EnableModal = forwardRef<CommunityRef, TypeCommunityId>(
-  ({ communityId }, ref) => {
+  ({ communityId, name }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
+    const queryClient = useQueryClient()
+    const router = useRouter()
 
     useImperativeHandle(ref, () => ({
       open: () => setIsOpen(true),
       close: () => setIsOpen(false),
     }));
+
+    const mutation = useMutation({
+      mutationFn: activate,
+      onSuccess: () => {
+        setIsOpen(false);
+        queryClient.invalidateQueries({
+          queryKey: [keys.communitiesList],
+        });
+
+        router.push("/communities");
+      },
+    });
+
+    const activateAccount = () => {
+      mutation.mutate(communityId)
+    }
 
     if (!isOpen) return null;
 
@@ -51,7 +74,7 @@ const EnableModal = forwardRef<CommunityRef, TypeCommunityId>(
           <p className="text-text-gray-more text-[1rem] font-inter font-normal pt-5">
             This will make{" "}
             <span className="text-text-setting-light">
-              (Techvision Solution)
+              {name}&nbsp;
             </span>{" "}
             visible to all users again. The community owner will be notified.
           </p>
@@ -68,12 +91,12 @@ const EnableModal = forwardRef<CommunityRef, TypeCommunityId>(
             <button
               type="button"
               onClick={() => {
-                console.log("Enable community:", communityId);
-                setIsOpen(false);
+                activateAccount()
               }}
-              className="flex-1 border border-border-green text-border-green gap-2 rounded-[0.5rem] flex items-center justify-center py-2 bg-green-50 text-[1rem] font-inter font-normal cursor-pointer"
+              disabled={mutation.isPending}
+              className="flex-1 border border-border-green text-border-green gap-2 rounded-[0.5rem] flex items-center justify-center py-2 bg-green-50 text-[1rem] font-inter font-normal cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
             >
-              <span>Enable</span>
+              <span>{mutation.isPending ? 'Enabling...' : 'Enable'}</span>
 
               <FiCheckCircle className="w-[1.146rem] h-[1.146rem]" />
             </button>

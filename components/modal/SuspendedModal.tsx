@@ -2,8 +2,12 @@
 import { ParamValue } from "next/dist/server/request/params";
 import Image from "next/image";
 import { forwardRef, useImperativeHandle, useState } from "react";
-import { FiAlertCircle, FiX } from "react-icons/fi";
+import { FiX } from "react-icons/fi";
 import suspendedIcon from "@/assets/suspendedModalIcon.svg";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { suspend } from "@/services/communities";
+import { useRouter } from "next/navigation";
+import { keys } from "@/keys";
 export interface SuspendedModalRef {
   open: () => void;
   close: () => void;
@@ -11,16 +15,35 @@ export interface SuspendedModalRef {
 
 interface TypeAdminId {
   communityId: ParamValue;
+  name: string;
 }
 
 const SuspendedModal = forwardRef<SuspendedModalRef, TypeAdminId>(
-  ({ communityId }, ref) => {
+  ({ communityId, name }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
+    const queryClient = useQueryClient()
+    const router = useRouter()
 
     useImperativeHandle(ref, () => ({
       open: () => setIsOpen(true),
       close: () => setIsOpen(false),
     }));
+
+    const mutation = useMutation({
+      mutationFn: suspend,
+      onSuccess: () => {
+        setIsOpen(false);
+        queryClient.invalidateQueries({
+          queryKey: [keys.communitiesList],
+        });
+
+        router.push("/communities");
+      },
+    });
+
+    const suspendAccount = () => {
+      mutation.mutate(communityId)
+    }
 
     if (!isOpen) return null;
 
@@ -58,7 +81,7 @@ const SuspendedModal = forwardRef<SuspendedModalRef, TypeAdminId>(
           <p className="capitalize text-text-gray-more text-[1rem] font-inter font-normal pt-5">
             this will hide{" "}
             <span className="text-text-setting-light">
-              (techvision solution){" "}
+              {name}&nbsp;
             </span>
             from all user the community Owner will be notified
           </p>
@@ -71,8 +94,8 @@ const SuspendedModal = forwardRef<SuspendedModalRef, TypeAdminId>(
               Cancel
             </button>
 
-            <button className="flex-1 border border-border-red-dark text-border-red-dark gap-2 rounded-[0.5rem] flex items-center justify-center py-2 bg-brand-business-icon-light text-[1rem] font-inter font-normal cursor-pointer">
-              <span>Suspend</span>
+            <button onClick={() => suspendAccount()} disabled={mutation.isPending} className="flex-1 border border-border-red-dark text-border-red-dark gap-2 rounded-[0.5rem] flex items-center justify-center py-2 bg-brand-business-icon-light text-[1rem] font-inter font-normal cursor-pointer disabled:cursor-not-allowed disabled:opacity-50">
+              <span>{mutation.isPending ? 'Suspending...' : 'Suspend'}</span>
             </button>
           </div>
         </div>

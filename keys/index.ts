@@ -30,7 +30,12 @@ export const keys = {
      revenueGraph: 'revenueGraph',
      subscriptionChart: 'subscriptionChart',
      latestBusinesses: 'latestBusinesses',
-     communitiesStats:'communitiesStats',
+     communitiesStats: 'communitiesStats',
      communitiesList: 'communitiesList',
-
+     viewCommunityDetails: 'viewCommunityDetails',
+     sendWarning: 'sendWarning',
+     suspend: 'suspend',
+     activate: 'activate',
+     members: 'members',
+     communityFeed: 'communityFeed'
 }
