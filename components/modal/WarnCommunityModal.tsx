@@ -203,8 +203,8 @@ const WarnCommunityModal = forwardRef<WarnCommunityModalRef, TypeCommunityId>(
                   </p>
 
                   <p className="mt-2 text-[0.875rem] font-normal font-inter leading-relaxed text-brand-rating-star">
-                    Your Community <span className="font-semibold">{name}</span>
-                    &nbsp; Has Received A Moderation Warning.
+                    Your community <span className="font-semibold">{name}</span>
+                    &nbsp; has received a moderation warning.
                   </p>
 
                   <p className="mt-1 text-[0.875rem]  font-normal leading-relaxed text-brand-rating-star">
