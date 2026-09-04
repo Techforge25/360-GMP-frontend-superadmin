@@ -12,7 +12,7 @@ export function PostMedia({ images }: { images: string[] }) {
     currentMedia.toLowerCase().includes(".mov");
 
   return (
-    <div className="relative overflow-hidden rounded-[3px] bg-[#08111a]">
+    <div className="relative overflow-hidden rounded-[3px] bg-white">
       <div className="relative aspect-[16/7] w-full">
         {isVideo ? (
           <video
@@ -25,7 +25,7 @@ export function PostMedia({ images }: { images: string[] }) {
           <img
             src={currentMedia}
             alt="Post media"
-            className="h-full w-full object-cover"
+            className="h-full w-full object-contain"
           />
         )}
       </div>
