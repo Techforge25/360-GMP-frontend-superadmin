@@ -79,11 +79,11 @@ const SuspendedModal = forwardRef<SuspendedModalRef, TypeAdminId>(
           <hr className="border-border-gray-200 " />
 
           <p className="capitalize text-text-gray-more text-[1rem] font-inter font-normal pt-5">
-            this will hide{" "}
+           This will hide {" "}
             <span className="text-text-setting-light">
               {name}&nbsp;
             </span>
-            from all user the community Owner will be notified
+           from all user the community owner will be notified this will hide{" "}
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">

@@ -15,8 +15,8 @@ import { MediaShimmer } from "@/components/skeleton/MediaShimmer";
 import PaginationComponent from "@/components/common/PaginationComponent";
 
 export type Props = {
-  communityId: ParamValue
-}
+  communityId: ParamValue;
+};
 
 export default function LiveFeed({ communityId }: Props) {
   const [dateRange, setDateRange] = useState("all");
@@ -25,15 +25,15 @@ export default function LiveFeed({ communityId }: Props) {
   const setPage = useNavigationStore((state) => state.setPage);
 
   const { data, isPending } = useQuery({
-    queryKey: [keys.communityFeed, dateRange, page],
+    queryKey: [keys.communityFeed, communityId, dateRange, page],
     queryFn: () => getCommunityPosts(communityId, dateRange, page),
   });
 
   const feedData = data?.data?.docs || [];
 
   const handlePageChange = (page: number) => {
-    setPage(page)
-  }
+    setPage(page);
+  };
 
   return (
     <div className="w-full rounded-xl border border-border-gray-200 bg-white overflow-hidden">
@@ -47,19 +47,33 @@ export default function LiveFeed({ communityId }: Props) {
         </div>
       </div>
 
-      <div className="bg-white px-3 py-6 md:px-5">
+      <div className="bg-white px-3 py-6 md:px-5 pb-[3.375rem]">
         <div className="space-y-3">
           {isPending ? (
             <MediaShimmer />
-          ) : (
+          ) : feedData?.length > 0 ? (
             feedData.map((item: FeedItem) => (
               <FeedCard key={item._id} item={item} />
             ))
+          ) : (
+            <div className="flex flex-col items-center justify-center py-10 text-center">
+              <p className="text-sm font-medium text-gray-500">No data found</p>
+              <p className="mt-1 text-sm text-gray-400">
+                There are no feeds available at the moment.
+              </p>
+            </div>
           )}
         </div>
       </div>
+
       {data?.data?.totalPages > 1 && (
-        <PaginationComponent currentPage={page} handlePageChange={handlePageChange} totalPages={data?.data?.totalPages} totalItems={data?.data?.totalDocs} totalItemsPerPage={data?.data?.totalItemsPerPage} />
+        <PaginationComponent
+          currentPage={page}
+          handlePageChange={handlePageChange}
+          totalPages={data?.data?.totalPages}
+          totalItems={data?.data?.totalDocs}
+          totalItemsPerPage={data?.data?.totalItemsPerPage}
+        />
       )}
     </div>
   );

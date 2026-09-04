@@ -1,7 +1,7 @@
 import BackButtonMain from "@/components/common/BackButtonMain";
 import Image from "next/image";
 import moment from "moment";
-import { formatNumber } from "@/helpers";
+import { formatNumber, stripHtml } from "@/helpers";
 import { ParamValue } from "next/dist/server/request/params";
 import CommunnitySuspendButton from "./CommunnitySuspendButton";
 
@@ -19,7 +19,7 @@ interface Props {
   warnings: number;
 }
 
-function CommunityHeader({ profileImage, category, name, purpose, status, type, createdAt, members, communityId, warnings }: Props) {
+function CommunityHeader({ profileImage, category, name, purpose, status, type, createdAt, members, communityId, warnings , description }: Props) {
   return (
     <div>
       <div className="flex items-center justify-between w-full ">
@@ -29,13 +29,13 @@ function CommunityHeader({ profileImage, category, name, purpose, status, type, 
         </button>
       </div>
       <div className="flex mt-9 gap-4 items-start">
-        <div className="img">
+         <div className="img shrink-0">
           <Image
             src={profileImage}
             width={100}
             height={100}
             alt=""
-            className="w-[7rem] h-[7rem] border-border-shadow-50 border-[1.5px] rounded-[0.75rem]"
+            className="w-[7rem] h-[7rem] object-cover border-border-shadow-50 border-[1.5px] rounded-[0.75rem]"
           />
         </div>
         <div className="text">
@@ -43,14 +43,14 @@ function CommunityHeader({ profileImage, category, name, purpose, status, type, 
             {name}
           </h1>
           <p className="text-text-setting-light text-[1rem] font-inter font-normal">
-            {purpose}
+            {description}
           </p>
           <p className="font-inter font-normal text-[1rem]">
             <span className="text-text-gray-more">{formatNumber(members)} Members</span>
             <span className="mx-1 text-text-gray-more text-xl">•</span>
-            <span className={`${status === "active" ? "text-border-green" : "text-accent-danger-light"}`}>{status}</span>
+            <span className={`capitalize ${status === "active" ? "text-border-green" : "text-accent-danger-light"}`}>{status}</span>
             <span className="mx-1 text-text-gray-more text-xl">•</span>
-            <span className="text-brand-business-icon-dark">{type}</span>
+            <span className="text-brand-business-icon-dark capitalize">{type}</span>
           </p>
           <p className="font-inter font-normal ">
             <span className="text-text-gray-more text-[1rem]">Created On</span>

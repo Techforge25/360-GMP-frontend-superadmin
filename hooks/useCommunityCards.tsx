@@ -1,6 +1,7 @@
+import { stripHtml } from "@/helpers";
 import moment from "moment";
 
-export default function useCommunityCards(ownerName: string, logo: string, createdAt: string, description: string) {
+export default function useCommunityCards(ownerName: string, logo: string, createdAt: string, description: string , purpose : string , rules : string) {
      return [
           {
                title: "Community Owner",
@@ -10,9 +11,11 @@ export default function useCommunityCards(ownerName: string, logo: string, creat
                date: `Join on ${moment(createdAt).format('MMM DD, YYYY')}`,
           },
           {
-               title: "Community info",
-               description:
-                    description,
+               title: "Community Details",
+               titleinner: "Community Purpose",
+               titleinnertwo: "Rules & Guidelines",
+               description: stripHtml(purpose),
+               rules:stripHtml(rules),
           },
      ]
 }
