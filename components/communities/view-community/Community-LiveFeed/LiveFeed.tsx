@@ -13,6 +13,7 @@ import { useNavigationStore } from "@/store/modulesStore";
 import { FeedItem } from "@/types";
 import { MediaShimmer } from "@/components/skeleton/MediaShimmer";
 import PaginationComponent from "@/components/common/PaginationComponent";
+import { useTableScroll } from "@/hooks/useTableScroll";
 
 export type Props = {
   communityId: ParamValue;
@@ -28,7 +29,7 @@ export default function LiveFeed({ communityId }: Props) {
     queryKey: [keys.communityFeed, communityId, dateRange, page],
     queryFn: () => getCommunityPosts(communityId, dateRange, page),
   });
-
+const tableRef = useTableScroll(page, isPending);
   const feedData = data?.data?.docs || [];
 
   const handlePageChange = (page: number) => {
@@ -36,7 +37,7 @@ export default function LiveFeed({ communityId }: Props) {
   };
 
   return (
-    <div className="w-full rounded-xl border border-border-gray-200 bg-white overflow-hidden">
+    <div className="w-full rounded-xl border border-border-gray-200 bg-white overflow-hidden"  ref={tableRef}>
       <div className="flex h-[68px] items-center border-b border-border-gray-200 px-5">
         <div className="ml-auto relative">
           <CustomDateDropdown
