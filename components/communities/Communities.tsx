@@ -11,7 +11,7 @@ import SearchFilterBar from "../common/SearchFilterBar";
 import { BUSINESS_TYPE_OPTIONS } from "@/constants/communities/Categories";
 import { getAllCommunities } from "@/services/communities";
 
-export default function Communities() {
+export default function   Communities() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("");
   const [status, setStatus] = useState("");
@@ -52,7 +52,7 @@ export default function Communities() {
   return (
     <div className="rounded-2xl border border-border-light bg-white shadow-sm">
       <SearchFilterBar
-        placeholder="Search Community..."
+        placeholder="Search by Community Name…."
         filters={[
           {
             key: "status",

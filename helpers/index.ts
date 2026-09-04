@@ -138,3 +138,10 @@ export function formatTimeAgo(dateString: string) {
 
   return date.toLocaleDateString();
 }
+
+export const stripHtml = (html?: string | null) => {
+  return (html ?? "")
+    .replace(/<[^>]*>/g, "")
+    .replace(/&nbsp;/g, " ")
+    .trim();
+};

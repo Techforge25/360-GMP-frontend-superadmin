@@ -5,7 +5,7 @@ export function FeedHeader({ item }: { item: FeedItem }) {
   return (
     <div className="flex items-center gap-3 px-3 py-3 md:px-3">
       <img
-        src={item.postedBy.logo}
+        src={item.postedBy.logo || "/images/user-icon.webp"}
         alt={item.postedBy.name}
         className="h-10 w-10 shrink-0 rounded-full border border-[#e5e7eb] object-cover"
       />

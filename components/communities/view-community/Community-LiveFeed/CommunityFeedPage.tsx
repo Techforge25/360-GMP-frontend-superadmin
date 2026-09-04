@@ -9,7 +9,7 @@ interface Props {
 export default function CommunityFeedPage({ currentTab, communityId }: Props) {
 
   return (
-    <main className="min-h-screen bg-[#FFFFFF] ">
+    <main className="">
       <div className="">
         <LiveFeed communityId={communityId} />
       </div>
