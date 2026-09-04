@@ -2,8 +2,10 @@ import Image from "next/image";
 import dateIcon from "@/assets/dateIcon.svg";
 import useCommunityCards from "@/hooks/useCommunityCards";
 import CommunityCardShimmer from "@/components/skeleton/CommunityCardShimmer";
+import DOMPurify from "dompurify";
 
 interface Props {
+  companyName: string;
   ownerName: string;
   logo: string;
   createdAt: string;
@@ -11,8 +13,8 @@ interface Props {
   isPending: boolean;
 }
 
-export default function CommunityCards({ ownerName, logo, createdAt, description, isPending }: Props) {
-  const communityCards = useCommunityCards(ownerName, logo, createdAt, description)
+export default function CommunityCards({ companyName, ownerName, logo, createdAt, description, isPending }: Props) {
+  const communityCards = useCommunityCards(companyName, ownerName, logo, createdAt, description)
   return (
     <div className="flex items-stretch gap-4 w-full p-5 pt-5">
       {isPending ? (
@@ -45,9 +47,12 @@ export default function CommunityCards({ ownerName, logo, createdAt, description
                       {card.name}
                     </h2>
 
-                    <p className="text-text-secondary text-[0.875rem] font-inter font-normal">
-                      {card.description}
-                    </p>
+                    <p className="text-text-secondary text-[0.875rem] font-inter font-normal"
+                      dangerouslySetInnerHTML={{
+                        __html: DOMPurify.sanitize(card.description),
+                      }}
+                    />
+                    {card.description}
 
                     <div className="flex items-center gap-1 pt-1">
                       <Image

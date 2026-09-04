@@ -4,6 +4,7 @@ import moment from "moment";
 import { formatNumber } from "@/helpers";
 import { ParamValue } from "next/dist/server/request/params";
 import CommunnitySuspendButton from "./CommunnitySuspendButton";
+import DOMPurify from "dompurify";
 
 interface Props {
   profileImage: string;
@@ -42,9 +43,11 @@ function CommunityHeader({ profileImage, category, name, purpose, status, type, 
           <h1 className="text-text-primary font-semibold text-[2rem] font-open-sans">
             {name}
           </h1>
-          <p className="text-text-setting-light text-[1rem] font-inter font-normal">
-            {purpose}
-          </p>
+          <p className="text-text-setting-light text-[1rem] font-inter font-normal"
+            dangerouslySetInnerHTML={{
+              __html: DOMPurify.sanitize(purpose),
+            }}
+          />
           <p className="font-inter font-normal text-[1rem]">
             <span className="text-text-gray-more">{formatNumber(members)} Members</span>
             <span className="mx-1 text-text-gray-more text-xl">•</span>

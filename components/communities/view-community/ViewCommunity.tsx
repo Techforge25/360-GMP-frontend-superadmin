@@ -27,7 +27,7 @@ export default function ViewCommunity() {
           <CommunityHeader profileImage={communityData?.profileImage} category={communityData?.category} name={communityData?.name} purpose={communityData?.purpose} description={communityData?.description} status={communityData?.status} type={communityData?.type} createdAt={communityData?.createdAt} members={communityData?.membersCount} communityId={id} warnings={communityData?.warningsCount} />
         )}
       </div>
-      <CommunityCards ownerName={communityData?.creator?.ownerName} logo={communityData?.creator?.logo} createdAt={communityData?.creator?.createdAt} description={communityData?.description} isPending={isPending} />
+      <CommunityCards companyName={communityData?.creator?.companyName} ownerName={communityData?.creator?.ownerName} logo={communityData?.creator?.logo} createdAt={communityData?.creator?.createdAt} description={communityData?.description} isPending={isPending} />
       <CommunityMember communityId={id} />
     </div>
   );
