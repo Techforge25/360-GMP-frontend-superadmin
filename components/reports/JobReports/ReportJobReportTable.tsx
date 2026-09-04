@@ -54,7 +54,7 @@ export default function ReportJobReportTable({ reportsData, isPending }: Props) 
               {row?.reportedBy?.fullName}
             </span>
 
-            <span className="text-sm text-text-gray-more truncate w-[14rem]">
+            <span className="text-sm text-text-gray-more truncate w-[13rem]">
               {row?.reportedBy?.email}
             </span>
           </div>
@@ -86,11 +86,11 @@ export default function ReportJobReportTable({ reportsData, isPending }: Props) 
           />
 
           <div className="flex flex-col">
-            <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
+            <span className="text-[1rem] font-medium text-text-secondary truncate md:w-[12rem] w-[13rem]">
               {row?.reportedJob?.owner?.companyName}
             </span>
 
-            <span className="text-sm text-text-gray-more truncate w-[14rem]">
+            <span className="text-sm text-text-gray-more truncate  md:w-[12rem] w-[13rem]">
               {row?.reportedJob?.owner?.email}
             </span>
           </div>

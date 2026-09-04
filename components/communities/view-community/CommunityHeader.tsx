@@ -45,7 +45,7 @@ function CommunityHeader({ profileImage, category, name, purpose, status, type, 
           </h1>
           <p className="text-text-setting-light text-[1rem] font-inter font-normal"
             dangerouslySetInnerHTML={{
-              __html: DOMPurify.sanitize(purpose),
+              __html: DOMPurify.sanitize(description),
             }}
           />
           <p className="font-inter font-normal text-[1rem]">

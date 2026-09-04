@@ -44,11 +44,11 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
         />
 
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">
+          <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
             {row?.buyerInfo?.fullName}
           </span>
 
-          <span className="mt-0.5 text-sm text-text-hint">
+          <span className="mt-0.5 text-sm text-text-hint truncate w-[13rem]">
             {row?.buyerInfo?.email}
           </span>
         </div>
@@ -69,11 +69,11 @@ const columns: Column<MarketPlaceOrderLogsTableRowData>[] = [
         />
 
         <div className="flex flex-col">
-          <span className="text-[1rem] font-medium text-text-secondary">
+          <span className="text-[1rem] font-medium text-text-secondary truncate w-[14rem]">
             {row?.sellerInfo?.companyName}
           </span>
 
-          <span className="mt-0.5 text-sm text-text-hint">
+          <span className="mt-0.5 text-sm text-text-hint truncate w-[13rem]">
             {row?.sellerInfo?.email}
           </span>
         </div>

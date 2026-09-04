@@ -36,7 +36,7 @@ const columns: Column<TypeCommunities>[] = [
               className={`font-normal font-inter text-[0.875rem] ${
                 row?.type?.toLowerCase() === "public"
                   ? "text-[#185ADB]"
-                  : "text-[#768299]"
+                  : "text-[#9834FA]"
               }`}
             >
               {row?.type}
