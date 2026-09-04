@@ -25,7 +25,6 @@ export default function CommunityCards({
   purpose,
   rules,
 }: Props) {
-
   const communityCards = useCommunityCards(
     companyName,
     ownerName,
@@ -68,12 +67,12 @@ export default function CommunityCards({
                       {card.name}
                     </h2>
 
-                    <p className="text-text-secondary text-[0.875rem] font-inter font-normal"
+                    <p
+                      className="text-text-secondary text-[0.875rem] font-inter font-normal"
                       dangerouslySetInnerHTML={{
                         __html: DOMPurify.sanitize(card.description),
                       }}
                     />
-                    {card.description}
 
                     <div className="flex items-center gap-1 pt-1">
                       <Image
@@ -95,15 +94,22 @@ export default function CommunityCards({
                   <h2 className="text-[1rem] font-medium font-inter text-text-light">
                     {card.titleinner}
                   </h2>
-                  <p className="text-text-secondary text-[0.875rem] font-inter font-normal">
-                    {card.description}
-                  </p>
+                  <p
+                    className="text-text-secondary text-[0.875rem] font-inter font-normal"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(card.description),
+                    }}
+                  />
+
                   <h2 className="text-[1rem] font-medium font-inter text-text-light pt-4">
                     {card.titleinnertwo}
                   </h2>
-                  <p className="text-text-secondary text-[0.875rem] font-inter font-normal">
-                    {card.rules}
-                  </p>
+                  <p
+                    className="text-text-secondary text-[0.875rem] font-inter font-normal"
+                    dangerouslySetInnerHTML={{
+                      __html: DOMPurify.sanitize(card.rules ?? ""),
+                    }}
+                  />
                 </>
               )}
             </div>

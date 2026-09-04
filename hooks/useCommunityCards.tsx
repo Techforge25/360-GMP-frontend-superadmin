@@ -14,8 +14,8 @@ export default function useCommunityCards(companyName: string, ownerName: string
                title: "Community Details",
                titleinner: "Community Purpose",
                titleinnertwo: "Rules & Guidelines",
-               description: stripHtml(purpose),
-               rules: stripHtml(rules),
+               description: purpose,
+               rules: rules,
           },
      ]
 }
