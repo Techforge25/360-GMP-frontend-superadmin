@@ -94,18 +94,33 @@ export default function CommunityCards({
                   <h2 className="text-[1rem] font-medium font-inter text-text-light">
                     {card.titleinner}
                   </h2>
-                  <p
-                    className="text-text-secondary text-[0.875rem] font-inter font-normal"
+                  <div
+                    className="
+    text-text-secondary text-[0.875rem] font-inter font-normal
+    [&_ul]:list-disc
+    [&_ul]:pl-5
+    [&_ol]:list-decimal
+    [&_ol]:pl-5
+    [&_li]:mb-1
+  "
                     dangerouslySetInnerHTML={{
-                      __html: DOMPurify.sanitize(card.description),
+                      __html: DOMPurify.sanitize(card.description ?? ""),
                     }}
                   />
 
                   <h2 className="text-[1rem] font-medium font-inter text-text-light pt-4">
                     {card.titleinnertwo}
                   </h2>
-                  <p
-                    className="text-text-secondary text-[0.875rem] font-inter font-normal"
+
+                  <div
+                    className="
+    text-text-secondary text-[0.875rem] font-inter font-normal
+    [&_ul]:list-disc
+    [&_ul]:pl-5
+    [&_ol]:list-decimal
+    [&_ol]:pl-5
+    [&_li]:mb-1
+  "
                     dangerouslySetInnerHTML={{
                       __html: DOMPurify.sanitize(card.rules ?? ""),
                     }}
