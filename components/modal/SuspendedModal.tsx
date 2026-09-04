@@ -21,8 +21,8 @@ interface TypeAdminId {
 const SuspendedModal = forwardRef<SuspendedModalRef, TypeAdminId>(
   ({ communityId, name }, ref) => {
     const [isOpen, setIsOpen] = useState(false);
-    const queryClient = useQueryClient()
-    const router = useRouter()
+    const queryClient = useQueryClient();
+    const router = useRouter();
 
     useImperativeHandle(ref, () => ({
       open: () => setIsOpen(true),
@@ -42,8 +42,8 @@ const SuspendedModal = forwardRef<SuspendedModalRef, TypeAdminId>(
     });
 
     const suspendAccount = () => {
-      mutation.mutate(communityId)
-    }
+      mutation.mutate(communityId);
+    };
 
     if (!isOpen) return null;
 
@@ -78,12 +78,10 @@ const SuspendedModal = forwardRef<SuspendedModalRef, TypeAdminId>(
 
           <hr className="border-border-gray-200 " />
 
-          <p className="capitalize text-text-gray-more text-[1rem] font-inter font-normal pt-5">
-           This will hide {" "}
-            <span className="text-text-setting-light">
-              {name}&nbsp;
-            </span>
-           from all user the community owner will be notified this will hide{" "}
+          <p className=" text-text-gray-more text-[1rem] font-inter font-normal pt-5">
+            This will hide{"  "}
+            <span className="text-text-setting-light">{name}&nbsp;</span>
+            from all users. The community owner will be notified.
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
@@ -94,8 +92,12 @@ const SuspendedModal = forwardRef<SuspendedModalRef, TypeAdminId>(
               Cancel
             </button>
 
-            <button onClick={() => suspendAccount()} disabled={mutation.isPending} className="flex-1 border border-border-red-dark text-border-red-dark gap-2 rounded-[0.5rem] flex items-center justify-center py-2 bg-brand-business-icon-light text-[1rem] font-inter font-normal cursor-pointer disabled:cursor-not-allowed disabled:opacity-50">
-              <span>{mutation.isPending ? 'Suspending...' : 'Suspend'}</span>
+            <button
+              onClick={() => suspendAccount()}
+              disabled={mutation.isPending}
+              className="flex-1 border border-border-red-dark text-border-red-dark gap-2 rounded-[0.5rem] flex items-center justify-center py-2 bg-brand-business-icon-light text-[1rem] font-inter font-normal cursor-pointer disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <span>{mutation.isPending ? "Suspending..." : "Suspend"}</span>
             </button>
           </div>
         </div>
