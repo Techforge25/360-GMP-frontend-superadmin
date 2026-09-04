@@ -9,14 +9,35 @@ interface Props {
   ownerName: string;
   logo: string;
   createdAt: string;
+  purpose: string;
+  rules: string;
   description: string;
   isPending: boolean;
 }
 
-export default function CommunityCards({ companyName, ownerName, logo, createdAt, description, isPending }: Props) {
-  const communityCards = useCommunityCards(companyName, ownerName, logo, createdAt, description)
+export default function CommunityCards({
+  companyName,
+  ownerName,
+  logo,
+  createdAt,
+  description,
+  isPending,
+  purpose,
+  rules,
+}: Props) {
+
+  const communityCards = useCommunityCards(
+    companyName,
+    ownerName,
+    logo,
+    createdAt,
+    description,
+    purpose,
+    rules,
+  );
+
   return (
-    <div className="flex items-stretch gap-4 w-full p-5 pt-5">
+    <div className="grid grid-cols-1 items-stretch gap-4 w-full p-5 pt-5">
       {isPending ? (
         <CommunityCardShimmer />
       ) : (
@@ -70,16 +91,25 @@ export default function CommunityCards({ companyName, ownerName, logo, createdAt
                   </div>
                 </div>
               ) : (
-                <p className="text-text-secondary text-[0.875rem] font-inter font-normal">
-                  {card.description}
-                </p>
+                <>
+                  <h2 className="text-[1rem] font-medium font-inter text-text-light">
+                    {card.titleinner}
+                  </h2>
+                  <p className="text-text-secondary text-[0.875rem] font-inter font-normal">
+                    {card.description}
+                  </p>
+                  <h2 className="text-[1rem] font-medium font-inter text-text-light pt-4">
+                    {card.titleinnertwo}
+                  </h2>
+                  <p className="text-text-secondary text-[0.875rem] font-inter font-normal">
+                    {card.rules}
+                  </p>
+                </>
               )}
             </div>
           ))}
         </>
-      )
-      }
-
-    </div >
+      )}
+    </div>
   );
 }

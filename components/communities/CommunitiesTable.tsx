@@ -16,6 +16,7 @@ const columns: Column<TypeCommunities>[] = [
     header: "Communities identity",
     render: (row) => (
       <div className="flex items-center space-x-3">
+        <div className="w-10 h-10">
         <Image
           src={row?.profileImage || "/images/user-icon.webp"}
           alt={row?.name}
@@ -23,7 +24,7 @@ const columns: Column<TypeCommunities>[] = [
           height={40}
           className="h-10 w-10 rounded-full"
         />
-
+</div>
         <div className="flex flex-col">
           <span className="text-[0.875rem] font-medium text-text-review-Page truncate w-[16rem]">
             {row?.name}

@@ -1,4 +1,3 @@
-import { ChevronRight } from "@/constants/communities/CommunitiesIcon";
 import { formatDate } from "@/helpers";
 import { FeedItem } from "@/types";
 import { useState } from "react";
@@ -45,8 +44,6 @@ export function PollContent({
 
                 <span className="flex items-center gap-2 text-[11px] text-[#1748c8]">
                   {percentage}%
-
-                  <ChevronRight />
                 </span>
               </div>
             </div>

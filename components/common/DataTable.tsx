@@ -29,7 +29,7 @@ export default function DataTable<T>({
     <div className={`w-full max-w-full overflow-x-auto ${borderRadius} rounded-xl border  border-border-light  bg-surface shadow-sm font-secondary`}>
       <table className="w-full min-w-[900px] border-collapse text-sm md:text-base">
         <thead>
-          <tr className="border-b border-border-light bg-surface-muted font-secondary text-sm md:text-[1rem] font-medium capitalize tracking-wide text-black">
+          <tr className="border-b border-t border-border-light bg-surface-muted font-secondary text-sm md:text-[1rem] font-medium capitalize tracking-wide text-black">
             {columns?.map((column) => (
               <th
                 key={String(column.key)}
