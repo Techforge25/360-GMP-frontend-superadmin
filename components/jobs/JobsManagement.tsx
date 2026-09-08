@@ -4,17 +4,26 @@ import { dropdownOptions } from "@/constants/subscription/SubsriptionTable";
 import OverviewCards from "../common/OverviewCards";
 import CustomDateDropdown from "../common/CustomDateDropdown";
 import JobsTabsPage from "./JobsTabsPage";
-import JobsStats from "@/constants/jobs/JobsStats";
+import { keys } from "@/keys";
+import { getJobsStat } from "@/services/job-management";
+import { useQuery } from "@tanstack/react-query";
+import useJobsStats from "@/constants/jobs/JobsStats";
 
 export default function JobsManagement() {
-  const [dateRange, setDateRange] = useState("all");
+   const [dateRange, setDateRange] = useState("all");
+  const { data, isPending } = useQuery({
+    queryKey: [keys.jobsStats, dateRange],
+    queryFn: () => getJobsStat(dateRange),
+  });
+  const jobsCards = data?.data;
+  const jobsStatistics = useJobsStats(jobsCards);
   return (
     <>
       <OverviewCards
         heading="Jobs Overview"
         description="Real time status of recurrent and risk monitoring systems."
-        cards={JobsStats}
-        // isPending={isPending}
+        cards={jobsStatistics}
+        isPending={isPending}
         dropdown={
           <CustomDateDropdown
             value={dateRange}

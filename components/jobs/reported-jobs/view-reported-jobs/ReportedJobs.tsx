@@ -1,13 +1,17 @@
 "use client";
-
-import { JOB_REPORT_DATA } from "@/constants/jobs/ViewReportedData";
+import { JobReport } from "@/types";
+import moment from "moment";
 import Image from "next/image";
-import Link from "next/link";
 import { FiPaperclip, FiUserCheck } from "react-icons/fi";
+interface JobPostReportedProps {
+  jobReports: JobReport[];
+  reportCount: number;
+}
 
-export default function JobReports() {
-  const jobReports = JOB_REPORT_DATA.jobReports;
-
+export default function JobReports({
+  jobReports,
+  reportCount,
+}: JobPostReportedProps) {
   return (
     <div className="w-full border-border-gray-200  p-3 border rounded-[0.75rem] p-[1rem]  bg-[#FFFFFF] mt-1">
       <div className="flex items-center justify-between">
@@ -23,7 +27,7 @@ export default function JobReports() {
 
         <div className="flex items-center gap-2">
           <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-border-red-dark px-3 text-[0.6875rem] font-semibold text-white">
-            {JOB_REPORT_DATA.reportCount}
+            {reportCount}
           </span>
 
           <span className="font-inter text-[1rem] text-date-time font-normal">
@@ -37,15 +41,15 @@ export default function JobReports() {
       <div className="space-y-4">
         {jobReports.map((report, index) => (
           <div
-            key={`${report.createdAt}-${index}`}
+            key={`${report?.createdAt}-${index}`}
             className="rounded-lg border border-border-gray-200 bg-bg-gray-200 p-3"
           >
             <div className="flex items-start justify-between">
               <div className="flex items-center gap-2">
                 <div className="relative h-10 w-10 shrink-0">
                   <Image
-                    src={report.userProfile.logo}
-                    alt={report.userProfile.fullName}
+                    src={report?.userProfile?.logo || "/images/user-icon.webp"}
+                    alt={report?.userProfile?.fullName}
                     fill
                     sizes="40px"
                     className="rounded-full object-cover"
@@ -54,20 +58,20 @@ export default function JobReports() {
 
                 <div>
                   <h3 className="font-open-sans text-[1rem] font-bold font-inter capitalize leading-5 text-text-review-Page">
-                    {report.userProfile.fullName}
+                    {report?.userProfile?.fullName}
                   </h3>
 
                   <p className="font-inter text-[0.875rem] font-normal text-text-secondary">
-                    {report.userProfile.title}
+                    {report?.userProfile?.title}
                   </p>
                 </div>
               </div>
               <span className="font-inter text-[0.875rem] font-normal text-text-secondary">
-                4 hours ago
+                {moment(report?.createdAt).fromNow()}
               </span>
             </div>
             <p className="mt-4 font-inter text-[0.875rem] font-normal leading-5 text-text-setting-light">
-              {report.reason}
+              {report?.reason}
             </p>
 
             <p
@@ -81,12 +85,12 @@ export default function JobReports() {
                 text-text-setting-light
               "
             >
-              {report.description}
+              {report?.description}
             </p>
 
-            {report.media.length > 0 && (
+            {report?.media?.length > 0 && (
               <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2">
-                {report.media.map((media, mediaIndex) => (
+                {report?.media.map((media, mediaIndex) => (
                   <a
                     key={mediaIndex}
                     href={media}

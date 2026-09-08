@@ -6,7 +6,7 @@ import applicantUsers from "@/assets/applicantUserIcon.svg"
 import ReportedJobsTableActions from "./ReportedJobsTableActions";
 
 interface Props {
-  // isPending: boolean;
+  isPending: boolean;
   latestReportedJobsData: TypeLatestReportedJob[];
 }
 
@@ -90,14 +90,14 @@ const columns: Column<TypeLatestReportedJob>[] = [
   },
 ];
 const borderRadius = "rounded-2xl! border-none";
-export default function ReportedJobsTable({ latestReportedJobsData }: Props) {
+export default function ReportedJobsTable({isPending, latestReportedJobsData }: Props) {
   return (
     <div>
       <DataTable
         columns={columns}
         data={latestReportedJobsData}
         rowKey={(row) => row?._id}
-        // isLoading={isPending}
+        isLoading={isPending}
         borderRadius={borderRadius}
       />
     </div>

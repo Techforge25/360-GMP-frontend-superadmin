@@ -1,104 +1,135 @@
 "use client";
 
 import { RemoveJobModalRef } from "@/types";
-import {
-  forwardRef,
-  useImperativeHandle,
-  useState,
-} from "react";
+import { deleteReport } from "@/services/job-management";
+import { keys } from "@/keys";
+import { useQueryClient, useMutation } from "@tanstack/react-query";
+import { forwardRef, useImperativeHandle, useState } from "react";
 import { FiTrash2, FiX } from "react-icons/fi";
+import { toast } from "react-toastify";
+import { useRouter } from "next/navigation";
+
 
 interface RemoveJobModalProps {
-  adminId?: string;
+  reportId?: string;
 }
 
-const RemoveJobModal = forwardRef<
-  RemoveJobModalRef,
-  RemoveJobModalProps
->(({ adminId }, ref) => {
-  const [isOpen, setIsOpen] = useState(false);
+const RemoveJobModal = forwardRef<RemoveJobModalRef, RemoveJobModalProps>(
+  ({ reportId }, ref) => {
+    const [isOpen, setIsOpen] = useState(false);
+    const router = useRouter();
+    const queryClient = useQueryClient();
 
-  useImperativeHandle(ref, () => ({
-    open: () => setIsOpen(true),
-    close: () => setIsOpen(false),
-  }));
+    const { mutate: removeJob, isPending } = useMutation({
+      mutationKey: [keys.deleteReportedJob],
 
-  const handleClose = () => {
-    setIsOpen(false);
-  };
+      mutationFn: (id: string) => deleteReport(id),
 
-  const handleConfirm = () => {
-    console.log("Remove Job:", adminId);
-    setIsOpen(false);
-  };
+      onSuccess: (response) => {
+        toast.success(response?.message || "Job removed successfully");
 
-  if (!isOpen) return null;
+        setIsOpen(false);
 
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+        queryClient.invalidateQueries({
+          queryKey: [keys.reportedJobs],
+        });
+        router.push("/jobs");
+      },
 
-      <div className="w-full max-w-[400px] rounded-[10px] bg-white p-4 shadow-xl">
-     
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-4">
-       
-            <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#FFE8E8]">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FF3B3B]">
-                <FiTrash2
-                  size={16}
-                  strokeWidth={2}
-                  className="text-white"
-                />
+      onError: (error: any) => {
+        toast.error(
+          error?.response?.data?.message ||
+            error?.message ||
+            "Failed to remove job",
+        );
+      },
+    });
+
+    useImperativeHandle(ref, () => ({
+      open: () => setIsOpen(true),
+      close: () => setIsOpen(false),
+    }));
+
+    const handleClose = () => {
+      if (isPending) return;
+
+      setIsOpen(false);
+    };
+
+    const handleConfirm = () => {
+      if (!reportId || isPending) return;
+
+      removeJob(reportId);
+    };
+
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 px-4">
+        <div className="w-full max-w-[400px] rounded-[10px] bg-white p-4 shadow-xl">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-business-icon-light">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-border-red-dark">
+                  <FiTrash2 size={16} strokeWidth={2} className="text-white" />
+                </div>
               </div>
+
+              <h2 className="font-inter text-[1.125rem] font-medium font-inter text-text-light">
+                Remove Job
+              </h2>
             </div>
 
-            <h2 className="font-inter text-[0.875rem] font-medium text-[#1D2939]">
-              Remove Job
-            </h2>
+            <button
+              type="button"
+              onClick={handleClose}
+              disabled={isPending}
+              className="flex h-6 w-6 cursor-pointer items-center justify-center text-text-light transition hover:opacity-70 disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              <FiX size={18} strokeWidth={1.8} />
+            </button>
           </div>
 
-   
-          <button
-            type="button"
-            onClick={handleClose}
-            className="flex h-6 w-6 cursor-pointer items-center justify-center text-[#1D2939] transition hover:opacity-70"
-          >
-            <FiX size={18} strokeWidth={1.8} />
-          </button>
-        </div>
+          <div className="mt-5 flex min-h-[44px] items-center rounded-[0.5rem] border border-border-red-dark bg-brand-business-icon-light px-3">
+            <p className="font-inter text-[0.875rem] font-semibold font-inter text-text-light">
+              Are You Want To Remove This Job Permanently.
+            </p>
+          </div>
 
+          <div className="mt-4 grid grid-cols-2 gap-3">
+            <button
+              type="button"
+              onClick={handleClose}
+              disabled={isPending}
+              className="h-[36px] cursor-pointer rounded-[0.5rem] border border-[#E4E7EC] bg-white font-inter text-[1rem] font-normal text-text-light transition hover:bg-[#F9FAFB] disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              Cancel
+            </button>
 
-        <div className="mt-5 flex min-h-[44px] items-center rounded-[6px] border border-[#FF3B3B] bg-[#FFE0E0] px-3">
-          <p className="font-inter text-[0.75rem] font-semibold text-[#1D2939]">
-            Are You Want To Remove This Job Permanently.
-          </p>
-        </div>
-
-   
-        <div className="mt-4 grid grid-cols-2 gap-3">
-
-          <button
-            type="button"
-            onClick={handleClose}
-            className="h-[36px] cursor-pointer rounded-[7px] border border-[#E4E7EC] bg-white font-inter text-[0.8125rem] font-normal text-[#344054] transition hover:bg-[#F9FAFB]"
-          >
-            Cancel
-          </button>
-
-  
-          <button
-            type="button"
-            onClick={handleConfirm}
-            className="flex h-[36px] cursor-pointer items-center justify-center gap-2 rounded-[7px] border border-[#FF3B3B] bg-[#FFE0E0] font-inter text-[0.8125rem] font-normal text-[#FF3B3B] transition hover:bg-[#FFD5D5]"
-          >
-            Remove Job
-            <FiTrash2 size={15} strokeWidth={2} />
-          </button>
+            <button
+              type="button"
+              onClick={handleConfirm}
+              disabled={isPending}
+              className="flex h-[36px] cursor-pointer items-center justify-center gap-2 rounded-[7px] border border-border-red-dark bg-brand-business-icon-light font-inter text-[1rem] font-normal text-border-red-dark transition  disabled:cursor-not-allowed disabled:opacity-50"
+            >
+              {isPending ? (
+                <>
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-border-red-dark border-t-transparent" />
+                  Removing...
+                </>
+              ) : (
+                <>
+                  Remove Job
+                  <FiTrash2 size={15} strokeWidth={2} />
+                </>
+              )}
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-  );
-});
+    );
+  },
+);
 
 RemoveJobModal.displayName = "RemoveJobModal";
 

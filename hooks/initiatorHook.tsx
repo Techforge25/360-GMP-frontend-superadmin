@@ -26,6 +26,10 @@ export default function initiatorHook(route: string) {
                module: 'Subscription Management',
                url: '/subscriptionAccess/init'
           },
+           {
+               module: 'Job Management',
+               url: '/jobManagement/init'
+          },
      ]
 
      const findInitiator: TypeNavigation | undefined = arr.find((init) => init.module === route)
