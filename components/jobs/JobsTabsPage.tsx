@@ -30,22 +30,19 @@ export default function JobsTabsPage({ dateRange }: Props) {
       <div className="mt-6">
         {currentTab === "over-view" && (
           <>
-            <JobsOverview 
-             onViewAllJobs={() => setCurrentTab("active-job")}
-            />
+            <JobsOverview onViewAllJobs={() => setCurrentTab("active-job")} />
           </>
         )}
 
         {currentTab === "active-job" && (
           <>
-            <ActiveJobs  dateRange={dateRange} currentTab={currentTab} />
+            <ActiveJobs dateRange={dateRange} currentTab={currentTab} />
           </>
         )}
         {currentTab === "reported-job" && (
           <>
-          <ReportedJobs dateRange={dateRange} currentTab={currentTab}/>
+            <ReportedJobs dateRange={dateRange} currentTab={currentTab} />
           </>
-         
         )}
       </div>
     </>

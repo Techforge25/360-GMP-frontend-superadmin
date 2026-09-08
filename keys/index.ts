@@ -37,5 +37,13 @@ export const keys = {
      suspend: 'suspend',
      activate: 'activate',
      members: 'members',
-     communityFeed: 'communityFeed'
+     communityFeed: 'communityFeed',
+     jobsStats: 'jobsStats',
+     jobsGraph: 'jobsGraph',
+     lattestActiveJobs: 'lattestActiveJobs',
+     activeJobs: 'activeJobs',
+     viewActiveJobs:'viewActiveJobs',
+     reportedJobs: 'reportedJobs',
+     viewReportedJobs: 'viewReportedJobs',
+     deleteReportedJob: 'deleteReportedJob',
 }

@@ -524,6 +524,11 @@ export type TypeAccountStats = {
   totalUserProfiles: number
 }
 
+export type TypeJobsStats = {
+  totalActiveJobs: number;
+  totalReportedJobs: number;
+}
+
 export type TypeAccountManagement = {
   _id: string,
   fullName: string,
@@ -872,6 +877,19 @@ export interface TypeLatestReportedJob {
     logo: string;
   };
   reportCount: number;
+}
+
+
+export interface JobReport {
+  reason: string;
+  media: string[];
+  description: string;
+  createdAt: string;
+  userProfile: {
+    fullName: string;
+    logo: string;
+    title: string;
+  };
 }
 
 

@@ -4,10 +4,9 @@ import Image from "next/image";
 import { formatDate } from "@/helpers";
 import ActiveJobsTableActions from "./ActiveJobsTableActions";
 import applicantUsers from "@/assets/applicantUserIcon.svg"
-const accountManagement = "accountManagementUsersTable";
 
 interface Props {
-  // isPending: boolean;
+  isPending: boolean;
   latestJobs: TypeLatestJob[];
 }
 
@@ -91,14 +90,14 @@ const columns: Column<TypeLatestJob>[] = [
   },
 ];
 const borderRadius = "rounded-2xl! border-none";
-export default function ActiveJobsTable({ latestJobs }: Props) {
+export default function ActiveJobsTable({isPending, latestJobs }: Props) {
   return (
     <div>
       <DataTable
         columns={columns}
         data={latestJobs}
         rowKey={(row) => row?._id}
-        // isLoading={isPending}
+        isLoading={isPending}
         borderRadius={borderRadius}
       />
     </div>
