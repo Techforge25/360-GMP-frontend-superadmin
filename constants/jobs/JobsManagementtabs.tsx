@@ -5,7 +5,7 @@
   export const JobsManagementtabs = [
     {
       id: "over-view",
-      label: "Over View",
+      label: "Overview",
       icon: <Image src={overviewIcon} width={100} height={100} alt="" className="w-[1rem] h-[1rem]" />,
       active: true,
     },

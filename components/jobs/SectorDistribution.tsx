@@ -40,7 +40,9 @@ export default function SectorDistribution() {
 
       <div className="my-5 h-px w-full bg-brand-rating-star-border" />
 
-      <div className="flex min-h-[18rem] w-full flex-col items-center justify-center gap-6 lg:flex-row lg:items-center lg:justify-between lg:gap-6 pl-0 xl:pl-5">
+
+      <div className="flex min-h-[18rem] w-full items-center justify-around gap-6 lg:flex-row lg:items-center  2xl:justify-between lg:gap-6 pl-0 xl:pl-5">
+
         <div className="h-[20rem] w-full max-w-[20rem] sm:h-[22rem] sm:max-w-[22rem] lg:h-[300px] lg:w-[300px] lg:max-w-[300px]">
           <ResponsiveContainer width="100%" height="100%">
             <PieChart>
@@ -51,7 +53,7 @@ export default function SectorDistribution() {
                 cx="50%"
                 cy="50%"
                 innerRadius={82}
-                outerRadius={122}
+outerRadius={122}
                 paddingAngle={0}
                 startAngle={90}
                 endAngle={-270}

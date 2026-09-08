@@ -20,7 +20,7 @@ interface Props {
 export default function LatestJobs({ onViewAllJobs }: Props) {
   const { data: response, isPending } = useQuery({
     queryKey: [keys.lattestActiveJobs],
-    queryFn: () => getActiveJobs("all", 2, 2),
+    queryFn: () => getActiveJobs("all", 3, 1),
   });
 
   const jobs = response?.data?.docs ?? [];
@@ -55,12 +55,12 @@ export default function LatestJobs({ onViewAllJobs }: Props) {
 
                 <div className="min-w-0 flex-1">
                   <h3 className="pr-5 font-open-sans text-[1rem] font-semibold leading-[18px] text-text-light">
-                    {job?.businessProfile?.companyName}
+                    {job?.jobTitle}
                   </h3>
 
                   <div className="mt-1 flex items-center gap-1 text-xs">
                     <span className="font-inter text-[1rem] font-normal text-brand-primary">
-                      {job?.jobTitle}
+                      {job?.businessProfile?.companyName}
                     </span>
 
                     <span className="text-[1rem] text-text-secondary">•</span>
