@@ -347,7 +347,10 @@ export interface ApprovedModalModalRef {
   open: () => void;
   close: () => void;
 }
-
+export interface RemoveJobModalRef {
+  open: () => void;
+  close: () => void;
+}
 
 export type TypeProductData = {
   _id: string,
@@ -839,6 +842,38 @@ export interface FeedItem {
   role?: string;
   title?: string;
 }
+
+
+export interface TypeLatestJob {
+  _id: string;
+  jobTitle: string;
+  location: {
+    country: string;
+    city: string;
+  };
+  createdAt: string;
+  businessProfile: {
+    companyName: string;
+    logo: string;
+  };
+  totalJobApplicants: number;
+}
+
+export interface TypeLatestReportedJob {
+  _id: string;
+  jobTitle: string;
+  location: {
+    country: string;
+    city: string;
+  };
+  createdAt: string;
+  businessProfile: {
+    companyName: string;
+    logo: string;
+  };
+  reportCount: number;
+}
+
 
 export type TypeWarehouseAddress = Pick<TypeViewBusinessProfile, 'warehouseAddress'>
 export type TypeAdditionalWarehouseAddress = Pick<TypeViewBusinessProfile, 'additionalWarehouseAddress'>

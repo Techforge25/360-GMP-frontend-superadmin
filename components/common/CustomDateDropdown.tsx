@@ -56,6 +56,7 @@ export default function CustomDateDropdown({
           font-normal
           font-inter
           text-text-primary
+          cursor-pointer
         "
       >
         {selectedLabel}
