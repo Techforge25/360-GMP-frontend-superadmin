@@ -15,7 +15,6 @@ interface RemoveType {
 function RemoveJobButton({ email, reportCount, reportId }: RemoveType) {
   const modalRef = useRef<RemoveJobModalRef>(null);
 
-  const isDisabled = reportCount < 3;
 
   return (
     <div>
@@ -30,13 +29,9 @@ function RemoveJobButton({ email, reportCount, reportId }: RemoveType) {
 
         <button
           type="button"
-          disabled={isDisabled}
+    
           onClick={() => modalRef.current?.open()}
-          className={`flex shrink-0 items-center gap-2 whitespace-nowrap rounded-[0.5rem] border border-border-red-dark bg-brand-business-icon-light px-3 py-1.5 font-inter text-[1rem] font-normal text-border-red-dark ${
-            isDisabled
-              ? "cursor-not-allowed opacity-40"
-              : "cursor-pointer opacity-100"
-          }`}
+          className={`flex shrink-0 items-center gap-2 whitespace-nowrap rounded-[0.5rem] border border-border-red-dark bg-brand-business-icon-light px-3 py-1.5 font-inter text-[1rem] font-normal text-border-red-dark  cursor-pointer`}
         >
           Remove Job
           <ImBin size={16} className="shrink-0" />
