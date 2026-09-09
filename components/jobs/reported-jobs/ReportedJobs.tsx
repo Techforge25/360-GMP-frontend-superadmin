@@ -1,35 +1,30 @@
 "use client";
 import PaginationComponent from "@/components/common/PaginationComponent";
 import { useNavigationStore } from "@/store/modulesStore";
-import { latestJobs } from "@/constants/jobs/latestJobsData";
 import ReportedJobsTable from "./ReportedJobsTable";
-import { latestReportedJobsData } from "@/constants/jobs/latestReportedJobsData";
 import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { getReportedJobs } from "@/services/job-management";
-// import PaginationComponent from "@/components/common/PaginationComponent";
 
 interface Props {
   dateRange: string;
-  currentTab: string;
 }
 
-export default function ReportedJobs({ dateRange, currentTab }: Props) {
+export default function ReportedJobs({ dateRange }: Props) {
   const setPage = useNavigationStore((state) => state.setPage);
   const page = useNavigationStore((state) => state.page);
 
   const limit = 10;
 
   const { data: response, isPending } = useQuery({
-    queryKey: [keys.reportedJobs, dateRange, page, limit],
-    queryFn: () => getReportedJobs(dateRange, limit, page),
+    queryKey: [keys.reportedJobs, dateRange, page],
+    queryFn: () => getReportedJobs(dateRange, limit),
   });
 
   const jobs = response?.data?.docs ?? [];
 
   const totalPages = response?.data?.totalPages ?? 0;
   const totalDocs = response?.data?.totalDocs ?? 0;
-  const totalItemsPerPage = response?.data?.limit ?? limit;
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -44,7 +39,7 @@ export default function ReportedJobs({ dateRange, currentTab }: Props) {
           handlePageChange={handlePageChange}
           totalPages={totalPages}
           totalItems={totalDocs}
-          totalItemsPerPage={totalItemsPerPage}
+          totalItemsPerPage={10}
         />
       )}
     </div>

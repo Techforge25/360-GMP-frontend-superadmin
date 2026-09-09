@@ -5,4 +5,5 @@ export const sectorColors: Record<string, string> = {
   Manufacturing: "#EF4444",
   Marketing: "#EC4899",
   Finance: "#06B6D4",
+  Education: "#8B5CF6",
 };

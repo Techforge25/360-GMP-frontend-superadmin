@@ -20,7 +20,7 @@ interface Props {
 export default function LatestJobs({ onViewAllJobs }: Props) {
   const { data: response, isPending } = useQuery({
     queryKey: [keys.lattestActiveJobs],
-    queryFn: () => getActiveJobs("all", 3, 1),
+    queryFn: () => getActiveJobs("all", 5, 1),
   });
 
   const jobs = response?.data?.docs ?? [];
@@ -45,7 +45,7 @@ export default function LatestJobs({ onViewAllJobs }: Props) {
               <div className="flex gap-2">
                 <div className="flex h-[3.287rem] w-[3.287rem] shrink-0 items-center justify-center overflow-hidden rounded-md bg-[#EEF2F7]">
                   <Image
-                    src={job?.businessProfile?.logo || "/images/user-icon.webp"}
+                    src={job?.businessProfile?.logo}
                     alt={job?.businessProfile?.companyName || ""}
                     width={100}
                     height={100}

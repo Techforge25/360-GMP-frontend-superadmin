@@ -9,7 +9,7 @@ export default function page() {
   initiatorHook("Job Management");
   return (
     <div className="min-h-screen bg-background p-6 md:p-4 font-sans">
-      <Suspense fallback={null}>
+      <Suspense>
         <JobsManagement />
       </Suspense>
     </div>

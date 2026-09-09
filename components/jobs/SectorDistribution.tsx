@@ -18,13 +18,14 @@ export default function SectorDistribution() {
   }
 
   const sectorData = Object.entries(
-    (response?.data ?? {}) as Record<string, number>,
-  ).map(([name, value], index) => ({
-    id: `${name}-${index}`,
+    (response?.data) as Record<string, number>,
+  ).map(([name, value]) => ({
     name,
     value,
     color: sectorColors[name] ?? "#94A3B8",
   }));
+
+  console.log("sectorData",sectorData)
 
   return (
     <div className="w-full rounded-[0.625rem] border border-border-gray-200 bg-white p-3 sm:p-4">
@@ -61,7 +62,7 @@ outerRadius={122}
                 isAnimationActive={false}
               >
                 {sectorData.map((item) => (
-                  <Cell key={item.id} fill={item.color} />
+                  <Cell  fill={item.color} />
                 ))}
               </Pie>
             </PieChart>
@@ -72,7 +73,6 @@ outerRadius={122}
         <div className="flex w-full max-w-[18.308rem] flex-col gap-3">
           {sectorData.map((item) => (
             <div
-              key={item.id}
               className="flex h-[3rem] w-full items-center justify-between rounded-[0.5rem] border border-border-gray-200 bg-white p-[0.75rem]"
             >
               <div className="flex min-w-0 items-center gap-2">

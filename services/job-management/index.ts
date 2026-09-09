@@ -69,12 +69,11 @@ export const viewActiveProfile = async (id: ParamValue) => {
 
 export const getReportedJobs = async (
   dateRange: string,
-  limit: number,
   page: number,
 ) => {
   try {
     const { data } = await api.get(
-      `/jobManagement/reportedJobs?dateRange=${dateRange}&limit=${limit}&page=${page}`,
+      `/jobManagement/reportedJobs?dateRange=${dateRange}&limit=10&page=${page}`,
     );
 
     return data;

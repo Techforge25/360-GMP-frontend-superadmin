@@ -9,17 +9,16 @@ import { getActiveJobs } from "@/services/job-management";
 
 interface Props {
   dateRange: string;
-  currentTab: string;
 }
 
-export default function ActiveJobs({ dateRange, currentTab }: Props) {
+export default function ActiveJobs({ dateRange }: Props) {
   const setPage = useNavigationStore((state) => state.setPage);
   const page = useNavigationStore((state) => state.page);
 
   const limit = 10;
 
   const { data: response, isPending } = useQuery({
-    queryKey: [keys.activeJobs, dateRange, page, limit],
+    queryKey: [keys.activeJobs, dateRange , page],
     queryFn: () => getActiveJobs(dateRange, limit, page),
   });
 
@@ -27,7 +26,6 @@ export default function ActiveJobs({ dateRange, currentTab }: Props) {
 
   const totalPages = response?.data?.totalPages ?? 0;
   const totalDocs = response?.data?.totalDocs ?? 0;
-  const totalItemsPerPage = response?.data?.limit ?? limit;
 
   const handlePageChange = (page: number) => {
     setPage(page);
@@ -43,7 +41,7 @@ export default function ActiveJobs({ dateRange, currentTab }: Props) {
           handlePageChange={handlePageChange}
           totalPages={totalPages}
           totalItems={totalDocs}
-          totalItemsPerPage={totalItemsPerPage}
+          totalItemsPerPage={10}
         />
       )}
     </div>
