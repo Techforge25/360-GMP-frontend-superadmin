@@ -14,11 +14,11 @@ export default function ReportedJobs({ dateRange }: Props) {
   const setPage = useNavigationStore((state) => state.setPage);
   const page = useNavigationStore((state) => state.page);
 
-  const limit = 10;
+ 
 
   const { data: response, isPending } = useQuery({
     queryKey: [keys.reportedJobs, dateRange, page],
-    queryFn: () => getReportedJobs(dateRange, limit),
+    queryFn: () => getReportedJobs(dateRange, 1),
   });
 
   const jobs = response?.data?.docs ?? [];
