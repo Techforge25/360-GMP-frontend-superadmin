@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import BundlePricing from "./BundlePricing";
+import useProductSpecifications from "@/hooks/useProductSpecifications";
 
 interface Props {
   title: string;
@@ -26,6 +27,10 @@ export default function ProductInfo({
   category,
   tieredPricing,
 }: Props) {
+    const specifications = useProductSpecifications(
+      category,
+      minOrderQty,
+    );
   return (
     <div className="w-full lg:w-[60%] flex flex-col pt-2 rounded-2xl border-bg-light-icon border bg-surface-DEFAULT p-6 md:p-4 shadow-sm">
       <h1 className="text-[1.35rem] font-semibold text-gray-900 leading-tight break-words whitespace-normal">
@@ -60,6 +65,21 @@ export default function ProductInfo({
       {tieredPricing?.some((item) => item.qty !== "0") && (
         <BundlePricing bundles={tieredPricing} />
       )}
+      <div className="overflow-hidden rounded-xl border mt-10 border-gray-300 divide-y divide-gray-200">
+          {specifications?.map((item, index) => (
+            <div
+              key={item.label}
+              className={`flex justify-between p-4 ${index % 2 === 0 ? "bg-[#F8F9FA]" : "bg-white"
+                }`}
+            >
+              <span className="w-1/2 font-semibold text-gray-800">
+                {item.label}
+              </span>
+
+              <span className="w-1/2 text-gray-600">{item.value}</span>
+            </div>
+          ))}
+        </div>
     </div>
   );
 }

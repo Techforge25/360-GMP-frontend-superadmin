@@ -5,20 +5,9 @@ import DOMPurify from "dompurify";
 import { useState } from "react";
 
 export default function ProductSpecifications({
-  category,
-  shippingCompany,
-  shippingCost,
-  estimatedDeliveryDays,
-  minOrderQty,
   detail,
 }: ProductSpecificationsProps) {
-  const specifications = useProductSpecifications(
-    category,
-    shippingCompany,
-    shippingCost,
-    estimatedDeliveryDays,
-    minOrderQty,
-  );
+
   const [showMore, setShowMore] = useState(false);
 
   const cleanDetail = DOMPurify.sanitize(detail);
@@ -37,8 +26,8 @@ export default function ProductSpecifications({
         Product Specifications
       </h2>
 
-      <div className="grid grid-cols-1 gap-6 lg:grid-cols-2 lg:gap-8">
-        <div className="overflow-hidden rounded-xl border border-gray-300 divide-y divide-gray-200">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-1 lg:gap-8">
+        {/* <div className="overflow-hidden rounded-xl border border-gray-300 divide-y divide-gray-200">
           {specifications?.map((item, index) => (
             <div
               key={item.label}
@@ -52,7 +41,7 @@ export default function ProductSpecifications({
               <span className="w-1/2 text-gray-600">{item.value}</span>
             </div>
           ))}
-        </div>
+        </div> */}
         <div className="rounded-xl bg-[#F4F4F5] p-6 border-gray-200 border">
           <h3 className="mb-4 text-[17px] font-semibold text-gray-900 ">
             Product Detail

@@ -9,8 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { keys } from "@/keys";
 import { productDetails } from "@/services/marketplace";
 import ProductDetailShimmer from "@/components/skeleton/ProductShimmer";
-import { product } from "@/constants/marketplace/product";
-import ShippingCharges from "../../product-approve-reject/ShippingCharges";
+
 
 export default function ProductDetail({
   productId,
@@ -39,8 +38,8 @@ export default function ProductDetail({
             <ProductInfo title={productDetail?.title} pricePerUnit={productDetail?.pricePerUnit} minOrderQty={productDetail?.minOrderQty} companyName={productDetail?.businessProfile?.companyName} logo={productDetail?.businessProfile?.logo} category={productDetail?.category} tieredPricing={productDetail?.tieredPricing}/>
           </div>
 
-          <ProductSpecifications category={productDetail?.category} detail={productDetail?.detail} shippingCompany='MAERSK' shippingCost={0} estimatedDeliveryDays={productDetail?.estimatedDeliveryDays} minOrderQty={productDetail?.minOrderQty} />
-          <ShippingCharges />
+          <ProductSpecifications  detail={productDetail?.detail} />
+          {/* <ShippingCharges /> */}
           {productDetail?.status !== 'pending' && (
             <ProductApprovedBy status={productDetail?.status} approval={data?.data?.approval} rejection={data?.data?.rejection} />
           )}

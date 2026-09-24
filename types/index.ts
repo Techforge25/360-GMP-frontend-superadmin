@@ -204,11 +204,6 @@ interface Product {
 }
 
 export interface ProductSpecificationsProps {
-  category: string;
-  shippingCompany: string;
-  shippingCost: number;
-  estimatedDeliveryDays: string;
-  minOrderQty: number;
   detail: string;
 }
 
